@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 5887045915322954946}
   - component: {fileID: 184212705928202299}
   - component: {fileID: 6717409614841087262}
-  - component: {fileID: -1150683753772655456}
-  - component: {fileID: -5460942782215034921}
   m_Layer: 14
   m_Name: MailBox
   m_TagString: CanBeGrabbed
@@ -58,7 +56,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,7 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6717409614841087262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99,41 +95,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.935021, y: 6.783456, z: 11.535078}
   m_Center: {x: 0.23438837, y: 2.1645823, z: -1.2216738}
---- !u!895512359 &-1150683753772655456
-AimConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923778619979922663}
-  m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: -90.00001, y: 0, z: -117.644005}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AimVector: {x: 0, y: 0, z: 1}
-  m_UpVector: {x: 0, y: 1, z: 0}
-  m_WorldUpVector: {x: 0, y: 1, z: 0}
-  m_WorldUpObject: {fileID: 0}
-  m_UpType: 0
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 0
-  m_IsLocked: 0
-  m_Sources: []
---- !u!54 &-5460942782215034921
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923778619979922663}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
