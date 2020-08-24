@@ -18,22 +18,14 @@ using System.Linq;
 
 public class APRController : MonoBehaviour
 {
-    public GameObject foamFrontWalk;
-    public GameObject foamBackWalk;
+   
     //-------------------------------------------------------------
     //--Variables
     //-------------------------------------------------------------
 
-    //public GameObject camera1;
-    // public GameObject camera2;
-    // public GameObject leg1;
-    //  public GameObject leg2;
+    
 
-    // public GameObject hide1;
-    // public GameObject hide2;
-    // public GameObject hide3;
-    //public GameObject hide4;
-    //public GameObject hide5;
+   
     //Active Ragdoll Player parts
     public GameObject
 	//
@@ -180,67 +172,7 @@ public class APRController : MonoBehaviour
     ////////////////
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (camera1.activeSelf == true)
-            {
-                camera1.SetActive(false);
-                camera2.SetActive(true);
-                //leg1.SetActive(false);
-               // leg2.SetActive(false);
-                useControls = false;
-            }
-            else if (camera1.activeSelf == false)
-            {
-                camera1.SetActive(true);
-                camera2.SetActive(false);
-               // leg1.SetActive(true);
-               // leg2.SetActive(true);
-                useControls = true;
-            }
-
-        }
-        */
-        /*
-        if (SpyGlass.activeSelf == false)
-        {
-            if (Input.GetKeyDown(KeyCode.C) && camera2.activeSelf == false)
-            {
-                camera1.SetActive(false);
-                camera2.SetActive(true);
-                
-                hide1.SetActive(false);
-                hide2.SetActive(false);
-                hide3.SetActive(false);
-                hide4.SetActive(false);
-                hide5.SetActive(false);
-                
-                //moveSpeed = 0f;
-                //turnSpeed = 0f;
-                //jumpForce = 0f;
-                useControls = false;
-            }
-
-            else if (Input.GetKeyDown(KeyCode.C) && camera2.activeSelf == true)
-            {
-                camera1.SetActive(true);
-                camera2.SetActive(false);
-                
-                hide1.SetActive(true);
-                hide2.SetActive(true);
-                hide3.SetActive(true);
-                hide4.SetActive(true);
-                hide5.SetActive(true);
-                
-                //moveSpeed = 16f;
-                //turnSpeed = .5f;
-                //jumpForce = 22f;
-                useControls = true;
-
-            }
-        }
-*/
+       
 
 
         if (useControls && !inAir)
@@ -440,14 +372,14 @@ public class APRController : MonoBehaviour
 		if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
         {
             WalkBackward = true;
-            foamBackWalk.SetActive(true);
+           
         }
         else
         {
 			if(!isKeyDown)
 			{
 				WalkBackward = false;
-                foamBackWalk.SetActive(false);
+               
             }
         }
         
@@ -455,14 +387,14 @@ public class APRController : MonoBehaviour
         if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
         {
             WalkForward = true;
-            foamFrontWalk.SetActive(true);
+        
         }
         else
         {
             if(!isKeyDown)
 			{
 				WalkForward = false;
-                foamFrontWalk.SetActive(false);
+               
             }
         }
 	}
