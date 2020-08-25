@@ -34,6 +34,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private GameObject controlsMenu;
         [SerializeField] private GameObject confirmationMenu;
         [SerializeField] private GameObject customizationMenu;
+        [SerializeField] private GameObject loadingScreenCanvas;
         [Space(10)]
         [Header("Menu Popout Dialogs")]
         [SerializeField] private GameObject noSaveDialog;
@@ -55,6 +56,8 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private Slider volumeSlider;
         [Space(10)]
         [SerializeField] private Toggle invertYToggle;
+        [Header("Loading Screen Slider")]
+        [SerializeField] private Slider progressSlider;
         #endregion
 
         #region Initialisation - Button Selection & Menu Order
@@ -264,7 +267,8 @@ namespace SpeedTutorMainMenuSystem
         {
             if (ButtonType == "Yes")
             {
-                SceneManager.LoadScene(_newGameButtonLevel);
+                // SceneManager.LoadScene(_newGameButtonLevel);
+                StartCoroutine(loadALevel());
             }
 
             if (ButtonType == "No")
@@ -272,7 +276,24 @@ namespace SpeedTutorMainMenuSystem
                 GoBackToMainMenu();
             }
         }
+        public void SelectLevel(string levelName)
+        {
+            _newGameButtonLevel = levelName;
+            PlayerPrefs.SetString("SavedLevel", levelName);
+            ClickNewGameDialog("Yes");
+        }
+        IEnumerator loadALevel()
+        {
+            TurnOnLoadingScreen();
 
+            AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
+            
+            while (!async.isDone)
+            {
+                progressSlider.value = async.progress;
+                yield return null;
+            }
+        }
         public void ClickLoadGameDialog(string ButtonType)
         {
             if (ButtonType == "Yes")
@@ -299,6 +320,78 @@ namespace SpeedTutorMainMenuSystem
                 GoBackToMainMenu();
             }
         }
+
+
+
+        public void LoadCharacter()
+        {
+            if(PlayerPrefs.HasKey("Head"))
+            {
+                //string headKey = PlayerPrefs.GetString("Head");
+                //MenuCharacter.Head = CharacterModels.GetHead(headKey);
+            }
+            else
+            {
+                //PlayerPrefs.SetString("Head", "Default");
+                //LoadCharacter();
+            }
+
+            if (PlayerPrefs.HasKey("Body"))
+            {
+                //string bodyKey = PlayerPrefs.GetString("Body");
+                //MenuCharacter.Body = CharacterModels.GetBody(bodyKey);
+
+            }
+            else
+            {
+                //PlayerPrefs.SetString("Body", "Default");
+                //LoadCharacter();
+            }
+
+            if (PlayerPrefs.HasKey("Legs"))
+            {
+                //string legsKey = PlayerPrefs.GetString("Legs");
+                //MenuCharacter.Legs = CharacterModels.GetLegs(legsKey);
+
+            }
+            else
+            {
+                //PlayerPrefs.SetString("Legs", "Default");
+                //LoadCharacter();
+            }
+
+            if (PlayerPrefs.HasKey("Arms"))
+            {
+                //string armsKey = PlayerPrefs.GetString("Arms");
+                //MenuCharacter.Arms = CharacterModels.GetArms(armsKey);
+            }
+            else
+            {
+                //PlayerPrefs.SetString("Arms", "Default");
+                //LoadCharacter();
+            }
+        }
+        public void SetHead(string cosmetic)
+        {
+            PlayerPrefs.SetString("Head", cosmetic);
+            LoadCharacter();
+        }
+        public void SetBody(string cosmetic)
+        {
+            PlayerPrefs.SetString("Body", cosmetic);
+            LoadCharacter();
+        }
+        public void SetLegs(string cosmetic)
+        {
+            PlayerPrefs.SetString("Legs", cosmetic);
+            LoadCharacter();
+        }
+        public void SetArms(string cosmetic)
+        {
+            PlayerPrefs.SetString("Arms", cosmetic);
+            LoadCharacter();
+        }
+
         #endregion
 
         #region Back to Menus
@@ -328,7 +421,23 @@ namespace SpeedTutorMainMenuSystem
             soundMenu.SetActive(false);
             gameplayMenu.SetActive(false);
             customizationMenu.SetActive(false);
+            loadingScreenCanvas.SetActive(false);
             menuNumber = 1;
+        }
+
+        public void TurnOnLoadingScreen()
+        {
+            menuDefaultCanvas.SetActive(false);
+            newGameDialog.SetActive(false);
+            loadGameDialog.SetActive(false);
+            noSaveDialog.SetActive(false);
+            GeneralSettingsCanvas.SetActive(false);
+            AchievementsCanvas.SetActive(false);
+            graphicsMenu.SetActive(false);
+            soundMenu.SetActive(false);
+            gameplayMenu.SetActive(false);
+            customizationMenu.SetActive(false);
+            loadingScreenCanvas.SetActive(true);
         }
 
         public void GoBackToGameplayMenu()
