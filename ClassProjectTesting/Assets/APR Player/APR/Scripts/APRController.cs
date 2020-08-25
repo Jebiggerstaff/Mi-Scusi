@@ -121,7 +121,7 @@ public class APRController : MonoBehaviour
     ResetPose, isRagdoll, isKeyDown, moveAxisUsed,
     jumpAxisUsed, reachLeftAxisUsed, reachRightAxisUsed;
     
-    [HideInInspector]
+    //[HideInInspector]
     public bool 
     jumping, isJumping, inAir,
     punchingRight, punchingLeft;

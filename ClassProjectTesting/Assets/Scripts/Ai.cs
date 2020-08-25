@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System.Linq;
-
+using UnityEngine.AI;
 
 //-------------------------------------------------------------
 //--APR Player
@@ -113,6 +113,7 @@ public class Ai : MonoBehaviour
     punchingRight, punchingLeft;
 
     private Vector3 Direction;
+    private Vector3 dir;
     private Vector3 CenterOfMassPoint;
 
     //Active Ragdoll Player Parts Array
@@ -151,18 +152,60 @@ public class Ai : MonoBehaviour
         PlayerSetup();
     }
 
+    public float range = 10.0f;
+    private Vector3 randomPoint;
 
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+            randomPoint = center + Random.insideUnitSphere * range;
+            dir = (this.transform.position - randomPoint).normalized;
+
+        NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        result = Vector3.zero;
+        return false;
+    }
 
     //---Updates---//
     ////////////////
     void Update()
     {
+        //Debug.Log(randomPoint);
+        //Debug.Log(this.transform.GetChild(1).position);
+        Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
+        if (Vector3.Distance(this.transform.GetChild(1).position, randomPoint)<=5f)
+        {
+            Debug.Log("Stop");
+            dir = new Vector3(0, 0, 0);
+            VerticalMovment = 0;
+            HorizontalMovment = 0;
+        }
+
+        Vector3 point;
+
         AITimer += Time.deltaTime;
+
+        if ((this.transform.position - dir).magnitude <= 1f)
+        {
+            dir = new Vector3(0, 0, 0);
+
+        }
 
         if (AITimer >= AITiming)
         {
-            VerticalMovment = Random.Range(-100, 100) / 10;
-            HorizontalMovment = Random.Range(-100, 100) / 10;
+         
+            if (RandomPoint(transform.position, range, out point))
+            {
+                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+            }
+
+
+            VerticalMovment = dir.z;    
+            HorizontalMovment = dir.x;
             AITimer = 0;
         }
 
@@ -406,7 +449,7 @@ public class Ai : MonoBehaviour
                     isKeyDown = true;
                 }
             }
-
+            
             else if (HorizontalMovment == 0 && VerticalMovment == 0)
             {
                 if (WalkForward && moveAxisUsed)
@@ -517,9 +560,19 @@ public class Ai : MonoBehaviour
     ////////////////////////
     void PlayerRotation()
     {
-            //Self Direction
-            //Turn with keys
-            if (HorizontalMovment != 0)
+        if (forwardIsCameraDirection)
+        {
+            //Camera Direction
+            //Turn with camera
+            var lookPos = dir;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Slerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, Quaternion.Inverse(rotation), Time.deltaTime * turnSpeed);
+        }
+
+        //Self Direction
+        //Turn with keys
+        if (HorizontalMovment != 0)
             {
                 APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - (HorizontalMovment * turnSpeed), APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
             }
