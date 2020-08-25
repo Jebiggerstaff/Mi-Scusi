@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1208393109798882219}
   - component: {fileID: 4898115715688331090}
   - component: {fileID: 3543093855615282071}
+  - component: {fileID: 3277025844574177866}
   m_Layer: 14
   m_Name: TrashBin 1
   m_TagString: CanBeGrabbed
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6612775493337760654}
-  m_LocalRotation: {x: -3.4349462e-10, y: -0.9999911, z: 0.00000008145966, w: -0.0042166705}
+  m_LocalRotation: {x: -0, y: -0.9999911, z: 0, w: -0.0042146896}
   m_LocalPosition: {x: 205.5562, y: 56.012276, z: 70.31014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -96,3 +97,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.487449, y: 4.189887, z: 7.3951464}
   m_Center: {x: 0.054516442, y: 1.9647416, z: 64.67369}
+--- !u!54 &3277025844574177866
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6612775493337760654}
+  serializedVersion: 2
+  m_Mass: 90
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

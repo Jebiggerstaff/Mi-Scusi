@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2946551504670848244}
   - component: {fileID: 6178734473568538306}
   - component: {fileID: 469446587992027707}
-  - component: {fileID: 2238185120875940455}
   - component: {fileID: 5499713042412066878}
+  - component: {fileID: 1542167819397570206}
   m_Layer: 14
   m_Name: TrafficCone 1
   m_TagString: CanBeGrabbed
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215517182150477543}
-  m_LocalRotation: {x: -3.4349462e-10, y: -0.9999911, z: 0.00000008145966, w: -0.0042166705}
+  m_LocalRotation: {x: -0, y: -0.9999911, z: 0, w: -0.0042146896}
   m_LocalPosition: {x: 204.86707, y: 56.891846, z: 69.65341}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.47, y: 1.47, z: 1.47}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2238185120875940455
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2215517182150477543}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9097872, y: 1.9663168, z: 1.909786}
-  m_Center: {x: -0.0000005366958, y: 1.1484774, z: 19.574165}
 --- !u!54 &5499713042412066878
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,3 +100,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &1542167819397570206
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2215517182150477543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3752867293446427351, guid: bb1cb6eaa0e366d48adfccfa9d338501, type: 3}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4025738927393236320}
   - component: {fileID: 5369780073105940310}
   - component: {fileID: 1853728148604625839}
-  - component: {fileID: 7303703293585562164}
   - component: {fileID: 2826385125832593921}
+  - component: {fileID: 5730549719585615033}
   m_Layer: 14
   m_Name: Bottle Short
   m_TagString: CanBeGrabbed
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109517823296575347}
-  m_LocalRotation: {x: 0.002981822, y: -0.70710045, z: -0.7071005, w: -0.0029817163}
+  m_LocalRotation: {x: 0.0029798476, y: -0.70697707, z: -0.7072239, w: -0.002980888}
   m_LocalPosition: {x: -87.915924, y: 21.100006, z: -17.190813}
-  m_LocalScale: {x: 8.0039, y: 8.0039, z: 8.0039}
+  m_LocalScale: {x: 8.003901, y: 8.003899, z: 8.003901}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.48299}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.483}
 --- !u!33 &5369780073105940310
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -57,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,19 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7303703293585562164
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109517823296575347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10401139, y: 0.10401142, z: 0.1551236}
-  m_Center: {x: 0.0000009536682, y: 0.0000000092857935, z: 0.07707995}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &2826385125832593921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,3 +99,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &5730549719585615033
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109517823296575347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -297563270336362459, guid: c354cef0d19088e43807df54c8bcdc2e, type: 3}
