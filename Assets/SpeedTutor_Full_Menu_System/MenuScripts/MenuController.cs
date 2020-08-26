@@ -325,6 +325,7 @@ namespace SpeedTutorMainMenuSystem
 
         public void LoadCharacter()
         {
+            Debug.Log("Setting Character");
             if(PlayerPrefs.HasKey("Head"))
             {
                 //string headKey = PlayerPrefs.GetString("Head");
