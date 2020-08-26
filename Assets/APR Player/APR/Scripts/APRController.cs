@@ -551,23 +551,29 @@ public class APRController : MonoBehaviour
     ////////////////////////
     void PlayerRotation()
     {
+        //for controller joystick
         if(forwardIsCameraDirection)
         {
             //Camera Direction
             //Turn with camera
-            var lookPos = cam.transform.forward;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
+            //var lookPos = cam.transform.forward;
+            float axisangle = Mathf.Atan2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
+            //var lookPos = axisangle;
+            //lookPos.y = 0;
+            Debug.Log(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation);
+            var rotation = Quaternion.LookRotation(new Vector3(0,0,axisangle + cam.transform.eulerAngles.y));
             APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Slerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, Quaternion.Inverse(rotation), Time.deltaTime * turnSpeed);
         }
+
         
-        else
+        /*else
         {   
             //Self Direction
             //Turn with keys
             if (Input.GetAxisRaw(leftRight) != 0)
             {
                 APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x,APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - (Input.GetAxisRaw(leftRight) * turnSpeed), APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
+                //APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation =
             }
             
             //reset turn upon target rotation limit
@@ -580,7 +586,7 @@ public class APRController : MonoBehaviour
             {
                 APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
             }
-        }
+        }*/
     }
     
     
@@ -659,21 +665,24 @@ public class APRController : MonoBehaviour
         //Body Bending
         if(1==1)
         {
-            if(MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
+            //values for max rotation for bending
+            if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
             {
-                MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);
+                MouseYAxisBody = Input.GetAxis("joystick Y");
+                //MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);             
             }
-            
-            else if(MouseYAxisBody > 0.9f)
+            if (MouseYAxisBody > 0.9f)
             {
                 MouseYAxisBody = 0.9f;
             }
-            
-            else if(MouseYAxisBody < -0.9f)
+
+            else if (MouseYAxisBody < -0.9f)
             {
                 MouseYAxisBody = -0.9f;
             }
             
+            //Debug.Log(Input.GetAxis("joystick Y"));
+            //Debug.Log(MouseYAxisBody);
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
         }  
             

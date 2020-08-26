@@ -176,7 +176,7 @@ public class Ai : MonoBehaviour
     {
         //Debug.Log(randomPoint);
         //Debug.Log(this.transform.GetChild(1).position);
-        Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
+        //Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
         if (Vector3.Distance(this.transform.GetChild(1).position, randomPoint)<=5f)
         {
             Debug.Log("Stop");
