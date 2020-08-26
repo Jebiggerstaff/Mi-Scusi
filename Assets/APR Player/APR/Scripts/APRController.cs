@@ -150,15 +150,17 @@ public class APRController : MonoBehaviour
 	[Header("Player Editor Debug Mode")]
 	//Debug
 	public bool editorDebugMode;
-    
-    
-    
+
+
+    float axisangle = 0f;
+
+
     //-------------------------------------------------------------
     //--Calling Functions
     //-------------------------------------------------------------
-    
-    
-    
+
+
+
     //---Setup---//
     //////////////
     void Awake()
@@ -426,7 +428,7 @@ public class APRController : MonoBehaviour
         //Move in camera direction
         if(forwardIsCameraDirection)
         {
-            Direction = APR_Parts[0].transform.rotation * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
+            Direction = cam.transform.rotation  * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
             Direction.y = 0f;
             APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
 
@@ -556,13 +558,15 @@ public class APRController : MonoBehaviour
         {
             //Camera Direction
             //Turn with camera
-            //var lookPos = cam.transform.forward;
-            float axisangle = Mathf.Atan2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
-            //var lookPos = axisangle;
-            //lookPos.y = 0;
-            Debug.Log(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation);
-            var rotation = Quaternion.LookRotation(new Vector3(0,0,axisangle + cam.transform.eulerAngles.y));
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Slerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, Quaternion.Inverse(rotation), Time.deltaTime * turnSpeed);
+
+
+
+            if (Input.GetAxisRaw("Horizontal") != 0f && Input.GetAxisRaw("Vertical") != 0f)
+                axisangle = Mathf.Atan2( Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
+
+            var rotation = new Quaternion(0, axisangle/36, 0, 1);
+
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(rotation);
         }
 
         
