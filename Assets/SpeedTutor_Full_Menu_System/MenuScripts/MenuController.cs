@@ -325,51 +325,10 @@ namespace SpeedTutorMainMenuSystem
 
         public void LoadCharacter()
         {
-            Debug.Log("Setting Character");
-            if(PlayerPrefs.HasKey("Head"))
+            var modelLoader = FindObjectOfType<CharacterModelLoader>();
+            if(modelLoader != null)
             {
-                //string headKey = PlayerPrefs.GetString("Head");
-                //MenuCharacter.Head = CharacterModels.GetHead(headKey);
-            }
-            else
-            {
-                //PlayerPrefs.SetString("Head", "Default");
-                //LoadCharacter();
-            }
-
-            if (PlayerPrefs.HasKey("Body"))
-            {
-                //string bodyKey = PlayerPrefs.GetString("Body");
-                //MenuCharacter.Body = CharacterModels.GetBody(bodyKey);
-
-            }
-            else
-            {
-                //PlayerPrefs.SetString("Body", "Default");
-                //LoadCharacter();
-            }
-
-            if (PlayerPrefs.HasKey("Legs"))
-            {
-                //string legsKey = PlayerPrefs.GetString("Legs");
-                //MenuCharacter.Legs = CharacterModels.GetLegs(legsKey);
-
-            }
-            else
-            {
-                //PlayerPrefs.SetString("Legs", "Default");
-                //LoadCharacter();
-            }
-
-            if (PlayerPrefs.HasKey("Arms"))
-            {
-                //string armsKey = PlayerPrefs.GetString("Arms");
-                //MenuCharacter.Arms = CharacterModels.GetArms(armsKey);
-            }
-            else
-            {
-                //PlayerPrefs.SetString("Arms", "Default");
-                //LoadCharacter();
+                modelLoader.LoadAllModels();
             }
         }
         public void SetHead(string cosmetic)
