@@ -262,7 +262,7 @@ public class APRController : MonoBehaviour
 		DriveOff = new JointDrive();
         DriveOff.positionSpring = 25;
         DriveOff.positionDamper = 0;
-        DriveOff.maximumForce = Mathf.Infinity;
+        DriveOff.maximumForce = 999999999999;
 		
 		//Setup/reroute active ragdoll parts to array
 		APR_Parts = new GameObject[]
@@ -431,7 +431,7 @@ public class APRController : MonoBehaviour
             Direction = cam.transform.rotation  * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
             Direction.y = 0f;
             APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
-
+            
             if(Input.GetAxisRaw(leftRight) != 0 || Input.GetAxisRaw(forwardBackward) != 0 && balanced)
             {
                 if(!WalkForward && !moveAxisUsed)
@@ -937,7 +937,7 @@ public class APRController : MonoBehaviour
 					Alert_Leg_Right = true;
 				}
 			}
-
+            
 			if (WalkBackward)
 			{
                 //right leg
@@ -956,7 +956,7 @@ public class APRController : MonoBehaviour
 					Alert_Leg_Right = true;
 				}
 			}
-		
+		    
 			//Step right
 			if (StepRight)
 			{
@@ -1006,8 +1006,9 @@ public class APRController : MonoBehaviour
 				APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
 			}
             
-            
+
             //Step left
+           
 			if (StepLeft)
 			{
 				Step_L_timer += Time.fixedDeltaTime;
@@ -1055,8 +1056,9 @@ public class APRController : MonoBehaviour
 				APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
 				APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
 			}
-		}
-	}
+            
+        }
+    }
     
     
     

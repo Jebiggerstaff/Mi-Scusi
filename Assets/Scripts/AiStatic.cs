@@ -16,7 +16,7 @@ using UnityEngine.AI;
 //-------------------------------------------------------------
 
 
-public class Ai : MonoBehaviour
+public class AiStatic: MonoBehaviour
 {
 
     //-------------------------------------------------------------
@@ -157,15 +157,15 @@ public class Ai : MonoBehaviour
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-            randomPoint = center + Random.insideUnitSphere * range;
-            dir = (this.transform.position - randomPoint).normalized;
+        randomPoint = center + Random.insideUnitSphere * range;
+        dir = (this.transform.position - randomPoint).normalized;
 
         NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                result = hit.position;
-                return true;
-            }
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            result = hit.position;
+            return true;
+        }
         result = Vector3.zero;
         return false;
     }
@@ -177,40 +177,37 @@ public class Ai : MonoBehaviour
         //Debug.Log(randomPoint);
         //Debug.Log(this.transform.GetChild(1).position);
         //Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
-        if (Vector3.Distance(this.transform.GetChild(1).position, randomPoint)<=5f)
-        {
-            Debug.Log("Stop");
+
             dir = new Vector3(0, 0, 0);
             VerticalMovment = 0;
             HorizontalMovment = 0;
-        }
 
         Vector3 point;
 
         AITimer += Time.deltaTime;
 
-        if ((this.transform.position - dir).magnitude <= 1f)
+        if ((this.transform.position - dir).magnitude <= 1f || balanced == false)
         {
             dir = new Vector3(0, 0, 0);
 
         }
 
-        if (AITimer >= AITiming)
+        if (1==2)
         {
-         
+
             if (RandomPoint(transform.position, range, out point))
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
             }
 
 
-            VerticalMovment = dir.z;    
+            VerticalMovment = dir.z;
             HorizontalMovment = dir.x;
             AITimer = 0;
         }
 
         PlayerMovement();
-        
+
         if (balanced && useStepPrediction)
         {
             StepPrediction();
@@ -449,7 +446,7 @@ public class Ai : MonoBehaviour
                     isKeyDown = true;
                 }
             }
-            
+
             else if (HorizontalMovment == 0 && VerticalMovment == 0)
             {
                 if (WalkForward && moveAxisUsed)
@@ -573,20 +570,20 @@ public class Ai : MonoBehaviour
         //Self Direction
         //Turn with keys
         if (HorizontalMovment != 0)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - (HorizontalMovment * turnSpeed), APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
-            }
+        {
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - (HorizontalMovment * turnSpeed), APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
+        }
 
-            //reset turn upon target rotation limit
-            if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y < -0.98f)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, 0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-            }
+        //reset turn upon target rotation limit
+        if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y < -0.98f)
+        {
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, 0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
+        }
 
-            else if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y > 0.98f)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-            }       
+        else if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y > 0.98f)
+        {
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
+        }
     }
 
 
@@ -905,3 +902,4 @@ public class Ai : MonoBehaviour
     }
 
 }
+
