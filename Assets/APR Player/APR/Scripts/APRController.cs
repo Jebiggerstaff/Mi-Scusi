@@ -174,17 +174,16 @@ public class APRController : MonoBehaviour
     ////////////////
     void Update()
     {
-       
+        if (canPunch)
+        {
+            PlayerPunch();
+        }
 
 
         if (useControls && !inAir)
         {
             PlayerMovement();
             
-            if(canPunch)
-            {
-                PlayerPunch();
-            }
         }
         
         if(useControls)
@@ -425,126 +424,37 @@ public class APRController : MonoBehaviour
     ////////////////////////
     void PlayerMovement()
     {
-        //Move in camera direction
-        if(forwardIsCameraDirection)
+        if (balanced)
         {
-            Direction = cam.transform.rotation  * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
-            Direction.y = 0f;
-            APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
-            
-            if(Input.GetAxisRaw(leftRight) != 0 || Input.GetAxisRaw(forwardBackward) != 0 && balanced)
+            //Move in camera direction
+            if (forwardIsCameraDirection)
             {
-                if(!WalkForward && !moveAxisUsed)
-                {
-                    WalkForward = true;
-                    moveAxisUsed = true;
-                    isKeyDown = true;
-                }
-            }
+                Direction = cam.transform.rotation * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
+                Direction.y = 0f;
+                APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
 
-            else if(Input.GetAxisRaw(leftRight) == 0 && Input.GetAxisRaw(forwardBackward) == 0)
-            {
-                if(WalkForward && moveAxisUsed)
+                if (Input.GetAxisRaw(leftRight) != 0 || Input.GetAxisRaw(forwardBackward) != 0 && balanced)
                 {
-                    WalkForward = false;
-                    moveAxisUsed = false;
-                    isKeyDown = false;
+                    if (!WalkForward && !moveAxisUsed)
+                    {
+                        WalkForward = true;
+                        moveAxisUsed = true;
+                        isKeyDown = true;
+                    }
+                }
+
+                else if (Input.GetAxisRaw(leftRight) == 0 && Input.GetAxisRaw(forwardBackward) == 0)
+                {
+                    if (WalkForward && moveAxisUsed)
+                    {
+                        WalkForward = false;
+                        moveAxisUsed = false;
+                        isKeyDown = false;
+                    }
                 }
             }
         }
         
-        //Move in own direction
-        else
-        {
-            if (Input.GetAxisRaw(forwardBackward) != 0)
-            {
-                var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * (Input.GetAxisRaw(forwardBackward) * moveSpeed);
-                v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
-                APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
-            }
-
-            
-            if(Input.GetAxisRaw(forwardBackward) > 0)
-            {
-                if(!WalkForward && !moveAxisUsed)
-                {
-                    WalkBackward = false;
-                    WalkForward = true;
-                    moveAxisUsed = true;
-                    isKeyDown = true;
-                    
-                    if(isRagdoll)
-                    {
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                    }
-                }
-            }
-            
-            else if(Input.GetAxisRaw(forwardBackward) < 0)
-            {
-                if(!WalkBackward && !moveAxisUsed)
-                {
-                    WalkForward = false;
-                    WalkBackward = true;
-                    moveAxisUsed = true;
-                    isKeyDown = true;
-                    
-                    if(isRagdoll)
-                    {
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                    }
-                }
-            }
-
-            else if(Input.GetAxisRaw(forwardBackward) == 0)
-            {
-                if(WalkForward || WalkBackward && moveAxisUsed)
-                {
-                    WalkForward = false;
-                    WalkBackward = false;
-                    moveAxisUsed = false;
-                    isKeyDown = false;
-                    
-                    if(isRagdoll)
-                    {
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                        APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                    }
-                }
-            }
-        }
     }
     
     
