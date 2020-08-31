@@ -50,14 +50,13 @@ public class APRController : MonoBehaviour
     [Header("Input on this player")]
     //Enable controls
     public bool useControls = true;
+    public bool usingController = true;
     
-    [Header("Player Input Axis")]
-    //Player Axis controls
-    public string forwardBackward = "Vertical";
-    public string leftRight = "Horizontal";
-    public string jump = "Jump";
-    public string reachLeft = "Fire1";
-    public string reachRight = "Fire2";
+    public string forwardBackward;
+    public string leftRight;
+    public string jump ;
+    public string reachLeft;
+    public string reachRight;
     
     [Header("Player Input KeyCodes")]
     //Player KeyCode controls
@@ -69,8 +68,6 @@ public class APRController : MonoBehaviour
     public string thisPlayerLayer = "Player_1";
     
     [Header("Movement Properties")]
-    //Player properties
-    public bool forwardIsCameraDirection = true;
     //Movement
     public float moveSpeed = 10f;
     public float turnSpeed = 6f;
@@ -230,11 +227,38 @@ public class APRController : MonoBehaviour
     //-------------------------------------------------------------
 
 
-    
+
     //---Player Setup--//
     ////////////////////
     void PlayerSetup()
     {
+
+        if (!usingController)
+        {
+            forwardBackward = "Vertical";
+            leftRight = "Horizontal";
+            jump = "Jump";
+            reachLeft = "Fire1";
+            reachRight = "Fire2";
+            punchLeft = "q";
+            punchRight = "e";
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+        }
+        else
+        {
+            forwardBackward = "VerticalCon";
+            leftRight = "HorizontalCon";
+            jump = "JumpCon";
+            reachLeft = "Fire1Con";
+            reachRight = "Fire2Con";
+            punchLeft = "joystick button 4";
+            punchRight = "joystick button 5";
+        }
+
+
         cam = Camera.main;
         
 		//Setup joint drives
@@ -426,9 +450,6 @@ public class APRController : MonoBehaviour
     {
         if (balanced)
         {
-            //Move in camera direction
-            if (forwardIsCameraDirection)
-            {
                 Direction = cam.transform.rotation * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
                 Direction.y = 0f;
                 APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
@@ -442,17 +463,7 @@ public class APRController : MonoBehaviour
                         isKeyDown = true;
                     }
                 }
-
-                else if (Input.GetAxisRaw(leftRight) == 0 && Input.GetAxisRaw(forwardBackward) == 0)
-                {
-                    if (WalkForward && moveAxisUsed)
-                    {
-                        WalkForward = false;
-                        moveAxisUsed = false;
-                        isKeyDown = false;
-                    }
-                }
-            }
+ 
         }
         
     }
@@ -463,44 +474,13 @@ public class APRController : MonoBehaviour
     ////////////////////////
     void PlayerRotation()
     {
-        //for controller joystick
-        if(forwardIsCameraDirection)
-        {
-            //Camera Direction
-            //Turn with camera
 
+        if (Input.GetAxisRaw("Horizontal") != 0f && Input.GetAxisRaw("Vertical") != 0f)
+            axisangle = Mathf.Atan2( Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
 
+        var rotation = new Quaternion(0, axisangle/36, 0, 1);
+        APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(rotation);
 
-            if (Input.GetAxisRaw("Horizontal") != 0f && Input.GetAxisRaw("Vertical") != 0f)
-                axisangle = Mathf.Atan2( Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
-
-            var rotation = new Quaternion(0, axisangle/36, 0, 1);
-
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(rotation);
-        }
-
-        
-        /*else
-        {   
-            //Self Direction
-            //Turn with keys
-            if (Input.GetAxisRaw(leftRight) != 0)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x,APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - (Input.GetAxisRaw(leftRight) * turnSpeed), APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
-                //APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation =
-            }
-            
-            //reset turn upon target rotation limit
-            if(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y < -0.98f)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, 0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-            }
-
-            else if(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y > 0.98f)
-            {
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-            }
-        }*/
     }
     
     
@@ -582,8 +562,10 @@ public class APRController : MonoBehaviour
             //values for max rotation for bending
             if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
             {
-                MouseYAxisBody = Input.GetAxis("joystick Y");
-                //MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);             
+                if(usingController)
+                    MouseYAxisBody = Input.GetAxis("joystick Y");
+                else
+                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);             
             }
             if (MouseYAxisBody > 0.9f)
             {
@@ -622,7 +604,10 @@ public class APRController : MonoBehaviour
             
             if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
             {
-                MouseYAxisArms = MouseYAxisArms + (Input.GetAxis("Mouse Y") / reachSensitivity);
+                if (usingController)
+                    MouseYAxisBody = Input.GetAxis("joystick Y");
+                else
+                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);              
             }
             
             else if(MouseYAxisArms > 1.2f)
@@ -691,7 +676,10 @@ public class APRController : MonoBehaviour
             
             if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
             {
-                MouseYAxisArms = MouseYAxisArms + (Input.GetAxis("Mouse Y") / reachSensitivity);
+                if (usingController)
+                    MouseYAxisBody = Input.GetAxis("joystick Y");
+                else
+                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);
             }
             
             else if(MouseYAxisArms > 1.2f)
