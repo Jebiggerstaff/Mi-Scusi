@@ -745,6 +745,7 @@ MonoBehaviour:
   GrabRight: {fileID: 742795596933639168}
   GrabLeft: {fileID: 5085353254015541375}
   useControls: 1
+  usingController: 1
   forwardBackward: Vertical
   leftRight: Horizontal
   jump: Jump
@@ -753,7 +754,6 @@ MonoBehaviour:
   punchLeft: joystick button 4
   punchRight: joystick button 5
   thisPlayerLayer: Player_1
-  forwardIsCameraDirection: 1
   moveSpeed: 12
   turnSpeed: 0.5
   jumpForce: 17
@@ -8623,6 +8623,7 @@ GameObject:
   - component: {fileID: 3523254198913537517}
   - component: {fileID: 3168481135591144853}
   - component: {fileID: 3205044732061018412}
+  - component: {fileID: 6624396839157245925}
   m_Layer: 8
   m_Name: Camera (1)
   m_TagString: MainCamera
@@ -8812,6 +8813,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 11400000, guid: 8129c983df5ebc84d818d7f7ae868b85, type: 2}
+--- !u!114 &6624396839157245925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8141516616519732753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b8b46537d40b74ea5491ea6f94e5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3875880125180826713}
+  cam: {fileID: 1101441716844377433}
+  GroundLayer: 14
+  InvisibleGroundLayer: 15
+  fadeDuration: 0.5
 --- !u!1 &8170123437000086568
 GameObject:
   m_ObjectHideFlags: 0
