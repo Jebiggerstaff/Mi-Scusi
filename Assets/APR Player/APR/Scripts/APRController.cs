@@ -463,24 +463,34 @@ public class APRController : MonoBehaviour
                         isKeyDown = true;
                     }
                 }
- 
+
         }
         
     }
-    
-    
-    
+
+
     //---Player Rotation---//
     ////////////////////////
     void PlayerRotation()
     {
-
-        if (Input.GetAxisRaw("Horizontal") != 0f && Input.GetAxisRaw("Vertical") != 0f)
-            axisangle = Mathf.Atan2( Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
-
-        var rotation = new Quaternion(0, axisangle/36, 0, 1);
-        APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(rotation);
-
+        if (usingController)
+        {
+            if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
+            {
+                Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
+                Rotation.x = 0;
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+            }
+        }
+        if (!usingController)
+        {
+            if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+            {
+                Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
+                Rotation.x = 0;
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+            }
+        }
     }
     
     
