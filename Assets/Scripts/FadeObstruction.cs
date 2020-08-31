@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class FadeObstruction : MonoBehaviour
 {
+
+    private void Awake()
+    {
+        objectsInWay = new List<GameObject>();
+        objectsInWayCopy = new List<GameObject>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +20,68 @@ public class FadeObstruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SendRay(mainCam.transform.position, player.transform.position);
+        obstructionFadeUpdate();
+        //SendRay(mainCam.transform.position, player.transform.position);
+    }
+
+
+    public void obstructionFadeUpdate()
+    {
+        objectsInWayCopy.Clear();
+        foreach(var o in objectsInWay)
+        {
+            objectsInWayCopy.Add(o);
+        }
+
+        objectsInWay.Clear();
+
+        float RayRadius = 0.5f;
+
+        // Build up a list of objects that are in the way of all registered should show objects
+
+        Vector3 diffVector = player.transform.position - cam.transform.position;
+        Ray ray = new Ray(cam.transform.position, Vector3.Normalize(diffVector));
+        RaycastHit[] hits = Physics.SphereCastAll(ray, RayRadius, diffVector.magnitude, 1 << GroundLayer | 1 << InvisibleGroundLayer);
+
+        foreach (RaycastHit hit in hits)
+        {
+            // Get the collider
+            Collider c = hit.collider;
+
+            // skip any objects that should be visible
+            if (c.gameObject == player || c.gameObject.GetComponent<Renderer>() == null)
+                continue;
+
+            if(c.GetComponent<PleaseFadeMe>() != null)
+            {
+                objectsInWay.Add(c.gameObject);
+            }
+        }
+
+       // Debug.Log(objectsInWay);
+
+
+        FadeObstructions();
+        UnfadeNotObstruction();
+    }
+
+
+    public void FadeObstructions()
+    {
+        foreach(var o in objectsInWay)
+        {
+            o.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+        }
+    }
+    public void UnfadeNotObstruction()
+    {
+        foreach(var o in objectsInWayCopy)
+        {
+            if(!objectsInWay.Contains(o))
+            {
+                o.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            }
+        }
     }
 
 
@@ -42,8 +110,10 @@ public class FadeObstruction : MonoBehaviour
     }
 
     [Header("PlayerInfo")]
-    public Camera mainCam;
+    List<GameObject> objectsInWay;
+    List<GameObject> objectsInWayCopy;
     public GameObject player;
+    public Camera cam;
 
     [Space]
 
