@@ -114,13 +114,13 @@ public class APRController : MonoBehaviour
 	private bool 
     WalkForward, WalkBackward,
     StepRight, StepLeft, Alert_Leg_Right,
-    Alert_Leg_Left, balanced = true, GettingUp,
+    Alert_Leg_Left,  GettingUp,
     ResetPose, isRagdoll, isKeyDown, moveAxisUsed,
     jumpAxisUsed, reachLeftAxisUsed, reachRightAxisUsed;
     
     //[HideInInspector]
     public bool 
-    jumping, isJumping, inAir,
+    jumping, isJumping, balanced = true, inAir,
     punchingRight, punchingLeft;
     
     private Camera cam;
