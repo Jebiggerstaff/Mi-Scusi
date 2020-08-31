@@ -6,6 +6,7 @@ public class CarDriver : MonoBehaviour
 {
     public GameObject[] RoadPoints = new GameObject[0];
     public float carSpeed = 0f;
+    public float CrashingForce=10f;
 
     private Vector3 currentLocation;
     private int targetPoint=0;
@@ -32,6 +33,15 @@ public class CarDriver : MonoBehaviour
                 targetPoint = 0;
         }
 
-        
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "APR_Root")
+        {
+            Debug.Log("Bonk");
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * CrashingForce);
+            
+        }
     }
 }

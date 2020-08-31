@@ -208,7 +208,7 @@ public class AiWander : MonoBehaviour
             HorizontalMovment = dir.x;
             AITimer = 0;
         }
-
+        
         PlayerMovement();
         
         if (balanced && useStepPrediction)
