@@ -64,6 +64,7 @@ namespace SpeedTutorMainMenuSystem
         private void Start()
         {
             menuNumber = 1;
+            Time.timeScale = 0.0001f;
         }
         #endregion
 
@@ -74,9 +75,13 @@ namespace SpeedTutorMainMenuSystem
             yield return new WaitForSeconds(2);
             confirmationMenu.SetActive(false);
         }
+        
 
         private void Update()
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (menuNumber == 2 || menuNumber == 7 || menuNumber == 8 || menuNumber == 9 || menuNumber == 10)

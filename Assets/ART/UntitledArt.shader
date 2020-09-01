@@ -9,8 +9,10 @@
 	}
 
 		SubShader{
+			ZWrite Off
+
 			Pass {
-				Tags { "LightMode" = "ForwardBase" }
+				Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "LightMode" = "ForwardBase"}
 				CGPROGRAM
 				#pragma vertex vert 
 				#pragma fragment frag 
@@ -41,10 +43,10 @@
 				}
 				ENDCG
 			}
-
+			/*
 			Pass {
 				Blend One One
-				Tags { "LightMode" = "ForwardAdd" }
+				Tags { "LightMode" = "ForwardAdd" "RenderType" = "Opaque" }
 				CGPROGRAM
 				#pragma vertex vert 
 				#pragma fragment frag 
@@ -78,8 +80,11 @@
 					return ((tex2D(_MainTex, i.uv)) * attenuation) * _Color;
 
 				}
+
+
 				ENDCG
 			}
+			*/
 		}
 			Fallback "VertexLit"
 }
