@@ -3,6 +3,19 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 
+//-------------------------------------------------------------
+//--APR Player
+//--APRController (Main Player Controller)
+//
+//--Unity Asset Store - Version 1.0
+//
+//--By The Famous Mouse
+//
+//--Twitter @FamousMouse_Dev
+//--Youtube TheFamouseMouse
+//-------------------------------------------------------------
+
+
 public class AiWander : MonoBehaviour
 {
 
@@ -23,18 +36,11 @@ public class AiWander : MonoBehaviour
     //Center of mass point
     public Transform COMP;
 
-    [Header("Hand Dependancies")]
-    //Hand Controller Scripts & dependancies
-    public HandContact GrabRight;
-    public HandContact GrabLeft;
-
     [Header("The Layer Only This Player Is On")]
     //Player layer name
-    public string thisPlayerLayer = "Player_1";
+    public string thisPlayerLayer = "Player_2";
 
     [Header("Movement Properties")]
-    //Player properties
-    public bool forwardIsCameraDirection = true;
     //Movement
     public float moveSpeed = 10f;
     public float turnSpeed = 6f;
@@ -62,8 +68,7 @@ public class AiWander : MonoBehaviour
     //Punch
     public bool canBeKnockoutByImpact = true;
     public float requiredForceToBeKO = 20f;
-    public bool canPunch = true;
-    public float punchForce = 15f;
+
 
     [Header("Audio")]
     //Impact sounds
@@ -78,10 +83,14 @@ public class AiWander : MonoBehaviour
     public float AITiming;
 
     //Hidden variables
-   
+    private float
+    Step_R_timer, Step_L_timer, AITimer;
+
     private bool
-    balanced = true, 
-    ResetPose, isRagdoll,
+    WalkForward, WalkBackward,
+    StepRight, StepLeft, Alert_Leg_Right,
+    Alert_Leg_Left, balanced = true, GettingUp,
+    ResetPose, isRagdoll, isKeyDown, moveAxisUsed,
     reachLeftAxisUsed, reachRightAxisUsed;
 
     [HideInInspector]
@@ -89,6 +98,8 @@ public class AiWander : MonoBehaviour
     jumping, isJumping, inAir,
     punchingRight, punchingLeft;
 
+    private Vector3 Direction;
+    private Vector3 dir;
     private Vector3 CenterOfMassPoint;
 
     //Active Ragdoll Player Parts Array
@@ -108,6 +119,19 @@ public class AiWander : MonoBehaviour
     UpperRightLegTarget, LowerRightLegTarget,
     UpperLeftLegTarget, LowerLeftLegTarget;
 
+    [Header("Player Editor Debug Mode")]
+    //Debug
+    public bool editorDebugMode;
+
+    public bool GrabbedByPlayer;
+
+
+
+    //-------------------------------------------------------------
+    //--Calling Functions
+    //-------------------------------------------------------------
+
+
 
     //---Setup---//
     //////////////
@@ -116,16 +140,75 @@ public class AiWander : MonoBehaviour
         PlayerSetup();
     }
 
+    public float range = 10.0f;
+    private Vector3 randomPoint;
+
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        randomPoint = center + Random.insideUnitSphere * range;
+        dir = (this.transform.position - randomPoint).normalized;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            result = hit.position;
+            return true;
+        }
+        result = Vector3.zero;
+        return false;
+    }
+
     //---Updates---//
     ////////////////
     void Update()
     {
-
-        if (balanced)
+        //Debug.Log(randomPoint);
+        //Debug.Log(this.transform.GetChild(1).position);
+        //Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
+        if (Vector3.Distance(this.transform.GetChild(1).position, randomPoint) <= 5f)
         {
-            CenterOfMass();
+            //Debug.Log("Stop");
+            dir = new Vector3(0, 0, 0);
+            VerticalMovment = 0;
+            HorizontalMovment = 0;
         }
 
+        Vector3 point;
+
+        AITimer += Time.deltaTime;
+
+        if ((this.transform.position - dir).magnitude <= 1f || balanced == false)
+        {
+            dir = new Vector3(0, 0, 0);
+
+        }
+
+        if (AITimer >= AITiming && !GrabbedByPlayer)
+        {
+
+            if (RandomPoint(transform.position, range, out point))
+            {
+                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+            }
+
+
+            VerticalMovment = dir.z;
+            HorizontalMovment = dir.x;
+            AITimer = 0;
+        }
+
+
+        if (balanced && !GrabbedByPlayer && useStepPrediction)
+        {
+            StepPrediction();
+            CenterOfMass();
+            PlayerMovement();
+        }
+
+        if (!useStepPrediction)
+        {
+            ResetWalkCycle();
+        }
 
         GroundCheck();
         CenterOfMass();
@@ -137,8 +220,18 @@ public class AiWander : MonoBehaviour
     //////////////////////
     void FixedUpdate()
     {
+        Walking();
+        PlayerRotation();
         ResetPlayerPose();
     }
+
+
+
+    //-------------------------------------------------------------
+    //--Functions
+    //-------------------------------------------------------------
+
+
 
     //---Player Setup--//
     ////////////////////
@@ -248,16 +341,271 @@ public class AiWander : MonoBehaviour
 
 
         //Balance on/off
-        if (balanced && isRagdoll)
+        if (balanced && isRagdoll && !GrabbedByPlayer)
         {
             DeactivateRagdoll();
         }
-        else if (!balanced && !isRagdoll)
+        else if (!balanced && !isRagdoll || GrabbedByPlayer)
         {
             ActivateRagdoll();
         }
     }
 
+
+    //---Step Prediction---//
+    ////////////////////////
+    void StepPrediction()
+    {
+        //Reset variables when balanced
+        if (!WalkForward && !WalkBackward)
+        {
+            StepRight = false;
+            StepLeft = false;
+            Step_R_timer = 0;
+            Step_L_timer = 0;
+            Alert_Leg_Right = false;
+            Alert_Leg_Left = false;
+        }
+
+        //Check direction to walk when off balance
+        //Backwards
+        if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
+        {
+            WalkBackward = true;
+
+        }
+        else
+        {
+            if (!isKeyDown)
+            {
+                WalkBackward = false;
+
+            }
+        }
+
+        //Forward
+        if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
+        {
+            WalkForward = true;
+
+        }
+        else
+        {
+            if (!isKeyDown)
+            {
+                WalkForward = false;
+
+            }
+        }
+    }
+
+
+    //---Reset Walk Cycle---//
+    /////////////////////////
+    void ResetWalkCycle()
+    {
+        //Reset variables when not moving
+        if (!WalkForward && !WalkBackward)
+        {
+            StepRight = false;
+            StepLeft = false;
+            Step_R_timer = 0;
+            Step_L_timer = 0;
+            Alert_Leg_Right = false;
+            Alert_Leg_Left = false;
+        }
+    }
+
+
+    //---Player Movement---//
+    ////////////////////////
+    void PlayerMovement()
+    {
+
+            Direction = APR_Parts[0].transform.rotation * new Vector3(HorizontalMovment, 0.0f, VerticalMovment);
+            Direction.y = 0f;
+            APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
+
+            if (HorizontalMovment != 0 || VerticalMovment != 0 && balanced)
+            {
+                if (!WalkForward && !moveAxisUsed)
+                {
+                    WalkForward = true;
+                    moveAxisUsed = true;
+                    isKeyDown = true;
+                }
+            }
+
+            else if (HorizontalMovment == 0 && VerticalMovment == 0)
+            {
+                if (WalkForward && moveAxisUsed)
+                {
+                    WalkForward = false;
+                    moveAxisUsed = false;
+                    isKeyDown = false;
+                }
+            }
+
+    }
+
+
+    //---Player Rotation---//
+    ////////////////////////
+    void PlayerRotation()
+    {
+
+            var lookPos = dir;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Slerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, Quaternion.Inverse(rotation), Time.deltaTime * turnSpeed);
+        
+    }
+
+
+    //---Player Walking---//
+    ///////////////////////
+    void Walking()
+    {
+        if (!inAir && !GrabbedByPlayer)
+        {
+            if (WalkForward)
+            {
+                //right leg
+                if (APR_Parts[11].transform.position.z < APR_Parts[12].transform.position.z && !StepLeft && !Alert_Leg_Right)
+                {
+                    StepRight = true;
+                    Alert_Leg_Right = true;
+                    Alert_Leg_Left = true;
+                }
+
+                //left leg
+                if (APR_Parts[11].transform.position.z > APR_Parts[12].transform.position.z && !StepRight && !Alert_Leg_Left)
+                {
+                    StepLeft = true;
+                    Alert_Leg_Left = true;
+                    Alert_Leg_Right = true;
+                }
+            }
+
+            if (WalkBackward)
+            {
+                //right leg
+                if (APR_Parts[11].transform.position.z > APR_Parts[12].transform.position.z && !StepLeft && !Alert_Leg_Right)
+                {
+                    StepRight = true;
+                    Alert_Leg_Right = true;
+                    Alert_Leg_Left = true;
+                }
+
+                //left leg
+                if (APR_Parts[11].transform.position.z < APR_Parts[12].transform.position.z && !StepRight && !Alert_Leg_Left)
+                {
+                    StepLeft = true;
+                    Alert_Leg_Left = true;
+                    Alert_Leg_Right = true;
+                }
+            }
+
+            //Step right
+            if (StepRight)
+            {
+                Step_R_timer += Time.fixedDeltaTime;
+
+                //Right foot force down
+                APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+
+                //walk simulation
+                if (WalkForward)
+                {
+                    APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x + 0.09f * StepHeight, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
+                    APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.x - 0.09f * StepHeight * 2, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.w);
+
+                    APR_Parts[9].GetComponent<ConfigurableJoint>().GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
+                }
+
+                if (WalkBackward)
+                {
+                    APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x - 0.00f * StepHeight, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
+                    APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.x - 0.07f * StepHeight * 2, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.w);
+
+                    APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x + 0.02f * StepHeight / 2, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
+                }
+
+
+                //step duration
+                if (Step_R_timer > StepDuration)
+                {
+                    Step_R_timer = 0;
+                    StepRight = false;
+
+                    if (WalkForward || WalkBackward)
+                    {
+                        StepLeft = true;
+                    }
+                }
+            }
+            else
+            {
+                //reset to idle
+                APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation, UpperRightLegTarget, (8f) * Time.fixedDeltaTime);
+                APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation, LowerRightLegTarget, (17f) * Time.fixedDeltaTime);
+
+                //feet force down
+                APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+                APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            }
+
+
+            //Step left
+            if (StepLeft)
+            {
+                Step_L_timer += Time.fixedDeltaTime;
+
+                //Left foot force down
+                APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+
+                //walk simulation
+                if (WalkForward)
+                {
+                    APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x + 0.09f * StepHeight, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
+                    APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.x - 0.09f * StepHeight * 2, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.w);
+
+                    APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
+                }
+
+                if (WalkBackward)
+                {
+                    APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x - 0.00f * StepHeight, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
+                    APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.x - 0.07f * StepHeight * 2, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.w);
+
+                    APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x + 0.02f * StepHeight / 2, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
+                }
+
+
+                //Step duration
+                if (Step_L_timer > StepDuration)
+                {
+                    Step_L_timer = 0;
+                    StepLeft = false;
+
+                    if (WalkForward || WalkBackward)
+                    {
+                        StepRight = true;
+                    }
+                }
+            }
+            else
+            {
+                //reset to idle
+                APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
+                APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
+
+                //feet force down
+                APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+                APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            }
+        }
+    }
 
 
     //---Activate Ragdoll---//
@@ -309,7 +657,8 @@ public class AiWander : MonoBehaviour
     ///////////////////////////
     void DeactivateRagdoll()
     {
-        
+        isRagdoll = false;
+        balanced = true;
 
         //Root
         APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = BalanceOn;
@@ -347,8 +696,6 @@ public class AiWander : MonoBehaviour
         APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
         APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
 
-        isRagdoll = false;
-        balanced = true;
         ResetPose = true;
     }
 
@@ -404,6 +751,5 @@ public class AiWander : MonoBehaviour
 
         COMP.position = CenterOfMassPoint;
     }
-
 
 }

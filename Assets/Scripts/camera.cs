@@ -15,4 +15,5 @@ public class camera : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, Player.position+Offset, ref velocity, smoothTime);
         
     }
+
 }
