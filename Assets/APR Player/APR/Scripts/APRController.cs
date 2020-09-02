@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using UnityEngine;
 using System.Linq;
 
@@ -315,7 +315,7 @@ public class APRController : MonoBehaviour
 		//Balance when ground is detected
         if (Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")) && !inAir && !isJumping && !reachRightAxisUsed && !reachLeftAxisUsed)
         {
-            if(!balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 1f)
+            if(!balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 3f)
             {
                 if(autoGetUpWhenPossible)
                 {
@@ -339,11 +339,11 @@ public class APRController : MonoBehaviour
 		{
             DeactivateRagdoll();
 		}
-		else if(!balanced && !isRagdoll)
-		{
+    /*
+        if(Input.GetButton("Ragdoll"))
             ActivateRagdoll();
-		}
-	}
+	*/
+    }
     
     
     
@@ -1102,28 +1102,5 @@ public class APRController : MonoBehaviour
 			COMP.position = CenterOfMassPoint;
 	}
     
-    
-    
-    //-------------------------------------------------------------
-    //--Debug
-    //-------------------------------------------------------------
-    
-	
-    
-	//---Editor Debug Mode---//
-	//////////////////////////
-	void OnDrawGizmos()
-	{
-		if(editorDebugMode)
-		{
-			Debug.DrawRay(Root.transform.position, - Root.transform.up * balanceHeight, Color.green);
-            
-            if(useStepPrediction)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(COMP.position, 0.3f);
-            }
-		}
-	}
     
 }

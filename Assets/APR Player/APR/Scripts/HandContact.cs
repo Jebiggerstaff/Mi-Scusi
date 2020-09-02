@@ -1,20 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
-    //-------------------------------------------------------------
-    //--APR Player
-    //--Hand Contact
-    //
-    //--Unity Asset Store - Version 1.0
-    //
-    //--By The Famous Mouse
-    //
-    //--Twitter @FamousMouse_Dev
-    //--Youtube TheFamouseMouse
-    //-------------------------------------------------------------
-
-
 public class HandContact : MonoBehaviour
 {
     public APRController APR_Player;
@@ -74,7 +60,10 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if(Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
+                    if(col.transform.parent.name=="AiWander")
+                        col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
+
+                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
                     {
                         hasJoint = true;
                         this.gameObject.AddComponent<FixedJoint>();
@@ -90,7 +79,10 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if(Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
+                    if (col.transform.parent.name == "AiWander")
+                        col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
+
+                    if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
                         hasJoint = true;
                         this.gameObject.AddComponent<FixedJoint>();
@@ -100,5 +92,12 @@ public class HandContact : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.parent.name == "AiWander")
+            collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
     }
 }
