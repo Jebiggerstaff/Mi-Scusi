@@ -9240,6 +9240,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b5eeaa9f0264da43b461c58b7e27bf1, type: 3}
+--- !u!1 &770071730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770071731}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &770071731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770071730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 277.49, y: 23.680868, z: 38.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &775731977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22215,6 +22245,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5945516693976916730, guid: 4b94c889d277e4e438b4e0960d16fd2c,
+        type: 3}
+      propertyPath: useStepPrediction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5945516693976916730, guid: 4b94c889d277e4e438b4e0960d16fd2c,
+        type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7326958731302042257, guid: 4b94c889d277e4e438b4e0960d16fd2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24970,7 +25010,7 @@ PrefabInstance:
     - target: {fileID: 258612408548756219, guid: 880a2ef5d5fa66a48af5cf7901b37693,
         type: 3}
       propertyPath: usingController
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 258612408548756219, guid: 880a2ef5d5fa66a48af5cf7901b37693,
         type: 3}

@@ -49,7 +49,6 @@ public class AiWander : MonoBehaviour
     [Header("Balance Properties")]
     //Balance
     public bool autoGetUpWhenPossible = true;
-    public bool useStepPrediction = true;
     public float balanceHeight = 2.5f;
     public float balanceStrength = 5000f;
     public float coreStrength = 1500f;
@@ -125,99 +124,24 @@ public class AiWander : MonoBehaviour
 
     public bool GrabbedByPlayer;
 
-
-
-    //-------------------------------------------------------------
-    //--Calling Functions
-    //-------------------------------------------------------------
-
-
-
-    //---Setup---//
-    //////////////
     void Awake()
     {
         PlayerSetup();
     }
 
-    public float range = 10.0f;
-    private Vector3 randomPoint;
-
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        randomPoint = center + Random.insideUnitSphere * range;
-        dir = (this.transform.position - randomPoint).normalized;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            result = hit.position;
-            return true;
-        }
-        result = Vector3.zero;
-        return false;
-    }
-
-    //---Updates---//
-    ////////////////
     void Update()
     {
-        //Debug.Log(randomPoint);
-        //Debug.Log(this.transform.GetChild(1).position);
-        //Debug.Log(Vector3.Distance(this.transform.GetChild(1).position, randomPoint));
-        if (Vector3.Distance(this.transform.GetChild(1).position, randomPoint) <= 5f)
+
+        if (balanced && !GrabbedByPlayer )
         {
-            //Debug.Log("Stop");
-            dir = new Vector3(0, 0, 0);
-            VerticalMovment = 0;
-            HorizontalMovment = 0;
-        }
-
-        Vector3 point;
-
-        AITimer += Time.deltaTime;
-
-        if ((this.transform.position - dir).magnitude <= 1f || balanced == false)
-        {
-            dir = new Vector3(0, 0, 0);
-
-        }
-
-        if (AITimer >= AITiming && !GrabbedByPlayer)
-        {
-
-            if (RandomPoint(transform.position, range, out point))
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-            }
-
-
-            VerticalMovment = dir.z;
-            HorizontalMovment = dir.x;
-            AITimer = 0;
-        }
-
-
-        if (balanced && !GrabbedByPlayer && useStepPrediction)
-        {
-            StepPrediction();
             CenterOfMass();
             PlayerMovement();
-        }
-
-        if (!useStepPrediction)
-        {
-            ResetWalkCycle();
         }
 
         GroundCheck();
         CenterOfMass();
     }
 
-
-
-    //---Fixed Updates---//
-    //////////////////////
     void FixedUpdate()
     {
         Walking();
@@ -225,16 +149,6 @@ public class AiWander : MonoBehaviour
         ResetPlayerPose();
     }
 
-
-
-    //-------------------------------------------------------------
-    //--Functions
-    //-------------------------------------------------------------
-
-
-
-    //---Player Setup--//
-    ////////////////////
     void PlayerSetup()
     {
 
@@ -310,9 +224,6 @@ public class AiWander : MonoBehaviour
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
     }
 
-
-    //---Ground Check---//
-    /////////////////////
     void GroundCheck()
     {
         Ray ray = new Ray(APR_Parts[0].transform.position, -APR_Parts[0].transform.up);
@@ -351,106 +262,13 @@ public class AiWander : MonoBehaviour
         }
     }
 
-
-    //---Step Prediction---//
-    ////////////////////////
-    void StepPrediction()
-    {
-        //Reset variables when balanced
-        if (!WalkForward && !WalkBackward)
-        {
-            StepRight = false;
-            StepLeft = false;
-            Step_R_timer = 0;
-            Step_L_timer = 0;
-            Alert_Leg_Right = false;
-            Alert_Leg_Left = false;
-        }
-
-        //Check direction to walk when off balance
-        //Backwards
-        if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
-        {
-            WalkBackward = true;
-
-        }
-        else
-        {
-            if (!isKeyDown)
-            {
-                WalkBackward = false;
-
-            }
-        }
-
-        //Forward
-        if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
-        {
-            WalkForward = true;
-
-        }
-        else
-        {
-            if (!isKeyDown)
-            {
-                WalkForward = false;
-
-            }
-        }
-    }
-
-
-    //---Reset Walk Cycle---//
-    /////////////////////////
-    void ResetWalkCycle()
-    {
-        //Reset variables when not moving
-        if (!WalkForward && !WalkBackward)
-        {
-            StepRight = false;
-            StepLeft = false;
-            Step_R_timer = 0;
-            Step_L_timer = 0;
-            Alert_Leg_Right = false;
-            Alert_Leg_Left = false;
-        }
-    }
-
-
-    //---Player Movement---//
-    ////////////////////////
     void PlayerMovement()
     {
 
-            Direction = APR_Parts[0].transform.rotation * new Vector3(HorizontalMovment, 0.0f, VerticalMovment);
-            Direction.y = 0f;
-            APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
-
-            if (HorizontalMovment != 0 || VerticalMovment != 0 && balanced)
-            {
-                if (!WalkForward && !moveAxisUsed)
-                {
-                    WalkForward = true;
-                    moveAxisUsed = true;
-                    isKeyDown = true;
-                }
-            }
-
-            else if (HorizontalMovment == 0 && VerticalMovment == 0)
-            {
-                if (WalkForward && moveAxisUsed)
-                {
-                    WalkForward = false;
-                    moveAxisUsed = false;
-                    isKeyDown = false;
-                }
-            }
+        //move based on velocity 
 
     }
 
-
-    //---Player Rotation---//
-    ////////////////////////
     void PlayerRotation()
     {
 
@@ -461,9 +279,6 @@ public class AiWander : MonoBehaviour
         
     }
 
-
-    //---Player Walking---//
-    ///////////////////////
     void Walking()
     {
         if (!inAir && !GrabbedByPlayer)
@@ -607,9 +422,6 @@ public class AiWander : MonoBehaviour
         }
     }
 
-
-    //---Activate Ragdoll---//
-    /////////////////////////
     public void ActivateRagdoll()
     {
         isRagdoll = true;
@@ -652,9 +464,6 @@ public class AiWander : MonoBehaviour
         APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
     }
 
-
-    //---Deactivate Ragdoll---//
-    ///////////////////////////
     void DeactivateRagdoll()
     {
         isRagdoll = false;
@@ -699,10 +508,6 @@ public class AiWander : MonoBehaviour
         ResetPose = true;
     }
 
-
-
-    //---Reset Player Pose---//
-    //////////////////////////
     void ResetPlayerPose()
     {
         if (ResetPose)
@@ -717,10 +522,6 @@ public class AiWander : MonoBehaviour
         }
     }
 
-
-
-    //---Calculating Center of mass point---//
-    /////////////////////////////////////////
     void CenterOfMass()
     {
         CenterOfMassPoint =
