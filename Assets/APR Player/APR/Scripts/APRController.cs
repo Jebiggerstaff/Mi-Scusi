@@ -315,7 +315,7 @@ public class APRController : MonoBehaviour
 		//Balance when ground is detected
         if (Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")) && !inAir && !isJumping && !reachRightAxisUsed && !reachLeftAxisUsed)
         {
-            if(!balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 1f)
+            if(!balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 3f)
             {
                 if(autoGetUpWhenPossible)
                 {
