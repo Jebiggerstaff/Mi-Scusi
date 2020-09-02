@@ -76,6 +76,8 @@ public class APRController : MonoBehaviour
     public float requiredForceToBeKO = 20f;
     public bool canPunch = true;
     public float punchForce = 15f;
+    private float punchTimer = 0f;
+    private float punchDelay = 2f;
     
     [Header("Audio")]
     //Impact sounds
@@ -141,11 +143,12 @@ public class APRController : MonoBehaviour
     ////////////////
     void Update()
     {
-        if (canPunch)
+        if (canPunch && punchTimer > punchDelay)
         {
-            PlayerPunch();
+            PlayerPunch();          
         }
 
+        punchTimer += .1f;
 
         if (useControls && !inAir)
         {
@@ -717,6 +720,7 @@ public class APRController : MonoBehaviour
         if(!punchingRight && Input.GetKey(punchRight))
         {
             punchingRight= true;
+            punchTimer = 0;
             
             //Right hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
@@ -726,6 +730,7 @@ public class APRController : MonoBehaviour
         
         if(punchingRight && !Input.GetKey(punchRight))
         {
+            punchTimer = 0;
             punchingRight = false;
             
             //Right hand punch release pose
@@ -754,6 +759,7 @@ public class APRController : MonoBehaviour
         //punch left
         if(!punchingLeft && Input.GetKey(punchLeft))
         {
+            punchTimer = 0;
             punchingLeft = true;
             
             //Left hand punch pull back pose
@@ -764,6 +770,7 @@ public class APRController : MonoBehaviour
         
         if(punchingLeft && !Input.GetKey(punchLeft))
         {
+            punchTimer = 0;
             punchingLeft = false;
             
             //Left hand punch release pose
