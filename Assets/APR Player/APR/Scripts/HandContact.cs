@@ -60,8 +60,9 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if(col.transform.parent.name=="AiWander")
-                        col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
+                    if (col.transform.parent == true)
+                        if (col.transform.parent.name=="AiWander")
+                            col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
                     if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
                     {
@@ -79,8 +80,9 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if (col.transform.parent.name == "AiWander")
-                        col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
+                    if (col.transform.parent == true)
+                        if (col.transform.parent.name == "AiWander")
+                            col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
                     if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
@@ -97,7 +99,8 @@ public class HandContact : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.parent.name == "AiWander")
-            collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
+        if(collision.transform.parent==true)
+            if (collision.transform.parent.name == "AiWander")
+                collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
     }
 }

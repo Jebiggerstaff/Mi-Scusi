@@ -60,10 +60,14 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private Slider progressSlider;
         #endregion
 
+        float originalGameTime;
+
+
         #region Initialisation - Button Selection & Menu Order
         private void Start()
         {
             menuNumber = 1;
+            originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
         }
         #endregion
@@ -290,6 +294,8 @@ namespace SpeedTutorMainMenuSystem
         IEnumerator loadALevel()
         {
             TurnOnLoadingScreen();
+
+            Time.timeScale = originalGameTime;
 
             AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
             

@@ -22,10 +22,20 @@ public class TriggerNextLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        canvasIsUp = true;
-        nextLevelCanvas.SetActive(true);
-
-        Time.timeScale = 0f;
+        if(!canvasIsUp)
+        {
+            if (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null || other.GetComponentInChildren<APRController>() != null)
+            {
+                canvasIsUp = true;
+                nextLevelCanvas.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                originalGameTIme = Time.timeScale;
+                Time.timeScale = 0f;
+            }
+        }
+        
+        
         
     }
 
@@ -45,7 +55,9 @@ public class TriggerNextLevel : MonoBehaviour
 
     private IEnumerator loadScene(string level)
     {
+        Time.timeScale = originalGameTIme;
         loadingScreen.SetActive(true);
+        nextLevelCanvas.SetActive(false);
         AsyncOperation async = SceneManager.LoadSceneAsync(level);
 
         while (!async.isDone)
@@ -60,6 +72,7 @@ public class TriggerNextLevel : MonoBehaviour
 
 
     bool canvasIsUp = false;
+    float originalGameTIme;
 
     [Header("Unity Things")]
     public GameObject nextLevelCanvas;
