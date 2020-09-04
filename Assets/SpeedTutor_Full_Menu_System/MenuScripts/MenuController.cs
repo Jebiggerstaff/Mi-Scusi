@@ -62,6 +62,9 @@ namespace SpeedTutorMainMenuSystem
 
         float originalGameTime;
 
+        [Header("SceneTransitions")]
+        public GameObject overlayScene;
+
 
         #region Initialisation - Button Selection & Menu Order
         private void Start()
@@ -80,6 +83,16 @@ namespace SpeedTutorMainMenuSystem
             confirmationMenu.SetActive(false);
         }
         
+        void onEnable()
+        {
+            menuNumber = 1;
+            originalGameTime = Time.timeScale;
+            Time.timeScale = 0.0001f;
+        }
+        void onDisable()
+        {
+            Time.timeScale = originalGameTime;
+        }
 
         private void Update()
         {
@@ -293,17 +306,20 @@ namespace SpeedTutorMainMenuSystem
         }
         IEnumerator loadALevel()
         {
-            TurnOnLoadingScreen();
+            //TurnOnLoadingScreen();
 
             Time.timeScale = originalGameTime;
 
-            AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
+            AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel, LoadSceneMode.Additive);
             
             while (!async.isDone)
             {
                 progressSlider.value = async.progress;
                 yield return null;
             }
+
+            //SceneManager.MoveGameObjectToScene(OverlayScene, _newGameButtonLevel);
+
         }
         public void ClickLoadGameDialog(string ButtonType)
         {

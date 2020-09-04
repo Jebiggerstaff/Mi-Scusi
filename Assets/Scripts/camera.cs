@@ -52,11 +52,24 @@ public class camera : MonoBehaviour
 
         if(hits.Length > 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, hits[0].point,50* Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, hits[0].point, Time.deltaTime * 4);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.position + Offset,50* Time.deltaTime);
+            /*
+            if(Vector3.Distance(transform.position, Player.position + Offset) < 2)
+            {
+
+                transform.position = Vector3.MoveTowards(transform.position, Player.position + Offset, 10 * Time.deltaTime);
+            }
+            else
+            {
+
+                transform.position = Vector3.MoveTowards(transform.position, Player.position + Offset, 50 * Time.deltaTime);
+            }
+            */
+
+            transform.position = Vector3.Lerp(transform.position, Player.position + Offset, Time.deltaTime * 4);
         }
     }
 

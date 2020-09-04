@@ -52,13 +52,14 @@ public class TriggerNextLevel : MonoBehaviour
     {
         StartCoroutine(loadScene(nextLevelSceneName));
     }
+    
 
     private IEnumerator loadScene(string level)
     {
         Time.timeScale = originalGameTIme;
-        loadingScreen.SetActive(true);
+        //loadingScreen.SetActive(true);
         nextLevelCanvas.SetActive(false);
-        AsyncOperation async = SceneManager.LoadSceneAsync(level);
+        AsyncOperation async = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
 
         while (!async.isDone)
         {
