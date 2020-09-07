@@ -3,19 +3,6 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
 
-//-------------------------------------------------------------
-//--APR Player
-//--APRController (Main Player Controller)
-//
-//--Unity Asset Store - Version 1.0
-//
-//--By The Famous Mouse
-//
-//--Twitter @FamousMouse_Dev
-//--Youtube TheFamouseMouse
-//-------------------------------------------------------------
-
-
 public class AiWander : MonoBehaviour
 {
 
@@ -101,6 +88,13 @@ public class AiWander : MonoBehaviour
     private Vector3 dir;
     private Vector3 CenterOfMassPoint;
 
+    private bool _IsWandering;
+    private bool _HasWanderPos;
+    private Vector3 currentWanderPos;
+    private Vector3 wanderPos;              // Sets next random wander position
+    private float wanderTimer, wanderNext;  // Used for timing the wander time limit
+
+
     //Active Ragdoll Player Parts Array
     private GameObject[] APR_Parts;
 
@@ -135,8 +129,10 @@ public class AiWander : MonoBehaviour
         if (balanced && !GrabbedByPlayer )
         {
             CenterOfMass();
-            PlayerMovement();
+            AiMovement();
         }
+        if (GrabbedByPlayer)
+            ActivateRagdoll();
 
         GroundCheck();
         CenterOfMass();
@@ -262,11 +258,19 @@ public class AiWander : MonoBehaviour
         }
     }
 
-    void PlayerMovement()
+    void AiMovement()
     {
-
-        //move based on velocity 
-
+        if (!GrabbedByPlayer && balanced)
+        {
+            WalkForward = true;
+            moveAxisUsed = true;
+            isKeyDown = true;
+        }
+        else{
+            WalkForward = false;
+            moveAxisUsed = false;
+            isKeyDown = false;
+        }
     }
 
     void PlayerRotation()
