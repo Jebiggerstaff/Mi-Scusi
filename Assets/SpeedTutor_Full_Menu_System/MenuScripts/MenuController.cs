@@ -62,6 +62,7 @@ namespace SpeedTutorMainMenuSystem
         #endregion
 
         float originalGameTime;
+        float oldAxis;
 
         [Header("SceneTransitions")]
         public OverlayScene overlayScene;
@@ -100,9 +101,12 @@ namespace SpeedTutorMainMenuSystem
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-
-            if (Input.GetKeyDown(KeyCode.Escape))
+            
+            if (Input.GetAxis("Cancel") > oldAxis && !overlayScene.CancelDelay)
             {
+                overlayScene.CancelDelay = true;
+                overlayScene.cancelDelayCount = 0.1f;
+
                 if (menuNumber == 2 || menuNumber == 7 || menuNumber == 8 || menuNumber == 9 || menuNumber == 10)
                 {
                     GoBackToMainMenu();
@@ -128,6 +132,8 @@ namespace SpeedTutorMainMenuSystem
                     }
                 }
             }
+
+            oldAxis = Input.GetAxis("Cancel");
 
             if(ResumeGameBtn.activeSelf == false && needResumeButton)
             {
