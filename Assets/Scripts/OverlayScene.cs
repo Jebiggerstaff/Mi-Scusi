@@ -17,7 +17,7 @@ public class OverlayScene : MonoBehaviour
         {
             if(menu.activeSelf == false)
             {
-                player.SetActive(false);
+                //player.SetActive(false);
                 menu.SetActive(true);
                 menu.GetComponent<SpeedTutorMainMenuSystem.MenuController>().needResumeButton = true;
                 menu.GetComponent<SpeedTutorMainMenuSystem.MenuController>().onEnable();
