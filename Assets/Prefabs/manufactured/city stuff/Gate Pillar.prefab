@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4458458741707842928}
   - component: {fileID: 4649023395880771398}
   - component: {fileID: 1420937698033525695}
-  - component: {fileID: 4395154310723697281}
+  - component: {fileID: 508321036}
   m_Layer: 14
   m_Name: Gate Pillar
   m_TagString: CanBeGrabbed
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830062294928840547}
-  m_LocalRotation: {x: 0.002981822, y: -0.70710045, z: -0.7071005, w: -0.0029817163}
+  m_LocalRotation: {x: 0.0029798476, y: -0.70697707, z: -0.7072239, w: -0.002980888}
   m_LocalPosition: {x: 44.307957, y: 21.019989, z: -36.092613}
-  m_LocalScale: {x: 2.4473386, y: 2.4473386, z: 2.4473386}
+  m_LocalScale: {x: 6.1922536, y: 6.192255, z: 6.192255}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.48299}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.483}
 --- !u!33 &4649023395880771398
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -56,10 +56,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8454f0006e11c645ba3b050632aa079, type: 2}
+  - {fileID: 2100000, guid: 1b18d7108b51e75499b818df6338614d, type: 2}
   - {fileID: 2100000, guid: 486b03886ed53b34b87a0be9ba25d1ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -81,8 +82,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4395154310723697281
-BoxCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &508321036
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,6 +93,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7146809, y: 0.7146814, z: 2.302076}
-  m_Center: {x: -0.0000019074596, y: 0.021907138, z: 1.1402248}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2492128454509037923, guid: 706a10b8ea1a7954a9f9a09a5b961fb7, type: 3}
