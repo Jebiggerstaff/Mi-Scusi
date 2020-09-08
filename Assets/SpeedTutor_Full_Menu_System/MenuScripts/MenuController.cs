@@ -35,6 +35,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private GameObject confirmationMenu;
         [SerializeField] private GameObject customizationMenu;
         [SerializeField] private GameObject loadingScreenCanvas;
+        [SerializeField] private GameObject ResumeGameBtn;
         [Space(10)]
         [Header("Menu Popout Dialogs")]
         [SerializeField] private GameObject noSaveDialog;
@@ -63,12 +64,14 @@ namespace SpeedTutorMainMenuSystem
         float originalGameTime;
 
         [Header("SceneTransitions")]
-        public GameObject overlayScene;
+        public OverlayScene overlayScene;
+        public bool needResumeButton = false;
 
 
         #region Initialisation - Button Selection & Menu Order
         private void Start()
         {
+
             menuNumber = 1;
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
@@ -83,15 +86,14 @@ namespace SpeedTutorMainMenuSystem
             confirmationMenu.SetActive(false);
         }
         
-        void onEnable()
+        public void onEnable()
         {
-            menuNumber = 1;
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
         }
         void onDisable()
         {
-            Time.timeScale = originalGameTime;
+            
         }
 
         private void Update()
@@ -118,6 +120,18 @@ namespace SpeedTutorMainMenuSystem
                     GoBackToGameplayMenu();
                     ClickSound();
                 }
+                else if(menuNumber == 1)
+                {
+                    if(needResumeButton)
+                    {
+                        resumeGame();
+                    }
+                }
+            }
+
+            if(ResumeGameBtn.activeSelf == false && needResumeButton)
+            {
+                ResumeGameBtn.SetActive(true);
             }
         }
 
@@ -308,19 +322,29 @@ namespace SpeedTutorMainMenuSystem
         {
             //TurnOnLoadingScreen();
 
+            GoBackToMainMenu();
+
             Time.timeScale = originalGameTime;
 
-            AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel, LoadSceneMode.Additive);
+            AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
             
             while (!async.isDone)
             {
                 progressSlider.value = async.progress;
                 yield return null;
             }
+            
 
-            //SceneManager.MoveGameObjectToScene(OverlayScene, _newGameButtonLevel);
 
         }
+        public void resumeGame()
+        {
+            needResumeButton = false;
+            Time.timeScale = 1;
+            overlayScene.player.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
         public void ClickLoadGameDialog(string ButtonType)
         {
             if (ButtonType == "Yes")
@@ -410,6 +434,16 @@ namespace SpeedTutorMainMenuSystem
             customizationMenu.SetActive(false);
             loadingScreenCanvas.SetActive(false);
             menuNumber = 1;
+
+            if(needResumeButton)
+            {
+                ResumeGameBtn.SetActive(true);
+                
+            }
+            else
+            {
+                ResumeGameBtn.SetActive(false);
+            }
         }
 
         public void TurnOnLoadingScreen()
