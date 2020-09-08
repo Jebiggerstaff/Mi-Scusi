@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2808706750400347386}
   - component: {fileID: 196126183473201026}
   - component: {fileID: 6886153925196051467}
-  - component: {fileID: 8867134180786744385}
+  - component: {fileID: 6819183653028561011}
   m_Layer: 14
   m_Name: bush.005
   m_TagString: CanBeGrabbed
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,8 +81,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8867134180786744385
-BoxCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6819183653028561011
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.909985, y: 6.0971937, z: 8.67104}
-  m_Center: {x: 0.021882843, y: 0.016901506, z: 0.86745435}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7751685306076077234, guid: 1685c52df1c3a614990c24afcf3f847a, type: 3}

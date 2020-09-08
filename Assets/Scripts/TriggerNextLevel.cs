@@ -8,6 +8,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collider))]
 public class TriggerNextLevel : MonoBehaviour
 {
+    //TODO: If requirement is met go to next level
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,19 +56,23 @@ public class TriggerNextLevel : MonoBehaviour
     {
         StartCoroutine(loadScene(nextLevelSceneName));
     }
+    
 
     private IEnumerator loadScene(string level)
     {
         Time.timeScale = originalGameTIme;
-        loadingScreen.SetActive(true);
+        //loadingScreen.SetActive(true);
         nextLevelCanvas.SetActive(false);
         AsyncOperation async = SceneManager.LoadSceneAsync(level);
+        
 
         while (!async.isDone)
         {
             fillBar.value = async.progress;
             yield return null;
         }
+
+
 
     }
 
