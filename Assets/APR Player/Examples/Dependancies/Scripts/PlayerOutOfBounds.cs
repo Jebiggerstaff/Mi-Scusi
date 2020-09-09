@@ -2,6 +2,19 @@
 using UnityEngine;
 
 
+    //-------------------------------------------------------------
+    //--APR Player
+    //--Player Out Of Bounds
+    //
+    //--Unity Asset Store - Version 1.0
+    //
+    //--By The Famous Mouse
+    //
+    //--Twitter @FamousMouse_Dev
+    //--Youtube TheFamouseMouse
+    //-------------------------------------------------------------
+
+
 public class PlayerOutOfBounds : MonoBehaviour
 {
     //Player container
@@ -32,15 +45,9 @@ public class PlayerOutOfBounds : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-       
     }
-    private void Start()
-    {
-        APR_Player = GameObject.Find("FinalPlayer");
-        APR_Root = GameObject.Find("APR_Root");
-    }
-
-
+    
+    
     void OnTriggerEnter(Collider col)
     {
         if(!checkedTrigger)
