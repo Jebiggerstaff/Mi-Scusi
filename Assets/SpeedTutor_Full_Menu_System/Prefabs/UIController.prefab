@@ -1,5 +1,112 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &980339790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980339791}
+  - component: {fileID: 980339796}
+  - component: {fileID: 980339794}
+  - component: {fileID: 980339792}
+  - component: {fileID: 980339799}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980339791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980339790}
+  m_LocalRotation: {x: -0, y: 0.9396849, z: -0, w: -0.34204143}
+  m_LocalPosition: {x: 989.15265, y: 18.080662, z: 127.944275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4632753293960446}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &980339796
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980339790}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 280
+  field of view: 60
+  orthographic: 0
+  orthographic size: 100
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 1
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!124 &980339794
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980339790}
+  m_Enabled: 1
+--- !u!81 &980339792
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980339790}
+  m_Enabled: 1
+--- !u!114 &980339799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980339790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02050cea5566fca4098e3baab5c98800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderDerp: {fileID: 4800000, guid: aa28d8b840c1bcb4297c6dea68c63a36, type: 3}
+  brightness: 1
 --- !u!1 &1003983542099302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1484,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 980339796}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3815,6 +3922,8 @@ Transform:
   m_Children:
   - {fileID: 224896785717845862}
   - {fileID: 224835608012764384}
+  - {fileID: 4084183556844429}
+  - {fileID: 980339791}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3941,19 +4050,22 @@ MonoBehaviour:
   confirmationMenu: {fileID: 1706612065132982}
   customizationMenu: {fileID: 3182712886340487370}
   loadingScreenCanvas: {fileID: 3147325571815572217}
+  ResumeGameBtn: {fileID: 0}
   noSaveDialog: {fileID: 1207111332628262}
   newGameDialog: {fileID: 1889607586039040}
   loadGameDialog: {fileID: 1443681062563508}
   controllerSenText: {fileID: 114036040233595794}
   controllerSenSlider: {fileID: 114866046668010596}
   controlSenFloat: 4
-  brightnessEffect: {fileID: 0}
+  brightnessEffect: {fileID: 980339799}
   brightnessSlider: {fileID: 114414691622253428}
   brightnessText: {fileID: 114954420297510558}
   volumeText: {fileID: 114662438807354912}
   volumeSlider: {fileID: 114272391833239024}
   invertYToggle: {fileID: 114897183776236306}
   progressSlider: {fileID: 8325552734503918263}
+  overlayScene: {fileID: 0}
+  needResumeButton: 0
 --- !u!1 &1439258321415800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7236,7 +7348,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 980339796}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -16844,6 +16956,98 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1001 &1385810939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4632753293960446}
+    m_Modifications:
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: brightnessEffect
+      value: 
+      objectReference: {fileID: 980339799}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: brightnessText
+      value: 
+      objectReference: {fileID: 114954420297510558}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: brightnessSlider
+      value: 
+      objectReference: {fileID: 114414691622253428}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: volumeText
+      value: 
+      objectReference: {fileID: 114662438807354912}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 114272391833239024}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: controllerText
+      value: 
+      objectReference: {fileID: 114036040233595794}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: controllerSlider
+      value: 
+      objectReference: {fileID: 114866046668010596}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: invertYToggle
+      value: 
+      objectReference: {fileID: 114897183776236306}
+    - target: {fileID: 114325646035853880, guid: cc18238686906234bb678b403db8d8fd,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 114754865640368622}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc18238686906234bb678b403db8d8fd, type: 3}
+--- !u!4 &4084183556844429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4084184335491190, guid: cc18238686906234bb678b403db8d8fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385810939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4336450274529424488
 PrefabInstance:
   m_ObjectHideFlags: 0
