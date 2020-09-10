@@ -46,8 +46,14 @@ public class PlayerOutOfBounds : MonoBehaviour
     {
         cam = Camera.main;
     }
-    
-    
+
+    private void Start()
+    {
+        APR_Player = GameObject.Find("FinalPlayer");
+        APR_Root = GameObject.Find("APR_Root");
+    }
+
+
     void OnTriggerEnter(Collider col)
     {
         if(!checkedTrigger)
