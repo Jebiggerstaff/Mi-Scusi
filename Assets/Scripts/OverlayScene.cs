@@ -17,7 +17,7 @@ public class OverlayScene : MonoBehaviour
         if (cancelDelayCount > 0)
         {
             cancelDelayCount -= Time.unscaledDeltaTime;
-
+            
         }
         else
         {
@@ -44,6 +44,8 @@ public class OverlayScene : MonoBehaviour
 
 
     public GameObject player;
+    public GameObject playerother;
+    public GameObject playermain;
     public GameObject menu;
 
     public bool CancelDelay;
