@@ -72,7 +72,6 @@ namespace SpeedTutorMainMenuSystem
         #region Initialisation - Button Selection & Menu Order
         private void Start()
         {
-
             menuNumber = 1;
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
@@ -330,7 +329,7 @@ namespace SpeedTutorMainMenuSystem
 
             GoBackToMainMenu();
 
-            Time.timeScale = originalGameTime;
+            Time.timeScale = 1;
 
             AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
 

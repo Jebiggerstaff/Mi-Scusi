@@ -342,6 +342,10 @@ public class APRController : MonoBehaviour
 		{
             DeactivateRagdoll();
 		}
+        if (!balanced)
+        {
+            balanced = true;
+        }
     /*
         if(Input.GetButton("Ragdoll"))
             ActivateRagdoll();
