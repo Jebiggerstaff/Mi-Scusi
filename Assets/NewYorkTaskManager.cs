@@ -9,21 +9,12 @@ public class NewYorkTaskManager : MonoBehaviour
 
     //Public Variables
     [Header("Tasks")]
-    public bool CutInLine = false;
-    public bool HelpedManMove = false;
-    public bool RemovePoliticalSigns = false;
-    public bool PickUpTrashInPark = false;
-    public bool DefaceSSSTags = false;
-    public bool Shatter5Windows = false;
-    public bool EatAtCafe = false;
-    public bool CrossTheStreet = false;
-    public bool ReturnBlueBikes = false;
-    public bool DefaceCorperateHQ = false;
-    public bool BringFoodToBuilders = false;
+    public GameObject[] Tasks = new GameObject[0];
 
     [Header("Gameobjects")]
     public GameObject Player;
     public GameObject TaskCompleteText;
+    public GameObject TaskList;
 
     [Header("Collision Boxes")]
     public GameObject FrontOfLine;
@@ -36,31 +27,79 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject Builders;
 
     [Header("Task Objects")]
+
     public GameObject[] MansLuggage = new GameObject[0];
     public GameObject[] PoliticalSigns = new GameObject[0];
     public GameObject[] ParkTrash = new GameObject[0];
     public GameObject[] MartBikes = new GameObject[0];
     public GameObject[] CafeFood = new GameObject[0];
 
-    [HideInInspector]
-    public int SSStagsRemoved = 0;
+    [HideInInspector] public int SSStagsRemoved = 0;
+    [HideInInspector] public int TrashPickedUp = 0;
+    [HideInInspector] public int WindowsBroken = 0;
+    [HideInInspector] public int BikesReturned = 0;
 
     public void Start()
     {
-        this.GetComponentInChildren<Canvas>().worldCamera = Camera.main;
+        this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
+        this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
         Player = GameObject.Find("FinalPlayer");
-        Debug.Log("Found Player: " + Player);
+        //Debug.Log("Found Player: " + Player);
 
-        TaskCompleteText = transform.GetChild(0).gameObject;
     }
 
-    public void TaskCompleted()
+    public void Update()
+    {
+        if (Input.GetButtonDown("TaskMenu"))
+        {
+            TaskCompleteText.SetActive(false);
+            TaskList.SetActive(true);
+        }
+        if(Input.GetButtonUp("TaskMenu"))
+            TaskList.SetActive(false);
+    }
+
+    public void TaskCompleted(string Task)
     {
         TaskCompleteText.SetActive(true);
-        StartCoroutine("TaskCompletedEnd", 5f);
+        //Crosses out task on list
+        switch (Task)
+        {
+            case "CutInLine":
+                Tasks[0].SetActive(true);
+                break;
+            case "HelpGuyMove":
+                Tasks[1].SetActive(true);
+                break;
+            case "RemovePolitical":
+                Tasks[2].SetActive(true);
+                break;
+            case "PickUpTrash":
+                Tasks[3].SetActive(true);
+                break;
+            case "DefaceSSS":
+                Tasks[4].SetActive(true);
+                break;
+            case "ShatterWindows":
+                Tasks[5].SetActive(true);
+                break;
+            case "EatAtCafe":
+                Tasks[6].SetActive(true);
+                break;
+            case "CrossStreet":
+                Tasks[7].SetActive(true);
+                break;
+            case "ReturnBlueBikes":
+                Tasks[8].SetActive(true);
+                break;
+            case "DefaceHQ":
+                Tasks[9].SetActive(true);
+                break;
+            case "BringFood":
+                Tasks[10].SetActive(true);
+                break;
+        }
+
     }
-    private void TaskCompletedEnd()
-    {
-        TaskCompleteText.gameObject.SetActive(false);
-    }
+
 }
