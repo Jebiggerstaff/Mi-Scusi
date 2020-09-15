@@ -59,7 +59,7 @@ public class TriggerNextLevel : MonoBehaviour
         Time.timeScale = originalGameTIme;
         //loadingScreen.SetActive(true);
         nextLevelCanvas.SetActive(false);
-        AsyncOperation async = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+        AsyncOperation async = SceneManager.LoadSceneAsync(level);
 
         while (!async.isDone)
         {
