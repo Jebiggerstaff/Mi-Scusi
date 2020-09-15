@@ -46,7 +46,7 @@ public class camera : MonoBehaviour
     {
         RaycastHit []hits;
         Ray ray = new Ray(Player.transform.position, Offset);
-        hits = Physics.SphereCastAll(ray, 0.25f, Offset.magnitude);
+        hits = Physics.SphereCastAll(ray, 1f, Offset.magnitude);
         hits = removeNonBuildings(hits);
         sortHitsByDistance(hits);
 
