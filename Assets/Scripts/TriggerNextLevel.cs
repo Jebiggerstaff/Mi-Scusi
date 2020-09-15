@@ -56,6 +56,9 @@ public class TriggerNextLevel : MonoBehaviour
 
     private IEnumerator loadScene(string level)
     {
+        if(level != "Menu")
+            PlayerPrefs.SetString("SavedLevel", level);
+
         Time.timeScale = originalGameTIme;
         //loadingScreen.SetActive(true);
         nextLevelCanvas.SetActive(false);

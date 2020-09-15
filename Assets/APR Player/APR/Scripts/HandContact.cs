@@ -64,6 +64,16 @@ public class HandContact : MonoBehaviour
                         if (col.transform.parent.name=="AiWander")
                             col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
+                    if(col.gameObject.GetComponent<NewAIMan>() != null)
+                    {
+                        col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+                        if(APR_Player.punchingLeft)
+                        {
+                            col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                        }
+                    }
+
+
                     if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
                     {
                         hasJoint = true;
@@ -84,6 +94,15 @@ public class HandContact : MonoBehaviour
                         if (col.transform.parent.name == "AiWander")
                             col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
+                    if (col.gameObject.GetComponent<NewAIMan>() != null)
+                    {
+                        col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+                        if (APR_Player.punchingRight)
+                        {
+                            col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                        }
+                    }
+
                     if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
                         hasJoint = true;
@@ -102,5 +121,8 @@ public class HandContact : MonoBehaviour
         if(collision.transform.parent==true)
             if (collision.transform.parent.name == "AiWander")
                 collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
+
+        if (collision.gameObject.GetComponent<NewAIMan>() != null)
+            collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
     }
 }
