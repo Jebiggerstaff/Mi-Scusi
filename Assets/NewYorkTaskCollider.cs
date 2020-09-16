@@ -94,6 +94,13 @@ public class NewYorkTaskCollider : MonoBehaviour
             }
         }
         #endregion
+        #region DefaceHQ
+        if (other.name == "APR_Head" && name == "DefaceHQZone")
+        {
+            this.GetComponent<MeshRenderer>().enabled = true;
+            NewYorkTaskManager.TaskCompleted("DefaceSSS");
+        }
+        #endregion
     }
     public void OnTriggerExit(Collider other)
     {
