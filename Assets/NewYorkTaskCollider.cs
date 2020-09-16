@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NewYorkTaskCollider : MonoBehaviour
 {
@@ -82,6 +83,24 @@ public class NewYorkTaskCollider : MonoBehaviour
             }
         }
         #endregion
+        #region HelpGuyMove
+        if (NewYorkTaskManager.MansLuggage.Contains(other.gameObject) && name == "VanInterior")
+        {
+            NewYorkTaskManager.ObjectsBroughtToVan++;
+
+            if (NewYorkTaskManager.ObjectsBroughtToVan == 3)
+            {
+                NewYorkTaskManager.TaskCompleted("HelpGuyMove");
+            }
+        }
+        #endregion
+        #region DefaceHQ
+        if (other.name == "APR_Head" && name == "DefaceHQZone")
+        {
+            this.GetComponent<MeshRenderer>().enabled = true;
+            NewYorkTaskManager.TaskCompleted("DefaceSSS");
+        }
+        #endregion
     }
     public void OnTriggerExit(Collider other)
     {
@@ -96,6 +115,25 @@ public class NewYorkTaskCollider : MonoBehaviour
         if (other.name == "Bike" && name == "BikeZone")
         {
             NewYorkTaskManager.BikesReturned--;
+
+        }
+        #endregion
+        #region HelpGuyMove
+        if (NewYorkTaskManager.MansLuggage.Contains(other.gameObject) && name == "VanInterior")
+        {
+            NewYorkTaskManager.ObjectsBroughtToVan--;
+
+        }
+        #endregion
+        #region RemovePolitical
+        if (NewYorkTaskManager.PoliticalSigns.Contains(other.gameObject) && name == "SignZone")
+        {
+            NewYorkTaskManager.SignsMoved++;
+
+            if(NewYorkTaskManager.SignsMoved == 5)
+            {
+                NewYorkTaskManager.TaskCompleted("RemovePolitical");
+            }
 
         }
         #endregion
