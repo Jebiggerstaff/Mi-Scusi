@@ -19,11 +19,12 @@ public class WindowShatter : MonoBehaviour
     {
         if (other.tag == "CanBeGrabbed")
         {
-            NewYorkTaskManager.WindowsBroken++;
 
-            if (NewYorkTaskManager.WindowsBroken == 15)
+            if (SceneManager.GetActiveScene().name == "NewYork")
             {
-                NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                NewYorkTaskManager.WindowsBroken++;
+                if (NewYorkTaskManager.WindowsBroken == 15)
+                    NewYorkTaskManager.TaskCompleted("ShatterWindows");
             }
 
             Instantiate(destroyedVersion, transform.position, transform.rotation);
