@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NewYorkTaskCollider : MonoBehaviour
 {
@@ -82,6 +83,17 @@ public class NewYorkTaskCollider : MonoBehaviour
             }
         }
         #endregion
+        #region HelpGuyMove
+        if (NewYorkTaskManager.MansLuggage.Contains(other.gameObject) && name == "VanInterior")
+        {
+            NewYorkTaskManager.ObjectsBroughtToVan++;
+
+            if (NewYorkTaskManager.ObjectsBroughtToVan == 3)
+            {
+                NewYorkTaskManager.TaskCompleted("HelpGuyMove");
+            }
+        }
+        #endregion
     }
     public void OnTriggerExit(Collider other)
     {
@@ -96,6 +108,13 @@ public class NewYorkTaskCollider : MonoBehaviour
         if (other.name == "Bike" && name == "BikeZone")
         {
             NewYorkTaskManager.BikesReturned--;
+
+        }
+        #endregion
+        #region HelpGuyMove
+        if (NewYorkTaskManager.MansLuggage.Contains(other.gameObject) && name == "VanInterior")
+        {
+            NewYorkTaskManager.ObjectsBroughtToVan--;
 
         }
         #endregion

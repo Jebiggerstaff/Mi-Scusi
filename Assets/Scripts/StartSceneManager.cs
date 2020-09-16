@@ -21,7 +21,6 @@ public class StartSceneManager : MonoBehaviour
         var os = FindObjectOfType<OverlayScene>();
         if (os == null)
         {
-
             os = Instantiate(overlayStuff, new Vector3(0,0,0), Quaternion.Euler(0,0,0)).GetComponent<OverlayScene>();
         }
 

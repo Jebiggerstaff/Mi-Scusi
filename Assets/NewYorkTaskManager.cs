@@ -38,6 +38,7 @@ public class NewYorkTaskManager : MonoBehaviour
     [HideInInspector] public int TrashPickedUp = 0;
     [HideInInspector] public int WindowsBroken = 0;
     [HideInInspector] public int BikesReturned = 0;
+    [HideInInspector] public int ObjectsBroughtToVan = 0;
 
     public void Start()
     {
