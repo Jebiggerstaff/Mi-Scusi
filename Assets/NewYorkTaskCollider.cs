@@ -118,6 +118,18 @@ public class NewYorkTaskCollider : MonoBehaviour
 
         }
         #endregion
+        #region RemovePolitical
+        if (NewYorkTaskManager.PoliticalSigns.Contains(other.gameObject) && name == "SignZone")
+        {
+            NewYorkTaskManager.SignsMoved++;
+
+            if(NewYorkTaskManager.SignsMoved == 5)
+            {
+                NewYorkTaskManager.TaskCompleted("RemovePolitical");
+            }
+
+        }
+        #endregion
 
     }
 }

@@ -19,7 +19,6 @@ public class NewYorkTaskManager : MonoBehaviour
     [Header("Collision Boxes")]
     public GameObject FrontOfLine;
     public GameObject[] SSSTags = new GameObject[0];
-    public GameObject[] ShatterableWindows = new GameObject[0];
     public GameObject Cafe;
     public GameObject OtherSideOfStreet;
     public GameObject BikeRack;
@@ -39,6 +38,7 @@ public class NewYorkTaskManager : MonoBehaviour
     [HideInInspector] public int WindowsBroken = 0;
     [HideInInspector] public int BikesReturned = 0;
     [HideInInspector] public int ObjectsBroughtToVan = 0;
+    [HideInInspector] public int SignsMoved = 0;
 
     public void Start()
     {
