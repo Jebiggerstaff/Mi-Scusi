@@ -12,15 +12,18 @@ public class NewAIMan : MonoBehaviour
         hp = maxHP;
     }
     // Start is called before the first frame update
-    public virtual void Start()
+    void Start()
     {
         SetNewDestination();
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    void Update()
     {
-        getnewDest();
+        if(Vector3.Distance(transform.position, currentDestination) < 3)
+        {
+            SetNewDestination();
+        }
 
         if(grabbedByPlayer)
         {
@@ -52,14 +55,6 @@ public class NewAIMan : MonoBehaviour
     }
 
 
-    public void getnewDest()
-    {
-        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
-        {
-            SetNewDestination();
-        }
-    }
-
     public void stun(float time)
     {
         hp--;
@@ -90,8 +85,7 @@ public class NewAIMan : MonoBehaviour
 
     public void SetNewDestination()
     {
-        if(destinations.Count > 0)
-            SetNewDestination(destinations[Random.Range(0, destinations.Count)]);
+        SetNewDestination(destinations[Random.Range(0, destinations.Count)]);
     }
     public void SetNewDestination(Vector3 target)
     {
@@ -116,13 +110,10 @@ public class NewAIMan : MonoBehaviour
 
     public Vector3 currentDestination;
     public List<Vector3> destinations;
-    [HideInInspector]
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
     Rigidbody rb;
     public bool grabbedByPlayer = false;
     public float stunCount;
-
-    public float minimumStopDistance;
 
     public int maxHP;
     public int hp;
