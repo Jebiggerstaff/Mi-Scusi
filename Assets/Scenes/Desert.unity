@@ -1987,7 +1987,7 @@ PrefabInstance:
     - target: {fileID: 5400401520029276950, guid: 310b2a59444de7242a58f52ec5292113,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 374.8512
+      value: 1101
       objectReference: {fileID: 0}
     - target: {fileID: 5400401520029276950, guid: 310b2a59444de7242a58f52ec5292113,
         type: 3}
@@ -8616,6 +8616,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rainbow Bridge
       objectReference: {fileID: 0}
+    - target: {fileID: 993794514880004795, guid: d6418765cf09988448568fc39c77a371,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6418765cf09988448568fc39c77a371, type: 3}
 --- !u!1 &324766533175707130
@@ -8795,7 +8800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324766533175707130}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90.5305, y: 25.729725, z: 125.16327}
+  m_LocalPosition: {x: -54.1, y: 91.9, z: 183.2}
   m_LocalScale: {x: 9.609587, y: 9.609587, z: 9.609587}
   m_Children: []
   m_Father: {fileID: 1536176991}
@@ -8849,13 +8854,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3204642145988546955}
-  m_LocalRotation: {x: -0.5, y: -0.49999997, z: 0.5, w: 0.50000006}
-  m_LocalPosition: {x: 144.38083, y: 15.2, z: 93.20864}
-  m_LocalScale: {x: 4.022, y: 4.022, z: 4.022}
+  m_LocalRotation: {x: -0.48220503, y: -0.51718295, z: 0.48220506, w: 0.51718307}
+  m_LocalPosition: {x: 144.38083, y: 8.2, z: 93.20864}
+  m_LocalScale: {x: 2.97628, y: 2.97628, z: 2.97628}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 85.991}
 --- !u!33 &2955107240971696352
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8872,7 +8877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806736453668607262}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 86.76903, y: 90, z: 384.37024}
+  m_LocalPosition: {x: 86.76903, y: 90, z: 921}
   m_LocalScale: {x: 9.609587, y: 9.609587, z: 9.609587}
   m_Children: []
   m_Father: {fileID: 1536176991}
@@ -8908,13 +8913,28 @@ GameObject:
   - component: {fileID: 2824598784738380593}
   - component: {fileID: 1197155082263315604}
   - component: {fileID: 3997456482043637854}
-  m_Layer: 0
+  - component: {fileID: 3204642145988546956}
+  m_Layer: 14
   m_Name: Pull Camper
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &3204642145988546956
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3204642145988546955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4311381972248768866, guid: f1cab18226a0a964d8d92507301d0143, type: 3}
 --- !u!1 &3487031725701881865
 GameObject:
   m_ObjectHideFlags: 0
@@ -9314,7 +9334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3185436049436652982}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 117.470566, y: 51.38732, z: 271.9381}
+  m_LocalPosition: {x: 24.7, y: 123.9, z: 271.9381}
   m_LocalScale: {x: 5.4495, y: 5.4495, z: 5.4495}
   m_Children: []
   m_Father: {fileID: 1536176991}
