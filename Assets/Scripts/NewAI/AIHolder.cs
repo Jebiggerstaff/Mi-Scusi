@@ -7,11 +7,11 @@ using UnityEngine.AI;
 public class AIHolder
 {
 
-    
-    int hp;
-    int speed;
-    Vector3 startLocation;
-    List<Vector3> walkLocations;
+    public bool orderedDestinations;
+    public int hp;
+    public int speed;
+    public Vector3 startLocation;
+    public List<Vector3> walkLocations;
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -19,6 +19,7 @@ public class AIHolder
         newAI.GetComponent<NavMeshAgent>().speed = speed;
         newAI.maxHP = hp;
         newAI.destinations = walkLocations;
+        newAI.useRandomDestinations = !orderedDestinations;
         return newAI;
 
     }

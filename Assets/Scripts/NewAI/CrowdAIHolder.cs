@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CrowdAIHolder : AIHolder
 {
-    int numPeople;
+    public int numPeople;
 
     public override NewAIMan MakeAI(GameObject AIMan)
     {

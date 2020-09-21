@@ -20,7 +20,7 @@ public class CrowdAI : NewAIMan
         base.getnewDest();
     }
 
-
+    
     void SpawnLads()
     {
         if (numCrowd > 0)
@@ -39,6 +39,7 @@ public class CrowdAI : NewAIMan
                 var go = Instantiate(AIManPrefab, transform.position, Quaternion.Euler(0, 0, 0));
                 AIMen.Add(go.GetComponent<NewAIMan>());
                 go.GetComponent<NewAIMan>().minimumStopDistance = 0;
+                go.GetComponent<NewAIMan>().hp = hp;
             }
         }
     }

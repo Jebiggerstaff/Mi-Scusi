@@ -10,6 +10,7 @@ public class NewAIMan : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         hp = maxHP;
+        currentDest = 0;
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -53,6 +54,35 @@ public class NewAIMan : MonoBehaviour
 
 
     public void getnewDest()
+    {
+        if(useRandomDestinations)
+        {
+            getnewRandDest();
+        }
+        else
+        {
+            getNewOrderedDest();
+        }
+    }
+
+    public void getNewOrderedDest()
+    {
+        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+        {
+            currentDest++;
+            if (currentDest >= destinations.Count)
+            {
+                currentDest = 0;
+            }
+
+            if (destinations.Count > 0)
+            {
+                SetNewDestination(destinations[currentDest]);
+            }
+        }
+    }
+
+    public void getnewRandDest()
     {
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
@@ -115,6 +145,8 @@ public class NewAIMan : MonoBehaviour
 
 
     public Vector3 currentDestination;
+
+    public bool useRandomDestinations = true;
     public List<Vector3> destinations;
     [HideInInspector]
     public NavMeshAgent agent;
@@ -126,4 +158,9 @@ public class NewAIMan : MonoBehaviour
 
     public int maxHP;
     public int hp;
+
+    
+
+
+    int currentDest;
 }
