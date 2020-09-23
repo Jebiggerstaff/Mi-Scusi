@@ -35,6 +35,7 @@ public class StartSceneManager : MonoBehaviour
             Time.timeScale = 1;
             os.menu.SetActive(false);
             os.playermain.SetActive(true);
+            os.player.GetComponentInParent<APRController>().cam = Camera.main;
         }
 
         os.playermain.transform.position = playerSpawnLocation;

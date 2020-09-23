@@ -104,7 +104,8 @@ public class APRController : MonoBehaviour
     jumping, isJumping, balanced = true, inAir,
     punchingRight, punchingLeft;
     
-    private Camera cam;
+    [HideInInspector]
+    public Camera cam;
     private Vector3 Direction;
 	private Vector3 CenterOfMassPoint;
     

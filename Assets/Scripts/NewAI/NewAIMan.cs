@@ -100,7 +100,7 @@ public class NewAIMan : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.GetComponent<APRController>() != null || collision.collider.GetComponentInParent<APRController>() != null)
+        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
             agent.enabled = false;
 
@@ -110,7 +110,7 @@ public class NewAIMan : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if ((collision.collider.GetComponent<APRController>() != null || collision.collider.GetComponentInParent<APRController>() != null) && stunCount <= 0)
+        if ((collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1")) && stunCount <= 0)
         {
             agent.enabled = true;
             agent.SetDestination(currentDestination);
