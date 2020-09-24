@@ -11,6 +11,11 @@ public class NewAIMan : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hp = maxHP;
         currentDest = 0;
+
+        int legNum = Random.Range(1, 4);
+
+        if(GetComponentInChildren<Animator>() != null)
+            GetComponentInChildren<Animator>().SetInteger("RunNumber", legNum);
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -21,6 +26,8 @@ public class NewAIMan : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+
+
         getnewDest();
 
         if(grabbedByPlayer)
@@ -44,11 +51,22 @@ public class NewAIMan : MonoBehaviour
             }
             agent.enabled = false;
             stunCount -= Time.deltaTime;
-            if(stunCount <= 0)
+
+
+            if (GetComponentInChildren<Animator>() != null)
+                GetComponentInChildren<Animator>().SetBool("Stunned", true);
+
+
+            if (stunCount <= 0)
             {
                 hp = maxHP;
+                if (GetComponentInChildren<Animator>() != null)
+                    GetComponentInChildren<Animator>().SetBool("Stunned", false);
             }
         }
+
+
+        GetComponentInChildren<Animator>().speed = agent.speed / 3;
 
     }
 

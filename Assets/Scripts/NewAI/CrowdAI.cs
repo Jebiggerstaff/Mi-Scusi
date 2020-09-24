@@ -113,6 +113,7 @@ public class CrowdAI : NewAIMan
         }
         man.SetNewDestination(target);
         man.agent.speed = Vector3.Distance(man.transform.position, man.currentDestination) / 3;
+        man.agent.acceleration = man.agent.speed / 3;
         
     }
 
