@@ -711,6 +711,7 @@ GameObject:
   - component: {fileID: 1786073313041488362}
   - component: {fileID: 1786073313041488372}
   - component: {fileID: 1786073313041488373}
+  - component: {fileID: 329527449806360418}
   m_Layer: 10
   m_Name: APR_Root
   m_TagString: CanBeGrabbed
@@ -857,6 +858,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!65 &329527449806360418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786073313041488374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1786073313127436992
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +945,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.8742568, y: 0.000026196247, z: 0.000000111758695}
+  m_ConnectedAnchor: {x: 0.87425685, y: 0.000026285654, z: 0.000000111758695}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1344,7 +1358,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.809898, y: 0.000024497505, z: 0.00000061882207}
+  m_ConnectedAnchor: {x: 0.8098984, y: 0.000024497505, z: 0.00000061882184}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2103,7 +2117,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.8742753, y: 0.000008046629, z: 0.00000022351745}
+  m_ConnectedAnchor: {x: -0.87427545, y: 0.000008136036, z: 0.00000022351745}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3526,6 +3540,7 @@ MonoBehaviour:
   inAir: 0
   punchingRight: 0
   punchingLeft: 0
+  cam: {fileID: 0}
   editorDebugMode: 1
 --- !u!1 &2590950391850418326
 GameObject:
