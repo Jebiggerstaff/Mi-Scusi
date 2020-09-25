@@ -9,8 +9,7 @@ public class TutorialMessage : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1")) ;
         {
             TutorialMessgaeObject.SetActive(true);
         }
@@ -19,7 +18,7 @@ public class TutorialMessage : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
             TutorialMessgaeObject.SetActive(false);
         }
