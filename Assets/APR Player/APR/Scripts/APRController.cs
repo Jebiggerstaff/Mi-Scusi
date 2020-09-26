@@ -130,20 +130,37 @@ public class APRController : MonoBehaviour
 	//Debug
 	public bool editorDebugMode;
 
+    private string[] joystickNames;
 
     //---Setup---//
     //////////////
     void Awake()
-	{
+    {
+        ControllerCheck();  
         PlayerSetup();
-	}
+    }
 
+    void ControllerCheck()
+    {
+        joystickNames = Input.GetJoystickNames();
+        foreach (string joystickName in joystickNames)
+            Debug.Log(joystickName);
+        if (joystickNames[0] != "")
+        {
+            Debug.Log("Controller connected.... switching to controller controls");
+            usingController = true;
+        }
+        else if (joystickNames[0] == "")
+        {
+            Debug.Log("No controller found.... using keyboard controls");
+            usingController = false;
+        }
 
+    }
 
-    //---Updates---//
-    ////////////////
     void Update()
     {
+
         if (canPunch && punchTimer > punchDelay)
         {
             PlayerPunch();          
@@ -206,7 +223,6 @@ public class APRController : MonoBehaviour
     ////////////////////
     void PlayerSetup()
     {
-
         if (!usingController)
         {
             forwardBackward = "Vertical";
@@ -231,7 +247,6 @@ public class APRController : MonoBehaviour
             punchLeft = "joystick button 4";
             punchRight = "joystick button 5";
         }
-
 
         cam = Camera.main;
         
