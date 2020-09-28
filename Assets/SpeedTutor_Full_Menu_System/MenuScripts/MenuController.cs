@@ -90,6 +90,7 @@ namespace SpeedTutorMainMenuSystem
         {
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
+            GoBackToMainMenu();
         }
         void onDisable()
         {
@@ -308,7 +309,6 @@ namespace SpeedTutorMainMenuSystem
         {
             if (ButtonType == "Yes")
             {
-                // SceneManager.LoadScene(_newGameButtonLevel);
                 StartCoroutine(loadALevel());
             }
 
@@ -326,7 +326,6 @@ namespace SpeedTutorMainMenuSystem
         IEnumerator loadALevel()
         {
             
-            GoBackToMainMenu();
 
 
             TurnOnLoadingScreen();
@@ -341,7 +340,6 @@ namespace SpeedTutorMainMenuSystem
                 yield return null;
             }
 
-            GoBackToMainMenu();
 
 
         }
