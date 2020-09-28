@@ -26,21 +26,15 @@ public class StartSceneManager : MonoBehaviour
 
         if (isMenuScene)
         {
-            os.playermain.SetActive(false);
+            Time.timeScale = 0.0001f;
             os.menu.SetActive(true);
-            Debug.Log(Physics.gravity);
         }
         else
         {
             Time.timeScale = 1;
             os.menu.SetActive(false);
-            os.playermain.SetActive(true);
-            os.player.GetComponentInParent<APRController>().cam = Camera.main;
         }
 
-        os.playermain.transform.position = playerSpawnLocation;
-        os.player.transform.localPosition = new Vector3(0, 0, 0);
-        os.playerother.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public GameObject overlayStuff;
