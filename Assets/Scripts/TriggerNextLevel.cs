@@ -60,7 +60,7 @@ public class TriggerNextLevel : MonoBehaviour
             PlayerPrefs.SetString("SavedLevel", level);
 
         Time.timeScale = originalGameTIme;
-        //loadingScreen.SetActive(true);
+        loadingScreen.SetActive(true);
         nextLevelCanvas.SetActive(false);
         AsyncOperation async = SceneManager.LoadSceneAsync(level);
 

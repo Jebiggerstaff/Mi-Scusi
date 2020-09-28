@@ -325,9 +325,11 @@ namespace SpeedTutorMainMenuSystem
         }
         IEnumerator loadALevel()
         {
-            //TurnOnLoadingScreen();
-
+            
             GoBackToMainMenu();
+
+
+            TurnOnLoadingScreen();
 
             Time.timeScale = 1;
 
@@ -339,6 +341,7 @@ namespace SpeedTutorMainMenuSystem
                 yield return null;
             }
 
+            GoBackToMainMenu();
 
 
         }
@@ -346,7 +349,6 @@ namespace SpeedTutorMainMenuSystem
         {
             needResumeButton = false;
             Time.timeScale = 1;
-            overlayScene.player.SetActive(true);
             gameObject.SetActive(false);
         }
 
