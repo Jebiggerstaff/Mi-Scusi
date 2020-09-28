@@ -145,12 +145,12 @@ public class APRController : MonoBehaviour
         joystickNames = Input.GetJoystickNames();
         foreach (string joystickName in joystickNames)
             Debug.Log(joystickName);
-        if (joystickNames[0] != "")
+        if (joystickNames.Length != 0)
         {
             Debug.Log("Controller connected.... switching to controller controls");
             usingController = true;
         }
-        else if (joystickNames[0] == "")
+        else if (joystickNames.Length== 0)
         {
             Debug.Log("No controller found.... using keyboard controls");
             usingController = false;

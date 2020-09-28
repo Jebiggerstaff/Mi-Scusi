@@ -30,7 +30,7 @@ public class PlayerOutOfBounds : MonoBehaviour
     public bool instantCameraUpdate = false;
     
     //Main Camera
-    private Camera cam;
+   public Camera cam;
     
     //Check trigger once
     private bool checkedTrigger;
@@ -47,7 +47,7 @@ public class PlayerOutOfBounds : MonoBehaviour
         cam = Camera.main;
     }
 
-    private void Start()
+    public void Start()
     {
         APR_Player = GameObject.Find("FinalPlayer");
         APR_Root = GameObject.Find("APR_Root");
