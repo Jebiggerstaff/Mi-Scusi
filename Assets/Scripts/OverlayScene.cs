@@ -8,7 +8,6 @@ public class OverlayScene : MonoBehaviour
     void Start()
     {
         cancelDelayCount = 0;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
