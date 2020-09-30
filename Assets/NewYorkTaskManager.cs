@@ -19,6 +19,7 @@ public class NewYorkTaskManager : MonoBehaviour
     [Header("Collision Boxes")]
     public GameObject FrontOfLine;
     public GameObject[] SSSTags = new GameObject[0];
+    public GameObject[] ScusiTags = new GameObject[0];
     public GameObject Cafe;
     public GameObject OtherSideOfStreet;
     public GameObject BikeRack;
