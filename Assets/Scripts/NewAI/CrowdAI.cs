@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class CrowdAI : NewAIMan
@@ -103,6 +104,8 @@ public class CrowdAI : NewAIMan
         RaycastHit hit;
 
         Vector3 target = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + y);
+
+        UnityEngine.Debug.DrawLine(transform.position, target, Color.red, 2f);
 
         if (Physics.Raycast(transform.position + new Vector3(0,1,0), target - transform.position, out hit, Vector3.Distance(target, transform.position)));
         {

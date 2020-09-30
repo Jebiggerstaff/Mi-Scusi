@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 4688277490163153891}
   - component: {fileID: 4603672087922116908}
   - component: {fileID: 944180330024558620}
+  - component: {fileID: 951865810}
   m_Layer: 14
   m_Name: Box2
   m_TagString: CanBeGrabbed
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8032051591679229228
@@ -27,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6425736739938127679}
-  m_LocalRotation: {x: -3.4349462e-10, y: -0.9999911, z: 0.00000008145966, w: -0.0042166705}
+  m_LocalRotation: {x: -0, y: -0.9999911, z: 0, w: -0.0042146896}
   m_LocalPosition: {x: -2.201844, y: 21.378815, z: 35.782703}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0136218, y: 1.0136222, z: 1.0136218}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4603672087922116908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +113,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &951865810
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425736739938127679}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.87700003, y: 0.606, z: 0.597}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.32700002, z: 40.717003}
+  m_TimeToStationary: 0.5

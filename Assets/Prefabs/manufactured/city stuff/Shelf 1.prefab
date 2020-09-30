@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 6598689608498361056}
   - component: {fileID: 3038793863887916936}
   - component: {fileID: 2798532281540516406}
+  - component: {fileID: 7801483112457344140}
   m_Layer: 14
   m_Name: Shelf 1
   m_TagString: CanBeGrabbed
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8499645894925218863
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4877283155558073916}
   m_LocalRotation: {x: 0.0029798476, y: -0.70697707, z: -0.7072239, w: -0.002980888}
   m_LocalPosition: {x: 47.419033, y: 20.920013, z: -40.00152}
-  m_LocalScale: {x: 2.5401988, y: 2.5401998, z: 2.5401995}
+  m_LocalScale: {x: 2.5401976, y: 2.5401986, z: 2.540199}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,3 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &7801483112457344140
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877283155558073916}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.79800004, y: 0.33200002, z: 1.1620001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.002, y: 0.015000001, z: 1.144}
+  m_TimeToStationary: 0.5

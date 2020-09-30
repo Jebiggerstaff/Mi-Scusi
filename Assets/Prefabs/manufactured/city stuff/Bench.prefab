@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 6768668408327990187}
   - component: {fileID: 5013208297471410013}
   - component: {fileID: 2459155750263152291}
+  - component: {fileID: 5171883863175199990}
   m_Layer: 14
   m_Name: Bench
   m_TagString: CanBeGrabbed
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8325092865777118564
@@ -114,3 +115,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &5171883863175199990
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031631301344386935}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.44, y: 1.9410001, z: 2.779}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.043, y: 1.639, z: 57.474003}
+  m_TimeToStationary: 0.5
