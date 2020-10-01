@@ -11,33 +11,42 @@ public class CustomizationMenuButton : MonoBehaviour
         var mc = FindObjectOfType<SpeedTutorMainMenuSystem.MenuController>();
         if(mc != null)
         {
-            switch(type)
+            switch (type)
             {
-                case CustomizationType.Arms:
-                    mc.SetArms(customizationName);
+                case CustomizationType.Hat:
+                    mc.SetHat(customizationIndex);
                     break;
-                case CustomizationType.Legs:
-                    mc.SetLegs(customizationName);
+                case CustomizationType.Shirt:
+                    mc.SetShirt(customizationIndex);
                     break;
-                case CustomizationType.Head:
-                    mc.SetHead(customizationName);
+                case CustomizationType.Coat:
+                    mc.SetCoat(customizationIndex);
                     break;
-                case CustomizationType.Body:
-                    mc.SetBody(customizationName);
+                case CustomizationType.Pants:
+                    mc.SetPants(customizationIndex);
+                    break;
+                case CustomizationType.Backpack:
+                    mc.SetBackpack(customizationIndex);
+                    break;
+                case CustomizationType.Accessory:
+                    mc.SetAccessory(customizationIndex);
                     break;
             }
+            
         }
     }
 
     public CustomizationType type;
-    public string customizationName;
+    public int customizationIndex;
 
     public enum CustomizationType
     {
-        Arms,
-        Legs,
-        Body,
-        Head
+        Hat,
+        Shirt,
+        Coat,
+        Pants,
+        Backpack,
+        Accessory
     }
 
 }

@@ -381,30 +381,40 @@ namespace SpeedTutorMainMenuSystem
 
         public void LoadCharacter()
         {
-            var modelLoader = FindObjectOfType<CharacterModelLoader>();
-            if (modelLoader != null)
+            var modelLoaders = FindObjectsOfType<CharacterModelLoader>();
+            foreach(var modelLoader in modelLoaders)
             {
                 modelLoader.LoadAllModels();
             }
         }
-        public void SetHead(string cosmetic)
+        public void SetHat(int cosmetic)
         {
-            PlayerPrefs.SetString("Head", cosmetic);
+            PlayerPrefs.SetInt("Costume_Hat", cosmetic);
             LoadCharacter();
         }
-        public void SetBody(string cosmetic)
+        public void SetShirt(int cosmetic)
         {
-            PlayerPrefs.SetString("Body", cosmetic);
+            PlayerPrefs.SetInt("Costume_Shirt", cosmetic);
             LoadCharacter();
         }
-        public void SetLegs(string cosmetic)
+        public void SetCoat(int cosmetic)
         {
-            PlayerPrefs.SetString("Legs", cosmetic);
+            PlayerPrefs.SetInt("Costume_Coat", cosmetic);
             LoadCharacter();
         }
-        public void SetArms(string cosmetic)
+        public void SetPants(int cosmetic)
         {
-            PlayerPrefs.SetString("Arms", cosmetic);
+            PlayerPrefs.SetInt("Costume_Pants", cosmetic);
+            LoadCharacter();
+        }
+        public void SetBackpack(int cosmetic)
+        {
+            PlayerPrefs.SetInt("Costume_Backpack", cosmetic);
+            LoadCharacter();
+        }
+        public void SetAccessory(int cosmetic)
+        {
+            PlayerPrefs.SetInt("Costume_Accessory", cosmetic);
             LoadCharacter();
         }
 
