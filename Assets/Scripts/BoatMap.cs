@@ -4,22 +4,108 @@ using UnityEngine;
 
 public class BoatMap : MonoBehaviour
 {
-    public GameObject steeringWheel;
-    public float rotSpeed;
+    public APRController controller;
+    public GameObject marker;
+    public GameObject goal;
+    public float movementSpeed;
+    public float turnSpeed;
+    public GameObject CrashDetector;
+
+    private bool insideMap=true;
+    private bool turningLeft, turningRight, goingForward;
+    private bool forward, pressed;
+
+    public GameObject LeftTurnButton;
+    public GameObject RightTurnButton;
+    public GameObject ForwardButton;
 
     void FixedUpdate()
     {
-        Debug.Log(steeringWheel.transform.localRotation.eulerAngles.x);
 
-        if (steeringWheel.transform.rotation.x > -85)
+        //Left Turn
+        if (controller.RightHand.GetComponent<FixedJoint>() != null)
         {
-            this.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.eulerAngles.y + rotSpeed, transform.rotation.z,transform.rotation.w);
+            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == LeftTurnButton.gameObject.GetComponent<Rigidbody>())
+            {
+                turningLeft = true;
+            }
+
         }
-        else if (steeringWheel.transform.rotation.x < -95)
+        else if(controller.LeftHand.GetComponent<FixedJoint>() != null)
         {
-            this.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.eulerAngles.y - rotSpeed, transform.rotation.z, transform.rotation.w);
+            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == LeftTurnButton.gameObject.GetComponent<Rigidbody>())
+            {
+                turningLeft = true;
+            }
+
+        }
+        else
+        {
+            turningLeft = false;
+        }
+        //Right Turn
+        if (controller.RightHand.GetComponent<FixedJoint>() != null)
+        {
+            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == RightTurnButton.gameObject.GetComponent<Rigidbody>())
+            {
+                turningRight = true;
+            }
+
+        }
+        else if (controller.LeftHand.GetComponent<FixedJoint>() != null)
+        {
+            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == RightTurnButton.gameObject.GetComponent<Rigidbody>())
+            {
+                turningRight = true;
+            }
+
+        }
+        else
+        {
+            turningRight = false;
+        }
+        //Going Straight
+        if (controller.RightHand.GetComponent<FixedJoint>() != null)
+        {
+            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == ForwardButton.gameObject.GetComponent<Rigidbody>())
+            {
+                goingForward = true;
+            }
+
+        }
+        else if (controller.LeftHand.GetComponent<FixedJoint>() != null)
+        {
+            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == ForwardButton.gameObject.GetComponent<Rigidbody>())
+            {
+                goingForward = true;
+            }
+
+        }
+        else
+        {
+            goingForward = false;
         }
 
 
     }
+
+    private void Update()
+    {
+
+        if (goingForward)
+        {
+        marker.transform.position += transform.forward*movementSpeed; 
+        }
+
+        if (turningLeft)
+        {
+            transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+        }
+        else if (turningRight)
+        {
+            transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
+
+        }
+    }
+
 }
