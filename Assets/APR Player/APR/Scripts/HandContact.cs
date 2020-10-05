@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HandContact : MonoBehaviour
@@ -10,7 +11,14 @@ public class HandContact : MonoBehaviour
     
     //Have joint/grabbed
 	public bool hasJoint;
-	
+
+    //grabbed AI
+    public List<NewAIMan> grabbedAI;
+
+    private void Start()
+    {
+        grabbedAI = new List<NewAIMan>();
+    }
 
     void Update()
     {
@@ -24,6 +32,12 @@ public class HandContact : MonoBehaviour
                 {
                     this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
                     hasJoint = false;
+
+                    foreach(var ai in grabbedAI)
+                    {
+                        ai.grabbedByPlayer = false;
+                    }
+
                 }
 
                 if(hasJoint && this.gameObject.GetComponent<FixedJoint>() == null)
@@ -40,6 +54,12 @@ public class HandContact : MonoBehaviour
                 {
                     this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
                     hasJoint = false;
+
+                    foreach (var ai in grabbedAI)
+                    {
+                        ai.grabbedByPlayer = false;
+                    }
+
                 }
 
                 if(hasJoint && this.gameObject.GetComponent<FixedJoint>() == null)
@@ -47,6 +67,7 @@ public class HandContact : MonoBehaviour
                     hasJoint = false;
                 }
             }
+
         }
     }
 
@@ -60,19 +81,15 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if (col.transform.parent == true)
-                        if (col.transform.parent.name=="AiWander")
-                            col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
-                    if(col.gameObject.GetComponent<NewAIMan>() != null)
+
+                    if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
-                        col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
-                        if(APR_Player.punchingLeft)
+                        if (APR_Player.punchingLeft)
                         {
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
                         }
                     }
-
 
                     if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
                     {
@@ -80,6 +97,19 @@ public class HandContact : MonoBehaviour
                         this.gameObject.AddComponent<FixedJoint>();
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                         this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
+
+
+                        if (col.gameObject.GetComponent<NewAIMan>() != null)
+                        {
+                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+
+
+                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
+                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
+
+                        }
+
+
                     }
                 }
                 
@@ -90,25 +120,30 @@ public class HandContact : MonoBehaviour
             {
                 if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    if (col.transform.parent == true)
-                        if (col.transform.parent.name == "AiWander")
-                            col.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = true;
 
                     if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
-                        col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
                         if (APR_Player.punchingRight)
                         {
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
                         }
                     }
-
                     if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
                         hasJoint = true;
                         this.gameObject.AddComponent<FixedJoint>();
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                         this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
+
+                        if (col.gameObject.GetComponent<NewAIMan>() != null)
+                        {
+                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+
+
+                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
+                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
+
+                        }
                     }
                 }
             }
@@ -122,7 +157,25 @@ public class HandContact : MonoBehaviour
             if (collision.transform.parent.name == "AiWander")
                 collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
 
-        if (collision.gameObject.GetComponent<NewAIMan>() != null)
-            collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
+        if (gameObject.GetComponent<FixedJoint>() != null && collision.gameObject.GetComponent<Rigidbody>() != gameObject.GetComponent<FixedJoint>().connectedBody)
+        {
+            if (collision.gameObject.GetComponent<NewAIMan>() != null)
+            {
+                collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
+                grabbedAI.Remove(collision.gameObject.GetComponent<NewAIMan>());
+            }
+        }
+        else if (gameObject.GetComponent<FixedJoint>() == null)
+        {
+            if (collision.gameObject.GetComponent<NewAIMan>() != null)
+            {
+                collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
+                grabbedAI.Remove(collision.gameObject.GetComponent<NewAIMan>());
+            }
+        }
+
+        
     }
+
+
 }
