@@ -6,9 +6,13 @@ public class APRController : MonoBehaviour
 {
 
     //Active Ragdoll Player parts
+    public ParticleSystem JumpParticle;
+    public ParticleSystem HitParticle;
+
     public GameObject
-	//
-	Root, Body, Head,
+
+    //
+    Root, Body, Head,
 	UpperRightArm, LowerRightArm,
 	UpperLeftArm, LowerLeftArm, 
 	UpperRightLeg, LowerRightLeg,
@@ -498,7 +502,9 @@ public class APRController : MonoBehaviour
             {
                 if(balanced && !inAir)
                 {
+                    JumpParticle.Play();
                     jumping = true;
+
                 }
                 
                 else if(!balanced)
@@ -549,6 +555,7 @@ public class APRController : MonoBehaviour
         if(inAir && !isJumping && !jumping)
         {
             inAir = false;
+            HitParticle.Play();
             ResetPose = true;
         }
     }
