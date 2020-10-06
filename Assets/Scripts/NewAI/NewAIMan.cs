@@ -15,7 +15,11 @@ public class NewAIMan : MonoBehaviour
         int legNum = Random.Range(1, 4);
 
         if(GetComponentInChildren<Animator>() != null)
+        {
+
             GetComponentInChildren<Animator>().SetInteger("RunNumber", legNum);
+            GetComponentInChildren<Animator>().SetBool("Running", true);
+        }
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -144,7 +148,8 @@ public class NewAIMan : MonoBehaviour
     public void SetNewDestination(Vector3 target)
     {
         currentDestination = target;
-        agent.SetDestination(target);
+        if(agent.enabled == true)
+            agent.SetDestination(target);
     }
 
    

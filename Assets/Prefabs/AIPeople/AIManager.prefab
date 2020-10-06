@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4239623903208182752}
   - component: {fileID: 4239623903208182759}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: AIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,11 @@ MonoBehaviour:
     - {x: 126, y: 2.5, z: 26}
     - {x: -270, y: 2.5, z: -311}
   CrowdDudes: []
+  StandStillDudes: []
   people: []
   crowds: []
+  stillPeople: []
   normalAI: {fileID: 4575674925354774162, guid: ae3aa1034b28e094b9ce076a080937a3,
     type: 3}
   crowdAI: {fileID: 5917249678591095356, guid: efe61d320a45b23488df45d9ee36f3bf, type: 3}
+  stillAI: {fileID: 4575674925354774162, guid: f26884b7a1b92c941bb0aa9e39be6b2d, type: 3}

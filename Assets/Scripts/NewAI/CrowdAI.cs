@@ -47,7 +47,7 @@ public class CrowdAI : NewAIMan
 
                 if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), target - transform.position, out hit, Vector3.Distance(target, transform.position))) ;
                 {
-                    if (hit.collider != null && hit.collider.tag == "Buildings")
+                    if (hit.collider != null && (hit.collider.tag == "Buildings" || hit.collider.tag == "AIBlocker") )
                     {
                         target = hit.point;
                     }
@@ -58,6 +58,7 @@ public class CrowdAI : NewAIMan
                 AIMen.Add(go.GetComponent<NewAIMan>());
                 go.GetComponent<NewAIMan>().minimumStopDistance = 0;
                 go.GetComponent<NewAIMan>().hp = hp;
+                //go.GetComponent<NewAIMan>().agent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.LowQualityObstacleAvoidance;
             }
         }
     }

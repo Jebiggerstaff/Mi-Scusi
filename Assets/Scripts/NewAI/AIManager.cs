@@ -26,6 +26,10 @@ public class AIManager : MonoBehaviour
         {
             crowds.Add(cd.MakeAI(crowdAI) as CrowdAI);
         }
+        foreach(var sa in StandStillDudes)
+        {
+            stillPeople.Add(sa.MakeAI(stillAI) as StayStillAIMan);
+        }
     }
 
 
@@ -35,14 +39,22 @@ public class AIManager : MonoBehaviour
     public List<AIHolder> RegularDudes;
     [SerializeField]
     List<CrowdAIHolder> CrowdDudes;
+    [SerializeField]
+    public List<StillAIHolder> StandStillDudes;
 
-    [Header("Game Objects instantiated")]
+
+    //[Header("Game Objects instantiated")]
+    [HideInInspector]
     public List<NewAIMan> people;
+    [HideInInspector]
     public List<CrowdAI> crowds;
+    [HideInInspector]
+    public List<StayStillAIMan> stillPeople;
 
     [Header("AI Prefabs")]
     public GameObject normalAI;
-    public GameObject crowdAI; 
+    public GameObject crowdAI;
+    public GameObject stillAI;
 
 
 }
