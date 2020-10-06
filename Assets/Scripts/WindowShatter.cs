@@ -9,6 +9,8 @@ public class WindowShatter : MonoBehaviour
     public NewYorkTaskManager NewYorkTaskManager;
     public GameObject destroyedVersion;
 
+    public int platenum = 0;
+
     public void Start()
     {
         if (SceneManager.GetActiveScene().name == "NewYork")
@@ -19,17 +21,48 @@ public class WindowShatter : MonoBehaviour
     {
         if (other.tag == "CanBeGrabbed")
         {
-
-            if (SceneManager.GetActiveScene().name == "NewYork")
+            if (platenum == 0)
             {
-                NewYorkTaskManager.WindowsBroken++;
-                if (NewYorkTaskManager.WindowsBroken == 15)
-                    NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                if (SceneManager.GetActiveScene().name == "NewYork")
+                {
+                    NewYorkTaskManager.WindowsBroken++;
+                    if (NewYorkTaskManager.WindowsBroken == 15)
+                        NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                }
+
+
+                Instantiate(destroyedVersion, transform.position, transform.rotation);
+                Destroy(gameObject);
+
             }
 
-            Instantiate(destroyedVersion, transform.position, transform.rotation);
-            Destroy(gameObject);
+
         }
-        
+
+        else if (other.tag == "Ground")
+        {
+            if (platenum == 1)
+            {
+                /*
+                if (SceneManager.GetActiveScene().name == "NewYork")
+                {
+                    NewYorkTaskManager.WindowsBroken++;
+                    if (NewYorkTaskManager.WindowsBroken == 15)
+                        NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                }
+                */
+
+                Instantiate(destroyedVersion, transform.position, transform.rotation);
+                Destroy(gameObject);
+
+
+            }
+        }
+
+
     }
+
+
+
+    
 }
