@@ -69,6 +69,14 @@ namespace SpeedTutorMainMenuSystem
         public bool needResumeButton = false;
 
         public GameObject newGameBtn;
+        public GameObject exitGameBtn;
+        public GameObject firstLevelBtn;
+        public GameObject firstLoadBtn;
+        public GameObject achievementFirstBtn;
+
+        [Space]
+        public StandaloneInputModule kbEventSystem;
+        public StandaloneInputModule ctrEventSystem;
 
         #region Initialisation - Button Selection & Menu Order
         private void Start()
@@ -78,6 +86,7 @@ namespace SpeedTutorMainMenuSystem
             menuNumber = 1;
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
+            //ControllerCheck();
         }
         #endregion
 
@@ -94,11 +103,36 @@ namespace SpeedTutorMainMenuSystem
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
             GoBackToMainMenu();
+            //ControllerCheck();
         }
         void onDisable()
         {
 
         }
+
+
+        void ControllerCheck()
+        {
+            var joystickNames = Input.GetJoystickNames();
+            foreach (string joystickName in joystickNames)
+                Debug.Log(joystickName);
+            if (joystickNames.Length != 0)
+            {
+                Debug.Log("Controller connected.... switching to controller controls");
+                //ctrEventSystem.SetActive(true);
+                //kbEventSystem.SetActive(false);
+                //EventSystem.current.currentInputModule = ctrEventSystem;
+            }
+            else if (joystickNames.Length == 0)
+            {
+                Debug.Log("No controller found.... using keyboard controls");
+                //EventSystem.current.currentInputModule = kbEventSystem;
+            }
+            EventSystem.current.UpdateModules();
+        }
+
+
+
 
         private void Update()
         {
@@ -146,7 +180,23 @@ namespace SpeedTutorMainMenuSystem
 
             if(needResumeButton)
             {
-                //newGameBtn.GetComponent<Button>().navigation.selectOnUp = ResumeGameBtn;
+                Navigation newNav = newGameBtn.GetComponent<Button>().navigation;
+                newNav.selectOnUp = ResumeGameBtn.GetComponent<Button>();
+                newGameBtn.GetComponent<Button>().navigation = newNav;
+
+                Navigation secNav = exitGameBtn.GetComponent<Button>().navigation;
+                secNav.selectOnDown = ResumeGameBtn.GetComponent<Button>();
+                exitGameBtn.GetComponent<Button>().navigation = secNav;
+            }
+            else
+            {
+                Navigation newNav = newGameBtn.GetComponent<Button>().navigation;
+                newNav.selectOnUp = exitGameBtn.GetComponent<Button>();
+                newGameBtn.GetComponent<Button>().navigation = newNav;
+
+                Navigation secNav = exitGameBtn.GetComponent<Button>().navigation;
+                secNav.selectOnDown = newGameBtn.GetComponent<Button>();
+                exitGameBtn.GetComponent<Button>().navigation = secNav;
             }
 
         }
@@ -205,12 +255,18 @@ namespace SpeedTutorMainMenuSystem
                 menuDefaultCanvas.SetActive(false);
                 loadGameDialog.SetActive(true);
                 menuNumber = 8;
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(firstLoadBtn);
             }
 
             if (buttonType == "NewGame")
             {
                 menuDefaultCanvas.SetActive(false);
                 newGameDialog.SetActive(true);
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(firstLevelBtn);
+
                 menuNumber = 7;
             }
 
@@ -219,6 +275,10 @@ namespace SpeedTutorMainMenuSystem
                 menuDefaultCanvas.SetActive(false);
                 AchievementsCanvas.SetActive(true);
                 menuNumber = 9;
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(achievementFirstBtn);
+
             }
 
             if (buttonType == "Customize")
