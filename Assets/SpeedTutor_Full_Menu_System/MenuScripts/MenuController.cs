@@ -68,10 +68,13 @@ namespace SpeedTutorMainMenuSystem
         public OverlayScene overlayScene;
         public bool needResumeButton = false;
 
+        public GameObject newGameBtn;
 
         #region Initialisation - Button Selection & Menu Order
         private void Start()
         {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(newGameBtn);
             menuNumber = 1;
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
@@ -139,6 +142,13 @@ namespace SpeedTutorMainMenuSystem
             {
                 ResumeGameBtn.SetActive(true);
             }
+
+
+            if(needResumeButton)
+            {
+                //newGameBtn.GetComponent<Button>().navigation.selectOnUp = ResumeGameBtn;
+            }
+
         }
 
         private void ClickSound()
@@ -450,14 +460,20 @@ namespace SpeedTutorMainMenuSystem
             loadingScreenCanvas.SetActive(false);
             menuNumber = 1;
 
+            EventSystem.current.SetSelectedGameObject(null);
+
             if (needResumeButton)
             {
                 ResumeGameBtn.SetActive(true);
 
+                EventSystem.current.SetSelectedGameObject(ResumeGameBtn);
             }
             else
             {
+                
                 ResumeGameBtn.SetActive(false);
+
+                EventSystem.current.SetSelectedGameObject(newGameBtn);
             }
         }
 
