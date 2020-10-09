@@ -418,6 +418,7 @@ namespace SpeedTutorMainMenuSystem
             needResumeButton = false;
             Time.timeScale = 1;
             gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void ClickLoadGameDialog(string ButtonType)
