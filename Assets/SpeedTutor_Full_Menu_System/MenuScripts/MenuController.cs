@@ -419,6 +419,7 @@ namespace SpeedTutorMainMenuSystem
             Time.timeScale = 1;
             gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public void ClickLoadGameDialog(string ButtonType)
