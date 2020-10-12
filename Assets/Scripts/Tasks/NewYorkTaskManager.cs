@@ -29,6 +29,8 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject[] ParkTrash = new GameObject[0];
     public GameObject[] MartBikes = new GameObject[0];
 
+    public GameObject NextLevelBubble;
+
     [HideInInspector] public int SSStagsRemoved = 0;
     [HideInInspector] public int TrashPickedUp = 0;
     [HideInInspector] public int WindowsBroken = 0;
@@ -67,6 +69,7 @@ public class NewYorkTaskManager : MonoBehaviour
                 break;
             case "HelpGuyMove":
                 Tasks[1].SetActive(true);
+                NextLevelBubble.SetActive(true);
                 break;
             case "RemovePolitical":
                 Tasks[2].SetActive(true);

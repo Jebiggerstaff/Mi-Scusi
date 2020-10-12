@@ -48,6 +48,9 @@ public class NoirTaskManager : MonoBehaviour
             case "WantedPoster":
                 Tasks[2].SetActive(true);
                 break;
+            case "Sevens":
+                Tasks[3].SetActive(true);
+                break;
         }
 
     }

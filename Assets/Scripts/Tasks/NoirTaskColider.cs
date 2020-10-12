@@ -10,6 +10,9 @@ public class NoirTaskColider : MonoBehaviour
     private bool SuspectIdentified = false;
     private bool WeaponIdentified = false;
     private bool PosterDelivered = false;
+    private bool sevensCompleted = false;
+
+    private int sevens=0;
 
     public void Start()
     {
@@ -22,7 +25,7 @@ public class NoirTaskColider : MonoBehaviour
         {
             foreach (GameObject suspect in NoirTaskManager.Suspects)
             {
-                if (other == suspect && SuspectIdentified == false)
+                if (other.name == suspect.name && SuspectIdentified == false)
                 {
                     SuspectIdentified = true;
                     //have the AI say some shit
@@ -43,6 +46,25 @@ public class NoirTaskColider : MonoBehaviour
                 //have the AI say some other shit
                 NoirTaskManager.TaskCompleted("WantedPoster");
             }
+        }
+        if(this.name == "CasinoCollider" && other.name=="Seven")
+        {
+
+            sevens++;
+            if (sevens >= 3 && sevensCompleted == false){
+                sevensCompleted = true;
+                NoirTaskManager.TaskCompleted("SevensInCasino");
+            }
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (this.name == "CasinoCollider" && other.name == "Seven")
+        {
+
+            sevens--;
+
         }
     }
 }
