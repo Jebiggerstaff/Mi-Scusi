@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandContact : MonoBehaviour
 {
@@ -14,10 +15,16 @@ public class HandContact : MonoBehaviour
 
     //grabbed AI
     public List<NewAIMan> grabbedAI;
+    NewYorkTaskManager NewYorkTaskManager;
+    TutorialTaskManager TutorialTaskManager;
 
     private void Start()
     {
         grabbedAI = new List<NewAIMan>();
+        if (SceneManager.GetActiveScene().name == "NewYork")
+            NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+            TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
     }
 
     void Update()
@@ -74,62 +81,98 @@ public class HandContact : MonoBehaviour
     //Grab on collision when input is used
     void OnCollisionEnter(Collision col)
     {
-        if(APR_Player.useControls)
+        if (APR_Player.useControls)
         {
             //Left Hand
-            if(Left)
+            if (Left)
             {
-                if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
+                if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-
-
-                    if (col.gameObject.GetComponent<NewAIMan>() != null)
-                    {
-                        if (APR_Player.punchingLeft)
-                        {
-                            col.gameObject.GetComponent<NewAIMan>().stun(10f);
-                        }
-                    }
-
-                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft)
-                    {
-                        hasJoint = true;
-                        this.gameObject.AddComponent<FixedJoint>();
-                        this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
-                        this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
-
+                    
 
                         if (col.gameObject.GetComponent<NewAIMan>() != null)
                         {
-                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
-
-
-                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
-                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
-
+                            if (APR_Player.punchingLeft)
+                            {
+                                col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                                if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false){
+                                    TutorialTaskManager.TaskCompleted("PunchAGuy");
+                                    TutorialTaskManager.Punched = true;
+                                }
+                            }
                         }
 
+                        if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
 
+                            if (SceneManager.GetActiveScene().name == "NewYork"){
+                                if (col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
+                                    NewYorkTaskManager.TaskCompleted("EatAtCafe");
+                                    NewYorkTaskManager.AteAtCafe = true;
+                                }
+                            }
+                            if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Pickedup == false)
+                            {
+                                TutorialTaskManager.TaskCompleted("GrabSomething");
+                                TutorialTaskManager.Pickedup = true;
+                            }
+                            hasJoint = true;
+                            this.gameObject.AddComponent<FixedJoint>();
+                            this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
+                            this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
+
+
+                            if (col.gameObject.GetComponent<NewAIMan>() != null)
+                            {
+                                col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+
+
+                                if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
+                                    grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
+
+                            }
+
+
+                        }
                     }
+
                 }
-                
-            }
 
             //Right Hand
-            if(!Left)
+            if (!Left)
             {
-                if(col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
+                if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
+                    
 
                     if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
                         if (APR_Player.punchingRight)
                         {
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                            if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false)
+                            {
+                                TutorialTaskManager.TaskCompleted("PunchAGuy");
+                                TutorialTaskManager.Punched = true;
+                            }
                         }
                     }
                     if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
+
+                        if (SceneManager.GetActiveScene().name == "NewYork")
+                        {
+                            if (col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe == false)
+                            {
+                                NewYorkTaskManager.TaskCompleted("EatAtCafe");
+                                NewYorkTaskManager.AteAtCafe = true;
+                            }
+                        }
+                        if (SceneManager.GetActiveScene().name == "Tutorial"&&TutorialTaskManager.Pickedup==false)
+                        {
+                            TutorialTaskManager.TaskCompleted("GrabSomething");
+                            TutorialTaskManager.Pickedup = true;
+                        }
+
                         hasJoint = true;
                         this.gameObject.AddComponent<FixedJoint>();
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
