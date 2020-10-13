@@ -44,6 +44,7 @@ public class HandContact : MonoBehaviour
                     {
                         ai.grabbedByPlayer = false;
                     }
+                    grabbedAI.Clear();
 
                 }
 
@@ -66,6 +67,7 @@ public class HandContact : MonoBehaviour
                     {
                         ai.grabbedByPlayer = false;
                     }
+                    grabbedAI.Clear();
 
                 }
 
@@ -201,14 +203,6 @@ public class HandContact : MonoBehaviour
                 collision.gameObject.GetComponentInParent<AiWander>().GrabbedByPlayer = false;
 
         if (gameObject.GetComponent<FixedJoint>() != null && collision.gameObject.GetComponent<Rigidbody>() != gameObject.GetComponent<FixedJoint>().connectedBody)
-        {
-            if (collision.gameObject.GetComponent<NewAIMan>() != null)
-            {
-                collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
-                grabbedAI.Remove(collision.gameObject.GetComponent<NewAIMan>());
-            }
-        }
-        else if (gameObject.GetComponent<FixedJoint>() == null)
         {
             if (collision.gameObject.GetComponent<NewAIMan>() != null)
             {

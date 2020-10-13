@@ -73,6 +73,9 @@ namespace SpeedTutorMainMenuSystem
         public GameObject firstLevelBtn;
         public GameObject firstLoadBtn;
         public GameObject achievementFirstBtn;
+        public GameObject customizeFirstButton;
+
+        public GameObject newGameScroller;
 
         [Space]
         public StandaloneInputModule kbEventSystem;
@@ -286,6 +289,8 @@ namespace SpeedTutorMainMenuSystem
                 menuDefaultCanvas.SetActive(false);
                 customizationMenu.SetActive(true);
                 menuNumber = 10;
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(customizeFirstButton);
             }
         }
         #endregion
@@ -570,6 +575,13 @@ namespace SpeedTutorMainMenuSystem
         {
             GoBackToMainMenu();
         }
+
+        public void CenterScrollRect(GameObject selected)
+        {
+            var scrollRect = newGameScroller.GetComponent<ScrollRect>();
+            scrollRect.content.localPosition = new Vector3(-selected.transform.localPosition.x + scrollRect.GetComponent<RectTransform>().rect.width/2, scrollRect.content.localPosition.y, scrollRect.content.localPosition.z);
+        }
+
         #endregion
     }
 }

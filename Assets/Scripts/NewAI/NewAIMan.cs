@@ -122,21 +122,13 @@ public class NewAIMan : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1"))
-        {
-            agent.enabled = false;
-
-        }
+        
     }
 
 
     private void OnCollisionExit(Collision collision)
     {
-        if ((collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1")) && stunCount <= 0)
-        {
-            agent.enabled = true;
-            agent.SetDestination(currentDestination);
-        }
+       
     }
 
 
