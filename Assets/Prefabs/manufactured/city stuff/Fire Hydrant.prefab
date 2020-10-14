@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 488310080469461748}
   - component: {fileID: 6195363215364593165}
   - component: {fileID: 7417130924235968478}
+  - component: {fileID: 4954253304631468381}
   m_Layer: 14
   m_Name: Fire Hydrant
-  m_TagString: CanBeGrabbed
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8907510732712628418
 Transform:
@@ -26,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5604320759540753105}
-  m_LocalRotation: {x: 0.002981822, y: -0.70710045, z: -0.7071005, w: -0.0029817163}
+  m_LocalRotation: {x: 0.0029798476, y: -0.70697707, z: -0.7072239, w: -0.002980888}
   m_LocalPosition: {x: 38.563217, y: 20.98999, z: -34.125988}
-  m_LocalScale: {x: 2.0807, y: 2.0807, z: 2.0807}
+  m_LocalScale: {x: 3.4321144, y: 3.432115, z: 3.4321148}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.48299}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180.483}
 --- !u!33 &488310080469461748
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -56,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &7417130924235968478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94,3 +97,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.38521543, y: 0.48384812, z: 1.0820029}
   m_Center: {x: 0.000000057325675, y: 0.03940401, z: 0.5410011}
+--- !u!208 &4954253304631468381
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604320759540753105}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.193, y: 0.32500002, z: 0.541}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.123, z: 0.541}
+  m_TimeToStationary: 0.5
