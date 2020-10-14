@@ -7,7 +7,7 @@ public class StayStillAIMan : NewAIMan
     public override void Start()
     {
         base.Start();
-        minimumStopDistance = 2f;
+        minimumStopDistance = 3.5f;
     }
     public override void Update()
     {
