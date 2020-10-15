@@ -21,6 +21,11 @@ namespace SpeedTutorMainMenuSystem
         private string levelToLoad;
 
         private int menuNumber;
+
+        float upNavDelay = 0;
+        float downNavDelay = 0;
+        float leftNavDelay = 0;
+        float rightNavDelay = 0;
         #endregion
 
         #region Menu Dialogs
@@ -114,7 +119,7 @@ namespace SpeedTutorMainMenuSystem
         }
 
 
-        void ControllerCheck()
+        bool ControllerCheck()
         {
             var joystickNames = Input.GetJoystickNames();
             foreach (string joystickName in joystickNames)
@@ -125,13 +130,19 @@ namespace SpeedTutorMainMenuSystem
                 //ctrEventSystem.SetActive(true);
                 //kbEventSystem.SetActive(false);
                 //EventSystem.current.currentInputModule = ctrEventSystem;
+
+                return true;
             }
             else if (joystickNames.Length == 0)
             {
                 Debug.Log("No controller found.... using keyboard controls");
                 //EventSystem.current.currentInputModule = kbEventSystem;
+
+                return false;
+
             }
-            EventSystem.current.UpdateModules();
+            else
+                return false;
         }
 
 
@@ -202,8 +213,120 @@ namespace SpeedTutorMainMenuSystem
                 exitGameBtn.GetComponent<Button>().navigation = secNav;
             }
 
+
+            upNavDelay -= Time.unscaledDeltaTime;
+            downNavDelay -= Time.unscaledDeltaTime;
+            leftNavDelay -= Time.unscaledDeltaTime;
+            rightNavDelay -= Time.unscaledDeltaTime;
+
+            if (ControllerCheck())
+            {
+                var btn = EventSystem.current.currentSelectedGameObject;
+
+                if (btn != null)
+                {
+
+                    float x = Mathf.Abs(Input.GetAxis("HorizontalCon"));
+                    float y = Mathf.Abs(Input.GetAxis("VerticalCon"));
+
+                    if (x > 0 || y > 0)
+                    {
+                        if(x > y)
+                        {
+                            if(Input.GetAxis("HorizontalCon") > 0)
+                            {
+                                navRight();
+                            }
+                            else
+                            {
+                                navLeft();
+                            }
+                        }
+                        else
+                        {
+                            if (Input.GetAxis("VerticalCon") > 0)
+                            {
+                                navUp();
+                            }
+                            else
+                            {
+                                navDown();
+                            }
+                        }
+
+                        
+
+                    }
+                    if(x == 0)
+                    {
+                        rightNavDelay = 0;
+                        leftNavDelay = 0;
+                    }
+                    if(y == 0)
+                    {
+                        upNavDelay = 0;
+                        leftNavDelay = 0;
+                    }
+
+                }
+            }
+
+
+
+
+
+
         }
 
+        void navUp()
+        {
+            var btn = EventSystem.current.currentSelectedGameObject;
+            if(btn.GetComponent<Button>().navigation.selectOnUp != null && upNavDelay <= 0)
+            {
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(btn.GetComponent<Button>().navigation.selectOnUp.gameObject);
+                upNavDelay = 0.25f;
+            }
+
+
+        }
+        void navDown()
+        {
+            var btn = EventSystem.current.currentSelectedGameObject;
+            if (btn.GetComponent<Button>().navigation.selectOnDown != null && downNavDelay <= 0)
+            {
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(btn.GetComponent<Button>().navigation.selectOnDown.gameObject);
+                downNavDelay = 0.25f;
+            }
+
+        }
+        void navLeft()
+        {
+            var btn = EventSystem.current.currentSelectedGameObject;
+            if (btn.GetComponent<Button>().navigation.selectOnLeft != null && leftNavDelay <= 0)
+            {
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(btn.GetComponent<Button>().navigation.selectOnLeft.gameObject);
+                leftNavDelay = 0.25f;
+            }
+
+        }
+        void navRight()
+        {
+            var btn = EventSystem.current.currentSelectedGameObject;
+            if (btn.GetComponent<Button>().navigation.selectOnRight != null && rightNavDelay <= 0)
+            {
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(btn.GetComponent<Button>().navigation.selectOnRight.gameObject);
+                rightNavDelay = 0.25f;
+            }
+
+        }
         private void ClickSound()
         {
             GetComponent<AudioSource>().Play();
