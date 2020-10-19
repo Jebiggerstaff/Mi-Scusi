@@ -100,7 +100,7 @@ public class NewYorkTaskCollider : MonoBehaviour
         if (other.name == "APR_Head" && name == "DefaceHQZone")
         {
             this.GetComponent<MeshRenderer>().enabled = true;
-            NewYorkTaskManager.TaskCompleted("DefaceSSS");
+            NewYorkTaskManager.TaskCompleted("DefaceHQ");
         }
         #endregion
         #region DeliverFood
