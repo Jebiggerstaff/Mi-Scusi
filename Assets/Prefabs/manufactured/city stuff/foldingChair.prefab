@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3822360896888992427}
   - component: {fileID: 4811527657942542277}
   - component: {fileID: 847227670531256567}
+  - component: {fileID: 5220921377919701800}
   m_Layer: 14
   m_Name: foldingChair
   m_TagString: CanBeGrabbed
@@ -57,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4811527657942542277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +113,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &5220921377919701800
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258098106947552887}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.017, y: 0.009000001, z: 0.044000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.003, y: 0.004, z: -0.043}
+  m_TimeToStationary: 0.5

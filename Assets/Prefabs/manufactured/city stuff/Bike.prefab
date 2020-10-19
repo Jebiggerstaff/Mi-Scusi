@@ -67,7 +67,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: 4d71fee833853b14cb32e6eb46b5b091, type: 2}
   - {fileID: 2100000, guid: 76b9de04fed8230418695faa389c9db6, type: 2}
   - {fileID: 2100000, guid: 4d71fee833853b14cb32e6eb46b5b091, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 131ce1ac32bd26a4788e46a562ccbecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -380,7 +380,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.46615985, y: -0.64377123, z: -0.3979216}
+  m_ConnectedAnchor: {x: -0.46613982, y: -0.6437718, z: -0.39791712}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -530,7 +530,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.559345, y: -0.85489637, z: 0.38427815}
+  m_ConnectedAnchor: {x: -0.559319, y: -0.8549084, z: 0.3842768}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -679,7 +679,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7663042, y: -0.6438053, z: -0.39269614}
+  m_ConnectedAnchor: {x: -0.76625526, y: -0.6437718, z: -0.39268696}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -941,7 +941,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7664122, y: -0.85486895, z: 0.39132884}
+  m_ConnectedAnchor: {x: -0.76637244, y: -0.8549084, z: 0.3913328}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -974,6 +974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9184569566151235588}
+  - component: {fileID: -2129115267399325675}
   m_Layer: 14
   m_Name: Bike
   m_TagString: CanBeGrabbed
@@ -1000,3 +1001,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 94.859, z: 0}
+--- !u!208 &-2129115267399325675
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184569566151235589}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

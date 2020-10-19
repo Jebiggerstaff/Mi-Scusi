@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1858463553581254642}
   - component: {fileID: 9103604547109405603}
   - component: {fileID: 4018666999688152140}
+  - component: {fileID: -4186072994746155544}
   m_Layer: 14
   m_Name: crate
   m_TagString: CanBeGrabbed
@@ -57,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &9103604547109405603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +113,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &-4186072994746155544
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141371691122733870}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.0680001, y: 1.0680001, z: 1.0680001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.015000001, y: -0.008, z: -0.002}
+  m_TimeToStationary: 0.5
