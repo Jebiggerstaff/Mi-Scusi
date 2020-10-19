@@ -43,8 +43,14 @@ public class NewAIMan : MonoBehaviour
             if(agent.enabled == false && stunCount <= 0)
             {
                 agent.enabled = true;
-                agent.SetDestination(currentDestination);
+                if (agent.isOnNavMesh)
+                {
+
+                    agent.SetDestination(currentDestination);
+
+                }
             }
+            
         }
 
         if(stunCount > 0)
@@ -140,7 +146,7 @@ public class NewAIMan : MonoBehaviour
     public void SetNewDestination(Vector3 target)
     {
         currentDestination = target;
-        if(agent.enabled == true)
+        if(agent.enabled == true && agent.isOnNavMesh)
             agent.SetDestination(target);
     }
 
