@@ -470,22 +470,25 @@ public class APRController : MonoBehaviour
     ////////////////////////
     void PlayerRotation()
     {
-        if (usingController)
+        if (!inAir)
         {
-            if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
+            if (usingController)
             {
-                Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
-                Rotation.x = 0;
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+                if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
+                {
+                    Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
+                    Rotation.x = 0;
+                    APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+                }
             }
-        }
-        if (!usingController)
-        {
-            if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+            if (!usingController)
             {
-                Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
-                Rotation.x = 0;
-                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+                if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+                {
+                    Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
+                    Rotation.x = 0;
+                    APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
+                }
             }
         }
     }
@@ -532,7 +535,7 @@ public class APRController : MonoBehaviour
             APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
         }
 
-		if (isJumping)
+		if (isJumping) //deactivates right away
 		{
 			timer = timer + Time.fixedDeltaTime;
 				
@@ -606,8 +609,8 @@ public class APRController : MonoBehaviour
                 APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
                     
                 //Adjust body joint strength
-                APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
-                APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
+                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
+                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
                 
                 reachLeftAxisUsed = true;
             }
@@ -645,8 +648,8 @@ public class APRController : MonoBehaviour
                     APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
                     APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 
-                    APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
+                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 }
                 
                 else if(!balanced)
@@ -678,8 +681,8 @@ public class APRController : MonoBehaviour
                 APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
                     
                 //Adjust body joint strength
-                APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
-                APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
+                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
+                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
                 
                 reachRightAxisUsed = true;
             }
@@ -717,8 +720,8 @@ public class APRController : MonoBehaviour
                     APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
                     APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 
-                    APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
+                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 }
                 
                 else if(!balanced)
@@ -804,6 +807,9 @@ public class APRController : MonoBehaviour
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.74f, 0.04f, 0f, 1);
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);
+            /*APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.74f, 0.04f, 0f, 1);
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);*/
             
             //Left hand punch force
             LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
