@@ -115,16 +115,7 @@ public class NewAIMan : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
-            currentDest++;
-            if (currentDest >= destinations.Count)
-            {
-                currentDest = 0;
-            }
-
-            if (destinations.Count > 0)
-            {
-                SetNewDestination(destinations[currentDest]);
-            }
+            forceGetNewOrderedDest();
         }
     }
 
@@ -132,7 +123,36 @@ public class NewAIMan : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
-            SetNewDestination();
+            forceGetNewRandDest();
+        }
+    }
+    public void forceNewDest()
+    {
+        if (useRandomDestinations)
+        {
+            forceGetNewRandDest();
+        }
+        else
+        {
+            forceGetNewOrderedDest();
+        }
+
+    }
+    public void forceGetNewRandDest()
+    {
+        SetNewDestination();
+    }
+    public void forceGetNewOrderedDest()
+    {
+        currentDest++;
+        if (currentDest >= destinations.Count)
+        {
+            currentDest = 0;
+        }
+
+        if (destinations.Count > 0)
+        {
+            SetNewDestination(destinations[currentDest]);
         }
     }
 
@@ -143,7 +163,7 @@ public class NewAIMan : MonoBehaviour
             stunCount += time;
     }
 
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         
@@ -163,6 +183,23 @@ public class NewAIMan : MonoBehaviour
     }
     public void SetNewDestination(Vector3 target)
     {
+        if(currentDestination == target)
+        {
+            if (!(this is CrowdAI))
+            {
+                if(GetComponentInChildren<Animator>().GetBool("Running") == true)
+                    GetComponentInChildren<Animator>().SetBool("Running", false);
+
+            }
+        }
+        else
+        {
+            if(!(this is CrowdAI))
+            {
+                if (GetComponentInChildren<Animator>().GetBool("Running") == false)
+                    GetComponentInChildren<Animator>().SetBool("Running", true);
+            }
+        }
         currentDestination = target;
         if(agent.enabled == true && agent.isOnNavMesh)
             agent.SetDestination(target);
