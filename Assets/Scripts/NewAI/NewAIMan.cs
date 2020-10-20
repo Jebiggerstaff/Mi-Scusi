@@ -11,7 +11,7 @@ public class NewAIMan : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hp = maxHP;
         currentDest = 0;
-
+        needToUpdateDestination = false;
         int legNum = Random.Range(1, 4);
 
         if(GetComponentInChildren<Animator>() != null)
@@ -49,8 +49,26 @@ public class NewAIMan : MonoBehaviour
                     agent.SetDestination(currentDestination);
 
                 }
+                else
+                {
+                    needToUpdateDestination = true;
+                }
             }
             
+        }
+
+        if(needToUpdateDestination)
+        {
+            agent.enabled = true;
+            if (agent.isOnNavMesh)
+            {
+                agent.SetDestination(currentDestination);
+                needToUpdateDestination = false;
+            }
+            else
+            {
+                agent.enabled = false;
+            }
         }
 
         if(stunCount > 0)
@@ -180,8 +198,8 @@ public class NewAIMan : MonoBehaviour
     public int maxHP;
     public int hp;
 
-    
 
+    bool needToUpdateDestination = false;
 
     int currentDest;
 }
