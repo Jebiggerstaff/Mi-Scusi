@@ -754,8 +754,8 @@ public class APRController : MonoBehaviour
             
             //Right hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.62f, -0.51f, 0.02f, 1);
-            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.31f, 0.5f, -0.5f, 1);
+            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.3f, 0f, 0.5f, 1);
+            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.6f, 0f, -0.5f, 1);
 		}
         
         if(punchingRight && !Input.GetKey(punchRight))
@@ -765,7 +765,7 @@ public class APRController : MonoBehaviour
             
             //Right hand punch release pose
 			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.74f, 0.04f, 0f, 1);
+			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1f, 0.04f, 0f, 1);
 			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.2f, 0, 0, 1);
             
             //Right hand punch force
@@ -794,8 +794,11 @@ public class APRController : MonoBehaviour
             
             //Left hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.3f, 0f, -0.5f, 1);
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.6f, 0f, 0.5f, 1);
+            /*APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.62f, -0.51f, 0.02f, 1);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);*/
         }
         
         if(punchingLeft && !Input.GetKey(punchLeft))
@@ -805,12 +808,12 @@ public class APRController : MonoBehaviour
             
             //Left hand punch release pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.74f, 0.04f, 0f, 1);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1f, 0.04f, 0f, 1f);
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);
             /*APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.74f, 0.04f, 0f, 1);
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);*/
-            
+
             //Left hand punch force
             LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
  

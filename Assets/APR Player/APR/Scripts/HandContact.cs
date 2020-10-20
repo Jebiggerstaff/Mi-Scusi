@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class HandContact : MonoBehaviour
 {
     public APRController APR_Player;
-    
+    public ParticleSystem PunchParticle;
+
     //Is left or right hand
-	public bool Left;
+    public bool Left;
     
     //Have joint/grabbed
 	public bool hasJoint;
@@ -88,9 +89,10 @@ public class HandContact : MonoBehaviour
             //Left Hand
             if (Left)
             {
+                PunchParticle.Play();
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    
+                        
 
                         if (col.gameObject.GetComponent<NewAIMan>() != null)
                         {
@@ -142,6 +144,7 @@ public class HandContact : MonoBehaviour
             //Right Hand
             if (!Left)
             {
+                PunchParticle.Play();
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
                     
