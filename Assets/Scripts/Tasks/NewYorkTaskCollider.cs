@@ -31,7 +31,6 @@ public class NewYorkTaskCollider : MonoBehaviour
         #region SSStags
         if (other.name == "APR_Head" && name == "SSSTag")
         {
-
             int index = System.Array.IndexOf(NewYorkTaskManager.SSSTags,this.gameObject);
             NewYorkTaskManager.ScusiTags[index].SetActive(true);
             NewYorkTaskManager.SSStagsRemoved++;
