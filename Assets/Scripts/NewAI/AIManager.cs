@@ -30,6 +30,10 @@ public class AIManager : MonoBehaviour
         {
             stillPeople.Add(sa.MakeAI(stillAI) as StayStillAIMan);
         }
+        foreach(var hd in HostileDudes)
+        {
+            hostilePeople.Add(hd.MakeAI(hostileAI) as HostileAI);
+        }
     }
 
 
@@ -41,6 +45,8 @@ public class AIManager : MonoBehaviour
     List<CrowdAIHolder> CrowdDudes;
     [SerializeField]
     public List<StillAIHolder> StandStillDudes;
+    [SerializeField]
+    public List<HostileAIHolder> HostileDudes;
 
 
     //[Header("Game Objects instantiated")]
@@ -50,11 +56,14 @@ public class AIManager : MonoBehaviour
     public List<CrowdAI> crowds;
     [HideInInspector]
     public List<StayStillAIMan> stillPeople;
+    [HideInInspector]
+    public List<HostileAI> hostilePeople;
 
     [Header("AI Prefabs")]
     public GameObject normalAI;
     public GameObject crowdAI;
     public GameObject stillAI;
+    public GameObject hostileAI;
 
 
 }

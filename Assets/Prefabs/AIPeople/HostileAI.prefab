@@ -373,10 +373,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 5
+  m_Speed: 9
   m_Acceleration: 3
   avoidancePriority: 50
-  m_AngularSpeed: 180
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -426,7 +426,8 @@ MonoBehaviour:
   chaseDuration: 5
   maximumAllowedAggroTime: 30
   punchRange: 4
-  punchCD: 3
+  punchCD: 4
+  apr: {fileID: 209064080391568011}
 --- !u!1 &4997824232244131265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,3 +1237,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1651062180321493028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &209064080391568011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1445513515865307823, guid: e5839652bb8888a498860ed48f7daff8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1651062180321493028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d2c340f2f0837439e8eeaa8fade8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

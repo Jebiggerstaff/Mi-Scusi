@@ -76,12 +76,32 @@ public class HostileAI : NewAIMan
         {
             currentPunchCD = punchCD;
 
+
+            int rand = Random.Range(0, 2);
+            if (rand == 0)
+                punchRight();
+            else
+                punchLeft();
+
+
+
+
             Debug.Log("Punching");
         }
 
     }
 
 
+
+    void punchRight()
+    {
+        apr.AIPunch(true);
+    }
+    void punchLeft()
+    {
+
+        apr.AIPunch(false);
+    }
 
 
 
@@ -104,4 +124,6 @@ public class HostileAI : NewAIMan
     float aggroTime;
     float currentPunchCD;
     float currentMaximumAllowedAggroTime;
+
+    public AIRagdollMan apr;
 }

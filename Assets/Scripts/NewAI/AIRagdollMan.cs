@@ -89,6 +89,10 @@ public class AIRagdollMan : MonoBehaviour
     public bool editorDebugMode;
 
 
+    float punchTimer;
+    [Header("AI Punching")]
+    public float punchForce;
+
     //---Setup---//
     //////////////
     void Awake()
@@ -379,6 +383,122 @@ public class AIRagdollMan : MonoBehaviour
 
         COMP.position = CenterOfMassPoint;
     }
+
+
+    public void AIPunch(bool right)
+    {
+        StartCoroutine(doAPunch(right));
+    }
+    IEnumerator doAPunch(bool right)
+    {
+        if(right)
+        {
+            punchRight();
+            while(punchingRight)
+            {
+                yield return null;
+                punchRight();
+            }
+        }
+        else
+        {
+            punchLeft();
+            while(punchingLeft)
+            {
+                yield return null;
+                punchLeft();
+            }
+                
+        }
+    }
+    void punchRight()
+    {
+        //punch right
+        if (!punchingRight)
+        {
+            punchingRight = true;
+            punchTimer = 1.5f;
+
+            //Right hand punch pull back pose
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
+            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.3f, 0f, 0.5f, 1);
+            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(1.6f, 0f, -0.5f, 1);
+        }
+
+        if (punchTimer <= 0)
+        {
+            punchTimer = 0;
+            punchingRight = false;
+
+            //Right hand punch release pose
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
+            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(1f, 0.04f, 0f, 1);
+            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.2f, 0, 0, 1);
+
+            //Right hand punch force
+            RightHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
+            APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForSeconds(0.3f);
+               
+                APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
+                APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
+                
+            }
+        }
+        else
+        {
+            punchTimer -= Time.deltaTime;
+        }
+    }
+    public void punchLeft()
+    {
+        //punch right
+        if (!punchingLeft)
+        {
+            punchingLeft = true;
+            punchTimer = 1.5f;
+
+            //Right hand punch pull back pose
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.3f, 0f, -0.5f, 1);
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-1.6f, 0f, 0.5f, 1);
+        }
+
+        if (punchTimer <= 0)
+        {
+            punchTimer = 0;
+            punchingLeft = false;
+
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-1f, 0.04f, 0f, 1f);
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.2f, 0, 0, 1);
+
+            //Left hand punch force
+            LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
+            APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForSeconds(0.3f);
+
+                APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
+                APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
+
+            }
+        }
+        else
+        {
+            punchTimer -= Time.deltaTime;
+        }
+    }
+
 
 }
 
