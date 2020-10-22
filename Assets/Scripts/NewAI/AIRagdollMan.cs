@@ -21,8 +21,8 @@ public class AIRagdollMan : MonoBehaviour
 
     [Header("Hand Dependancies")]
     //Hand Controller Scripts & dependancies
-    public HandContact GrabRight;
-    public HandContact GrabLeft;
+    public AIHandContact GrabRight;
+    public AIHandContact GrabLeft;
 
     [Header("The Layer Only This Player Is On")]
     //Player layer name
@@ -109,6 +109,8 @@ public class AIRagdollMan : MonoBehaviour
         //GroundCheck();
         ActivateRagdoll();
         CenterOfMass();
+
+
     }
 
 
@@ -187,6 +189,8 @@ public class AIRagdollMan : MonoBehaviour
         UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
     */
+
+        
     }
 
 
@@ -417,7 +421,7 @@ public class AIRagdollMan : MonoBehaviour
         if (!punchingRight)
         {
             punchingRight = true;
-            punchTimer = 1.5f;
+            punchTimer = 1.0f;
 
             //Right hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
