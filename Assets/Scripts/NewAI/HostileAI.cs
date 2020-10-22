@@ -122,7 +122,8 @@ public class HostileAI : NewAIMan
 
     Transform player;
 
-    bool isAggrod;
+    [HideInInspector]
+    public bool isAggrod;
     bool leashing;
     float aggroTime;
     float currentPunchCD;

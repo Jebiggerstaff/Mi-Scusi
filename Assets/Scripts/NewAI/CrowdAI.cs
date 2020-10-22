@@ -26,6 +26,12 @@ public class CrowdAI : NewAIMan
     {
         if (numCrowd > 0)
         {
+            GameObject thingToSpawn = AIManPrefab;
+            if(hostile)
+            {
+                thingToSpawn = HostileAIPrefab;
+            }
+
             if(AIMen != null)
             {
 
@@ -52,9 +58,9 @@ public class CrowdAI : NewAIMan
                         target = hit.point;
                     }
                 }
+                
 
-
-                var go = Instantiate(AIManPrefab, target, Quaternion.Euler(0, 0, 0));
+                var go = Instantiate(thingToSpawn, target, Quaternion.Euler(0, 0, 0));
                 AIMen.Add(go.GetComponent<NewAIMan>());
                 go.GetComponent<NewAIMan>().minimumStopDistance = 0;
                 go.GetComponent<NewAIMan>().hp = hp;
@@ -115,6 +121,24 @@ public class CrowdAI : NewAIMan
                 target = hit.point;
             }
         }
+
+        bool shouldSetPoint = true;
+        if(hostile)
+        {
+            if( (man as HostileAI).isAggrod )
+            {
+                man.agent.speed = 9;
+                man.agent.angularSpeed = 720;
+                shouldSetPoint = false;
+            }
+            else
+            {
+                man.agent.angularSpeed = 180;
+            }
+        }
+
+
+        
         man.SetNewDestination(target);
         man.agent.speed = Vector3.Distance(man.transform.position, man.currentDestination) / 3;
         man.agent.acceleration = man.agent.speed / 3;
@@ -124,7 +148,9 @@ public class CrowdAI : NewAIMan
 
     public float radius;
     public List<NewAIMan> AIMen;
+    public bool hostile;
 
     public GameObject AIManPrefab;
+    public GameObject HostileAIPrefab;
     public int numCrowd = -1;
 }
