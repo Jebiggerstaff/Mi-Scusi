@@ -89,8 +89,18 @@ public class APRController : MonoBehaviour
     public AudioClip[] Impacts;
     public AudioClip[] Hits;
     public AudioSource SoundSource;
+
+    [Header("HP Values")]
+    public int maxHP;
+    [HideInInspector]
+    public int currentHP;
+    public float HPPerSecond;
+    public float KnockoutTime;
+    bool knockedOut;
+
     
-    
+
+
     //Hidden variables
     private float 
     timer, Step_R_timer, Step_L_timer,
@@ -324,6 +334,8 @@ public class APRController : MonoBehaviour
         LowerRightLegTarget = APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation;
         UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
+
+        currentHP = maxHP;
     }  
     
     
@@ -445,7 +457,7 @@ public class APRController : MonoBehaviour
     ////////////////////////
     void PlayerMovement()
     {
-        if (balanced)
+        if (balanced && !knockedOut)
         {
                 Direction = cam.transform.rotation * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
                 Direction.y = 0f;
@@ -499,7 +511,7 @@ public class APRController : MonoBehaviour
     ///////////////////////////////
     void PlayerGetUpJumping()
 	{
-        if(Input.GetAxis(jump) > 0)
+        if(Input.GetAxis(jump) > 0 && !knockedOut)
         {
             if(!jumpAxisUsed)
             {
@@ -525,7 +537,7 @@ public class APRController : MonoBehaviour
         }
         
         
-		if (jumping)
+		if (jumping && !knockedOut)
         {
             isJumping = true;
                 
@@ -834,13 +846,73 @@ public class APRController : MonoBehaviour
     
     
     
+    //---Getting Punched Functions--//
+    /////////////////////////////////
+    public void GotPunched()
+    {
+        currentHP--;
+        if(currentHP == 0)
+        {
+            KnockedOut();
+        }
+        
+    }
+
+    private void KnockedOut()
+    {
+        Debug.Log("Knocked Out!");
+        currentHP = 0;
+        ActivateRagdoll();
+        StopHPRegen();
+        StartCoroutine(KnockoutTimer());
+    }
+
+    private IEnumerator KnockoutTimer()
+    {
+        float count = 0;
+        autoGetUpWhenPossible = false;
+        knockedOut = true;
+        while(count < KnockoutTime)
+        {
+            currentHP = 0;
+            balanced = false;
+            count += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        knockedOut = false;
+        autoGetUpWhenPossible = true;
+        Debug.Log("You're back!");
+        currentHP = 1;
+        DeactivateRagdoll();
+        StartHPRegen();
+
+
+    }
+
+    private void StartHPRegen()
+    {
+        InvokeRepeating("RegenHP", 1f / HPPerSecond, 1f / HPPerSecond);
+    }
+    private void StopHPRegen()
+    {
+        CancelInvoke("RegenHP");
+    }
+    private void RegenHP()
+    {
+        if(currentHP < maxHP)
+        {
+            currentHP++;
+        }
+    }
+
+
     //---Player Walking---//
     ///////////////////////
     void Walking()
 	{
         if ((Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f) || (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f))
         {
-            if (!inAir)
+            if (!inAir && !knockedOut)
             {
 
                 if (WalkForward)
@@ -1096,7 +1168,7 @@ public class APRController : MonoBehaviour
     //////////////////////////
     void ResetPlayerPose()
     {
-        if(ResetPose && !jumping)
+        if(ResetPose && !jumping && !knockedOut)
         {
              APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;

@@ -32,7 +32,7 @@ public class HostileAI : NewAIMan
             aggroTime -= Time.deltaTime;
             currentMaximumAllowedAggroTime -= Time.deltaTime;
 
-            if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0)
+            if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0 || FindObjectOfType<APRController>().currentHP <= 0)
             {
                 if (moveTowardsPlayerOnAggro)
                 {
@@ -63,12 +63,15 @@ public class HostileAI : NewAIMan
     }
     public void AggroToPlayer(float time)
     {
-        if(!isAggrod)
+        if(FindObjectOfType<APRController>().currentHP > 0)
         {
-            currentMaximumAllowedAggroTime = maximumAllowedAggroTime;
+            if (!isAggrod)
+            {
+                currentMaximumAllowedAggroTime = maximumAllowedAggroTime;
+            }
+            isAggrod = true;
+            aggroTime = time;
         }
-        isAggrod = true;
-        aggroTime = time;
     }
     void tryPunch()
     {
