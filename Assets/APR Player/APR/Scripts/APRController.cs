@@ -582,7 +582,7 @@ public class APRController : MonoBehaviour
     void PlayerReach()
     {
         //Body Bending
-        if(1==1)
+        if(!knockedOut)
         {
             //values for max rotation for bending
             if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
@@ -609,7 +609,7 @@ public class APRController : MonoBehaviour
             
             
         //Reach Left
-        if(Input.GetAxisRaw(reachLeft) != 0 && !punchingLeft)
+        if(!knockedOut && Input.GetAxisRaw(reachLeft) != 0 && !punchingLeft)
         {
             
             if(!reachLeftAxisUsed)
@@ -649,7 +649,7 @@ public class APRController : MonoBehaviour
 			 APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.58f - (MouseYAxisArms), -0.88f - (MouseYAxisArms), -0.8f, 1);
         }
         
-        if(Input.GetAxisRaw(reachLeft) == 0 && !punchingLeft)
+        if(Input.GetAxisRaw(reachLeft) == 0 && !punchingLeft && !knockedOut)
         {
             if(reachLeftAxisUsed)
             {
@@ -681,7 +681,7 @@ public class APRController : MonoBehaviour
             
             
         //Reach Right
-        if(Input.GetAxisRaw(reachRight) != 0 && !punchingRight)
+        if(Input.GetAxisRaw(reachRight) != 0 && !punchingRight && !knockedOut)
         {
             
             if(!reachRightAxisUsed)
@@ -721,7 +721,7 @@ public class APRController : MonoBehaviour
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.58f + (MouseYAxisArms), -0.88f - (MouseYAxisArms), 0.8f, 1);
         }
         
-        if(Input.GetAxisRaw(reachRight) == 0 && !punchingRight)
+        if(Input.GetAxisRaw(reachRight) == 0 && !punchingRight && !knockedOut)
         {
             if(reachRightAxisUsed)
             {
@@ -759,7 +759,7 @@ public class APRController : MonoBehaviour
     {
         
         //punch right
-        if(!punchingRight && Input.GetKey(punchRight))
+        if(!punchingRight && Input.GetKey(punchRight) && !knockedOut)
         {
             punchingRight= true;
             punchTimer = 0;
@@ -770,7 +770,7 @@ public class APRController : MonoBehaviour
             APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.6f, 0f, -0.5f, 1);
 		}
         
-        if(punchingRight && !Input.GetKey(punchRight))
+        if(punchingRight && !Input.GetKey(punchRight) && !knockedOut)
         {
             punchTimer = 0;
             punchingRight = false;
@@ -799,7 +799,7 @@ public class APRController : MonoBehaviour
         
         
         //punch left
-        if(!punchingLeft && Input.GetKey(punchLeft))
+        if(!punchingLeft && Input.GetKey(punchLeft) && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = true;
@@ -813,7 +813,7 @@ public class APRController : MonoBehaviour
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);*/
         }
         
-        if(punchingLeft && !Input.GetKey(punchLeft))
+        if(punchingLeft && !Input.GetKey(punchLeft) && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = false;
