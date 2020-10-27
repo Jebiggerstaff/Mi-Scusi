@@ -32,7 +32,7 @@ public class HostileAI : NewAIMan
             aggroTime -= Time.deltaTime;
             currentMaximumAllowedAggroTime -= Time.deltaTime;
 
-            if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0 || FindObjectOfType<APRController>().currentHP <= 0)
+            if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0 || FindObjectOfType<APRController>().currentHP <= 0 || hp <= 0)
             {
                 if (moveTowardsPlayerOnAggro)
                 {
