@@ -380,6 +380,7 @@ public class APRController : MonoBehaviour
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
 
         currentHP = maxHP;
+        StartHPRegen();
     }  
     
     
