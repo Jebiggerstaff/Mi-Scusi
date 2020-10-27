@@ -40,6 +40,7 @@ public class APRController : MonoBehaviour
     public string jump ;
     public string reachLeft;
     public string reachRight;
+    public string quip;
     
     [Header("Player Input KeyCodes")]
     //Player KeyCode controls
@@ -82,6 +83,10 @@ public class APRController : MonoBehaviour
     public float punchForce = 15f;
     private float punchTimer = 0f;
     private float punchDelay = 2f;
+    public float quipRange = 10f;
+    public float quipDuration = 5f;
+    public float quipCooldown = 10f;
+    private float currentQuipCooldown = 0;
     
     [Header("Audio")]
     //Impact sounds
@@ -172,6 +177,42 @@ public class APRController : MonoBehaviour
 
     }
 
+
+    void tryQuip()
+    {
+        if(currentQuipCooldown <= 0)
+        {
+            if (Input.GetKey(quip))
+            {
+                Debug.Log("Quipping");
+                currentQuipCooldown = quipCooldown;
+                foreach(var ai in FindObjectsOfType<NewAIMan>())
+                {
+                    //conditions here?
+                    if(!(ai is CrowdAI))
+                    {
+                        if(Vector3.Distance(Root.transform.position, ai.transform.position) <= quipRange)
+                        {
+                            if( (!(ai is HostileAI) || (ai as HostileAI).isAggrod == false)     )
+                            {
+                                ai.getQuipped(quipDuration);
+                                Debug.Log("AI quipped");
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            currentQuipCooldown -= Time.deltaTime;
+        }
+        
+    }
+
+
     void Update()
     {
 
@@ -206,6 +247,7 @@ public class APRController : MonoBehaviour
         
         GroundCheck();
         CenterOfMass();
+        tryQuip();
     }
     
     
@@ -246,6 +288,7 @@ public class APRController : MonoBehaviour
             reachRight = "Fire2";
             punchLeft = "q";
             punchRight = "e";
+            quip = "f";
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -260,6 +303,7 @@ public class APRController : MonoBehaviour
             reachRight = "Fire2Con";
             punchLeft = "joystick button 4";
             punchRight = "joystick button 5";
+            quip = "joystick button 2"; //X button on xbox
         }
 
         cam = Camera.main;

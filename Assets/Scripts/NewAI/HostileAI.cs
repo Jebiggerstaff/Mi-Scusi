@@ -71,6 +71,7 @@ public class HostileAI : NewAIMan
             }
             isAggrod = true;
             aggroTime = time;
+            quipped = false;
         }
     }
     void tryPunch()

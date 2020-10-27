@@ -11,9 +11,11 @@ public class NewAIMan : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hp = maxHP;
         currentDest = 0;
+        quipped = false;
         needToUpdateDestination = false;
         int legNum = Random.Range(1, 4);
-
+        baseSpeed = agent.speed;
+        baseAcceleration = agent.acceleration;
         if(GetComponentInChildren<Animator>() != null)
         {
 
@@ -91,6 +93,17 @@ public class NewAIMan : MonoBehaviour
                 if (GetComponentInChildren<Animator>() != null)
                     GetComponentInChildren<Animator>().SetBool("Stunned", false);
             }
+        }
+
+        if(quipped)
+        {
+            quipTime -= Time.deltaTime;
+            if(quipTime <= 0)
+            {
+                quipped = false;
+                agent.speed = baseSpeed;
+            }
+
         }
 
 
@@ -200,13 +213,40 @@ public class NewAIMan : MonoBehaviour
                     GetComponentInChildren<Animator>().SetBool("Running", true);
             }
         }
-        currentDestination = target;
-        if(agent.enabled == true && agent.isOnNavMesh)
-            agent.SetDestination(target);
+        if (quipped)
+        {
+            currentDestination = quipTarget;
+        }
+        else
+        {
+            currentDestination = target;
+        }
+        if (agent.enabled == true && agent.isOnNavMesh)
+            agent.SetDestination(currentDestination);
     }
 
    
+    public void getQuipped(float time)
+    {
+        quipped = true;
+        quipTime = time;
 
+        Vector3 normalized = (transform.position - FindObjectOfType<APRController>().Root.transform.position).normalized;
+        normalized = Vector3.Cross(normalized, Vector3.up);
+        var l = Random.Range(0, 2) == 0;
+        if(!l)
+        {
+            normalized = -normalized;
+        }
+        quipTarget = FindObjectOfType<APRController>().Root.transform.position + (normalized*quipDistance);
+
+        agent.speed = 7;
+        agent.acceleration = 5;
+
+
+
+        SetNewDestination(quipTarget);
+    }
 
 
 
@@ -239,4 +279,13 @@ public class NewAIMan : MonoBehaviour
     bool needToUpdateDestination = false;
 
     int currentDest;
+
+    [HideInInspector]
+    public bool quipped;
+    float quipTime;
+    float quipDistance = 10f;
+    Vector3 quipTarget;
+
+    float baseSpeed;
+    float baseAcceleration;
 }
