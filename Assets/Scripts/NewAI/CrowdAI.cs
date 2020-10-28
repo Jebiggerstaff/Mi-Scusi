@@ -63,7 +63,11 @@ public class CrowdAI : NewAIMan
                 var go = Instantiate(thingToSpawn, target, Quaternion.Euler(0, 0, 0));
                 AIMen.Add(go.GetComponent<NewAIMan>());
                 go.GetComponent<NewAIMan>().minimumStopDistance = 0;
-                go.GetComponent<NewAIMan>().hp = hp;
+                go.GetComponent<NewAIMan>().maxHP = hp;
+                if(hostile)
+                {
+                    go.GetComponent<HostileAI>().moveTowardsPlayerOnAggro = true;
+                }
                 //go.GetComponent<NewAIMan>().agent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.LowQualityObstacleAvoidance;
             }
         }
@@ -138,7 +142,7 @@ public class CrowdAI : NewAIMan
         }
 
 
-        if(man.quipped == false)
+        if(man.quipped == false && shouldSetPoint)
         {
 
             man.SetNewDestination(target);
