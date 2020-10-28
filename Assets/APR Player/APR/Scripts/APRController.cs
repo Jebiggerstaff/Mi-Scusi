@@ -135,15 +135,15 @@ public class APRController : MonoBehaviour
 	JointDrive
 	//
 	BalanceOn, PoseOn, CoreStiffness, ReachStiffness, DriveOff;
-	
-	//Original pose target rotation
-	Quaternion
-	//
-	HeadTarget, BodyTarget,
-	UpperRightArmTarget, LowerRightArmTarget,
-	UpperLeftArmTarget, LowerLeftArmTarget,
-	UpperRightLegTarget, LowerRightLegTarget,
-	UpperLeftLegTarget, LowerLeftLegTarget;
+
+    //Original pose target rotation
+    Quaternion
+    //
+    HeadTarget, BodyTarget,
+    UpperRightArmTarget, LowerRightArmTarget,
+    UpperLeftArmTarget, LowerLeftArmTarget,
+    UpperRightLegTarget, LowerRightLegTarget,
+    UpperLeftLegTarget, LowerLeftLegTarget;
     
 	[Header("Player Editor Debug Mode")]
 	//Debug
@@ -1119,13 +1119,29 @@ public class APRController : MonoBehaviour
         }
         else
         {
-            //reset to idle
+            //reset to idle LEFT
             APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
             APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
 
             //feet force down
             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse); 
+            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+
+            //reset to idle RIGHT
+            APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation, UpperRightLegTarget, (8f) * Time.fixedDeltaTime);
+            APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation, LowerRightLegTarget, (17f) * Time.fixedDeltaTime);
+
+            //feet force down
+            APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+
+            /* //reset to idle
+             APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
+             APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
+
+             //feet force down
+             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse); */
         }
     }
     
@@ -1262,9 +1278,7 @@ public class APRController : MonoBehaviour
 			APR_Parts[7].GetComponent<Rigidbody>().mass * APR_Parts[7].transform.position +
 			APR_Parts[8].GetComponent<Rigidbody>().mass * APR_Parts[8].transform.position +
 			APR_Parts[9].GetComponent<Rigidbody>().mass * APR_Parts[9].transform.position +
-			APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position +
-			APR_Parts[11].GetComponent<Rigidbody>().mass * APR_Parts[11].transform.position +
-			APR_Parts[12].GetComponent<Rigidbody>().mass * APR_Parts[12].transform.position) 
+			APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position) 
             
             /
 			
@@ -1273,8 +1287,7 @@ public class APRController : MonoBehaviour
             APR_Parts[4].GetComponent<Rigidbody>().mass + APR_Parts[5].GetComponent<Rigidbody>().mass +
             APR_Parts[6].GetComponent<Rigidbody>().mass + APR_Parts[7].GetComponent<Rigidbody>().mass +
 			APR_Parts[8].GetComponent<Rigidbody>().mass + APR_Parts[9].GetComponent<Rigidbody>().mass +
-			APR_Parts[10].GetComponent<Rigidbody>().mass + APR_Parts[11].GetComponent<Rigidbody>().mass +
-			APR_Parts[12].GetComponent<Rigidbody>().mass);
+			APR_Parts[10].GetComponent<Rigidbody>().mass);
 			
 			COMP.position = CenterOfMassPoint;
 	}
