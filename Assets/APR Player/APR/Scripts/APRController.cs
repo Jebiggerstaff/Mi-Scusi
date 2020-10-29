@@ -549,6 +549,10 @@ public class APRController : MonoBehaviour
             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
         }
+        if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut && !usingController && !reachLeftAxisUsed && !reachRightAxisUsed)
+        {
+            MouseYAxisBody = 0;
+        }
     }
 
 
@@ -720,7 +724,7 @@ public class APRController : MonoBehaviour
             }
             
             //upper  left arm pose
-			 APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.58f - (MouseYAxisArms), -0.88f - (MouseYAxisArms), -0.8f, 1);
+			 APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1);
         }
         
         if(Input.GetAxisRaw(reachLeft) == 0 && !punchingLeft && !knockedOut)
@@ -792,7 +796,7 @@ public class APRController : MonoBehaviour
             }
             
             //upper right arm pose
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.58f + (MouseYAxisArms), -0.88f - (MouseYAxisArms), 0.8f, 1);
+            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1);
         }
         
         if(Input.GetAxisRaw(reachRight) == 0 && !punchingRight && !knockedOut)

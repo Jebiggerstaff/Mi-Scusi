@@ -7,6 +7,8 @@ public class HandContact : MonoBehaviour
 {
     public APRController APR_Player;
     public ParticleSystem PunchParticle;
+    public GameObject Root;
+    private float MouseYAxisBody;
 
     //Is left or right hand
     public bool Left;
@@ -79,6 +81,11 @@ public class HandContact : MonoBehaviour
             }
 
         }
+
+        if (hasJoint)
+        {
+            RootMove();
+        }
     }
 
     //Grab on collision when input is used
@@ -93,7 +100,7 @@ public class HandContact : MonoBehaviour
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
                         
-
+                        //Punch Guy Task
                         if (col.gameObject.GetComponent<NewAIMan>() != null)
                         {
                             if (APR_Player.punchingLeft)
@@ -105,15 +112,16 @@ public class HandContact : MonoBehaviour
                                 }
                             }
                         }
-
+                        
                         if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
-
+                            //Eat At Cafe Task
                             if (SceneManager.GetActiveScene().name == "NewYork"){
                                 if (col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
                                     NewYorkTaskManager.TaskCompleted("EatAtCafe");
                                     NewYorkTaskManager.AteAtCafe = true;
                                 }
                             }
+                            //Grab Something Task
                             if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Pickedup == false)
                             {
                                 TutorialTaskManager.TaskCompleted("GrabSomething");
@@ -217,5 +225,23 @@ public class HandContact : MonoBehaviour
         
     }
 
+    void RootMove()
+    {
+        if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
+        {
+                MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / 25f);
+        }
+        if (MouseYAxisBody > 0.9f)
+        {
+            MouseYAxisBody = 0.9f;
+        }
 
+        else if (MouseYAxisBody < -0.9f)
+        {
+            MouseYAxisBody = -0.9f;
+        }
+        //Root.transform.localPosition = new Vector3( Root.transform.localPosition.x, Root.transform.localPosition.y + MouseYAxisBody, Root.transform.localPosition.z);
+        //Root.transform.localPosition = new Vector3(Root.transform.localPosition.x, MouseYAxisBody, Root.transform.localPosition.z);
+        //Root.transform.position.y = Root.transform.localPosition.y + MouseYAxisBody;
+    }
 }
