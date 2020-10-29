@@ -193,7 +193,19 @@ public class APRController : MonoBehaviour
                     {
                         if(Vector3.Distance(Root.transform.position, ai.transform.position) <= quipRange)
                         {
-                            if( (!(ai is HostileAI) || (ai as HostileAI).isAggrod == false)     )
+                            bool shouldQuip = true;
+                            if(ai is HostileAI)
+                            {
+                                shouldQuip = !(ai as HostileAI).isAggrod;
+                            }
+                            else if(ai is SitDownAI)
+                            {
+                                shouldQuip = !(ai as SitDownAI).sitting;
+                            }
+
+
+
+                            if(  shouldQuip )    
                             {
                                 ai.getQuipped(quipDuration);
                                 Debug.Log("AI quipped");

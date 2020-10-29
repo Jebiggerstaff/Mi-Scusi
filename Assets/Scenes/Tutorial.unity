@@ -14635,7 +14635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074684295}
   m_LocalRotation: {x: -0.7259973, y: 0.042494208, z: -0.10921313, w: -0.677639}
-  m_LocalPosition: {x: 34.38478, y: -1.3009071, z: 48.084175}
+  m_LocalPosition: {x: 37.324707, y: -1.3009071, z: 82.61556}
   m_LocalScale: {x: 3.2147021, y: 3.2147021, z: 3.2147021}
   m_Children:
   - {fileID: 847295651}
@@ -15186,6 +15186,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
         type: 3}
+      propertyPath: SitDownDudes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].walkLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
       propertyPath: CrowdDudes.Array.data[0].hp
       value: 1
       objectReference: {fileID: 0}
@@ -15603,6 +15613,36 @@ PrefabInstance:
         type: 3}
       propertyPath: CrowdDudes.Array.data[0].hostile
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].sitPositon
+      value: 
+      objectReference: {fileID: 1769892443}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].walkLocations.Array.data[0].x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].walkLocations.Array.data[0].y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239623903208182759, guid: 61b67d6088669064eaa9b52f99595dd5,
+        type: 3}
+      propertyPath: SitDownDudes.Array.data[0].walkLocations.Array.data[0].z
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b67d6088669064eaa9b52f99595dd5, type: 3}
@@ -20478,7 +20518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439346231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.629929, y: -0.08034706, z: -22.961388}
+  m_LocalPosition: {x: -17.69, y: -0.08034706, z: 11.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1851668202}
@@ -24976,6 +25016,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765026471}
   m_Mesh: {fileID: -2934845279185605533, guid: ac24cd9e76d79d24d89483fa42cb8f60, type: 3}
+--- !u!1 &1769892442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1769892443}
+  m_Layer: 14
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1769892443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769892442}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.26, y: 1.521, z: 57.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1808902652}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1775829222
 PrefabInstance:
   m_ObjectHideFlags: 0

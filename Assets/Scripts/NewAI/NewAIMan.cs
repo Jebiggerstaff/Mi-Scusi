@@ -21,6 +21,7 @@ public class NewAIMan : MonoBehaviour
 
             GetComponentInChildren<Animator>().SetInteger("RunNumber", legNum);
             GetComponentInChildren<Animator>().SetBool("Running", true);
+            GetComponentInChildren<Animator>().SetBool("Sitting", false);
         }
     }
     // Start is called before the first frame update

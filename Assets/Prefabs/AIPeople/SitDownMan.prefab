@@ -371,10 +371,10 @@ GameObject:
   - component: {fileID: 4575674925354774161}
   - component: {fileID: 4575674925354774160}
   - component: {fileID: 4575674925354774163}
-  - component: {fileID: 4575674925354774172}
   - component: {fileID: 4575674925354774173}
+  - component: {fileID: 1289850947275267191}
   m_Layer: 0
-  m_Name: NewAIMan
+  m_Name: SitDownMan
   m_TagString: CanBeGrabbed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,28 +481,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4575674925354774172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4575674925354774162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6a5723de8892d4bae015ed183920c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentDestination: {x: 0, y: 0, z: 0}
-  useRandomDestinations: 1
-  destinations: []
-  agent: {fileID: 0}
-  grabbedByPlayer: 0
-  stunCount: 0
-  minimumStopDistance: 3
-  maxHP: 1
-  hp: 0
-  quipped: 0
 --- !u!54 &4575674925354774173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -519,6 +497,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1289850947275267191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674925354774162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baaa204f8f018e74c9ef271843007802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDestination: {x: 0, y: 0, z: 0}
+  useRandomDestinations: 1
+  destinations: []
+  agent: {fileID: 0}
+  grabbedByPlayer: 0
+  stunCount: 0
+  minimumStopDistance: 3
+  maxHP: 0
+  hp: 0
+  quipped: 0
+  sitPlace: {fileID: 0}
+  sitting: 1
 --- !u!1 &4997824232244131265
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b2d8bcf762b304f9c2173977980c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4575674925354774172}
+  ai: {fileID: 1289850947275267191}
   visual: {fileID: 795538457166334640}
 --- !u!1 &7642780122998084874
 GameObject:
