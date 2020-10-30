@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7596785419094859736}
   - component: {fileID: 6828283333417046141}
   - component: {fileID: 8729692185581839543}
-  - component: {fileID: 7072591753667429756}
   - component: {fileID: 7072591753667429757}
+  - component: {fileID: 8743545617441210191}
   m_Layer: 14
   m_Name: Apple
   m_TagString: CanBeGrabbed
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7072591753667429730}
-  m_LocalRotation: {x: -0.7051402, y: -0.052701756, z: 0.05270175, w: 0.70514005}
+  m_LocalRotation: {x: -0.70513994, y: -0.0527041, z: 0.0527041, w: 0.70513994}
   m_LocalPosition: {x: 10.431, y: 13.783, z: 24.79}
   m_LocalScale: {x: 0.021554472, y: 0.025003193, z: 0.08956706}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -81.451, y: -90, z: 90}
 --- !u!33 &6828283333417046141
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -6922793697723135513, guid: 5f8867bd873231a40a2c61c82f01a45f, type: 3}
-  - {fileID: 4874126678125670354, guid: 5f8867bd873231a40a2c61c82f01a45f, type: 3}
+  - {fileID: 2100000, guid: 131ce1ac32bd26a4788e46a562ccbecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7072591753667429756
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072591753667429730}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -472147775963580301, guid: 5f8867bd873231a40a2c61c82f01a45f, type: 3}
 --- !u!54 &7072591753667429757
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,3 +100,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &8743545617441210191
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072591753667429730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.0258493
+  m_Center: {x: 0.35801822, y: 0.0000024137134, z: -0.49551407}
