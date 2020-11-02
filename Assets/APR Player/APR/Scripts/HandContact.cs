@@ -16,8 +16,10 @@ public class HandContact : MonoBehaviour
 
     //grabbed AI
     public List<NewAIMan> grabbedAI;
+
     NewYorkTaskManager NewYorkTaskManager;
     TutorialTaskManager TutorialTaskManager;
+    ItalyTaskManager ItalyTaskManager;
 
     private void Start()
     {
@@ -26,6 +28,8 @@ public class HandContact : MonoBehaviour
             NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
         if (SceneManager.GetActiveScene().name == "Tutorial")
             TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
+        if (SceneManager.GetActiveScene().name == "Italy")
+            ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
     }
 
     void Update()
@@ -93,26 +97,44 @@ public class HandContact : MonoBehaviour
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
                         
-                        //Punch Guy Task
+                        
                         if (col.gameObject.GetComponent<NewAIMan>() != null)
                         {
                             if (APR_Player.punchingLeft)
                             {
                                 col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                                //Tutorial Punch Task
                                 if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false){
                                     TutorialTaskManager.TaskCompleted("PunchAGuy");
                                     TutorialTaskManager.Punched = true;
                                 }
+                                //Mafia Punch Task
+                                if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name =="MafiaMember")
+                                {
+                                    ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
+                                    ItalyTaskManager.PunchedMafia = true;
+                                }
+                                //Angry Customer Punch Task
+                                if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedCustomer == false && col.gameObject.name == "AngryCustomer")
+                                {
+                                    ItalyTaskManager.TaskCompleted("KnockoutAngryCustomer");
+                                    ItalyTaskManager.PunchedCustomer = true;
+                                }
                             }
                         }
-                        
-                        if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
+
+
+                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
                             //Eat At Cafe Task
-                            if (SceneManager.GetActiveScene().name == "NewYork"){
-                                if (col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
-                                    NewYorkTaskManager.TaskCompleted("EatAtCafe");
-                                    NewYorkTaskManager.AteAtCafe = true;
-                                }
+                            if (SceneManager.GetActiveScene().name == "NewYork"&& col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
+                                NewYorkTaskManager.TaskCompleted("EatAtCafe");
+                                NewYorkTaskManager.AteAtCafe = true;
+                            }
+                            //Eat Spaghetti Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                            {
+                                ItalyTaskManager.TaskCompleted("EatSpaghetti");
+                                ItalyTaskManager.AteSpaghetti = true;
                             }
                             //Grab Something Task
                             if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Pickedup == false)
@@ -120,7 +142,18 @@ public class HandContact : MonoBehaviour
                                 TutorialTaskManager.TaskCompleted("GrabSomething");
                                 TutorialTaskManager.Pickedup = true;
                             }
-                            hasJoint = true;
+                            //Steal 5 doucments Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
+                            {
+                                ItalyTaskManager.DocumentsCollected++;
+                                if (ItalyTaskManager.DocumentsCollected == 5)
+                                {
+                                    ItalyTaskManager.TaskCompleted("Collect5documents");
+                                }
+                                Destroy(col.gameObject);
+                            }
+
+                        hasJoint = true;
                             this.gameObject.AddComponent<FixedJoint>();
                             this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                             this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
@@ -155,24 +188,52 @@ public class HandContact : MonoBehaviour
                         if (APR_Player.punchingRight)
                         {
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                            //Tutorial Punch Task
                             if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false)
                             {
                                 TutorialTaskManager.TaskCompleted("PunchAGuy");
                                 TutorialTaskManager.Punched = true;
+                            }
+                            //Punch Mafia Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name == "MafiaMember")
+                            {
+                                ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
+                                ItalyTaskManager.PunchedMafia = true;
+                            }
+                            //Punch Angry Customer Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedCustomer == false && col.gameObject.name == "AngryCustomer")
+                            {
+                                ItalyTaskManager.TaskCompleted("KnockoutAngryCustomer");
+                                ItalyTaskManager.PunchedCustomer = true;
                             }
                         }
                     }
                     if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
 
-                        if (SceneManager.GetActiveScene().name == "NewYork")
+                        //Eat At Cafe Task
+                        if (SceneManager.GetActiveScene().name == "NewYork" && col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe == false)
                         {
-                            if (col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe == false)
-                            {
-                                NewYorkTaskManager.TaskCompleted("EatAtCafe");
-                                NewYorkTaskManager.AteAtCafe = true;
-                            }
+                            NewYorkTaskManager.TaskCompleted("EatAtCafe");
+                            NewYorkTaskManager.AteAtCafe = true;
                         }
+                        //Eat Spaghetti Task
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                        {
+                            ItalyTaskManager.TaskCompleted("EatSpaghetti");
+                            ItalyTaskManager.AteSpaghetti = true;
+                        }
+                        //Steal 5 doucments Task
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
+                        {
+                            ItalyTaskManager.DocumentsCollected++;
+                            if (ItalyTaskManager.DocumentsCollected == 5)
+                            {
+                                ItalyTaskManager.TaskCompleted("Collect5documents");
+                            }
+                            Destroy(col.gameObject);
+                        }
+                        //Grab Something Task
                         if (SceneManager.GetActiveScene().name == "Tutorial"&&TutorialTaskManager.Pickedup==false)
                         {
                             TutorialTaskManager.TaskCompleted("GrabSomething");

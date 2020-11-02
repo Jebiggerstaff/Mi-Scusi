@@ -14,13 +14,10 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
 
-    [Header("Task Objects")]
-    public GameObject MafiaHQ;
-    public GameObject[] documents = new GameObject[0];
-    public GameObject Fisherman;
-    public GameObject Flowers;
-    public GameObject[] shopMerchandise = new GameObject[0];
-    public GameObject[] fountainMoney = new GameObject[0];
+    [HideInInspector] public bool PunchedMafia = false;
+    [HideInInspector] public bool PunchedCustomer = false;
+    [HideInInspector] public bool AteSpaghetti = false;
+    [HideInInspector] public int DocumentsCollected = 0;
 
 
 

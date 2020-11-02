@@ -1052,7 +1052,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1806ad42b4b8bdc40898d43082c298f8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4cfd3bf123be1e74d84fd84739aef04e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1861,6 +1861,7 @@ MonoBehaviour:
   jump: Jump
   reachLeft: Fire1
   reachRight: Fire2
+  quip: 
   punchLeft: q
   punchRight: e
   thisPlayerLayer: Player_1
@@ -1882,6 +1883,9 @@ MonoBehaviour:
   requiredForceToBeKO: 20
   canPunch: 1
   punchForce: 15
+  quipRange: 10
+  quipDuration: 5
+  quipCooldown: 10
   ImpactForce: 10
   Impacts:
   - {fileID: 8300000, guid: 6c4cb0d9b484065469606431acecaf73, type: 3}
