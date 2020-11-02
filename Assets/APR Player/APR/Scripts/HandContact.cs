@@ -7,8 +7,6 @@ public class HandContact : MonoBehaviour
 {
     public APRController APR_Player;
     public ParticleSystem PunchParticle;
-    public GameObject Root;
-    private float MouseYAxisBody;
 
     //Is left or right hand
     public bool Left;
@@ -80,11 +78,6 @@ public class HandContact : MonoBehaviour
                 }
             }
 
-        }
-
-        if (hasJoint)
-        {
-            RootMove();
         }
     }
 
@@ -225,23 +218,4 @@ public class HandContact : MonoBehaviour
         
     }
 
-    void RootMove()
-    {
-        if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
-        {
-                MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / 25f);
-        }
-        if (MouseYAxisBody > 0.9f)
-        {
-            MouseYAxisBody = 0.9f;
-        }
-
-        else if (MouseYAxisBody < -0.9f)
-        {
-            MouseYAxisBody = -0.9f;
-        }
-        //Root.transform.localPosition = new Vector3( Root.transform.localPosition.x, Root.transform.localPosition.y + MouseYAxisBody, Root.transform.localPosition.z);
-        //Root.transform.localPosition = new Vector3(Root.transform.localPosition.x, MouseYAxisBody, Root.transform.localPosition.z);
-        //Root.transform.position.y = Root.transform.localPosition.y + MouseYAxisBody;
-    }
 }
