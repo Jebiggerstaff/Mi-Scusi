@@ -8,6 +8,10 @@ public class SitDownAI : NewAIMan
     {
         base.Start();
         GetComponentInChildren<Animator>().SetBool("Sitting", true);
+        foreach(var c in GetComponentsInChildren<Collider>())
+        {
+            Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>());
+        }
     }
 
     public override void Update()
@@ -37,6 +41,9 @@ public class SitDownAI : NewAIMan
             }
             GetComponentInChildren<Animator>().SetBool("Sitting", true);
 
+            
+
+
         }
 
         
@@ -60,6 +67,11 @@ public class SitDownAI : NewAIMan
                 }
                 GetComponentInChildren<Animator>().SetBool("Sitting", false);
                 agent.enabled = true;
+                foreach (var c in GetComponentsInChildren<Collider>())
+                {
+                    Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>(), false);
+                }
+
             }
         }
     }
