@@ -10,6 +10,7 @@ public class HandContact : MonoBehaviour
 
     //Is left or right hand
     public bool Left;
+
     
     //Have joint/grabbed
 	public bool hasJoint;
@@ -30,6 +31,7 @@ public class HandContact : MonoBehaviour
             TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
         if (SceneManager.GetActiveScene().name == "Italy")
             ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
+        
     }
 
     void Update()
@@ -50,7 +52,7 @@ public class HandContact : MonoBehaviour
                         ai.grabbedByPlayer = false;
                     }
                     grabbedAI.Clear();
-
+                    APR_Player.leftGrab = false;
                 }
 
                 if(hasJoint && this.gameObject.GetComponent<FixedJoint>() == null)
@@ -73,7 +75,7 @@ public class HandContact : MonoBehaviour
                         ai.grabbedByPlayer = false;
                     }
                     grabbedAI.Clear();
-
+                    APR_Player.rightGrab = false;
                 }
 
                 if(hasJoint && this.gameObject.GetComponent<FixedJoint>() == null)
@@ -83,6 +85,11 @@ public class HandContact : MonoBehaviour
             }
 
         }
+        if(APR_Player.leftGrab == true || APR_Player.rightGrab == true)
+        {
+            APR_Player.isgrabbing = true;
+        }
+        else { APR_Player.isgrabbing = false; }
     }
 
     //Grab on collision when input is used
@@ -93,96 +100,90 @@ public class HandContact : MonoBehaviour
             //Left Hand
             if (Left)
             {
-                PunchParticle.Play();
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                        
-                        
-                        if (col.gameObject.GetComponent<NewAIMan>() != null)
+                    PunchParticle.Play();
+                    if (col.gameObject.GetComponent<NewAIMan>() != null)
+                    {
+                        if (APR_Player.punchingLeft)
                         {
-                            if (APR_Player.punchingLeft)
+                            col.gameObject.GetComponent<NewAIMan>().stun(10f);
+                            //Tutorial Punch Task
+                            if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false){
+                                TutorialTaskManager.TaskCompleted("PunchAGuy");
+                                TutorialTaskManager.Punched = true;
+                            }
+                            //Mafia Punch Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name =="MafiaMember")
                             {
-                                col.gameObject.GetComponent<NewAIMan>().stun(10f);
-                                //Tutorial Punch Task
-                                if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false){
-                                    TutorialTaskManager.TaskCompleted("PunchAGuy");
-                                    TutorialTaskManager.Punched = true;
-                                }
-                                //Mafia Punch Task
-                                if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name =="MafiaMember")
-                                {
-                                    ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
-                                    ItalyTaskManager.PunchedMafia = true;
-                                }
-                                //Angry Customer Punch Task
-                                if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedCustomer == false && col.gameObject.name == "AngryCustomer")
-                                {
-                                    ItalyTaskManager.TaskCompleted("KnockoutAngryCustomer");
-                                    ItalyTaskManager.PunchedCustomer = true;
-                                }
+                                ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
+                                ItalyTaskManager.PunchedMafia = true;
                             }
-                        }
-
-
-                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
-                            //Eat At Cafe Task
-                            if (SceneManager.GetActiveScene().name == "NewYork"&& col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
-                                NewYorkTaskManager.TaskCompleted("EatAtCafe");
-                                NewYorkTaskManager.AteAtCafe = true;
-                            }
-                            //Eat Spaghetti Task
-                            if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                            //Angry Customer Punch Task
+                            if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedCustomer == false && col.gameObject.name == "AngryCustomer")
                             {
-                                ItalyTaskManager.TaskCompleted("EatSpaghetti");
-                                ItalyTaskManager.AteSpaghetti = true;
+                                ItalyTaskManager.TaskCompleted("KnockoutAngryCustomer");
+                                ItalyTaskManager.PunchedCustomer = true;
                             }
-                            //Grab Something Task
-                            if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Pickedup == false)
-                            {
-                                TutorialTaskManager.TaskCompleted("GrabSomething");
-                                TutorialTaskManager.Pickedup = true;
-                            }
-                            //Steal 5 doucments Task
-                            if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
-                            {
-                                ItalyTaskManager.DocumentsCollected++;
-                                if (ItalyTaskManager.DocumentsCollected == 5)
-                                {
-                                    ItalyTaskManager.TaskCompleted("Collect5documents");
-                                }
-                                Destroy(col.gameObject);
-                            }
-
-                        hasJoint = true;
-                            this.gameObject.AddComponent<FixedJoint>();
-                            this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
-                            this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
-
-
-                            if (col.gameObject.GetComponent<NewAIMan>() != null)
-                            {
-                                col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
-
-
-                                if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
-                                    grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
-
-                            }
-
-
                         }
                     }
 
+
+                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
+                        //Eat At Cafe Task
+                        if (SceneManager.GetActiveScene().name == "NewYork"&& col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
+                            NewYorkTaskManager.TaskCompleted("EatAtCafe");
+                            NewYorkTaskManager.AteAtCafe = true;
+                        }
+                        //Eat Spaghetti Task
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                        {
+                            ItalyTaskManager.TaskCompleted("EatSpaghetti");
+                            ItalyTaskManager.AteSpaghetti = true;
+                        }
+                        //Grab Something Task
+                        if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Pickedup == false)
+                        {
+                            TutorialTaskManager.TaskCompleted("GrabSomething");
+                            TutorialTaskManager.Pickedup = true;
+                        }
+                        //Steal 5 doucments Task
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
+                        {
+                            ItalyTaskManager.DocumentsCollected++;
+                            if (ItalyTaskManager.DocumentsCollected == 5)
+                            {
+                                ItalyTaskManager.TaskCompleted("Collect5documents");
+                            }
+                            Destroy(col.gameObject);
+                        }
+                        hasJoint = true;
+                        APR_Player.leftGrab = true;
+                        this.gameObject.AddComponent<FixedJoint>();
+                        this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
+                        this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
+
+                        if (col.gameObject.GetComponent<NewAIMan>() != null)
+                        {
+                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+
+
+                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
+                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
+
+                        }
+
+
+                    }
                 }
+            }
 
             //Right Hand
             if (!Left)
             {
-                PunchParticle.Play();
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    
-
+                    PunchParticle.Play();
                     if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
                         if (APR_Player.punchingRight)
@@ -241,6 +242,7 @@ public class HandContact : MonoBehaviour
                         }
 
                         hasJoint = true;
+                        APR_Player.rightGrab = true;
                         this.gameObject.AddComponent<FixedJoint>();
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                         this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();

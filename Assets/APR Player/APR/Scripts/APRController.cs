@@ -5,12 +5,12 @@ using System.Linq;
 public class APRController : MonoBehaviour
 {
 
-    //Active Ragdoll Player parts
+    //particles
     public ParticleSystem JumpParticle;
     public ParticleSystem HitParticle;
 
+    //Active Ragdoll Player parts
     public GameObject
-
     //
     Root, Body, Head,
 	UpperRightArm, LowerRightArm,
@@ -65,6 +65,9 @@ public class APRController : MonoBehaviour
     public float balanceStrength = 5000f;
     public float coreStrength = 1500f;
     public float limbStrength = 500f;
+    private bool spinefix = false;
+    public float spineTimer;
+
     //Walking
 	public float StepDuration = 0.2f;
 	public float StepHeight = 1.7f;
@@ -74,6 +77,8 @@ public class APRController : MonoBehaviour
     //Reach
     public float reachSensitivity = 25f;
     public float armReachStiffness = 2000f;
+    public bool leftGrab = false, rightGrab = false;
+    public bool isgrabbing = false;
     
     [Header("Actions")]
     //Punch
@@ -103,13 +108,14 @@ public class APRController : MonoBehaviour
     public float KnockoutTime;
     bool knockedOut;
 
-    
+
 
 
     //Hidden variables
-    private float 
+    private float
     timer, Step_R_timer, Step_L_timer,
-    MouseYAxisArms, MouseXAxisArms, MouseYAxisBody;
+    MouseYAxisArms, MouseXAxisArms; 
+        public float MouseYAxisBody;
     
 	private bool 
     WalkForward, WalkBackward,
@@ -137,7 +143,8 @@ public class APRController : MonoBehaviour
 	BalanceOn, PoseOn, CoreStiffness, ReachStiffness, DriveOff;
 
     //Original pose target rotation
-    Quaternion
+    [HideInInspector]
+    public Quaternion
     //
     HeadTarget, BodyTarget,
     UpperRightArmTarget, LowerRightArmTarget,
@@ -531,8 +538,10 @@ public class APRController : MonoBehaviour
                 }
 
         }
-        if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut)
+        //reseting the legs when you sto pmoving
+        if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut )
         {
+            
             //reset to idle LEFT
             APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
             APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
@@ -548,10 +557,33 @@ public class APRController : MonoBehaviour
             //feet force down
             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            
         }
+        //Reseting the spine after 10 seconds
         if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut && !usingController && !reachLeftAxisUsed && !reachRightAxisUsed)
         {
-            MouseYAxisBody = 0;
+            if (spineTimer <= 0)
+            {
+                spineTimer = 10;
+                spinefix = false;
+            }
+            else
+            {
+                spineTimer -= Time.deltaTime;
+                if (spineTimer <= 0)
+                {
+                    spinefix = true;
+                }
+            }
+
+            if (spinefix)
+            {
+                MouseYAxisBody = 0;
+            }
+        }
+        else
+        {
+            spineTimer = 10;
         }
     }
 
@@ -562,7 +594,7 @@ public class APRController : MonoBehaviour
     {
         if (!inAir)
         {
-            if (usingController)
+            if (usingController && !isgrabbing)
             {
                 if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
                 {
@@ -571,7 +603,7 @@ public class APRController : MonoBehaviour
                     APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
                 }
             }
-            if (!usingController)
+            if (!usingController && !isgrabbing)
             {
                 if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
                 {
@@ -963,8 +995,6 @@ public class APRController : MonoBehaviour
         currentHP = 1;
         DeactivateRagdoll();
         StartHPRegen();
-
-
     }
 
     private void StartHPRegen()
@@ -1160,7 +1190,6 @@ public class APRController : MonoBehaviour
              APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse); */
         }
     }
-    
     
     
     //---Activate Ragdoll---//
