@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 1460707160901678832}
   - component: {fileID: 2588060127020382549}
   - component: {fileID: 292265243893435807}
-  - component: {fileID: 664415026370849400}
+  - component: {fileID: 8650710909430283136}
+  - component: {fileID: 7272689557200921136}
+  - component: {fileID: 6657018511197875118}
   m_Layer: 14
   m_Name: ParkBench
   m_TagString: CanBeGrabbed
@@ -84,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &664415026370849400
-MeshCollider:
+--- !u!65 &8650710909430283136
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,7 +96,32 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: bd6991c0cf36fd54c843abc64d60dddb, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 10.018129, y: 5.6595926, z: 3.1552203}
+  m_Center: {x: 0.06264921, y: -0.01598565, z: -0.15023018}
+--- !u!65 &7272689557200921136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237912710922218570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.018129, y: 4.2654114, z: 1.9897764}
+  m_Center: {x: 0.06264921, y: 4.1036944, z: -0.7329534}
+--- !u!65 &6657018511197875118
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237912710922218570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.018129, y: 3.308657, z: 2.026014}
+  m_Center: {x: 0.06264921, y: -4.2516313, z: -0.7148334}
