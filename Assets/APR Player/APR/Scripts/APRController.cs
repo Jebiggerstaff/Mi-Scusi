@@ -79,6 +79,7 @@ public class APRController : MonoBehaviour
     public float armReachStiffness = 2000f;
     public bool leftGrab = false, rightGrab = false;
     public bool isgrabbing = false;
+    public bool cantgrabmmove = false;
     
     [Header("Actions")]
     //Punch
@@ -492,7 +493,6 @@ public class APRController : MonoBehaviour
             if(!isKeyDown)
 			{
 				WalkForward = false;
-               
             }
         }
 	}
@@ -529,7 +529,7 @@ public class APRController : MonoBehaviour
 
                 if (Input.GetAxisRaw(leftRight) != 0 || Input.GetAxisRaw(forwardBackward) != 0 && balanced)
                 {
-                    if (!WalkForward && !moveAxisUsed)
+                    if (!WalkForward && !moveAxisUsed && !isgrabbing)
                     {
                         WalkForward = true;
                         moveAxisUsed = true;
@@ -538,7 +538,7 @@ public class APRController : MonoBehaviour
                 }
 
         }
-        //reseting the legs when you sto pmoving
+        //reseting the legs when you stop moving
         if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut )
         {
             
@@ -594,7 +594,8 @@ public class APRController : MonoBehaviour
     {
         if (!inAir)
         {
-            if (usingController && !isgrabbing)
+            //keyboard movement
+            if (usingController && !cantgrabmmove)
             {
                 if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
                 {
@@ -603,7 +604,9 @@ public class APRController : MonoBehaviour
                     APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
                 }
             }
-            if (!usingController && !isgrabbing)
+
+            //controller movement
+            if (!usingController && !cantgrabmmove)
             {
                 if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
                 {
@@ -612,6 +615,7 @@ public class APRController : MonoBehaviour
                     APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
                 }
             }
+
         }
     }
     

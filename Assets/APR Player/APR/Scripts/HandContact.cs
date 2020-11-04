@@ -89,7 +89,7 @@ public class HandContact : MonoBehaviour
         {
             APR_Player.isgrabbing = true;
         }
-        else { APR_Player.isgrabbing = false; }
+        else { APR_Player.isgrabbing = false; APR_Player.cantgrabmmove = false; APR_Player.cantgrabmmove = false; }
     }
 
     //Grab on collision when input is used
@@ -172,7 +172,15 @@ public class HandContact : MonoBehaviour
                                 grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
 
                         }
-
+                        //too check for grab constraints
+                        if(col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
+                        {
+                            APR_Player.cantgrabmmove = true;
+                        }
+                        if (!col.gameObject.GetComponent<Rigidbody>())
+                        {
+                            APR_Player.cantgrabmmove = true;
+                        }
 
                     }
                 }
@@ -255,6 +263,15 @@ public class HandContact : MonoBehaviour
                             if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
                                 grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
 
+                        }
+                        //too check for grab constraints
+                        if (col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
+                        {
+                            APR_Player.cantgrabmmove = true;
+                        }
+                        if (!col.gameObject.GetComponent<Rigidbody>())
+                        {
+                            APR_Player.cantgrabmmove = true;
                         }
                     }
                 }
