@@ -42,14 +42,13 @@ GameObject:
   - component: {fileID: 5359267096428534536}
   - component: {fileID: 5359267096428534537}
   - component: {fileID: 5359267096428534542}
-  - component: {fileID: 5359267096428534543}
   m_Layer: 11
   m_Name: APR_Root (1)
   m_TagString: CanBeGrabbed
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5359267096428534540
 Transform:
   m_ObjectHideFlags: 0
@@ -126,25 +125,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.209467, y: 1.2620435, z: 10.299596}
   m_Center: {x: 0.9868583, y: 9.286283, z: 2.722307}
---- !u!114 &5359267096428534543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5359267096428534541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178c1518953ad1e4bbc6047f4f12d5a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatBackGround: {fileID: 0}
-  NPCCharacter: {fileID: 8519918771183664835}
-  Name: Cop
-  sentences:
-  - im a cop
-  - this is test dialouge
-  - does this work?
 --- !u!1 &8519918771183664980
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8519918771183664980}
-  m_LocalRotation: {x: -0, y: 0.817861, z: -0, w: 0.57541585}
+  m_LocalRotation: {x: 0, y: 0.8178586, z: 0, w: 0.57541937}
   m_LocalPosition: {x: -0.6766739, y: 3.5720825, z: -19.607422}
   m_LocalScale: {x: 1.6331531, y: 1.6331531, z: 1.6331531}
   m_Children:
@@ -404,7 +384,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000004376526, y: -0.54445434, z: 0.0000065517556}
+  m_ConnectedAnchor: {x: -0.00000020840551, y: -0.5444481, z: 0.000020592037}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -502,8 +482,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   APR_Player: {fileID: 1793212915094385033, guid: d5fb31c788f71db438ed61b1ce6f9868,
     type: 3}
+  PunchParticle: {fileID: 0}
   Left: 0
   hasJoint: 0
+  grabbedAI: []
 --- !u!1 &8519918771183664983
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +611,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000037105326, y: 0.5316134, z: 0.000014911194}
+  m_ConnectedAnchor: {x: 0.00000009514236, y: 0.5316353, z: 0.000017007122}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -727,8 +709,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   APR_Player: {fileID: 1793212915094385033, guid: d5fb31c788f71db438ed61b1ce6f9868,
     type: 3}
+  PunchParticle: {fileID: 0}
   Left: 1
   hasJoint: 0
+  grabbedAI: []
 --- !u!1 &8519918771183664986
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +839,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009303218, y: -0.5626012, z: 0.18178457}
+  m_ConnectedAnchor: {x: 0.009274331, y: -0.56260747, z: 0.18175414}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1078,7 +1062,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00008800741, y: -0.53921133, z: 0.00003789325}
+  m_ConnectedAnchor: {x: 0.000012324888, y: -0.5392223, z: 0.000014559396}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1288,7 +1272,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009329642, y: -0.5626012, z: 0.18177745}
+  m_ConnectedAnchor: {x: 0.009320273, y: -0.562609, z: 0.18179256}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1510,7 +1494,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000028581957, y: -0.53921133, z: 0.0000066671278}
+  m_ConnectedAnchor: {x: 0.0000021767714, y: -0.5392223, z: -0.000018153092}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1718,7 +1702,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.1050802, y: 0.06580939, z: -0.021091146}
+  m_ConnectedAnchor: {x: -1.1051522, y: 0.06582736, z: -0.021103546}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1926,7 +1910,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000043765226, y: 0.5412916, z: 0.000039241073}
+  m_ConnectedAnchor: {x: -0.0000005708499, y: 0.541333, z: 0.000014517669}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2134,7 +2118,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.0769706, y: 0.06580939, z: -0.021110272}
+  m_ConnectedAnchor: {x: 1.0769466, y: 0.06582736, z: -0.021125473}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2342,7 +2326,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000004376524, y: -0.54847234, z: 0.000020979935}
+  m_ConnectedAnchor: {x: -0.00000020840655, y: -0.54844964, z: -0.000009208777}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2550,7 +2534,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5638075, y: 0.35089263, z: -0.3036702}
+  m_ConnectedAnchor: {x: -0.56378764, y: 0.35089374, z: -0.3036742}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2760,7 +2744,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.57757187, z: 0}
+  m_ConnectedAnchor: {x: 0.00000010251992, y: 0.5775642, z: -0.000008848205}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3078,7 +3062,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.57403475, y: 0.35089263, z: -0.23273188}
+  m_ConnectedAnchor: {x: 0.57405376, y: 0.35089374, z: -0.23273379}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3177,6 +3161,7 @@ GameObject:
   - component: {fileID: 8519918771183664781}
   - component: {fileID: 8519918771183664831}
   - component: {fileID: 5359267097332516769}
+  - component: {fileID: 1977420333}
   m_Layer: 11
   m_Name: APR_Root
   m_TagString: CanBeGrabbed
@@ -3288,7 +3273,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 73.0423, y: 293.51257, z: 1133.3656}
+  m_ConnectedAnchor: {x: 288.80054, y: 25.214634, z: 38.579853}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -3386,11 +3371,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatBackGround: {fileID: 0}
   NPCCharacter: {fileID: 8519918771183664835}
-  Name: Cop
+  Name: Tutorial Guy
   sentences:
-  - im a cop
-  - this is test dialouge
-  - does this work?
+  - Hey, you. You're finally awake. Press F to move on with Dialogue. Hold F to speed
+    it up.
+  - "You were trying to get to your job\r right? Walked right into that trap, same
+    as us. "
+  - I don't know where you'll be going with that hangover, but madness awaits.
+--- !u!65 &1977420333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519918771183664998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.209467, y: 1.2620435, z: 10.299596}
+  m_Center: {x: 0.9868583, y: 9.286283, z: 2.722307}
 --- !u!1 &8519918771183664999
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,7 +3515,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.644682, z: -0.015355895}
+  m_ConnectedAnchor: {x: 0.00000020130747, y: 0.6446963, z: -0.015369542}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
