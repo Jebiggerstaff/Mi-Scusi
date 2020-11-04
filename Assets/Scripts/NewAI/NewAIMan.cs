@@ -40,12 +40,14 @@ public class NewAIMan : MonoBehaviour
         if(grabbedByPlayer)
         {
             agent.enabled = false;
+            rb.isKinematic = false;
         }
         else
         {
             if(agent.enabled == false && stunCount <= 0)
             {
                 agent.enabled = true;
+                rb.isKinematic = true;
                 if (agent.isOnNavMesh)
                 {
 
@@ -63,6 +65,7 @@ public class NewAIMan : MonoBehaviour
         if(needToUpdateDestination)
         {
             agent.enabled = true;
+            rb.isKinematic = true;
             if (agent.isOnNavMesh)
             {
                 agent.SetDestination(currentDestination);
@@ -71,6 +74,7 @@ public class NewAIMan : MonoBehaviour
             else
             {
                 agent.enabled = false;
+                rb.isKinematic = false;
             }
         }
 
@@ -81,6 +85,7 @@ public class NewAIMan : MonoBehaviour
                 stunCount = 30;
             }
             agent.enabled = false;
+            rb.isKinematic = false;
             stunCount -= Time.deltaTime;
 
 
@@ -180,13 +185,20 @@ public class NewAIMan : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            rb.isKinematic = false;
+        }
     }
 
 
     private void OnCollisionExit(Collision collision)
     {
-       
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            rb.isKinematic = true;
+        }
+
     }
 
 
