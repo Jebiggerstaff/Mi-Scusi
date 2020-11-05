@@ -89,7 +89,16 @@ public class HandContact : MonoBehaviour
         {
             APR_Player.isgrabbing = true;
         }
-        else { APR_Player.isgrabbing = false; APR_Player.cantgrabmmove = false; APR_Player.cantgrabmmove = false; }
+        else
+        {
+            APR_Player.isgrabbing = false;
+            APR_Player.cantgrabmmove = false;
+            APR_Player.cantgrabmmove = false;
+            if (this.gameObject.GetComponent<FixedJoint>())
+            {
+                this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
+            }
+        }
     }
 
     //Grab on collision when input is used
