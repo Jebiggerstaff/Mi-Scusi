@@ -18,6 +18,7 @@ public class AIHolder
         var newAI = UnityEngine.GameObject.Instantiate(AIMan, startLocation, Quaternion.Euler(0, 0, 0)).GetComponent<NewAIMan>();
         newAI.GetComponent<NavMeshAgent>().speed = speed;
         newAI.maxHP = hp;
+        newAI.hp = hp;
         newAI.destinations = walkLocations;
         newAI.useRandomDestinations = !orderedDestinations;
         return newAI;
