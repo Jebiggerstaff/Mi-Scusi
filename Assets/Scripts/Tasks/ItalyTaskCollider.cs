@@ -7,7 +7,7 @@ public class ItalyTaskCollider : MonoBehaviour
 {
     ItalyTaskManager ItalyTaskManager = new ItalyTaskManager();
 
-    private int CoinsMoved;
+    private int CoinsInFountain;
 
     public void Start()
     {
@@ -35,6 +35,13 @@ public class ItalyTaskCollider : MonoBehaviour
             ItalyTaskManager.TaskCompleted("FlowersToGirl");
         }
         #endregion
+        #region GetMoneyFromFountain
+        if (other.name == "Coin" && name == "FountainInterior")
+        {
+            CoinsInFountain--;
+        }
+        #endregion
+
 
     }
     private void OnTriggerExit(Collider other)
@@ -42,8 +49,8 @@ public class ItalyTaskCollider : MonoBehaviour
         #region GetMoneyFromFountain
         if (other.name == "Coin" && name == "FountainInterior")
         {
-            CoinsMoved++;
-            if (CoinsMoved == 3)
+            CoinsInFountain++;
+            if (CoinsInFountain == 0)
             {
                 ItalyTaskManager.TaskCompleted("GetMoneyFromFountain");
             }
