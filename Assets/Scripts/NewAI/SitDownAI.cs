@@ -55,7 +55,7 @@ public class SitDownAI : NewAIMan
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(sitting)
+        if(sitting && !AlwaysSit)
         {
 
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
@@ -81,5 +81,6 @@ public class SitDownAI : NewAIMan
 
     public Transform sitPlace;
     public bool sitting = true;
+    public bool AlwaysSit = false;
     
 }
