@@ -24,7 +24,7 @@ public class OfficeTaskCollider : MonoBehaviour
         //Code to talk to the Receptionist
         //probably needs to be done in the talking script
         #region CoffeeToBoss
-        if (other.name== "CoffeeMug" && name == "Boss")
+        if (other.name== "CoffeeMugBoss" && name == "Boss")
         {
             OfficeTaskManager.TaskCompleted("GetBossCoffee");
         }
