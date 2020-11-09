@@ -1232,6 +1232,7 @@ GameObject:
   - component: {fileID: 4823900468812662085}
   - component: {fileID: 5007919307763130477}
   - component: {fileID: 5424761189513197349}
+  - component: {fileID: 498008332767919910}
   m_Layer: 14
   m_Name: Floralpot2
   m_TagString: CanBeGrabbed
@@ -1309,6 +1310,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &498008332767919910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312628286924988415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollideWithWater: {fileID: 0}
+  CollideWithGround: {fileID: 0}
+  CollideWithPlayer: {fileID: 0}
+  PunchedByPlayer: {fileID: 0}
+  DraggedByPlayer: {fileID: 0}
 --- !u!1 &5341454032981206464
 GameObject:
   m_ObjectHideFlags: 0
