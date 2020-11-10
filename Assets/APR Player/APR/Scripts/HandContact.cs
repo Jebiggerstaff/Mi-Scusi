@@ -145,9 +145,10 @@ public class HandContact : MonoBehaviour
                             NewYorkTaskManager.AteAtCafe = true;
                         }
                         //Eat Spaghetti Task
-                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "SpaghettiBowl" && ItalyTaskManager.AteSpaghetti == false)
                         {
                             ItalyTaskManager.TaskCompleted("EatSpaghetti");
+                            Destroy(col.gameObject);
                             ItalyTaskManager.AteSpaghetti = true;
                         }
                         //Grab Something Task
@@ -236,10 +237,12 @@ public class HandContact : MonoBehaviour
                             NewYorkTaskManager.AteAtCafe = true;
                         }
                         //Eat Spaghetti Task
-                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Spaghetti" && ItalyTaskManager.AteSpaghetti == false)
+                        if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "SpaghettiBowl" && ItalyTaskManager.AteSpaghetti == false)
                         {
                             ItalyTaskManager.TaskCompleted("EatSpaghetti");
+                            Destroy(col.gameObject);
                             ItalyTaskManager.AteSpaghetti = true;
+
                         }
                         //Steal 5 doucments Task
                         if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")

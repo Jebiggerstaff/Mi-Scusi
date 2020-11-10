@@ -9,6 +9,7 @@ public class ItalyTaskCollider : MonoBehaviour
 
     private int CoinsInFountain;
 
+
     public void Start()
     {
         ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
@@ -54,6 +55,12 @@ public class ItalyTaskCollider : MonoBehaviour
             {
                 ItalyTaskManager.TaskCompleted("GetMoneyFromFountain");
             }
+        }
+        #endregion
+        #region StealFromStores
+        if ((other.name == "Cheese"||other.name=="Scooter"||other.name=="Apple") && name == "StoreInterior")
+        {
+            ItalyTaskManager.TaskCompleted("StealFromShop");
         }
         #endregion
     }

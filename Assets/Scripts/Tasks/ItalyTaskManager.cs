@@ -19,7 +19,7 @@ public class ItalyTaskManager : MonoBehaviour
     [HideInInspector] public bool AteSpaghetti = false;
     [HideInInspector] public int DocumentsCollected = 0;
 
-
+    private bool[] TaskFinished = new bool[10];
 
     public void Start()
     {
@@ -27,6 +27,11 @@ public class ItalyTaskManager : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
         Player = GameObject.Find("FinalPlayer");
         //Debug.Log("Found Player: " + Player);
+
+        for (int i = 0; i < 10; i++)
+        {
+            TaskFinished[i] = false;
+        }
 
     }
 
@@ -43,38 +48,88 @@ public class ItalyTaskManager : MonoBehaviour
 
     public void TaskCompleted(string Task)
     {
-        TaskCompleteText.SetActive(true);
+        
         switch (Task)
         {
             case "HearAboutMafia":
-                Tasks[0].SetActive(true);
+                if (TaskFinished[0] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[0].SetActive(true);
+                    TaskFinished[0] = true;
+                }
                 break;
             case "BeatUpMafiaMembers":
-                Tasks[1].SetActive(true);
+                if (TaskFinished[1] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[1].SetActive(true);
+                    TaskFinished[1] = true;
+                }
                 break;
             case "InfiltrateMafiaHQ":
-                Tasks[2].SetActive(true);
+                if (TaskFinished[2] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[2].SetActive(true);
+                    TaskFinished[2] = true;
+                }
                 break;
             case "Collect5documents":
-                Tasks[3].SetActive(true);
+                if (TaskFinished[3] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[3].SetActive(true);
+                    TaskFinished[3] = true;
+                }
                 break;
             case "KnockFishermanIntoWater":
-                Tasks[4].SetActive(true);
+                if (TaskFinished[4] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[4].SetActive(true);
+                    TaskFinished[4] = true;
+                }
                 break;
             case "FlowersToGirl":
-                Tasks[5].SetActive(true);
+                if (TaskFinished[5] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[5].SetActive(true);
+                    TaskFinished[5] = true;
+                }
                 break;
             case "EatSpaghetti":
-                Tasks[6].SetActive(true);
+                if (TaskFinished[6] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[6].SetActive(true);
+                    TaskFinished[6] = true;
+                }
                 break;
             case "StealFromShop":
-                Tasks[7].SetActive(true);
+                if (TaskFinished[7] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[7].SetActive(true);
+                    TaskFinished[7] = true;
+                }
                 break;
             case "GetMoneyFromFountain":
-                Tasks[8].SetActive(true);
+                if (TaskFinished[8] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[8].SetActive(true);
+                    TaskFinished[8] = true;
+                }
                 break;
             case "KnockoutAngryCustomer":
-                Tasks[9].SetActive(true);
+                if (TaskFinished[9] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[9].SetActive(true);
+                    TaskFinished[9] = true;
+                }
                 break;
         }
     }
