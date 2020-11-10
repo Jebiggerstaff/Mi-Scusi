@@ -9,6 +9,8 @@ public class AIManager : MonoBehaviour
     {
         CreateAllAI();
         player = FindObjectOfType<APRController>().Root.transform;
+
+        Debug.Log("Number mesh COlliders: " + FindObjectsOfType<MeshCollider>().Length);
     }
 
     // Update is called once per frame
