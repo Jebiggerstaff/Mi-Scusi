@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 890535629268616079}
   - component: {fileID: 732506978511079664}
   - component: {fileID: 4012992263362773290}
-  - component: {fileID: 8451625905658808807}
   - component: {fileID: 2007139872910162757}
   - component: {fileID: 7725403651607097885}
+  - component: {fileID: 3918237618325294315}
+  - component: {fileID: 8104929176487899596}
   m_Layer: 14
   m_Name: Chair
   m_TagString: CanBeGrabbed
@@ -115,20 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8451625905658808807
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838074678185196780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -582534460245602750, guid: 29b0825b6d836d84e8ff9b679590231b, type: 3}
 --- !u!54 &2007139872910162757
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,3 +148,29 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.003, y: -8.173, z: -6.0420003}
   m_TimeToStationary: 0.5
+--- !u!65 &3918237618325294315
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838074678185196780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 45.43537, y: 43.883186, z: 42.71366}
+  m_Center: {x: -0.000040443487, y: -13.773194, z: -31.083998}
+--- !u!65 &8104929176487899596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838074678185196780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 45.43537, y: 14.876931, z: 44.32237}
+  m_Center: {x: -0.000040153893, y: 12.078705, z: 18.197002}

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8909882846639970134}
   - component: {fileID: 503635153799441760}
   - component: {fileID: 6179445470370632089}
-  - component: {fileID: 8104406229230864623}
   - component: {fileID: 2133939649413051651}
   - component: {fileID: 7037321396009967678}
+  - component: {fileID: 9041744409046849142}
   m_Layer: 14
   m_Name: wheel
   m_TagString: CanBeGrabbed
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8104406229230864623
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5619677489464124741}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6296406880743504499, guid: 86bb91eeeb2b10e468312a753b76d41a, type: 3}
 --- !u!54 &2133939649413051651
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,3 +117,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.030000001}
   m_TimeToStationary: 0.5
+--- !u!65 &9041744409046849142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619677489464124741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023888998, y: 0.06167233, z: 0.061609626}
+  m_Center: {x: -0.000050448252, y: -0.00038594866, z: 0.029522337}
