@@ -16,11 +16,12 @@ public class SoundOnCollision : MonoBehaviour
     {
         OnTriggerEnter(collision.collider);
     }
+    /*
     private void OnCollisionStay(Collision collision)
     {
         OnTriggerStay(collision.collider);
     }
-
+    */
 
 
     private void OnTriggerEnter(Collider other)
@@ -46,6 +47,7 @@ public class SoundOnCollision : MonoBehaviour
         
 
     }
+    /*
     private void OnTriggerStay(Collider other)
     {
         if ((other.tag == "Ground" || other.gameObject.layer == LayerMask.NameToLayer("Ground")))
@@ -69,6 +71,7 @@ public class SoundOnCollision : MonoBehaviour
             }
         }
     }
+    */
 
 
     void tryPlayAudio(AudioSource source)

@@ -174,7 +174,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6e375577d852c3b4d87a8b1a95b6fafa, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -385,7 +385,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!54 &4575674925354774173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -424,6 +424,7 @@ MonoBehaviour:
   maxHP: 3
   hp: 3
   quipped: 0
+  offByDistance: 0
   moveTowardsPlayerOnAggro: 1
   chaseDuration: 5
   maximumAllowedAggroTime: 30

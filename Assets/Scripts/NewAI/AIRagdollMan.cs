@@ -98,6 +98,7 @@ public class AIRagdollMan : MonoBehaviour
     void Awake()
     {
         PlayerSetup();
+        ActivateRagdoll();
     }
 
     
@@ -107,8 +108,7 @@ public class AIRagdollMan : MonoBehaviour
     {
 
         //GroundCheck();
-        ActivateRagdoll();
-        CenterOfMass();
+        //CenterOfMass();
 
 
     }

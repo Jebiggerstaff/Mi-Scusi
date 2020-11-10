@@ -8,13 +8,104 @@ public class AIManager : MonoBehaviour
     void Start()
     {
         CreateAllAI();
+        player = FindObjectOfType<APRController>().Root.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        DistanceCheck();
     }
+
+    void DistanceCheck()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<APRController>().Root.transform;
+
+        }
+        else
+        {
+            Debug.DrawRay(player.position, new Vector3(turnOffDistance, 0, 0), Color.red, Time.deltaTime * 1.1f);
+
+            foreach (var a in people)
+            {
+                if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                {
+                    a.offByDistance = true;
+                    a.agent.enabled = false;
+                }
+                else if (a.offByDistance)
+                {
+                    a.agent.enabled = true;
+                    a.offByDistance = false;
+                }
+            }
+            foreach (var a in crowds)
+            {
+                if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                {
+                    a.offByDistance = true;
+                    a.agent.enabled = false;
+                    foreach(var ld in a.AIMen)
+                    {
+                        ld.offByDistance = true;
+                        ld.agent.enabled = false;
+                    }
+                }
+                else if (a.offByDistance)
+                {
+                    a.agent.enabled = true;
+                    a.offByDistance = false;
+                    foreach (var ld in a.AIMen)
+                    {
+                        ld.offByDistance = false;
+                        ld.agent.enabled = true ;
+                    }
+                }
+            }
+            foreach (var a in stillPeople)
+            {
+                if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                {
+                    a.offByDistance = true;
+                    a.agent.enabled = false;
+                }
+                else if (a.offByDistance)
+                {
+                    a.agent.enabled = true;
+                    a.offByDistance = false;
+                }
+            }
+            foreach (var a in hostilePeople)
+            {
+                if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                {
+                    a.offByDistance = true;
+                    a.agent.enabled = false;
+                }
+                else if (a.offByDistance)
+                {
+                    a.agent.enabled = true;
+                    a.offByDistance = false;
+                }
+            }
+            foreach (var a in sitdownPeople)
+            {
+                if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                {
+                    a.offByDistance = true;
+                    a.agent.enabled = false;
+                }
+                else if (a.offByDistance)
+                {
+                    a.agent.enabled = true;
+                    a.offByDistance = false;
+                }
+            }
+        }
+    }
+
 
     void CreateAllAI()
     {
@@ -39,6 +130,8 @@ public class AIManager : MonoBehaviour
             sitdownPeople.Add(sd.MakeAI(sitDownAI) as SitDownAI);
         }
     }
+
+
 
 
 
@@ -74,5 +167,8 @@ public class AIManager : MonoBehaviour
     public GameObject hostileAI;
     public GameObject sitDownAI;
 
+    [Header("Unity Information")]
+    public Transform player;
+    public float turnOffDistance = 50;
 
 }

@@ -17,33 +17,36 @@ public class HostileAI : NewAIMan
     {
         base.Update();
 
-
-        if(isAggrod)
+        if(!offByDistance)
         {
-            if(moveTowardsPlayerOnAggro)
-            {
-                SetNewDestination(player.position);
-            }
-            if(Vector3.Distance(transform.position, player.position) <= punchRange)
-            {
-                tryPunch();
-            }
 
-            aggroTime -= Time.deltaTime;
-            currentMaximumAllowedAggroTime -= Time.deltaTime;
-
-            if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0 || FindObjectOfType<APRController>().currentHP <= 0 || hp <= 0)
+            if (isAggrod)
             {
                 if (moveTowardsPlayerOnAggro)
                 {
-                    forceNewDest();
+                    SetNewDestination(player.position);
                 }
-                isAggrod = false;
+                if (Vector3.Distance(transform.position, player.position) <= punchRange)
+                {
+                    tryPunch();
+                }
 
+                aggroTime -= Time.deltaTime;
+                currentMaximumAllowedAggroTime -= Time.deltaTime;
+
+                if (aggroTime <= 0 || currentMaximumAllowedAggroTime <= 0 || FindObjectOfType<APRController>().currentHP <= 0 || hp <= 0)
+                {
+                    if (moveTowardsPlayerOnAggro)
+                    {
+                        forceNewDest();
+                    }
+                    isAggrod = false;
+
+                }
             }
+            currentPunchCD -= Time.deltaTime;
+
         }
-        currentPunchCD -= Time.deltaTime;
-        
 
     }
 

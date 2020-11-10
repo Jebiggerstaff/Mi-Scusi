@@ -34,86 +34,90 @@ public class NewAIMan : MonoBehaviour
     public virtual void Update()
     {
 
-
-        getnewDest();
-
-        if(grabbedByPlayer)
+        if(!offByDistance)
         {
-            agent.enabled = false;
-            rb.isKinematic = false;
-        }
-        else
-        {
-            if(agent.enabled == false && stunCount <= 0)
+
+            getnewDest();
+
+            if (grabbedByPlayer)
+            {
+                agent.enabled = false;
+                rb.isKinematic = false;
+            }
+            else
+            {
+                if (agent.enabled == false && stunCount <= 0)
+                {
+                    agent.enabled = true;
+                    rb.isKinematic = true;
+                    if (agent.isOnNavMesh)
+                    {
+
+                        agent.SetDestination(currentDestination);
+
+                    }
+                    else
+                    {
+                        needToUpdateDestination = true;
+                    }
+                }
+
+            }
+
+            if (needToUpdateDestination)
             {
                 agent.enabled = true;
                 rb.isKinematic = true;
                 if (agent.isOnNavMesh)
                 {
-
                     agent.SetDestination(currentDestination);
-
+                    needToUpdateDestination = false;
                 }
                 else
                 {
-                    needToUpdateDestination = true;
+                    agent.enabled = false;
+                    rb.isKinematic = false;
                 }
             }
-            
-        }
 
-        if(needToUpdateDestination)
-        {
-            agent.enabled = true;
-            rb.isKinematic = true;
-            if (agent.isOnNavMesh)
+            if (stunCount > 0)
             {
-                agent.SetDestination(currentDestination);
-                needToUpdateDestination = false;
-            }
-            else
-            {
+                if (stunCount > 30)
+                {
+                    stunCount = 30;
+                }
                 agent.enabled = false;
                 rb.isKinematic = false;
-            }
-        }
-
-        if(stunCount > 0)
-        {
-            if(stunCount > 30)
-            {
-                stunCount = 30;
-            }
-            agent.enabled = false;
-            rb.isKinematic = false;
-            stunCount -= Time.deltaTime;
+                stunCount -= Time.deltaTime;
 
 
-            if (GetComponentInChildren<Animator>() != null)
-                GetComponentInChildren<Animator>().SetBool("Stunned", true);
-
-
-            if (stunCount <= 0)
-            {
-                hp = maxHP;
                 if (GetComponentInChildren<Animator>() != null)
-                    GetComponentInChildren<Animator>().SetBool("Stunned", false);
-            }
-        }
+                    GetComponentInChildren<Animator>().SetBool("Stunned", true);
 
-        if(quipped)
-        {
-            quipTime -= Time.deltaTime;
-            if(quipTime <= 0)
+
+                if (stunCount <= 0)
+                {
+                    hp = maxHP;
+                    if (GetComponentInChildren<Animator>() != null)
+                        GetComponentInChildren<Animator>().SetBool("Stunned", false);
+                }
+            }
+
+            if (quipped)
             {
-                quipped = false;
-                agent.speed = baseSpeed;
+                quipTime -= Time.deltaTime;
+                if (quipTime <= 0)
+                {
+                    quipped = false;
+                    agent.speed = baseSpeed;
+                }
+
             }
 
+
+            GetComponentInChildren<Animator>().speed = agent.speed / 3;
+
         }
-
-
-        GetComponentInChildren<Animator>().speed = agent.speed / 3;
 
     }
 
@@ -301,4 +305,6 @@ public class NewAIMan : MonoBehaviour
 
     float baseSpeed;
     float baseAcceleration;
+    [HideInInspector]
+    public bool offByDistance = false;
 }
