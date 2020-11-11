@@ -8,7 +8,6 @@ public class StayStillAIMan : NewAIMan
     {
         base.Start();
         minimumStopDistance = 3.5f;
-        anim = GetComponentInChildren<Animator>();
     }
     public override void Update()
     {
@@ -20,21 +19,18 @@ public class StayStillAIMan : NewAIMan
 
             if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
             {
-                Debug.Log("Standing");
 
                 if (anim != null)
                     anim.SetBool("Running", false);
             }
             else
             {
-                Debug.Log("Running");
                 if (anim != null)
                     anim.SetBool("Running", true);
             }
         }
     }
-
-    Animator anim;
+    
     public Vector3 target;
 
 

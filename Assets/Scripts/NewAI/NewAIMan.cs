@@ -9,6 +9,7 @@ public class NewAIMan : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
         hp = maxHP;
         currentDest = 0;
         quipped = false;
@@ -16,12 +17,12 @@ public class NewAIMan : MonoBehaviour
         int legNum = Random.Range(1, 4);
         baseSpeed = agent.speed;
         baseAcceleration = agent.acceleration;
-        if(GetComponentInChildren<Animator>() != null)
+        if(anim != null)
         {
 
-            GetComponentInChildren<Animator>().SetInteger("RunNumber", legNum);
-            GetComponentInChildren<Animator>().SetBool("Running", true);
-            GetComponentInChildren<Animator>().SetBool("Sitting", false);
+            anim.SetInteger("RunNumber", legNum);
+            anim.SetBool("Running", true);
+            anim.SetBool("Sitting", false);
         }
     }
     // Start is called before the first frame update
@@ -91,15 +92,15 @@ public class NewAIMan : MonoBehaviour
                 stunCount -= Time.deltaTime;
 
 
-                if (GetComponentInChildren<Animator>() != null)
-                    GetComponentInChildren<Animator>().SetBool("Stunned", true);
+                if (anim != null)
+                    anim.SetBool("Stunned", true);
 
 
                 if (stunCount <= 0)
                 {
                     hp = maxHP;
-                    if (GetComponentInChildren<Animator>() != null)
-                        GetComponentInChildren<Animator>().SetBool("Stunned", false);
+                    if (anim != null)
+                        anim.SetBool("Stunned", false);
                 }
             }
 
@@ -115,7 +116,7 @@ public class NewAIMan : MonoBehaviour
             }
 
 
-            GetComponentInChildren<Animator>().speed = agent.speed / 3;
+            anim.speed = agent.speed / 3;
 
         }
 
@@ -217,8 +218,8 @@ public class NewAIMan : MonoBehaviour
         {
             if (!(this is CrowdAI))
             {
-                if(GetComponentInChildren<Animator>().GetBool("Running") == true)
-                    GetComponentInChildren<Animator>().SetBool("Running", false);
+                if(anim.GetBool("Running") == true)
+                    anim.SetBool("Running", false);
 
             }
         }
@@ -226,8 +227,8 @@ public class NewAIMan : MonoBehaviour
         {
             if(!(this is CrowdAI))
             {
-                if (GetComponentInChildren<Animator>().GetBool("Running") == false)
-                    GetComponentInChildren<Animator>().SetBool("Running", true);
+                if (anim.GetBool("Running") == false)
+                    anim.SetBool("Running", true);
             }
         }
         if (quipped)
@@ -307,4 +308,5 @@ public class NewAIMan : MonoBehaviour
     float baseAcceleration;
     [HideInInspector]
     public bool offByDistance = false;
+    protected Animator anim;
 }
