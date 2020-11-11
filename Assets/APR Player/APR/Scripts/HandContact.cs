@@ -167,6 +167,8 @@ public class HandContact : MonoBehaviour
                             }
                             Destroy(col.gameObject);
                         }
+
+
                         hasJoint = true;
                         APR_Player.leftGrab = true;
                         this.gameObject.AddComponent<FixedJoint>();

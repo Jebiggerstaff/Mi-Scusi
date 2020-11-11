@@ -17,6 +17,8 @@ public class HostileAI : NewAIMan
     {
         base.Update();
 
+        
+
         if(!offByDistance)
         {
 
@@ -134,4 +136,6 @@ public class HostileAI : NewAIMan
     float currentMaximumAllowedAggroTime;
 
     public AIRagdollMan apr;
+
+    public bool isItalyTaskMan = false;
 }
