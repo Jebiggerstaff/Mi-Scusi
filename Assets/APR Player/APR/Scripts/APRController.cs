@@ -118,7 +118,7 @@ public class APRController : MonoBehaviour
     MouseYAxisArms, MouseXAxisArms; 
         public float MouseYAxisBody;
     
-	private bool 
+	public bool 
     WalkForward, WalkBackward,
     StepRight, StepLeft, Alert_Leg_Right,
     Alert_Leg_Left,  GettingUp,

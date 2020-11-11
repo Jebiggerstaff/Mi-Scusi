@@ -111,11 +111,12 @@ public class HandContact : MonoBehaviour
             {
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    PunchParticle.Play();
                     if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
                         if (APR_Player.punchingLeft)
                         {
+                            PunchParticle.Play();
+
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
                             //Tutorial Punch Task
                             if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false){
@@ -203,11 +204,11 @@ public class HandContact : MonoBehaviour
             {
                 if (col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
                 {
-                    PunchParticle.Play();
                     if (col.gameObject.GetComponent<NewAIMan>() != null)
                     {
                         if (APR_Player.punchingRight)
                         {
+                            PunchParticle.Play();
                             col.gameObject.GetComponent<NewAIMan>().stun(10f);
                             //Tutorial Punch Task
                             if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager.Punched == false)
