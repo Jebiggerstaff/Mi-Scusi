@@ -109,17 +109,13 @@ public class APRController : MonoBehaviour
     public float KnockoutTime;
     bool knockedOut;
 
-
-
-
     //Hidden variables
     private float
     timer, Step_R_timer, Step_L_timer,
-    MouseYAxisArms, MouseXAxisArms; 
-        public float MouseYAxisBody;
+    MouseYAxisArms, MouseXAxisArms, MouseYAxisBody;
     
-	public bool 
-    WalkForward, WalkBackward,
+	private bool 
+    WalkForward,
     StepRight, StepLeft, Alert_Leg_Right,
     Alert_Leg_Left,  GettingUp,
     ResetPose, isRagdoll, isKeyDown, moveAxisUsed,
@@ -235,19 +231,12 @@ public class APRController : MonoBehaviour
 
     void Update()
     {
-
         if (canPunch && punchTimer > punchDelay)
         {
             PlayerPunch();          
         }
 
         punchTimer += .1f;
-
-        if (useControls && !inAir)
-        {
-            PlayerMovement();
-            
-        }
         
         if(useControls)
         {
@@ -257,7 +246,6 @@ public class APRController : MonoBehaviour
         if(balanced && useStepPrediction)
         {
             StepPrediction();
-            CenterOfMass();
         }
         
         if(!useStepPrediction)
@@ -277,8 +265,14 @@ public class APRController : MonoBehaviour
     void FixedUpdate()
     {
         Walking();
-        
-        if(useControls)
+
+        if (useControls && !inAir)
+        {
+            PlayerMovement();
+
+        }
+
+        if (useControls)
         {
             PlayerRotation();
             ResetPlayerPose();
@@ -443,10 +437,6 @@ public class APRController : MonoBehaviour
         {
             balanced = true;
         }
-    /*
-        if(Input.GetButton("Ragdoll"))
-            ActivateRagdoll();
-	*/
     }
     
     
@@ -456,7 +446,7 @@ public class APRController : MonoBehaviour
 	void StepPrediction()
 	{
 		//Reset variables when balanced
-		if(!WalkForward && !WalkBackward)
+		if(!WalkForward)
         {
             StepRight = false;
             StepLeft = false;
@@ -467,21 +457,6 @@ public class APRController : MonoBehaviour
         }
 		
 		//Check direction to walk when off balance
-        //Backwards
-		if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
-        {
-            WalkBackward = true;
-           
-        }
-        else
-        {
-			if(!isKeyDown)
-			{
-				WalkBackward = false;
-               
-            }
-        }
-        
         //Forward
         if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
         {
@@ -504,7 +479,7 @@ public class APRController : MonoBehaviour
     void ResetWalkCycle()
     {
         //Reset variables when not moving
-        if(!WalkForward && !WalkBackward)
+        if(!WalkForward)
         {
             StepRight = false;
             StepLeft = false;
@@ -1026,7 +1001,6 @@ public class APRController : MonoBehaviour
         {
             if (!inAir && !knockedOut)
             {
-
                 if (WalkForward)
                 {
                     //right leg
@@ -1039,25 +1013,6 @@ public class APRController : MonoBehaviour
 
                     //left leg
                     if (APR_Parts[11].transform.position.z > APR_Parts[12].transform.position.z && !StepRight && !Alert_Leg_Left)
-                    {
-                        StepLeft = true;
-                        Alert_Leg_Left = true;
-                        Alert_Leg_Right = true;
-                    }
-                }
-
-                if (WalkBackward)
-                {
-                    //right leg
-                    if (APR_Parts[11].transform.position.z > APR_Parts[12].transform.position.z && !StepLeft && !Alert_Leg_Right)
-                    {
-                        StepRight = true;
-                        Alert_Leg_Right = true;
-                        Alert_Leg_Left = true;
-                    }
-
-                    //left leg
-                    if (APR_Parts[11].transform.position.z < APR_Parts[12].transform.position.z && !StepRight && !Alert_Leg_Left)
                     {
                         StepLeft = true;
                         Alert_Leg_Left = true;
@@ -1082,22 +1037,13 @@ public class APRController : MonoBehaviour
                         APR_Parts[9].GetComponent<ConfigurableJoint>().GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
                     }
 
-                    if (WalkBackward)
-                    {
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x - 0.00f * StepHeight, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.x - 0.07f * StepHeight * 2, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.w);
-
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x + 0.02f * StepHeight / 2, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
-                    }
-
-
                     //step duration
                     if (Step_R_timer > StepDuration)
                     {
                         Step_R_timer = 0;
                         StepRight = false;
 
-                        if (WalkForward || WalkBackward)
+                        if (WalkForward)
                         {
                             StepLeft = true;
                         }
@@ -1133,22 +1079,13 @@ public class APRController : MonoBehaviour
                         APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
                     }
 
-                    if (WalkBackward)
-                    {
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x - 0.00f * StepHeight, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.x - 0.07f * StepHeight * 2, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.w);
-
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x + 0.02f * StepHeight / 2, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
-                    }
-
-
                     //Step duration
                     if (Step_L_timer > StepDuration)
                     {
                         Step_L_timer = 0;
                         StepLeft = false;
 
-                        if (WalkForward || WalkBackward)
+                        if (WalkForward)
                         {
                             StepRight = true;
                         }
