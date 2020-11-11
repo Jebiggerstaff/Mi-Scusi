@@ -5,23 +5,28 @@ using UnityEngine;
 public class TutorialMessage : MonoBehaviour
 {
     public GameObject TutorialMessgaeObject;
+    public GameObject TutorialMessgaeObjectfirstone;
+    public GameObject TutorialMessgaeObjectnextone;
 
     // Start is called before the first frame update
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1")) ;
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1")) 
         {
             TutorialMessgaeObject.SetActive(true);
+            TutorialMessgaeObjectfirstone.SetActive(false);
+            TutorialMessgaeObjectnextone.SetActive(false);
         }
     }
 
+    /*
     void OnTriggerExit(Collider other)
     {
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
-            TutorialMessgaeObject.SetActive(false);
+            TutorialMessgaeObject.SetActive(true);
         }
     }
-
+    */
 }
