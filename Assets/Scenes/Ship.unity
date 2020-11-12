@@ -35882,68 +35882,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2184794061421720993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1119892050
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1119892051}
-  - component: {fileID: 1119892054}
-  - component: {fileID: 1119892053}
-  m_Layer: 0
-  m_Name: FallOffBound 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1119892051
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119892050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -590, y: -80.79114, z: 347.38}
-  m_LocalScale: {x: 1403.6863, y: 15.596515, z: 1498.7637}
-  m_Children: []
-  m_Father: {fileID: 1735591945}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1119892053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119892050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df9bbfbd080a4e459f7a7f3975281b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APR_Player: {fileID: 0}
-  APR_Root: {fileID: 0}
-  resetPoint: {fileID: 149590416}
-  instantCameraUpdate: 1
-  cam: {fileID: 0}
---- !u!65 &1119892054
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119892050}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.75885457}
-  m_Center: {x: 0, y: 0, z: 0.013087337}
 --- !u!1 &1120925343
 GameObject:
   m_ObjectHideFlags: 0
@@ -38764,6 +38702,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187851827}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1188208123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2374200985786418724, guid: 05896ee7d571e1948bf4dc8755d6aba6,
+    type: 3}
+  m_PrefabInstance: {fileID: 14700632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1189169590
 GameObject:
   m_ObjectHideFlags: 0
@@ -58815,6 +58759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735591945}
+  - component: {fileID: 1735591946}
   m_Layer: 0
   m_Name: respawn
   m_TagString: Untagged
@@ -58834,10 +58779,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 149590416}
-  - {fileID: 1119892051}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1735591946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735591944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33ece5eb31ee644999e5350367360be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1188208123}
+  SpawnPoint: {fileID: 149590415}
+  RespawnHeight: 20
 --- !u!1 &1739939421
 GameObject:
   m_ObjectHideFlags: 0
