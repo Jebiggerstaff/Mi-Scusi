@@ -119,7 +119,7 @@ public class AIRagdollMan : MonoBehaviour
     //////////////////////
     void FixedUpdate()
     {
-        ResetPlayerPose();
+        //ResetPlayerPose();
     }
 
     //---Player Setup--//

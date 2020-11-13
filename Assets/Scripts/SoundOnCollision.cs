@@ -8,7 +8,7 @@ public class SoundOnCollision : MonoBehaviour
     public AudioSource CollideWithGround;
     public AudioSource CollideWithPlayer;
     public AudioSource PunchedByPlayer;
-    public AudioSource DraggedByPlayer;
+    //public AudioSource DraggedByPlayer;
 
 
 
@@ -32,7 +32,6 @@ public class SoundOnCollision : MonoBehaviour
         }
         else if (other.tag == "Player")
         {
-
             tryPlayAudio(CollideWithPlayer);
         }
         else if(other.name.Contains("Water") || other.name.Contains("water"))

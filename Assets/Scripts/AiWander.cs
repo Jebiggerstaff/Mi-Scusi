@@ -140,9 +140,9 @@ public class AiWander : MonoBehaviour
 
     void FixedUpdate()
     {
-        Walking();
-        PlayerRotation();
-        ResetPlayerPose();
+        //Walking();
+        //PlayerRotation();
+        //ResetPlayerPose();
     }
 
     void PlayerSetup()
