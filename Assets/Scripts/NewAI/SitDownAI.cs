@@ -65,9 +65,9 @@ public class SitDownAI : NewAIMan
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
             {
                 sitting = false;
-                if (GetComponent<Rigidbody>().useGravity == true)
+                if (GetComponent<Rigidbody>().useGravity == false)
                 {
-                    GetComponent<Rigidbody>().useGravity = false;
+                    GetComponent<Rigidbody>().useGravity = true;
                 }
                 GetComponentInChildren<Animator>().SetBool("Sitting", false);
                 agent.enabled = true;

@@ -16,7 +16,7 @@ public class PhysicsTurnOff : MonoBehaviour
         if(allRigidbodies != null && allRigidbodies.Count > 0)
         {
 
-            Debug.Log("Total Rigidbodies: " + allRigidbodies.Count);
+            //Debug.Log("Total Rigidbodies: " + allRigidbodies.Count);
             for (int i = 0; i < 20; i++)
             {
                 var rb = allRigidbodies[currentCount];
@@ -29,9 +29,18 @@ public class PhysicsTurnOff : MonoBehaviour
                     if (Vector3.Distance(player.position, rb.transform.position) > distance)
                     {
                         //rb.detectCollisions = false;
-                        if (rb.GetComponent<NewAIMan>() == null)
+                        if (rb.isKinematic == false)
                         {
                             rb.isKinematic = true;
+                            Debug.Log("Turning Off " + rb.gameObject.name);
+                        }
+                    }
+                    else
+                    {
+                        if(rb.isKinematic == true)
+                        {
+                            rb.isKinematic = false;
+                            Debug.Log("Turning On " + rb.gameObject.name);
                         }
                     }
                     currentCount++;

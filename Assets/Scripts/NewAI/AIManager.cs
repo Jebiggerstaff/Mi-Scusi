@@ -28,8 +28,6 @@ public class AIManager : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(player.position, new Vector3(turnOffDistance, 0, 0), Color.red, Time.deltaTime * 1.1f);
-
             foreach (var a in people)
             {
                 if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
