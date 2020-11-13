@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8325092865777118564}
   - component: {fileID: 1068388188001113938}
   - component: {fileID: 6768668408327990187}
-  - component: {fileID: 5013208297471410013}
   - component: {fileID: 2459155750263152291}
   - component: {fileID: 5171883863175199990}
+  - component: {fileID: 3108338847588352343}
+  - component: {fileID: 730216212009605246}
   m_Layer: 14
   m_Name: Bench
   m_TagString: CanBeGrabbed
@@ -86,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5013208297471410013
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5031631301344386935}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4629929001153789590, guid: 16222721a69229e4b9fba23004317dbd, type: 3}
 --- !u!54 &2459155750263152291
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,6 +119,32 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.043, y: 1.639, z: 57.474003}
   m_TimeToStationary: 0.5
+--- !u!65 &3108338847588352343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031631301344386935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8803005, y: 2.0564651, z: 5.557076}
+  m_Center: {x: 0.043215677, y: 0.7267227, z: 57.473164}
+--- !u!65 &730216212009605246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031631301344386935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.688541, y: 1.8126307, z: 5.557076}
+  m_Center: {x: 1.1391321, y: 2.6732373, z: 57.47354}
 --- !u!1 &8856697435418191030
 GameObject:
   m_ObjectHideFlags: 0
