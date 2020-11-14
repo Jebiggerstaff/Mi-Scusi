@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6850341180217000933}
   - component: {fileID: 553537273710993898}
   - component: {fileID: 5738821367963368709}
-  - component: {fileID: 2421501746109039091}
   - component: {fileID: 7372119952676856742}
   - component: {fileID: -2375588231822727054}
+  - component: {fileID: 4281748276509969699}
   m_Layer: 14
   m_Name: Barricade
   m_TagString: CanBeGrabbed
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2421501746109039091
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2430522365603256935}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -118876576370395748, guid: b14773ecf3842b14a9e5a1743abd54bf, type: 3}
 --- !u!54 &7372119952676856742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,3 +117,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.45200002}
   m_TimeToStationary: 0.5
+--- !u!65 &4281748276509969699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430522365603256935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8971646, y: 0.26724845, z: 0.90368843}
+  m_Center: {x: -9.042621e-12, y: -0.023810184, z: 0.45184422}

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1298246994461496507}
   - component: {fileID: 2714429596338985758}
   - component: {fileID: 166457401716207572}
-  - component: {fileID: 8092487718373958805}
   - component: {fileID: 407021638267591132}
   - component: {fileID: 2043572043433192644}
   - component: {fileID: 7555898737529438037}
+  - component: {fileID: 8254200565856161301}
   m_Layer: 14
   m_Name: FancyChair
   m_TagString: CanBeGrabbed
@@ -88,20 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8092487718373958805
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823848378105646593}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7565763793045461470, guid: 1d1944054097ebf48b327dc4aaa6b786, type: 3}
 --- !u!54 &407021638267591132
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,7 +136,20 @@ MonoBehaviour:
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 0}
   PunchedByPlayer: {fileID: 0}
-  DraggedByPlayer: {fileID: 0}
+--- !u!64 &8254200565856161301
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823848378105646593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7565763793045461470, guid: 1d1944054097ebf48b327dc4aaa6b786, type: 3}
 --- !u!1 &2796497623728027559
 GameObject:
   m_ObjectHideFlags: 0

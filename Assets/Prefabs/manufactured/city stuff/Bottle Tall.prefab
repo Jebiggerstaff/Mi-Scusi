@@ -43,7 +43,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1f33c6f71ff6bb448818c4acc68ea66a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 2
   Loop: 0
   Mute: 0
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8917959877168700473}
   - component: {fileID: 1494229529614019398}
   - component: {fileID: 3867892662912931099}
-  - component: {fileID: 7938296976389814970}
+  - component: {fileID: 6085726922188934368}
   m_Layer: 14
   m_Name: Bottle Tall
   m_TagString: CanBeGrabbed
@@ -240,9 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisObjectsSound: {fileID: 5309451335036640131}
---- !u!64 &7938296976389814970
-MeshCollider:
+  CollideWithWater: {fileID: 0}
+  CollideWithGround: {fileID: 0}
+  CollideWithPlayer: {fileID: 0}
+  PunchedByPlayer: {fileID: 0}
+--- !u!135 &6085726922188934368
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -251,7 +254,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5885593850468388385, guid: 67e09d525bcfc2345916e4310ae7573e, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.1128454
+  m_Center: {x: -7.006102e-13, y: 0.0017664599, z: 0.10582398}
