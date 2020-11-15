@@ -953,6 +953,15 @@ public class APRController : MonoBehaviour
         currentHP = 0;
         ActivateRagdoll();
         StopHPRegen();
+        var sound = GetComponent<SoundOnCollision>();
+        if (sound == null)
+        {
+            sound = GetComponentInChildren<SoundOnCollision>();
+        }
+        if (sound != null)
+        {
+            sound.tryPlayAudio(sound.KnockedOut);
+        }
         StartCoroutine(KnockoutTimer());
     }
 

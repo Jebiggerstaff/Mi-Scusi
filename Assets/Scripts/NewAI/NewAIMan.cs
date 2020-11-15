@@ -184,7 +184,19 @@ public class NewAIMan : MonoBehaviour
     {
         hp--;
         if (hp <= 0)
+        {
+
             stunCount += time;
+            var sound = GetComponent<SoundOnCollision>();
+            if(sound == null)
+            {
+                sound = GetComponentInChildren<SoundOnCollision>();
+            }
+            if(sound != null)
+            {
+                sound.tryPlayAudio(sound.KnockedOut);
+            }
+        }
     }
 
     

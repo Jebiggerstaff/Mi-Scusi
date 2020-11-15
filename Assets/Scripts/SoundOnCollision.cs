@@ -8,6 +8,9 @@ public class SoundOnCollision : MonoBehaviour
     public AudioSource CollideWithGround;
     public AudioSource CollideWithPlayer;
     public AudioSource PunchedByPlayer;
+    public AudioSource AIPunchedByPlayer;
+    public AudioSource AIPunchesPlayer;
+    public AudioSource KnockedOut;
     //public AudioSource DraggedByPlayer;
 
 
@@ -42,7 +45,23 @@ public class SoundOnCollision : MonoBehaviour
         {
             tryPlayAudio(CollideWithGround);
         }
-        
+        else if(GetComponent<NewAIMan>() != null && other.GetComponent<HandContact>() != null)
+        {
+            var hand = other.GetComponent<HandContact>();
+            if((hand.Left && hand.APR_Player.punchingLeft) || (!hand.Left && hand.APR_Player.punchingRight))
+            {
+                tryPlayAudio(AIPunchedByPlayer);
+            }
+        }
+        else if(GetComponent<AIHandContact>() != null && (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null))
+        {
+            var hand = GetComponent<AIHandContact>();
+            if((hand.Left && hand.APR_Player.punchingLeft) || (!hand.Left && hand.APR_Player.punchingRight))
+            {
+                tryPlayAudio(AIPunchesPlayer);
+            }
+        }
+        //knocked out handled in other scripts
         
 
     }
@@ -73,7 +92,7 @@ public class SoundOnCollision : MonoBehaviour
     */
 
 
-    void tryPlayAudio(AudioSource source)
+    public void tryPlayAudio(AudioSource source)
     {
         if(source != null)
         {
