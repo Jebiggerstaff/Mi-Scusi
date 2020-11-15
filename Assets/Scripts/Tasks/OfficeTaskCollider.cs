@@ -6,6 +6,7 @@ public class OfficeTaskCollider : MonoBehaviour
 {
 
     public OfficeTaskManager OfficeTaskManager;
+    bool PaperSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +22,24 @@ public class OfficeTaskCollider : MonoBehaviour
             OfficeTaskManager.TaskCompleted("RefilWater");
         }
         #endregion
-        //Code to talk to the Receptionist
-        //probably needs to be done in the talking script
+        #region OfficeDouche
+        if (other.name == "APR_Head" && name == "OfficeDouche")
+        {
+            if (!PaperSpawned)
+            {
+                Instantiate(OfficeTaskManager.PhoneNumber, new Vector3(65.61f, 34.63f, -23.56f), new Quaternion(0, 0, 0, 0));
+                PaperSpawned = true;
+            }
+        }
+        #endregion
         #region CoffeeToBoss
-        if (other.name== "CoffeeMugBoss" && name == "Boss")
+        if (other.name == "PhoneNumber(Clone)" && name == "Secretary")
+        {
+            OfficeTaskManager.TaskCompleted("HelpCoworker");
+        }
+        #endregion
+        #region CoffeeToBoss
+        if (other.name == "CoffeeMugBoss" && name == "Boss")
         {
             OfficeTaskManager.TaskCompleted("GetBossCoffee");
         }

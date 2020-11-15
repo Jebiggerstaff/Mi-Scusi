@@ -18,6 +18,12 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject WaterCoolerJug;
     public GameObject Coffee;
 
+    public GameObject PaperStack1;
+    public GameObject PaperStack2;
+    public GameObject PaperStack3;
+
+    public GameObject PhoneNumber;
+
 
     public void Start()
     {
@@ -46,12 +52,15 @@ public class OfficeTaskManager : MonoBehaviour
         {
             case "RefilWater":
                 Tasks[0].SetActive(true);
+                PaperStack1.SetActive(true);
                 break;
             case "HelpCoworker":
                 Tasks[1].SetActive(true);
+                PaperStack2.SetActive(true);
                 break;
             case "GetBossCoffee":
                 Tasks[2].SetActive(true);
+                PaperStack3.SetActive(true);
                 break;
             case "CopyButt":
                 Tasks[3].SetActive(true);
