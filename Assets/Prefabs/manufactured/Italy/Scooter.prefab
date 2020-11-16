@@ -207,7 +207,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f8fb6f5229de5d3448a6c761e81e22a4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.114
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -334,7 +334,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 21c13c88a919fda4880a9d698ce3b84e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.039
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -569,6 +569,9 @@ MonoBehaviour:
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 4258734038831363513}
   PunchedByPlayer: {fileID: 0}
+  AIPunchedByPlayer: {fileID: 0}
+  AIPunchesPlayer: {fileID: 0}
+  KnockedOut: {fileID: 0}
 --- !u!1 &6429369999193402791
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +903,9 @@ MonoBehaviour:
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 0}
   PunchedByPlayer: {fileID: 0}
+  AIPunchedByPlayer: {fileID: 0}
+  AIPunchesPlayer: {fileID: 0}
+  KnockedOut: {fileID: 0}
 --- !u!1 &7882422980133437140
 GameObject:
   m_ObjectHideFlags: 0
