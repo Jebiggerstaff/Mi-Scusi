@@ -22,7 +22,15 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject PaperStack2;
     public GameObject PaperStack3;
 
-    public GameObject PhoneNumber;
+    public GameObject PhoneNumberPrefab;
+
+    public GameObject coffeeObject1;
+    public GameObject coffeeObject2;
+    public GameObject coffeeObject3;
+    public GameObject CoffeePrefab;
+
+    public int coffeePartsCollected=0;
+    bool CoffeeSpawned = false;
 
 
     public void Start()
@@ -32,6 +40,18 @@ public class OfficeTaskManager : MonoBehaviour
         Player = GameObject.Find("FinalPlayer");
         //Debug.Log("Found Player: " + Player);
 
+    }
+
+    void FixedUpdate()
+    {
+        if (!CoffeeSpawned && coffeePartsCollected >= 3)
+        {
+            Destroy(coffeeObject1);
+            Destroy(coffeeObject2);
+            Destroy(coffeeObject3);
+            CoffeeSpawned = true;
+            Instantiate(CoffeePrefab, new Vector3(54.8100014f, 34.8970032f, 10.0401859f), new Quaternion(0, 0, 0, 0));
+        }
     }
 
     public void Update()

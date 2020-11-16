@@ -8,11 +8,13 @@ public class OfficeTaskCollider : MonoBehaviour
     public OfficeTaskManager OfficeTaskManager;
     bool PaperSpawned = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
         OfficeTaskManager = GameObject.Find("TaskUI").GetComponent<OfficeTaskManager>();
     }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -27,15 +29,29 @@ public class OfficeTaskCollider : MonoBehaviour
         {
             if (!PaperSpawned)
             {
-                Instantiate(OfficeTaskManager.PhoneNumber, new Vector3(65.61f, 34.63f, -23.56f), new Quaternion(0, 0, 0, 0));
+                Instantiate(OfficeTaskManager.PhoneNumberPrefab, new Vector3(65.61f, 34.63f, -23.56f), new Quaternion(0, 0, 0, 0));
                 PaperSpawned = true;
             }
         }
         #endregion
-        #region CoffeeToBoss
+        #region PhoneNumberDelivery
         if (other.name == "PhoneNumber(Clone)" && name == "Secretary")
         {
             OfficeTaskManager.TaskCompleted("HelpCoworker");
+        }
+        #endregion
+        #region MakeCoffee
+        if (other == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected++;
+        }
+        if (other == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected++;
+        }
+        if (other == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected++;
         }
         #endregion
         #region CoffeeToBoss
@@ -48,6 +64,24 @@ public class OfficeTaskCollider : MonoBehaviour
         if (other.name == "APR_Head" && name == "Copy Machine")
         {
             OfficeTaskManager.TaskCompleted("CopyButt");
+        }
+        #endregion
+
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        #region MakeCoffee
+        if (other == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected--;
+        }
+        if (other == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected--;
+        }
+        if (other == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
+        {
+            OfficeTaskManager.coffeePartsCollected--;
         }
         #endregion
     }
