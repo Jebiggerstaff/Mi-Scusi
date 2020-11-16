@@ -100,6 +100,7 @@ public class APRController : MonoBehaviour
     public AudioClip[] Impacts;
     public AudioClip[] Hits;
     public AudioSource SoundSource;
+    public AudioSource quipAudioSource;
 
     [Header("HP Values")]
     public int maxHP;
@@ -217,6 +218,11 @@ public class APRController : MonoBehaviour
 
                         }
                     }
+                }
+
+                if(quipAudioSource != null)
+                {
+                    quipAudioSource.Play();
                 }
 
             }

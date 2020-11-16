@@ -7,6 +7,8 @@ public class AIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentCount = 0;
+        lNum = 0;
         CreateAllAI();
         player = FindObjectOfType<APRController>().Root.transform;
 
@@ -28,6 +30,167 @@ public class AIManager : MonoBehaviour
         }
         else
         {
+
+            for(int i = 0; i < 20; i++)
+            {
+                if(lNum == 0)
+                {
+                    if(currentCount < people.Count)
+                    {
+                        var a = people[currentCount];
+                        if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                        {
+                            a.offByDistance = true;
+                            a.agent.enabled = false;
+                        }
+                        else if (a.offByDistance)
+                        {
+                            a.agent.enabled = true;
+                            a.offByDistance = false;
+                        }
+                        currentCount++;
+                        if(currentCount >= people.Count)
+                        {
+                            currentCount = 0;
+                            lNum++;
+                        }
+                    }
+                    else
+                    {
+                        currentCount = 0;
+                        lNum++;
+                    }
+                    
+                }
+                else if(lNum == 1)
+                {
+                    if(currentCount < crowds.Count)
+                    {
+                        var a = crowds[currentCount];
+                        if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                        {
+                            a.offByDistance = true;
+                            a.agent.enabled = false;
+                            foreach (var ld in a.AIMen)
+                            {
+                                ld.offByDistance = true;
+                                ld.agent.enabled = false;
+                            }
+                        }
+                        else if (a.offByDistance)
+                        {
+                            a.agent.enabled = true;
+                            a.offByDistance = false;
+                            foreach (var ld in a.AIMen)
+                            {
+                                ld.offByDistance = false;
+                                ld.agent.enabled = true;
+                            }
+                        }
+
+                        currentCount++;
+                        if(currentCount >= crowds.Count)
+                        {
+                            currentCount = 0;
+                            lNum++;
+                        }
+                    }
+                    else
+                    {
+                        currentCount = 0;
+                        lNum++;
+                    }
+                    
+                }
+                else if(lNum == 2)
+                {
+                    if(currentCount < stillPeople.Count)
+                    {
+
+                        var a = stillPeople[currentCount];
+                        if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                        {
+                            a.offByDistance = true;
+                            a.agent.enabled = false;
+                        }
+                        else if (a.offByDistance)
+                        {
+                            a.agent.enabled = true;
+                            a.offByDistance = false;
+                        }
+
+                        currentCount++;
+                        if(currentCount >= stillPeople.Count)
+                        {
+                            currentCount = 0;
+                            lNum++;
+                        }
+                    }
+                    else
+                    {
+                        currentCount = 0;
+                        lNum++;
+                    }
+                }
+                else if(lNum == 3)
+                {
+                    if(currentCount < hostilePeople.Count)
+                    {
+                        var a = hostilePeople[currentCount];
+                        if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                        {
+                            a.offByDistance = true;
+                            a.agent.enabled = false;
+                        }
+                        else if (a.offByDistance)
+                        {
+                            a.agent.enabled = true;
+                            a.offByDistance = false;
+                        }
+
+                        currentCount++;
+                        if(currentCount >= hostilePeople.Count)
+                        {
+                            currentCount = 0;
+                            lNum++;
+                        }
+                    }
+                    else
+                    {
+                        currentCount = 0;
+                        lNum++;
+                    }
+                }
+                else if(lNum == 4)
+                {
+                    if(currentCount < sitdownPeople.Count)
+                    {
+                        var a = sitdownPeople[currentCount];
+                        if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
+                        {
+                            a.offByDistance = true;
+                            a.agent.enabled = false;
+                        }
+                        else if (a.offByDistance)
+                        {
+                            a.agent.enabled = true;
+                            a.offByDistance = false;
+                        }
+                        currentCount++;
+                        if(currentCount >= sitdownPeople.Count)
+                        {
+                            lNum = 0;
+                            currentCount = 0;
+                        }
+
+                    }
+                }
+            }
+
+
+
+            /*
+
             foreach (var a in people)
             {
                 if (Vector3.Distance(a.transform.position, player.position) >= turnOffDistance)
@@ -103,6 +266,7 @@ public class AIManager : MonoBehaviour
                     a.offByDistance = false;
                 }
             }
+            */
         }
     }
 
@@ -171,4 +335,6 @@ public class AIManager : MonoBehaviour
     public Transform player;
     public float turnOffDistance = 50;
 
+    int currentCount = 0;
+    int lNum = 0;
 }
