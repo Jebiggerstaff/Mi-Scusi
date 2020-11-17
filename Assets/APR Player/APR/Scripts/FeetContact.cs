@@ -32,23 +32,27 @@ public class FeetContact : MonoBehaviour
             {
                 APR_Player.PlayerLanded();
 
-                if(col.gameObject.GetComponent<WalkingSound>() != null)
-                {
-                    playFootSound(col.gameObject.GetComponent<WalkingSound>().sound);
-                }
-                else
-                {
-                    playFootSound(defaultSound);
-                }
+                
 
 
+            }
+        }
+        if(col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            if (col.gameObject.GetComponent<WalkingSound>() != null)
+            {
+                playFootSound(col.gameObject.GetComponent<WalkingSound>().sound);
+            }
+            else
+            {
+                playFootSound(defaultSound);
             }
         }
 	}
 
     void playFootSound(AudioClip clip)
     {
-        if(clip != null && SoundSource != null)
+        if(clip != null && SoundSource != null && SoundSource.isPlaying == false)
         {
             SoundSource.clip = clip;
             SoundSource.loop = false;
