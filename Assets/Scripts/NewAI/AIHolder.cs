@@ -12,7 +12,7 @@ public class AIHolder
     public int speed;
     public Vector3 startLocation;
     public List<Vector3> walkLocations;
-    public string costume = "default";
+    public int costume = 0;
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -23,6 +23,7 @@ public class AIHolder
         newAI.destinations = walkLocations;
         newAI.useRandomDestinations = !orderedDestinations;
         newAI.costume = costume;
+        newAI.SetCostume();
         return newAI;
 
     }

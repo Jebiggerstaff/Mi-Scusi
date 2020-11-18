@@ -280,20 +280,16 @@ public class NewAIMan : MonoBehaviour
     }
 
 
-    void SetCostume()
+    public void SetCostume()
     {
         if(costumes.Length > 0)
         {
 
             GameObject go = costumes[0];
 
-            foreach (var g in costumes)
+            if(costume >= 0 && costume < costumes.Length)
             {
-                if (g.name == costume)
-                {
-                    go = g;
-                    break;
-                }
+                go = costumes[costume];
             }
 
             SwitchCostume(go);
@@ -338,7 +334,7 @@ public class NewAIMan : MonoBehaviour
     public int hp;
 
     [Header("Costumes")]
-    public string costume = "NormalAISkinBlue";
+    public int costume = 0;
     public GameObject[] costumes;
 
 
