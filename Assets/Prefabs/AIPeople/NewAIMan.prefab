@@ -192,6 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   APR_Player: {fileID: 1793212915094385033, guid: d5fb31c788f71db438ed61b1ce6f9868,
     type: 3}
+  SoundSource: {fileID: 0}
+  defaultSound: {fileID: 0}
 --- !u!1 &2511984793526419156
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +636,9 @@ MonoBehaviour:
   minimumStopDistance: 3
   maxHP: 1
   hp: 0
+  costume: default
+  costumes:
+  - {fileID: 3211699056689995844}
   quipped: 0
   offByDistance: 0
 --- !u!54 &4575674925354774173
@@ -1474,6 +1479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   APR_Player: {fileID: 1793212915094385033, guid: d5fb31c788f71db438ed61b1ce6f9868,
     type: 3}
+  SoundSource: {fileID: 0}
+  defaultSound: {fileID: 0}
 --- !u!1 &8473763981287267277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,8 +2057,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalAISkinBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 6624985813703371665, guid: 14b74781020c8984da68d5e0015b13fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14b74781020c8984da68d5e0015b13fb, type: 3}
+--- !u!1 &3211699056689995844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6624985813703371665, guid: 14b74781020c8984da68d5e0015b13fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8602599014505663445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2871590025957915390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5817381691714105643, guid: 14b74781020c8984da68d5e0015b13fb,

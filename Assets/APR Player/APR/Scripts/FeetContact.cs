@@ -20,7 +20,8 @@ public class FeetContact : MonoBehaviour
 
     private void Start()
     {
-        SoundSource.loop = false;
+        if(SoundSource != null)
+            SoundSource.loop = false;
     }
 
     //Alert APR player when feet colliders enter ground object layer

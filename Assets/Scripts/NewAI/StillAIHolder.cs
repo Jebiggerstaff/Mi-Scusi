@@ -10,6 +10,7 @@ public class StillAIHolder
     public int hp;
     public int speed;
     public Vector3 target;
+    public string costume = "default";
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -17,7 +18,7 @@ public class StillAIHolder
         newAI.GetComponent<NavMeshAgent>().speed = speed;
         newAI.maxHP = hp;
         newAI.destinations = new List<Vector3>();
-
+        newAI.costume = costume;
         (newAI as StayStillAIMan).target = target;
 
 

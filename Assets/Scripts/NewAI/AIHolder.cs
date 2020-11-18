@@ -12,6 +12,7 @@ public class AIHolder
     public int speed;
     public Vector3 startLocation;
     public List<Vector3> walkLocations;
+    public string costume = "default";
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -21,6 +22,7 @@ public class AIHolder
         newAI.hp = hp;
         newAI.destinations = walkLocations;
         newAI.useRandomDestinations = !orderedDestinations;
+        newAI.costume = costume;
         return newAI;
 
     }

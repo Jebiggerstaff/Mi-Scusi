@@ -24,6 +24,7 @@ public class NewAIMan : MonoBehaviour
             anim.SetBool("Running", true);
             anim.SetBool("Sitting", false);
         }
+        SetCostume();
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -279,7 +280,38 @@ public class NewAIMan : MonoBehaviour
     }
 
 
+    void SetCostume()
+    {
+        if(costumes.Length > 0)
+        {
 
+            GameObject go = costumes[0];
+
+            foreach (var g in costumes)
+            {
+                if (g.name == costume)
+                {
+                    go = g;
+                    break;
+                }
+            }
+
+            SwitchCostume(go);
+
+        }
+    }
+    void SwitchCostume(GameObject go)
+    {
+        if(go != null)
+        {
+
+            foreach (var g in costumes)
+            {
+                g.SetActive(false);
+            }
+            go.SetActive(true);
+        }
+    }
 
 
 
@@ -304,6 +336,11 @@ public class NewAIMan : MonoBehaviour
 
     public int maxHP;
     public int hp;
+
+    [Header("Costumes")]
+    public string costume = "NormalAISkinBlue";
+    public GameObject[] costumes;
+
 
 
     bool needToUpdateDestination = false;
