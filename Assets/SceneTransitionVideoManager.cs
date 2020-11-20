@@ -50,9 +50,10 @@ public class SceneTransitionVideoManager : MonoBehaviour
     }
     IEnumerator SwitchScene()
     {
+        string level = data.sceneName;
         Destroy(data.gameObject);
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene(data.sceneName);
+        SceneManager.LoadScene(level);
     }
 
     public CrossSceneData data;
