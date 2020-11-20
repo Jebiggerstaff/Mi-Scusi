@@ -136,6 +136,9 @@ MonoBehaviour:
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 1662083345184624281}
   PunchedByPlayer: {fileID: 0}
+  AIPunchedByPlayer: {fileID: 0}
+  AIPunchesPlayer: {fileID: 0}
+  KnockedOut: {fileID: 0}
 --- !u!64 &8254200565856161301
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -237,7 +240,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -350,7 +353,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3572a7bcfc4b73047a7844699cd7156e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.054
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
