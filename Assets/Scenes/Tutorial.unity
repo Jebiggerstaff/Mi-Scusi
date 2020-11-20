@@ -6403,6 +6403,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348768638}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &359985610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359985611}
+  m_Layer: 8
+  m_Name: SpawnPoint 1
+  m_TagString: Respawn
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &359985611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359985610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -155.69, y: -95.32, z: 289.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1097420057}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &360384601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18014,6 +18044,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 58529266}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1097420055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097420057}
+  - component: {fileID: 1097420056}
+  m_Layer: 8
+  m_Name: respawn (1)
+  m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1097420056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097420055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33ece5eb31ee644999e5350367360be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects: []
+  Player: {fileID: 1493818760}
+  SpawnPoint: {fileID: 359985610}
+  RespawnHeight: -15
+--- !u!4 &1097420057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097420055}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 422.8874, y: 127.41261, z: -250.7417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 359985611}
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1098304156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138225963735234228, guid: 00c6da6e19e2e824d8c868787f46d95f,
@@ -20570,7 +20648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -406, y: -136.75}
+  m_AnchoredPosition: {x: -406, y: -137}
   m_SizeDelta: {x: -812.22736, y: -273.50003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1210017318
@@ -34679,6 +34757,26 @@ PrefabInstance:
     - target: {fileID: 3216953495641477134, guid: 05896ee7d571e1948bf4dc8755d6aba6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839062695073801355, guid: 05896ee7d571e1948bf4dc8755d6aba6,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b8774473abafcf46bbd628b17270b09, type: 3}
+    - target: {fileID: 3839062695073801355, guid: 05896ee7d571e1948bf4dc8755d6aba6,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839062695073801355, guid: 05896ee7d571e1948bf4dc8755d6aba6,
+        type: 3}
+      propertyPath: Priority
+      value: 86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839062695073801355, guid: 05896ee7d571e1948bf4dc8755d6aba6,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4052029105485876562, guid: 05896ee7d571e1948bf4dc8755d6aba6,
