@@ -523,13 +523,20 @@ namespace SpeedTutorMainMenuSystem
         }
         IEnumerator loadALevel()
         {
-            
 
 
-            TurnOnLoadingScreen();
+            //***OLD LOADING BAR****//
+            //TurnOnLoadingScreen();
+
+            //****NEW LOADING******//
+            FindObjectOfType<StartSceneManager>().FadeScene(false);
 
             Time.timeScale = 1;
 
+
+
+
+            /*OLD METHOD
             AsyncOperation async = SceneManager.LoadSceneAsync(_newGameButtonLevel);
 
             while (!async.isDone)
@@ -537,8 +544,12 @@ namespace SpeedTutorMainMenuSystem
                 progressSlider.value = async.progress;
                 yield return null;
             }
+            */
 
-
+            //NEW METHOD//
+            yield return new WaitForSeconds(1.5f);
+            FindObjectOfType<StartSceneManager>().swapScenes(_newGameButtonLevel);
+            
 
         }
         public void resumeGame()

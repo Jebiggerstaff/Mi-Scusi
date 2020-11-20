@@ -60,15 +60,30 @@ public class TriggerNextLevel : MonoBehaviour
             PlayerPrefs.SetString("SavedLevel", level);
 
         Time.timeScale = originalGameTIme;
-        loadingScreen.SetActive(true);
+
+        //***OLD LOADING BAR****//
+        //loadingScreen.SetActive(true);
+        //****NEW LOADING******//
+        FindObjectOfType<StartSceneManager>().FadeScene(false);
+
+
         nextLevelCanvas.SetActive(false);
+
+
+        /*OLD METHOD
         AsyncOperation async = SceneManager.LoadSceneAsync(level);
 
         while (!async.isDone)
         {
             fillBar.value = async.progress;
             yield return null;
-        }
+        }*/
+
+
+        //NEW METHOD//
+        yield return new WaitForSeconds(1.5f);
+        FindObjectOfType<StartSceneManager>().swapScenes(level);
+
 
     }
 
