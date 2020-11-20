@@ -52,6 +52,7 @@ public class SceneTransitionVideoManager : MonoBehaviour
     {
         string level = data.sceneName;
         Destroy(data.gameObject);
+        FindObjectOfType<StartSceneManager>().FadeScene(false);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(level);
     }
