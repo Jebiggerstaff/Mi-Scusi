@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NewAIMan : MonoBehaviour
 {
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -289,7 +290,7 @@ public class NewAIMan : MonoBehaviour
 
             if(costume >= 0 && costume < costumes.Length)
             {
-                go = costumes[costume];
+                go = costumes[Random.Range(0,costumes.Length)];
             }
 
             SwitchCostume(go);

@@ -27,7 +27,13 @@ public class AIRagdollMan : MonoBehaviour
     [Header("The Layer Only This Player Is On")]
     //Player layer name
     public string thisPlayerLayer = "Player_1";
-    
+
+    //Animation
+    public GameObject skin;
+    public Animator skinAnim;
+    private int LeftPunchHash;
+    private int RightPunchHash;
+    private int sittinghash;
 
     [Header("Balance Properties")]
     //Balance
@@ -106,11 +112,8 @@ public class AIRagdollMan : MonoBehaviour
     ////////////////
     void Update()
     {
-
         //GroundCheck();
         //CenterOfMass();
-
-
     }
 
 
@@ -183,13 +186,7 @@ public class AIRagdollMan : MonoBehaviour
         UpperLeftArmTarget = APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftArmTarget = APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation;
 
-        /*
-        UpperRightLegTarget = APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation;
-        LowerRightLegTarget = APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation;
-        UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
-        LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
-    */
-
+        skinAnim = skin.GetComponent<Animator>();
         
     }
 
@@ -263,21 +260,6 @@ public class AIRagdollMan : MonoBehaviour
             APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
             APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
         }
-        /*
-        //legs
-        APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-        APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-        */
     }
 
 
@@ -310,23 +292,6 @@ public class AIRagdollMan : MonoBehaviour
             APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
             APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
         }
-        /*
-        //legs
-        APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-        APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        */
-
-
 
         ResetPose = true;
     }
@@ -363,27 +328,13 @@ public class AIRagdollMan : MonoBehaviour
         APR_Parts[3].GetComponent<Rigidbody>().mass * APR_Parts[3].transform.position +
         APR_Parts[4].GetComponent<Rigidbody>().mass * APR_Parts[4].transform.position +
         APR_Parts[5].GetComponent<Rigidbody>().mass * APR_Parts[5].transform.position +
-        APR_Parts[6].GetComponent<Rigidbody>().mass * APR_Parts[6].transform.position) //+
-        /*
-        APR_Parts[7].GetComponent<Rigidbody>().mass * APR_Parts[7].transform.position +
-        APR_Parts[8].GetComponent<Rigidbody>().mass * APR_Parts[8].transform.position +
-        APR_Parts[9].GetComponent<Rigidbody>().mass * APR_Parts[9].transform.position +
-        APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position +
-        APR_Parts[11].GetComponent<Rigidbody>().mass * APR_Parts[11].transform.position +
-        APR_Parts[12].GetComponent<Rigidbody>().mass * APR_Parts[12].transform.position)
-        */
+        APR_Parts[6].GetComponent<Rigidbody>().mass * APR_Parts[6].transform.position)
         /
 
         (APR_Parts[0].GetComponent<Rigidbody>().mass + APR_Parts[1].GetComponent<Rigidbody>().mass +
         APR_Parts[2].GetComponent<Rigidbody>().mass + APR_Parts[3].GetComponent<Rigidbody>().mass +
         APR_Parts[4].GetComponent<Rigidbody>().mass + APR_Parts[5].GetComponent<Rigidbody>().mass +
-        APR_Parts[6].GetComponent<Rigidbody>().mass); /*APR_Parts[7].GetComponent<Rigidbody>().mass);
-        
-        /*
-        APR_Parts[8].GetComponent<Rigidbody>().mass + APR_Parts[9].GetComponent<Rigidbody>().mass +
-        APR_Parts[10].GetComponent<Rigidbody>().mass + APR_Parts[11].GetComponent<Rigidbody>().mass +
-        APR_Parts[12].GetComponent<Rigidbody>().mass);
-        */
+        APR_Parts[6].GetComponent<Rigidbody>().mass); 
 
         COMP.position = CenterOfMassPoint;
     }
