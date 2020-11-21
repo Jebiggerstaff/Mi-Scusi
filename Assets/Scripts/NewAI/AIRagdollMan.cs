@@ -29,24 +29,16 @@ public class AIRagdollMan : MonoBehaviour
     public string thisPlayerLayer = "Player_1";
 
     //Animation
-    public GameObject skin;
+   // public GameObject skin;
     public Animator skinAnim;
-    private int LeftPunchHash;
-    private int RightPunchHash;
+    private int LeftPunchHash = Animator.StringToHash("LeftPunch");
+    private int RightPunchHash = Animator.StringToHash("RightPunch");
     private int sittinghash;
 
     [Header("Balance Properties")]
     //Balance
     public bool autoGetUpWhenPossible = true;
-    public bool useStepPrediction = true;
     public float balanceHeight = 2.5f;
-    public float balanceStrength = 5000f;
-    public float coreStrength = 1500f;
-    public float limbStrength = 500f;
-    //Walking
-    public float StepDuration = 0.2f;
-    public float StepHeight = 1.7f;
-    public float FeetMountForce = 25f;
 
     [Header("Reach Properties")]
     //Reach
@@ -76,20 +68,6 @@ public class AIRagdollMan : MonoBehaviour
     //Active Ragdoll Player Parts Array
     private GameObject[] APR_Parts;
 
-    //Joint Drives on & off
-    JointDrive
-    //
-    BalanceOn, PoseOn, CoreStiffness, ReachStiffness, DriveOff;
-
-    //Original pose target rotation
-    Quaternion
-    //
-    HeadTarget, BodyTarget,
-    UpperRightArmTarget, LowerRightArmTarget,
-    UpperLeftArmTarget, LowerLeftArmTarget,
-    UpperRightLegTarget, LowerRightLegTarget,
-    UpperLeftLegTarget, LowerLeftLegTarget;
-
     [Header("Player Editor Debug Mode")]
     //Debug
     public bool editorDebugMode;
@@ -104,7 +82,7 @@ public class AIRagdollMan : MonoBehaviour
     void Awake()
     {
         PlayerSetup();
-        ActivateRagdoll();
+        //ActivateRagdoll();
     }
 
     
@@ -112,8 +90,7 @@ public class AIRagdollMan : MonoBehaviour
     ////////////////
     void Update()
     {
-        //GroundCheck();
-        //CenterOfMass();
+
     }
 
 
@@ -122,40 +99,13 @@ public class AIRagdollMan : MonoBehaviour
     //////////////////////
     void FixedUpdate()
     {
-        //ResetPlayerPose();
+
     }
 
     //---Player Setup--//
     ////////////////////
     void PlayerSetup()
     {
-
-        //Setup joint drives
-        BalanceOn = new JointDrive();
-        BalanceOn.positionSpring = balanceStrength;
-        BalanceOn.positionDamper = 0;
-        BalanceOn.maximumForce = Mathf.Infinity;
-
-        PoseOn = new JointDrive();
-        PoseOn.positionSpring = limbStrength;
-        PoseOn.positionDamper = 0;
-        PoseOn.maximumForce = Mathf.Infinity;
-
-        CoreStiffness = new JointDrive();
-        CoreStiffness.positionSpring = coreStrength;
-        CoreStiffness.positionDamper = 0;
-        CoreStiffness.maximumForce = Mathf.Infinity;
-
-        ReachStiffness = new JointDrive();
-        ReachStiffness.positionSpring = armReachStiffness;
-        ReachStiffness.positionDamper = 0;
-        ReachStiffness.maximumForce = Mathf.Infinity;
-
-        DriveOff = new JointDrive();
-        DriveOff.positionSpring = 25;
-        DriveOff.positionDamper = 0;
-        DriveOff.maximumForce = Mathf.Infinity;
-
         //Setup/reroute active ragdoll parts to array
         APR_Parts = new GameObject[]
         {
@@ -175,19 +125,8 @@ public class AIRagdollMan : MonoBehaviour
 			UpperLeftArm,
 			//6
 			LowerLeftArm,
-
         };
-
-        //Setup original pose for joint drives
-        BodyTarget = APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation;
-        HeadTarget = APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation;
-        UpperRightArmTarget = APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation;
-        LowerRightArmTarget = APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation;
-        UpperLeftArmTarget = APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation;
-        LowerLeftArmTarget = APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation;
-
-        skinAnim = skin.GetComponent<Animator>();
-        
+       // skinAnim = skin.GetComponent<Animator>();
     }
 
 
@@ -235,7 +174,7 @@ public class AIRagdollMan : MonoBehaviour
     /////////////////////////
     public void ActivateRagdoll()
     {
-
+        skinAnim.enabled = false;
     }
 
 
@@ -243,7 +182,7 @@ public class AIRagdollMan : MonoBehaviour
     ///////////////////////////
     void DeactivateRagdoll()
     {
-
+        skinAnim.enabled = true;
     }
 
 
@@ -280,11 +219,6 @@ public class AIRagdollMan : MonoBehaviour
         {
             punchingRight = true;
             punchTimer = 1.0f;
-
-            //Right hand punch pull back pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.3f, 0f, 0.5f, 1);
-            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(1.6f, 0f, -0.5f, 1);
         }
 
         if (punchTimer <= 0)
@@ -292,10 +226,7 @@ public class AIRagdollMan : MonoBehaviour
             punchTimer = 0;
             punchingRight = false;
 
-            //Right hand punch release pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(1f, 0.04f, 0f, 1);
-            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.2f, 0, 0, 1);
+            skinAnim.SetTrigger(RightPunchHash);
 
             //Right hand punch force
             RightHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
@@ -306,10 +237,7 @@ public class AIRagdollMan : MonoBehaviour
             IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-               
-                APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
-                APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
-                
+
             }
         }
         else
@@ -324,11 +252,6 @@ public class AIRagdollMan : MonoBehaviour
         {
             punchingLeft = true;
             punchTimer = 1.5f;
-
-            //Right hand punch pull back pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.3f, 0f, -0.5f, 1);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-1.6f, 0f, 0.5f, 1);
         }
 
         if (punchTimer <= 0)
@@ -336,9 +259,7 @@ public class AIRagdollMan : MonoBehaviour
             punchTimer = 0;
             punchingLeft = false;
 
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-1f, 0.04f, 0f, 1f);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.2f, 0, 0, 1);
+            skinAnim.SetTrigger(LeftPunchHash);
 
             //Left hand punch force
             LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
@@ -349,9 +270,6 @@ public class AIRagdollMan : MonoBehaviour
             IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-
-                APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
-                APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
 
             }
         }
