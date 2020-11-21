@@ -354,5 +354,5 @@ public class NewAIMan : MonoBehaviour
     float baseAcceleration;
     [HideInInspector]
     public bool offByDistance = false;
-    protected Animator anim;
+    public Animator anim;
 }

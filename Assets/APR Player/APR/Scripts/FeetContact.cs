@@ -49,6 +49,10 @@ public class FeetContact : MonoBehaviour
                 playFootSound(defaultSound);
             }
         }
+        else if(col.gameObject.GetComponent<WalkingSound>() != null)
+        {
+            playFootSound(col.gameObject.GetComponent<WalkingSound>().sound);
+        }
 	}
 
     void playFootSound(AudioClip clip)

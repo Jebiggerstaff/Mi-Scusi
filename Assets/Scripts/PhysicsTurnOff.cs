@@ -7,6 +7,7 @@ public class PhysicsTurnOff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitialTurnOff();
         StartCoroutine(waitGet());
     }
 
@@ -32,6 +33,10 @@ public class PhysicsTurnOff : MonoBehaviour
                         if (rb.isKinematic == false)
                         {
                             rb.isKinematic = true;
+                            if(rb.GetComponent<SoundOnCollision>() != null)
+                            {
+                                rb.GetComponent<SoundOnCollision>().enabled = false;
+                            }
                             Debug.Log("Turning Off " + rb.gameObject.name);
                         }
                     }
@@ -40,6 +45,10 @@ public class PhysicsTurnOff : MonoBehaviour
                         if(rb.isKinematic == true)
                         {
                             rb.isKinematic = false;
+                            if (rb.GetComponent<SoundOnCollision>() != null)
+                            {
+                                rb.GetComponent<SoundOnCollision>().enabled = true;
+                            }
                             Debug.Log("Turning On " + rb.gameObject.name);
                         }
                     }
@@ -53,10 +62,63 @@ public class PhysicsTurnOff : MonoBehaviour
         }
     }
 
+    public void InitialTurnOff()
+    {
+
+        allRigidbodies = new List<Rigidbody>(FindObjectsOfType<Rigidbody>()); Rigidbody rb;
+        while (currentCount < allRigidbodies.Count)
+        {
+            rb = allRigidbodies[currentCount];
+            if (rb == null || rb.GetComponent<NewAIMan>() != null)
+            {
+                allRigidbodies.Remove(rb);
+            }
+            else
+            {
+                currentCount++;
+            }
+        }
+        currentCount = 0;
+
+        foreach(var x in allRigidbodies)
+        {
+            rb = x;
+            if (Vector3.Distance(player.position, rb.transform.position) > distance)
+            {
+                //rb.detectCollisions = false;
+                if (rb.isKinematic == false)
+                {
+                    rb.isKinematic = true;
+                    if (rb.GetComponent<SoundOnCollision>() != null)
+                    {
+                        rb.GetComponent<SoundOnCollision>().enabled = false;
+                    }
+                    Debug.Log("Turning Off " + rb.gameObject.name);
+                }
+            }
+            else
+            {
+                if (rb.isKinematic == true)
+                {
+                    rb.isKinematic = false;
+                    if (rb.GetComponent<SoundOnCollision>() != null)
+                    {
+                        rb.GetComponent<SoundOnCollision>().enabled = true;
+                    }
+                    Debug.Log("Turning On " + rb.gameObject.name);
+                }
+            }
+        }
+    }
+
 
     IEnumerator waitGet()
     {
         yield return new WaitForSeconds(0.5f);
+        if(allRigidbodies != null)
+        {
+            allRigidbodies.Clear();
+        }
         allRigidbodies = new List<Rigidbody>(FindObjectsOfType<Rigidbody>());
         
         currentCount = 0;
