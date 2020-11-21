@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4010756936006639904}
   - component: {fileID: 7247869899196325337}
   - component: {fileID: 1119320839023733593}
+  - component: {fileID: 7628451596026553300}
   m_Layer: 14
   m_Name: CS_floorrock04
   m_TagString: Ground
@@ -56,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1119320839023733593
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -90,7 +93,20 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 6e20e3b96e49e1145bb99a02ff3a11e7, type: 3}
+--- !u!114 &7628451596026553300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982795907867470085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a67c30556c526442b9cfd342f4512d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 979448d56f9aff74dad9eb166b4ad7cf, type: 3}
