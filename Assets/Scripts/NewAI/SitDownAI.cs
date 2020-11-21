@@ -42,7 +42,7 @@ public class SitDownAI : NewAIMan
                 {
                     transform.rotation = Quaternion.Euler(targetRot);
                 }
-                GetComponentInChildren<Animator>().SetBool("Sitting", true);
+                anim.SetBool("Sitting", true);
 
 
 

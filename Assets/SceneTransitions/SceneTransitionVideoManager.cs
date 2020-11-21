@@ -46,6 +46,7 @@ public class SceneTransitionVideoManager : MonoBehaviour
         if (currentVideo.isPlaying == false)
         {
             StartCoroutine(SwitchScene());
+            CancelInvoke("SwapCheck");
         }
     }
     IEnumerator SwitchScene()

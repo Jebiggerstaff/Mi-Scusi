@@ -7,7 +7,7 @@ public class ImpactContact : MonoBehaviour
     //Alert APR Player when collision enters with specified force amount
 	void OnCollisionEnter(Collision col)
 	{
-        
+        /*
         //Knockout by impact
 		if(APR_Player.canBeKnockoutByImpact && col.relativeVelocity.magnitude > APR_Player.requiredForceToBeKO)
 		{
@@ -23,7 +23,7 @@ public class ImpactContact : MonoBehaviour
                 }
             }
 		}
-        
+        */
         //Sound on impact
         if(col.relativeVelocity.magnitude > APR_Player.ImpactForce)
         {
