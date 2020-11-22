@@ -14,8 +14,6 @@ public class DialogueSystem: MonoBehaviour {
     public float letterDelay = 0.1f;
     public float letterMultiplier = 0.5f;
 
-    public KeyCode DialogueInput = KeyCode.F;
-
     public string Names;
 
     public string[] dialogueLines;
@@ -54,7 +52,7 @@ public class DialogueSystem: MonoBehaviour {
         outOfRange = false;
         dialogueBoxGUI.gameObject.SetActive(true);
         nameText.text = Names;
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)||Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             if (!dialogueActive)
             {
@@ -89,7 +87,7 @@ public class DialogueSystem: MonoBehaviour {
 
             while (true)
             {
-                if (Input.GetKeyDown(DialogueInput) && dialogueEnded == false)
+                if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3) && dialogueEnded == false)
                 {
                     break;
                 }
@@ -117,7 +115,7 @@ public class DialogueSystem: MonoBehaviour {
 
                 if (currentCharacterIndex < stringLength)
                 {
-                    if (Input.GetKey(DialogueInput))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3))
                     {
                         yield return new WaitForSeconds(letterDelay * letterMultiplier);
 
@@ -138,7 +136,7 @@ public class DialogueSystem: MonoBehaviour {
             }
             while (true)
             {
-                if (Input.GetKeyDown(DialogueInput))
+                if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3))
                 {
                     break;
                 }
