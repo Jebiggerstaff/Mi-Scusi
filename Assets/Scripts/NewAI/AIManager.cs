@@ -42,8 +42,8 @@ public class AIManager : MonoBehaviour
                         {
                             if (a.anim != null)
                             {
-                                a.anim.StopPlayback();
-                                a.anim.enabled = false;
+                               // a.anim.StopPlayback();
+                              //  a.anim.enabled = false;
                             }
                             a.offByDistance = true;
                             a.agent.enabled = false;
@@ -55,8 +55,8 @@ public class AIManager : MonoBehaviour
                             a.offByDistance = false;
                             if(a.anim != null)
                             {
-                                a.anim.enabled = true;
-                                a.anim.StartPlayback();
+                               // a.anim.enabled = true;
+                               // a.anim.StartPlayback();
                             }
                         }
                         currentCount++;
@@ -82,8 +82,8 @@ public class AIManager : MonoBehaviour
                         {
                             if (a.anim != null)
                             {
-                                a.anim.StopPlayback();
-                                a.anim.enabled = false;
+                                //a.anim.StopPlayback();
+                               // a.anim.enabled = false;
                             }
                             a.offByDistance = true;
                             a.agent.enabled = false;
@@ -91,8 +91,8 @@ public class AIManager : MonoBehaviour
                             {
                                 if (ld.anim != null)
                                 {
-                                    ld.anim.StopPlayback();
-                                    ld.anim.enabled = false;
+                                    //ld.anim.StopPlayback();
+                                   // ld.anim.enabled = false;
                                 }
                                 ld.offByDistance = true;
                                 ld.agent.enabled = false;
@@ -105,8 +105,8 @@ public class AIManager : MonoBehaviour
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
-                                a.anim.enabled = true;
-                                a.anim.StartPlayback();
+                                //a.anim.enabled = true;
+                               // a.anim.StartPlayback();
                             }
                             foreach (var ld in a.AIMen)
                             {
@@ -114,8 +114,8 @@ public class AIManager : MonoBehaviour
                                 ld.agent.enabled = true;
                                 if (ld.anim != null)
                                 {
-                                    ld.anim.enabled = true;
-                                    ld.anim.StartPlayback();
+                                   // ld.anim.enabled = true;
+                                   // ld.anim.StartPlayback();
                                 }
                             }
                         }
@@ -144,8 +144,8 @@ public class AIManager : MonoBehaviour
                         {
                             if (a.anim != null)
                             {
-                                a.anim.StopPlayback();
-                                a.anim.enabled = false;
+                                //a.anim.StopPlayback();
+                                //a.anim.enabled = false;
                             }
                             a.offByDistance = true;
                             a.agent.enabled = false;
@@ -157,8 +157,8 @@ public class AIManager : MonoBehaviour
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
-                                a.anim.enabled = true;
-                                a.anim.StartPlayback();
+                                //a.anim.enabled = true;
+                                //a.anim.StartPlayback();
                             }
                         }
 
@@ -184,8 +184,8 @@ public class AIManager : MonoBehaviour
                         {
                             if (a.anim != null)
                             {
-                                a.anim.StopPlayback();
-                                a.anim.enabled = false;
+                                //a.anim.StopPlayback();
+                                //a.anim.enabled = false;
                             }
                             a.offByDistance = true;
                             a.agent.enabled = false;
@@ -196,8 +196,8 @@ public class AIManager : MonoBehaviour
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
-                                a.anim.enabled = true;
-                                a.anim.StartPlayback();
+                                //a.anim.enabled = true;
+                                //a.anim.StartPlayback();
                             }
                         }
 
@@ -223,8 +223,8 @@ public class AIManager : MonoBehaviour
                         {
                             if (a.anim != null)
                             {
-                                a.anim.StopPlayback();
-                                a.anim.enabled = false;
+                                //a.anim.StopPlayback();
+                               // a.anim.enabled = false;
                             }
                             a.offByDistance = true;
                             a.agent.enabled = false;
@@ -235,8 +235,8 @@ public class AIManager : MonoBehaviour
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
-                                a.anim.enabled = true;
-                                a.anim.StartPlayback();
+                                //a.anim.enabled = true;
+                                //a.anim.StartPlayback();
                             }
                         }
                         currentCount++;
