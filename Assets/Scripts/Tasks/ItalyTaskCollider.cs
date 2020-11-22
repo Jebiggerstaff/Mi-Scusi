@@ -42,8 +42,13 @@ public class ItalyTaskCollider : MonoBehaviour
             CoinsInFountain--;
         }
         #endregion
-
-
+        #region StealFromStores
+        if ((other.name == "Cheese" || other.name == "Scooter" || other.name == "Apple") && name == "StoreInterior")
+        {
+            ItalyTaskManager.TaskCompleted("StealFromShop");
+            Debug.LogError(other.name);
+        }
+        #endregion
     }
     private void OnTriggerExit(Collider other)
     {
@@ -57,11 +62,6 @@ public class ItalyTaskCollider : MonoBehaviour
             }
         }
         #endregion
-        #region StealFromStores
-        if ((other.name == "Cheese"||other.name=="Scooter"||other.name=="Apple") && name == "StoreInterior")
-        {
-            ItalyTaskManager.TaskCompleted("StealFromShop");
-        }
-        #endregion
+
     }
 }
