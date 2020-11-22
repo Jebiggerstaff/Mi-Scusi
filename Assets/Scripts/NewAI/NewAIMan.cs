@@ -40,7 +40,7 @@ public class NewAIMan : MonoBehaviour
         if(!offByDistance)
         {
 
-            getnewDest();
+            
 
             if (grabbedByPlayer)
             {
@@ -49,6 +49,8 @@ public class NewAIMan : MonoBehaviour
             }
             else
             {
+                getnewDest();
+
                 if (agent.enabled == false && stunCount <= 0)
                 {
                     agent.enabled = true;
@@ -65,60 +67,65 @@ public class NewAIMan : MonoBehaviour
                     }
                 }
 
-            }
-
-            if (needToUpdateDestination)
-            {
-                agent.enabled = true;
-                rb.isKinematic = true;
-                if (agent.isOnNavMesh)
+                if (needToUpdateDestination)
                 {
-                    agent.SetDestination(currentDestination);
-                    needToUpdateDestination = false;
+                    agent.enabled = true;
+                    rb.isKinematic = true;
+                    if (agent.isOnNavMesh)
+                    {
+                        agent.SetDestination(currentDestination);
+                        needToUpdateDestination = false;
+                    }
+                    else
+                    {
+                        agent.enabled = false;
+                        rb.isKinematic = false;
+                    }
                 }
-                else
+
+                if (stunCount > 0)
                 {
+                    if (stunCount > 30)
+                    {
+                        stunCount = 30;
+                    }
                     agent.enabled = false;
                     rb.isKinematic = false;
-                }
-            }
-
-            if (stunCount > 0)
-            {
-                if (stunCount > 30)
-                {
-                    stunCount = 30;
-                }
-                agent.enabled = false;
-                rb.isKinematic = false;
-                stunCount -= Time.deltaTime;
+                    stunCount -= Time.deltaTime;
 
 
-                if (anim != null)
-                    anim.SetBool("Stunned", true);
-
-
-                if (stunCount <= 0)
-                {
-                    hp = maxHP;
                     if (anim != null)
-                        anim.SetBool("Stunned", false);
-                }
-            }
+                        anim.SetBool("Stunned", true);
 
-            if (quipped)
-            {
-                quipTime -= Time.deltaTime;
-                if (quipTime <= 0)
+
+                    if (stunCount <= 0)
+                    {
+                        hp = maxHP;
+                        if (anim != null)
+                            anim.SetBool("Stunned", false);
+                    }
+                }
+
+                if (quipped)
                 {
-                    quipped = false;
-                    agent.speed = baseSpeed;
+                    quipTime -= Time.deltaTime;
+                    if (quipTime <= 0)
+                    {
+                        quipped = false;
+                        agent.speed = baseSpeed;
+                    }
+
                 }
+
+
+                anim.speed = agent.speed / 3;
+
+
+
 
             }
 
-
-            anim.speed = agent.speed / 3;
+            
 
         }
 

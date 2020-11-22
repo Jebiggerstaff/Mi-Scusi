@@ -176,15 +176,23 @@ public class HandContact : MonoBehaviour
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                         this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
 
-                        if (col.gameObject.GetComponent<NewAIMan>() != null)
-                        {
-                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+                        
+                            var ai = col.gameObject.GetComponent<NewAIMan>();
+                            if (ai == null)
+                            {
+                                ai = col.gameObject.GetComponentInParent<NewAIMan>();
+                            }
+                            if (ai == null)
+                            {
+                                ai = col.gameObject.GetComponentInChildren<NewAIMan>();
+                            }
+                            if (ai != null)
+                            {
+                                ai.grabbedByPlayer = true;
+                                grabbedAI.Add(ai);
+                            }
 
-
-                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
-                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
-
-                        }
+                        
                         //too check for grab constraints
                         if(col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
                         {
@@ -270,15 +278,25 @@ public class HandContact : MonoBehaviour
                         this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
                         this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
 
-                        if (col.gameObject.GetComponent<NewAIMan>() != null)
-                        {
-                            col.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = true;
+                        
+                            var ai = col.gameObject.GetComponent<NewAIMan>();
+                            if(ai == null)
+                            {
+                                ai = col.gameObject.GetComponentInParent<NewAIMan>();
+                            }
+                            if(ai == null)
+                            {
+                                ai = col.gameObject.GetComponentInChildren<NewAIMan>();
+                            }
+                            if(ai != null)
+                            {
+                                ai.grabbedByPlayer = true;
+                                grabbedAI.Add(ai);
+                            }
 
+                            
 
-                            if (grabbedAI.Contains(col.gameObject.GetComponent<NewAIMan>()) == false)
-                                grabbedAI.Add(col.gameObject.GetComponent<NewAIMan>());
-
-                        }
+                        
                         //too check for grab constraints
                         if (col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
                         {
@@ -305,8 +323,8 @@ public class HandContact : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<NewAIMan>() != null)
             {
-                collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
-                grabbedAI.Remove(collision.gameObject.GetComponent<NewAIMan>());
+                //collision.gameObject.GetComponent<NewAIMan>().grabbedByPlayer = false;
+                //grabbedAI.Remove(collision.gameObject.GetComponent<NewAIMan>());
             }
         }
 
