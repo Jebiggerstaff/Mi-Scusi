@@ -37,7 +37,7 @@ public class NPC : MonoBehaviour {
         if (other.gameObject.tag == "Player") { 
             this.gameObject.GetComponent<NPC>().enabled = true;
             FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
-            if ((other.gameObject.tag == "Player") && Input.GetKeyDown(KeyCode.F))
+            if ((other.gameObject.tag == "Player") && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3)))
             {
                 if (Name == "Former Gangster")
                     ItalyTaskManager.TaskCompleted("HearAboutMafia");
