@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5309704305701144157}
   - component: {fileID: 3815918120181365867}
   - component: {fileID: 7478319794730107026}
-  - component: {fileID: 1134149727434153669}
-  m_Layer: 0
+  - component: {fileID: 4640306694818839882}
+  m_Layer: 14
   m_Name: Palm_Tree (1)
-  m_TagString: CanBeGrabbed
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5309704305701144157
 Transform:
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,8 +83,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1134149727434153669
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4640306694818839882
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +94,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5220702601083036729, guid: a6d3c4daccd46e140acfd1dcf1f03535, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.4069893, y: 0.5169214, z: 5.395814}
+  m_Center: {x: -0.09658418, y: -0.038153384, z: 2.7100782}
