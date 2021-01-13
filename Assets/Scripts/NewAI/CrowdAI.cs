@@ -68,6 +68,7 @@ public class CrowdAI : NewAIMan
                 var go = Instantiate(thingToSpawn, target, Quaternion.Euler(0, 0, 0));
                 AIMen.Add(go.GetComponent<NewAIMan>());
                 go.GetComponent<NewAIMan>().minimumStopDistance = 0;
+                go.GetComponent<NewAIMan>().SetStopDistance();
                 go.GetComponent<NewAIMan>().maxHP = hp;
                 go.GetComponent<NewAIMan>().costume = costume;
                 go.GetComponent<NewAIMan>().SetCostume();

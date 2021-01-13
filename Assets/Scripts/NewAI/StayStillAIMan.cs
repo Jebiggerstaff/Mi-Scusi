@@ -8,6 +8,7 @@ public class StayStillAIMan : NewAIMan
     {
         base.Start();
         minimumStopDistance = 3.5f;
+        SetStopDistance();
     }
     public override void Update()
     {
@@ -17,7 +18,8 @@ public class StayStillAIMan : NewAIMan
 
             SetNewDestination(target);
 
-            if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+            if(agent.isStopped)
+            //if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
             {
 
                 if (anim != null)

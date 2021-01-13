@@ -26,6 +26,7 @@ public class NewAIMan : MonoBehaviour
             anim.SetBool("Sitting", false);
         }
         SetCostume();
+        SetStopDistance();
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -146,7 +147,8 @@ public class NewAIMan : MonoBehaviour
 
     public void getNewOrderedDest()
     {
-        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+        if(agent.isStopped)
+       // if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
             forceGetNewOrderedDest();
         }
@@ -154,7 +156,8 @@ public class NewAIMan : MonoBehaviour
 
     public void getnewRandDest()
     {
-        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+        if(agent.isStopped)
+       // if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
             forceGetNewRandDest();
         }
@@ -207,7 +210,6 @@ public class NewAIMan : MonoBehaviour
             }
         }
     }
-
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -217,6 +219,7 @@ public class NewAIMan : MonoBehaviour
         }
     }
 
+  
 
     private void OnCollisionExit(Collision collision)
     {
@@ -270,6 +273,8 @@ public class NewAIMan : MonoBehaviour
         quipped = true;
         quipTime = time;
 
+        
+
         Vector3 normalized = (transform.position - FindObjectOfType<APRController>().Root.transform.position).normalized;
         normalized = Vector3.Cross(normalized, Vector3.up);
         var l = Random.Range(0, 2) == 0;
@@ -320,7 +325,10 @@ public class NewAIMan : MonoBehaviour
 
 
 
-
+    public void SetStopDistance()
+    {
+        agent.stoppingDistance = minimumStopDistance;
+    }
 
 
 
