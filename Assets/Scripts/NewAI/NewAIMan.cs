@@ -50,6 +50,13 @@ public class NewAIMan : MonoBehaviour
             }
             else
             {
+                if(agent.enabled == true && agent.isOnNavMesh == false)
+                {
+                    Debug.Log("Help!  " + gameObject.name);
+                    agent.enabled = false;
+                    agent.enabled = true;
+                }
+
                 getnewDest();
 
                 if (agent.enabled == false && stunCount <= 0)
@@ -156,7 +163,7 @@ public class NewAIMan : MonoBehaviour
 
     public void getnewRandDest()
     {
-        if(agent.isStopped)
+        if(agent.enabled && agent.isOnNavMesh && agent.isStopped)
        // if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
             forceGetNewRandDest();

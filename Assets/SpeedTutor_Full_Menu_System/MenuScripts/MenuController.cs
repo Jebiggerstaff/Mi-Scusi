@@ -597,6 +597,7 @@ namespace SpeedTutorMainMenuSystem
             {
                 modelLoader.LoadAllModels();
             }
+            PlayerPrefs.Save();
         }
         public void SetHat(int cosmetic)
         {
