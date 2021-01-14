@@ -18,8 +18,8 @@ public class StayStillAIMan : NewAIMan
 
             SetNewDestination(target);
 
-            if(agent.isStopped)
-            //if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+            //if(agent.isStopped)
+            if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
             {
 
                 if (anim != null)

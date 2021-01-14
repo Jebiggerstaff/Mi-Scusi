@@ -57,7 +57,11 @@ public class NewAIMan : MonoBehaviour
                     agent.enabled = true;
                 }
 
-                getnewDest();
+                if(!(this is SitDownAI && (this as SitDownAI).sitting == true))
+                {
+                    getnewDest();
+
+                }
 
                 if (agent.enabled == false && stunCount <= 0)
                 {
@@ -154,8 +158,8 @@ public class NewAIMan : MonoBehaviour
 
     public void getNewOrderedDest()
     {
-        if(agent.isStopped)
-       // if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+       // if(agent.isStopped)
+        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
             forceGetNewOrderedDest();
         }
@@ -163,8 +167,8 @@ public class NewAIMan : MonoBehaviour
 
     public void getnewRandDest()
     {
-        if(agent.enabled && agent.isOnNavMesh && agent.isStopped)
-       // if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
+        //if(agent.isStopped)
+        if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
             forceGetNewRandDest();
         }
@@ -334,7 +338,7 @@ public class NewAIMan : MonoBehaviour
 
     public void SetStopDistance()
     {
-        agent.stoppingDistance = minimumStopDistance;
+        //agent.stoppingDistance = minimumStopDistance;
     }
 
 
