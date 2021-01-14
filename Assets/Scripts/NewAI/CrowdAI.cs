@@ -12,6 +12,7 @@ public class CrowdAI : NewAIMan
         SpawnLads();
         SetAll();
         StartCoroutine(moveIndividuals());
+        agent.isStopped = false;
         
     }
 

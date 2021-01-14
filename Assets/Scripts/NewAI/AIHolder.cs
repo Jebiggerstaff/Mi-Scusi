@@ -24,6 +24,7 @@ public class AIHolder
         newAI.useRandomDestinations = !orderedDestinations;
         newAI.costume = costume;
         newAI.SetCostume();
+        newAI.GetComponent<NavMeshAgent>().Warp(startLocation);
         return newAI;
 
     }
