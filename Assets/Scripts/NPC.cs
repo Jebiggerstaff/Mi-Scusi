@@ -22,7 +22,7 @@ public class NPC : MonoBehaviour {
     void Start () {
         if(SceneManager.GetActiveScene().name == "Italy")
             ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
-        dialogueSystem = FindObjectOfType<DialogueSystem>();
+        dialogueSystem = DialogueSystem.dialogueSystem;
     }
 	
 	void Update () {
@@ -30,13 +30,18 @@ public class NPC : MonoBehaviour {
      
         Pos.y += 175;
           ChatBackGround.position = Pos;
+
+        if(dialogueSystem == null)
+        {
+            dialogueSystem = DialogueSystem.dialogueSystem;
+        }
     }
 
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player") { 
             this.gameObject.GetComponent<NPC>().enabled = true;
-            FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
+            DialogueSystem.dialogueSystem.EnterRangeOfNPC();
             if ((other.gameObject.tag == "Player") && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3)))
             {
                 if (Name == "Former Gangster")
@@ -45,14 +50,14 @@ public class NPC : MonoBehaviour {
                 this.gameObject.GetComponent<NPC>().enabled = true;
                 dialogueSystem.Names = Name;
                 dialogueSystem.dialogueLines = sentences;
-                FindObjectOfType<DialogueSystem>().NPCName();
+                DialogueSystem.dialogueSystem.NPCName();
             }
         }
     }
 
     public void OnTriggerExit()
     {
-        FindObjectOfType<DialogueSystem>().OutOfRange();
+        DialogueSystem.dialogueSystem.OutOfRange();
         this.gameObject.GetComponent<NPC>().enabled = false;
     }
 }

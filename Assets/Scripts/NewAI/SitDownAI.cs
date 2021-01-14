@@ -12,6 +12,7 @@ public class SitDownAI : NewAIMan
         {
             Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>());
         }
+        //myRB = GetComponent<Rigidbody>();
     }
 
     public override void Update()
@@ -27,10 +28,10 @@ public class SitDownAI : NewAIMan
                 {
                     agent.enabled = false;
                 }
-                if (GetComponent<Rigidbody>().useGravity == true)
-                {
-                    GetComponent<Rigidbody>().useGravity = false;
-                }
+                //if (myRB.useGravity == true)
+                //{
+                    //myRB.useGravity = false;
+                //}
                 Vector3 targetSit = sitPlace.position;
                 targetSit += new Vector3(0, -0.9f, 0);
                 if (transform.position != targetSit)
@@ -82,7 +83,7 @@ public class SitDownAI : NewAIMan
 
 
 
-
+    //Rigidbody myRB;
     public Transform sitPlace;
     public bool sitting = true;
     public bool AlwaysSit = false;

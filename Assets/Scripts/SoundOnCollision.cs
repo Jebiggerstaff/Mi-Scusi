@@ -13,6 +13,25 @@ public class SoundOnCollision : MonoBehaviour
     public AudioSource KnockedOut;
     //public AudioSource DraggedByPlayer;
 
+    bool collidesWithWater;
+    bool collidesWithGround;
+    bool collidesWithPlayer;
+    bool punchableByPlayer;
+    bool aipunchableByPlayer;
+    bool aiPunchingPlayer;
+    bool knockOutable;
+
+
+    private void Start()
+    {
+        collidesWithWater = CollideWithWater != null;
+        collidesWithGround = CollideWithGround != null;
+        collidesWithPlayer = CollideWithPlayer != null;
+        punchableByPlayer = PunchedByPlayer != null;
+        aipunchableByPlayer = AIPunchedByPlayer != null;
+        aiPunchingPlayer = AIPunchesPlayer != null;
+        knockOutable = KnockedOut != null;
+    }
 
 
     private void OnCollisionEnter(Collision collision)
@@ -29,23 +48,23 @@ public class SoundOnCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && other.GetComponent<HandContact>() != null)
+        if(punchableByPlayer && other.tag == "Player" && other.GetComponent<HandContact>() != null)
         {
             tryPlayAudio(PunchedByPlayer);
         }
-        else if (other.tag == "Player")
+        else if (collidesWithPlayer && other.tag == "Player")
         {
             tryPlayAudio(CollideWithPlayer);
         }
-        else if(other.name.Contains("Water") || other.name.Contains("water"))
+        else if(collidesWithWater && (  other.name.Contains("Water") || other.name.Contains("water")))
         {
             tryPlayAudio(CollideWithWater);
         }
-        else if(other.tag == "Ground" || other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if(collidesWithGround && (other.tag == "Ground" || other.gameObject.layer == LayerMask.NameToLayer("Ground")))
         {
             tryPlayAudio(CollideWithGround);
         }
-        else if(GetComponent<NewAIMan>() != null && other.GetComponent<HandContact>() != null)
+        else if(aipunchableByPlayer && (GetComponent<NewAIMan>() != null && other.GetComponent<HandContact>() != null))
         {
             var hand = other.GetComponent<HandContact>();
             if((hand.Left && hand.APR_Player.punchingLeft) || (!hand.Left && hand.APR_Player.punchingRight))
@@ -53,7 +72,7 @@ public class SoundOnCollision : MonoBehaviour
                 tryPlayAudio(AIPunchedByPlayer);
             }
         }
-        else if(GetComponent<AIHandContact>() != null && (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null))
+        else if(aiPunchingPlayer && (GetComponent<AIHandContact>() != null && (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null)))
         {
             var hand = GetComponent<AIHandContact>();
             if((hand.Left && hand.APR_Player.punchingLeft) || (!hand.Left && hand.APR_Player.punchingRight))

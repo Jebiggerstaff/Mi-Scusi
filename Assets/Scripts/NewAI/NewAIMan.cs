@@ -9,7 +9,7 @@ public class NewAIMan : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         hp = maxHP;
         currentDest = 0;
@@ -46,7 +46,7 @@ public class NewAIMan : MonoBehaviour
             if (grabbedByPlayer)
             {
                 agent.enabled = false;
-                rb.isKinematic = false;
+                //rb.isKinematic = false;
             }
             else
             {
@@ -55,7 +55,7 @@ public class NewAIMan : MonoBehaviour
                 if (agent.enabled == false && stunCount <= 0)
                 {
                     agent.enabled = true;
-                    rb.isKinematic = true;
+                    //rb.isKinematic = true;
                     if (agent.isOnNavMesh)
                     {
 
@@ -71,7 +71,7 @@ public class NewAIMan : MonoBehaviour
                 if (needToUpdateDestination)
                 {
                     agent.enabled = true;
-                    rb.isKinematic = true;
+                    //rb.isKinematic = true;
                     if (agent.isOnNavMesh)
                     {
                         agent.SetDestination(currentDestination);
@@ -80,7 +80,7 @@ public class NewAIMan : MonoBehaviour
                     else
                     {
                         agent.enabled = false;
-                        rb.isKinematic = false;
+                        //rb.isKinematic = false;
                     }
                 }
 
@@ -91,7 +91,7 @@ public class NewAIMan : MonoBehaviour
                         stunCount = 30;
                     }
                     agent.enabled = false;
-                    rb.isKinematic = false;
+                    //rb.isKinematic = false;
                     stunCount -= Time.deltaTime;
 
 
@@ -215,7 +215,7 @@ public class NewAIMan : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
         }
     }
 
@@ -225,7 +225,7 @@ public class NewAIMan : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
         }
 
     }
@@ -340,7 +340,7 @@ public class NewAIMan : MonoBehaviour
     public List<Vector3> destinations;
     [HideInInspector]
     public NavMeshAgent agent;
-    Rigidbody rb;
+    //Rigidbody rb;
     public bool grabbedByPlayer = false;
     public float stunCount;
 

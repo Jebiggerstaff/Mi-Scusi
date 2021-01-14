@@ -276,9 +276,7 @@ GameObject:
   - component: {fileID: 4575674925354774175}
   - component: {fileID: 4575674925354774174}
   - component: {fileID: 4575674925354774161}
-  - component: {fileID: 4575674925354774160}
   - component: {fileID: 4575674925354774163}
-  - component: {fileID: 4575674925354774173}
   - component: {fileID: 3180170900182795309}
   m_Layer: 0
   m_Name: StayStillMan
@@ -352,20 +350,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4575674925354774160
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4575674925354774162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.87678623
-  m_Height: 4.993284
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.4966421, z: 0}
 --- !u!195 &4575674925354774163
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -388,22 +372,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
---- !u!54 &4575674925354774173
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4575674925354774162}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &3180170900182795309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1218,7 +1186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedBody
       value: 
-      objectReference: {fileID: 4575674925354774173}
+      objectReference: {fileID: 0}
     - target: {fileID: 4351363433388318466, guid: e5839652bb8888a498860ed48f7daff8,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1586,6 +1554,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a18f5d52b435d40acc318260e67731, type: 3}
+--- !u!1 &3888972782796286163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 586243788197905361, guid: 85a18f5d52b435d40acc318260e67731,
+    type: 3}
+  m_PrefabInstance: {fileID: 4457061400265419522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5596646667282096370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8102505451449863152, guid: 85a18f5d52b435d40acc318260e67731,
@@ -1601,12 +1575,6 @@ GameObject:
 --- !u!1 &1718589994581933368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3027265316879357498, guid: 85a18f5d52b435d40acc318260e67731,
-    type: 3}
-  m_PrefabInstance: {fileID: 4457061400265419522}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3888972782796286163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 586243788197905361, guid: 85a18f5d52b435d40acc318260e67731,
     type: 3}
   m_PrefabInstance: {fileID: 4457061400265419522}
   m_PrefabAsset: {fileID: 0}

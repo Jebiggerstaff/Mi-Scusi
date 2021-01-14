@@ -8,6 +8,8 @@ public class DialogueSystem: MonoBehaviour {
     public Text nameText;
     public Text dialogueText;
 
+    public static DialogueSystem dialogueSystem;
+
     public GameObject dialogueGUI;
     public Transform dialogueBoxGUI;
 
@@ -30,6 +32,7 @@ public class DialogueSystem: MonoBehaviour {
     {
         audioSource = GetComponent<AudioSource>();
         dialogueText.text = "";
+        dialogueSystem = this;
     }
 
     void Update()
