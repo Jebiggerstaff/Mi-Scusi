@@ -89,6 +89,12 @@ public class APRController : MonoBehaviour
     public float punchForce = 15f;
     private float punchTimer = 0f;
     private float punchDelay = 2f;
+    private float punchPowerUp = 0f;
+    public float powerRight = 0f;
+    public float powerLeft = 0f;
+    public ParticleSystem Punch1, punch2, punch3, punch4;
+
+    //quip
     public float quipRange = 10f;
     public float quipDuration = 5f;
     public float quipCooldown = 10f;
@@ -852,12 +858,15 @@ public class APRController : MonoBehaviour
     /////////////////////
     void PlayerPunch()
     {
-        
+        IEnumerator RP, LP;
+        RP = PowerUpTimerRight();
+        LP = PowerUpTimerLeft();
         //punch right
         if(!punchingRight && Input.GetKey(punchRight) && !knockedOut)
         {
             punchingRight= true;
             punchTimer = 0;
+            StartCoroutine(RP);
             
             //Right hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
@@ -890,6 +899,20 @@ public class APRController : MonoBehaviour
                     APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
                 }
             }
+            Vector3 explosionPos = RightHand.transform.position;
+            int layermask = 1 << 10;
+            layermask = ~layermask;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, 100, layermask);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                    rb.AddExplosionForce(powerRight * 1000, explosionPos, 10, 3.0f * (powerRight/2));
+                Debug.Log(rb);
+            }
+            StopCoroutine(RP);
+            powerRight = 0f;
         }
         
         
@@ -898,6 +921,7 @@ public class APRController : MonoBehaviour
         {
             punchTimer = 0;
             punchingLeft = true;
+            StartCoroutine(PowerUpTimerLeft());
             
             //Left hand punch pull back pose
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
@@ -969,6 +993,28 @@ public class APRController : MonoBehaviour
             sound.tryPlayAudio(sound.KnockedOut);
         }
         StartCoroutine(KnockoutTimer());
+    }
+
+    private IEnumerator PowerUpTimerRight()
+    {
+        yield return new WaitForSeconds(3);
+        powerRight = 2f;
+        Punch1.Play();
+        yield return new WaitForSeconds(3);
+        powerRight = 5f;
+        punch2.Play();
+        yield return new WaitForSeconds(3);
+        powerRight = 10f;
+        punch3.Play();
+        punch4.Play();
+    }
+    private IEnumerator PowerUpTimerLeft()
+    {
+        while (powerLeft < 10f)
+        {
+            powerLeft += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     private IEnumerator KnockoutTimer()
