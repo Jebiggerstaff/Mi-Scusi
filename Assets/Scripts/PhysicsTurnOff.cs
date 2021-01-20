@@ -14,14 +14,19 @@ public class PhysicsTurnOff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(allRigidbodies != null && allRigidbodies.Count > 0)
+        //TurnOffCode();
+    }
+
+    void TurnOffCode()
+    {
+        if (allRigidbodies != null && allRigidbodies.Count > 0)
         {
 
             //Debug.Log("Total Rigidbodies: " + allRigidbodies.Count);
             for (int i = 0; i < 20; i++)
             {
                 var rb = allRigidbodies[currentCount];
-                if(rb == null || rb.GetComponent<NewAIMan>() != null)
+                if (rb == null || rb.GetComponent<NewAIMan>() != null)
                 {
                     allRigidbodies.Remove(rb);
                 }
@@ -33,7 +38,7 @@ public class PhysicsTurnOff : MonoBehaviour
                         if (rb.isKinematic == false)
                         {
                             rb.isKinematic = true;
-                            if(rb.GetComponent<SoundOnCollision>() != null)
+                            if (rb.GetComponent<SoundOnCollision>() != null)
                             {
                                 rb.GetComponent<SoundOnCollision>().enabled = false;
                             }
@@ -42,7 +47,7 @@ public class PhysicsTurnOff : MonoBehaviour
                     }
                     else
                     {
-                        if(rb.isKinematic == true)
+                        if (rb.isKinematic == true)
                         {
                             rb.isKinematic = false;
                             if (rb.GetComponent<SoundOnCollision>() != null)
@@ -53,7 +58,7 @@ public class PhysicsTurnOff : MonoBehaviour
                         }
                     }
                     currentCount++;
-                    if(currentCount >= allRigidbodies.Count)
+                    if (currentCount >= allRigidbodies.Count)
                     {
                         currentCount = 0;
                     }
