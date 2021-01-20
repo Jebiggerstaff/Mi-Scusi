@@ -31,6 +31,10 @@ public class NewAIMan : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        
+        
+        
+        
         SetNewDestination();
     }
 
@@ -79,7 +83,7 @@ public class NewAIMan : MonoBehaviour
                     }
                 }
 
-                if (needToUpdateDestination)
+                if (needToUpdateDestination && stunCount <= 0)
                 {
                     agent.enabled = true;
                     //rb.isKinematic = true;
@@ -381,4 +385,5 @@ public class NewAIMan : MonoBehaviour
     [HideInInspector]
     public bool offByDistance = false;
     public Animator anim;
+    public Collider myCol;
 }

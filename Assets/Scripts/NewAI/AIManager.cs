@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AIManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        aimanager = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +23,7 @@ public class AIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DistanceCheck();
+        //DistanceCheck();
     }
 
     void DistanceCheck()
@@ -397,7 +402,12 @@ public class AIManager : MonoBehaviour
     [Header("Unity Information")]
     public Transform player;
     public float turnOffDistance = 50;
+    [SerializeField]
+    public List<GameObject> IgnorePhysicsIgnoring;
 
     int currentCount = 0;
     int lNum = 0;
+
+    [HideInInspector]
+    public static AIManager aimanager;
 }
