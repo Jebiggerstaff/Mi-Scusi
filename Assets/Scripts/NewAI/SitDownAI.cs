@@ -26,7 +26,7 @@ public class SitDownAI : NewAIMan
             {
                 if (agent.enabled == true)
                 {
-                    agent.enabled = false;
+                    disableAgent();
                 }
                 //if (myRB.useGravity == true)
                 //{
@@ -71,7 +71,7 @@ public class SitDownAI : NewAIMan
                     GetComponent<Rigidbody>().useGravity = true;
                 }
                 GetComponentInChildren<Animator>().SetBool("Sitting", false);
-                agent.enabled = true;
+                enableAgent();
                 foreach (var c in GetComponentsInChildren<Collider>())
                 {
                     Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>(), false);

@@ -51,12 +51,12 @@ public class AIManager : MonoBehaviour
                               //  a.anim.enabled = false;
                             }
                             a.offByDistance = true;
-                            a.agent.enabled = false;
+                            a.disableAgent();
                             
                         }
                         else if (a.offByDistance)
                         {
-                            a.agent.enabled = true;
+                            a.enableAgent();
                             a.offByDistance = false;
                             if(a.anim != null)
                             {
@@ -91,7 +91,7 @@ public class AIManager : MonoBehaviour
                                // a.anim.enabled = false;
                             }
                             a.offByDistance = true;
-                            a.agent.enabled = false;
+                            a.disableAgent();
                             foreach (var ld in a.AIMen)
                             {
                                 if (ld.anim != null)
@@ -100,13 +100,13 @@ public class AIManager : MonoBehaviour
                                    // ld.anim.enabled = false;
                                 }
                                 ld.offByDistance = true;
-                                ld.agent.enabled = false;
+                                ld.disableAgent(); ;
                                 
                             }
                         }
                         else if (a.offByDistance)
                         {
-                            a.agent.enabled = true;
+                            a.enableAgent();
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
@@ -116,7 +116,7 @@ public class AIManager : MonoBehaviour
                             foreach (var ld in a.AIMen)
                             {
                                 ld.offByDistance = false;
-                                ld.agent.enabled = true;
+                                ld.enableAgent();
                                 if (ld.anim != null)
                                 {
                                    // ld.anim.enabled = true;
@@ -153,12 +153,12 @@ public class AIManager : MonoBehaviour
                                 //a.anim.enabled = false;
                             }
                             a.offByDistance = true;
-                            a.agent.enabled = false;
+                            a.disableAgent();
 
                         }
                         else if (a.offByDistance)
                         {
-                            a.agent.enabled = true;
+                            a.enableAgent();
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
@@ -193,11 +193,11 @@ public class AIManager : MonoBehaviour
                                 //a.anim.enabled = false;
                             }
                             a.offByDistance = true;
-                            a.agent.enabled = false;
+                            a.disableAgent();
                         }
                         else if (a.offByDistance)
                         {
-                            a.agent.enabled = true;
+                            a.enableAgent();
                             a.offByDistance = false;
                             if (a.anim != null)
                             {
@@ -232,11 +232,11 @@ public class AIManager : MonoBehaviour
                                // a.anim.enabled = false;
                             }
                             a.offByDistance = true;
-                            a.agent.enabled = false;
+                            a.disableAgent();
                         }
                         else if (a.offByDistance)
                         {
-                            a.agent.enabled = true;
+                            a.enableAgent();
                             a.offByDistance = false;
                             if (a.anim != null)
                             {

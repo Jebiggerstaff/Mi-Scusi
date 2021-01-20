@@ -7,8 +7,8 @@ public class PhysicsTurnOff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitialTurnOff();
-        StartCoroutine(waitGet());
+        //InitialTurnOff();
+        //StartCoroutine(waitGet());
     }
 
     // Update is called once per frame

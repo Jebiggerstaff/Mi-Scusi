@@ -31,9 +31,9 @@ public class NewAIMan : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        
-        
-        
+
+
+        enableAgent();
         
         SetNewDestination();
     }
@@ -49,7 +49,7 @@ public class NewAIMan : MonoBehaviour
 
             if (grabbedByPlayer)
             {
-                agent.enabled = false;
+                disableAgent();
                 //rb.isKinematic = false;
             }
             else
@@ -57,8 +57,8 @@ public class NewAIMan : MonoBehaviour
                 if(agent.enabled == true && agent.isOnNavMesh == false)
                 {
                     Debug.Log("Help!  " + gameObject.name);
-                    agent.enabled = false;
-                    agent.enabled = true;
+                    disableAgent();
+                    enableAgent();
                 }
 
                 if(!(this is SitDownAI && (this as SitDownAI).sitting == true))
@@ -69,7 +69,7 @@ public class NewAIMan : MonoBehaviour
 
                 if (agent.enabled == false && stunCount <= 0)
                 {
-                    agent.enabled = true;
+                    enableAgent(); ;
                     //rb.isKinematic = true;
                     if (agent.isOnNavMesh)
                     {
@@ -85,7 +85,7 @@ public class NewAIMan : MonoBehaviour
 
                 if (needToUpdateDestination && stunCount <= 0)
                 {
-                    agent.enabled = true;
+                    enableAgent();
                     //rb.isKinematic = true;
                     if (agent.isOnNavMesh)
                     {
@@ -94,7 +94,7 @@ public class NewAIMan : MonoBehaviour
                     }
                     else
                     {
-                        agent.enabled = false;
+                        disableAgent();
                         //rb.isKinematic = false;
                     }
                 }
@@ -105,7 +105,7 @@ public class NewAIMan : MonoBehaviour
                     {
                         stunCount = 30;
                     }
-                    agent.enabled = false;
+                    disableAgent();
                     //rb.isKinematic = false;
                     stunCount -= Time.deltaTime;
 
@@ -144,6 +144,23 @@ public class NewAIMan : MonoBehaviour
             
 
         }
+
+    }
+
+
+    public void enableAgent()
+    {
+        agent.enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("AIMan");
+        if(GetComponent<Rigidbody>() != null)
+            GetComponent<Rigidbody>().isKinematic = true;
+    }
+    public void disableAgent()
+    {
+        agent.enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("Ground");
+        if(GetComponent<Rigidbody>() != null)
+            GetComponent<Rigidbody>().isKinematic = false;
 
     }
 
