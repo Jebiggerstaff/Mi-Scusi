@@ -1,9 +1,13 @@
 ﻿ using System.Collections;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class APRController : MonoBehaviour
 {
+
+    private MiScusiActions controls;
 
     //particles
     public ParticleSystem JumpParticle;
@@ -29,24 +33,7 @@ public class APRController : MonoBehaviour
     //Hand Controller Scripts & dependancies
     public HandContact GrabRight;
     public HandContact GrabLeft;
-    
-    [Header("Input on this player")]
-    //Enable controls
-    public bool useControls = true;
-    public bool usingController = true;
-    
-    public string forwardBackward;
-    public string leftRight;
-    public string jump ;
-    public string reachLeft;
-    public string reachRight;
-    public string quip;
-    
-    [Header("Player Input KeyCodes")]
-    //Player KeyCode controls
-    public string punchLeft = "q";
-    public string punchRight = "e";
-    
+   
     [Header("The Layer Only This Player Is On")]
     //Player layer name
     public string thisPlayerLayer = "Player_1";
@@ -167,29 +154,12 @@ public class APRController : MonoBehaviour
     //////////////
     void Awake()
     {
-        ControllerCheck();  
+        controls = new MiScusiActions();
+        controls.Enable();
         PlayerSetup();
         //this is for power punch
         RP = PowerUpTimerRight();
         LP = PowerUpTimerLeft();
-    }
-
-    void ControllerCheck()
-    {
-        joystickNames = Input.GetJoystickNames();
-        foreach (string joystickName in joystickNames)
-            Debug.Log(joystickName);
-        if (joystickNames.Length != 0)
-        {
-            Debug.Log("Controller connected.... switching to controller controls");
-            usingController = true;
-        }
-        else if (joystickNames.Length== 0)
-        {
-            Debug.Log("No controller found.... using keyboard controls");
-            usingController = false;
-        }
-
     }
 
 
@@ -197,7 +167,7 @@ public class APRController : MonoBehaviour
     {
         if(currentQuipCooldown <= 0)
         {
-            if (Input.GetKey(quip))
+            if (controls.Player.Interact.triggered)
             {
                 Debug.Log("Quipping");
                 currentQuipCooldown = quipCooldown;
@@ -254,10 +224,7 @@ public class APRController : MonoBehaviour
 
         punchTimer += .1f;
         
-        if(useControls)
-        {
-            PlayerReach();
-        }
+        PlayerReach();
         
         if(balanced && useStepPrediction)
         {
@@ -282,19 +249,17 @@ public class APRController : MonoBehaviour
     {
         Walking();
 
-        if (useControls && !inAir)
+        if (!inAir)
         {
             PlayerMovement();
 
         }
 
-        if (useControls)
-        {
-            PlayerRotation();
-            ResetPlayerPose();
+        PlayerRotation();
+        ResetPlayerPose();
             
-            PlayerGetUpJumping();
-        }
+        PlayerGetUpJumping();
+
     }
 
 
@@ -309,32 +274,6 @@ public class APRController : MonoBehaviour
     ////////////////////
     void PlayerSetup()
     {
-        if (!usingController)
-        {
-            forwardBackward = "Vertical";
-            leftRight = "Horizontal";
-            jump = "Jump";
-            reachLeft = "Fire1";
-            reachRight = "Fire2";
-            punchLeft = "q";
-            punchRight = "e";
-            quip = "f";
-
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
-        }
-        else
-        {
-            forwardBackward = "VerticalCon";
-            leftRight = "HorizontalCon";
-            jump = "JumpCon";
-            reachLeft = "Fire1Con";
-            reachRight = "Fire2Con";
-            punchLeft = "joystick button 4";
-            punchRight = "joystick button 5";
-            quip = "joystick button 2"; //X button on xbox
-        }
 
         cam = Camera.main;
         
@@ -514,11 +453,11 @@ public class APRController : MonoBehaviour
     {
         if (balanced && !knockedOut)
         {
-                Direction = cam.transform.rotation * new Vector3(Input.GetAxisRaw(leftRight), 0.0f, Input.GetAxisRaw(forwardBackward));
+                Direction = cam.transform.rotation * new Vector3(controls.Player.MoveX.ReadValue<float>(), 0.0f, controls.Player.MoveY.ReadValue<float>());
                 Direction.y = 0f;
                 APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
 
-                if (Input.GetAxisRaw(leftRight) != 0 || Input.GetAxisRaw(forwardBackward) != 0 && balanced)
+                if (controls.Player.MoveX.ReadValue<float>() != 0 || controls.Player.MoveY.ReadValue<float>() != 0 && balanced)
                 {
                     if (!WalkForward && !moveAxisUsed && !isgrabbing)
                     {
@@ -530,7 +469,7 @@ public class APRController : MonoBehaviour
 
         }
         //reseting the legs when you stop moving
-        if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut )
+        if(controls.Player.MoveX.ReadValue<float>() == 0 && controls.Player.MoveY.ReadValue<float>() == 0 && !knockedOut )
         {
             
             //reset to idle LEFT
@@ -551,7 +490,7 @@ public class APRController : MonoBehaviour
             
         }
         //Reseting the spine after 10 seconds
-        if(Input.GetAxis(leftRight) == 0 && Input.GetAxis(forwardBackward) == 0 && !knockedOut && !usingController && !reachLeftAxisUsed && !reachRightAxisUsed)
+        if(controls.Player.MoveX.ReadValue<float>() == 0 && controls.Player.MoveY.ReadValue<float>() == 0 && !knockedOut && !reachLeftAxisUsed && !reachRightAxisUsed)
         {
             if (spineTimer <= 0)
             {
@@ -586,20 +525,9 @@ public class APRController : MonoBehaviour
         if (!inAir)
         {
             //keyboard movement
-            if (usingController && !cantgrabmmove)
+            if (!cantgrabmmove)
             {
-                if (Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f)
-                {
-                    Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
-                    Rotation.x = 0;
-                    APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(Rotation);
-                }
-            }
-
-            //controller movement
-            if (!usingController && !cantgrabmmove)
-            {
-                if (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f)
+                if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
                 {
                     Quaternion Rotation = Quaternion.LookRotation(APR_Parts[0].GetComponent<Rigidbody>().velocity);
                     Rotation.x = 0;
@@ -616,7 +544,7 @@ public class APRController : MonoBehaviour
     ///////////////////////////////
     void PlayerGetUpJumping()
 	{
-        if(Input.GetAxis(jump) > 0 && !knockedOut)
+        if(controls.Player.Jump.triggered && !knockedOut)
         {
             if(!jumpAxisUsed)
             {
@@ -692,10 +620,7 @@ public class APRController : MonoBehaviour
             //values for max rotation for bending
             if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
             {
-                if(usingController)
-                    MouseYAxisBody = Input.GetAxis("joystick Y");
-                else
-                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);             
+            MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
             }
             if (MouseYAxisBody > 0.9f)
             {
@@ -707,14 +632,12 @@ public class APRController : MonoBehaviour
                 MouseYAxisBody = -0.9f;
             }
             
-            //Debug.Log(Input.GetAxis("joystick Y"));
-            //Debug.Log(MouseYAxisBody);
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
         }  
             
             
         //Reach Left
-        if(!knockedOut && Input.GetAxisRaw(reachLeft) != 0 && !punchingLeft)
+        if(!knockedOut && controls.Player.LeftGrab.ReadValue<float>() != 0 && !punchingLeft)
         {
             
             if(!reachLeftAxisUsed)
@@ -734,10 +657,7 @@ public class APRController : MonoBehaviour
             
             if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
             {
-                if (usingController)
-                    MouseYAxisBody = Input.GetAxis("joystick Y");
-                else
-                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);              
+                    MouseYAxisBody = controls.Player.Bend.ReadValue<float>();          
             }
             
             else if(MouseYAxisArms > 1.2f)
@@ -754,7 +674,7 @@ public class APRController : MonoBehaviour
 			 APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1);
         }
         
-        if(Input.GetAxisRaw(reachLeft) == 0 && !punchingLeft && !knockedOut)
+        if(controls.Player.LeftGrab.ReadValue<float>() == 0 && !punchingLeft && !knockedOut)
         {
             if(reachLeftAxisUsed)
             {
@@ -786,7 +706,7 @@ public class APRController : MonoBehaviour
             
             
         //Reach Right
-        if(Input.GetAxisRaw(reachRight) != 0 && !punchingRight && !knockedOut)
+        if(controls.Player.RightGrab.ReadValue<float>() != 0 && !punchingRight && !knockedOut)
         {
             
             if(!reachRightAxisUsed)
@@ -806,10 +726,8 @@ public class APRController : MonoBehaviour
             
             if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
             {
-                if (usingController)
-                    MouseYAxisBody = Input.GetAxis("joystick Y");
-                else
-                    MouseYAxisBody = MouseYAxisBody + (Input.GetAxis("Mouse Y") / reachSensitivity);
+                    MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
+
             }
             
             else if(MouseYAxisArms > 1.2f)
@@ -826,7 +744,7 @@ public class APRController : MonoBehaviour
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1);
         }
         
-        if(Input.GetAxisRaw(reachRight) == 0 && !punchingRight && !knockedOut)
+        if(controls.Player.RightGrab.ReadValue<float>() == 0 && !punchingRight && !knockedOut)
         {
             if(reachRightAxisUsed)
             {
@@ -864,7 +782,7 @@ public class APRController : MonoBehaviour
     {
         
         //punch right
-        if (!punchingRight && Input.GetKey(punchRight) && !knockedOut)
+        if (!punchingRight && controls.Player.RightPunch.triggered && !knockedOut)
         {
             punchingRight= true;
             punchTimer = 0;
@@ -881,7 +799,7 @@ public class APRController : MonoBehaviour
             APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.6f, 0f, -0.5f, 1);
 		}
         
-        if(punchingRight && !Input.GetKey(punchRight) && !knockedOut)
+        if(punchingRight && !controls.Player.RightPunch.triggered && !knockedOut)
         {
             punchTimer = 0;
             punchingRight = false;
@@ -900,7 +818,7 @@ public class APRController : MonoBehaviour
 			IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-                if(!Input.GetKey(punchRight))
+                if(!controls.Player.RightPunch.triggered)
                 {
                     APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
                     APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
@@ -927,7 +845,7 @@ public class APRController : MonoBehaviour
         
         
         //punch left
-        if(!punchingLeft && Input.GetKey(punchLeft) && !knockedOut)
+        if(!punchingLeft && controls.Player.LeftPunch.triggered && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = true;
@@ -946,7 +864,7 @@ public class APRController : MonoBehaviour
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);*/
         }
         
-        if(punchingLeft && !Input.GetKey(punchLeft) && !knockedOut)
+        if(punchingLeft && !controls.Player.LeftPunch.triggered && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = false;
@@ -968,7 +886,7 @@ public class APRController : MonoBehaviour
 			IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-                if(!Input.GetKey(punchLeft))
+                if(!controls.Player.LeftPunch.triggered)
                 {
                     APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
                     APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
@@ -1093,7 +1011,7 @@ public class APRController : MonoBehaviour
     ///////////////////////
     void Walking()
 	{
-        if ((Input.GetAxisRaw("HorizontalCon") != 0f || Input.GetAxisRaw("VerticalCon") != 0f) || (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f))
+        if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
         {
             if (!inAir && !knockedOut)
             {

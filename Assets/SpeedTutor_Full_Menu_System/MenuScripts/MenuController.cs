@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace SpeedTutorMainMenuSystem
 {
@@ -113,18 +115,17 @@ namespace SpeedTutorMainMenuSystem
             GoBackToMainMenu();
             //ControllerCheck();
         }
-        void onDisable()
+        private MiScusiActions controls;
+        private void Awake()
         {
-
+            controls = new MiScusiActions();
+            controls.Enable();
         }
 
 
         bool ControllerCheck()
         {
-            var joystickNames = Input.GetJoystickNames();
-            foreach (string joystickName in joystickNames)
-                Debug.Log(joystickName);
-            if (joystickNames.Length != 0)
+            if (Gamepad.current!=null)
             {
                 Debug.Log("Controller connected.... switching to controller controls");
                 //ctrEventSystem.SetActive(true);
@@ -132,14 +133,6 @@ namespace SpeedTutorMainMenuSystem
                 //EventSystem.current.currentInputModule = ctrEventSystem;
 
                 return true;
-            }
-            else if (joystickNames.Length == 0)
-            {
-                Debug.Log("No controller found.... using keyboard controls");
-                //EventSystem.current.currentInputModule = kbEventSystem;
-
-                return false;
-
             }
             else
                 return false;
@@ -153,7 +146,7 @@ namespace SpeedTutorMainMenuSystem
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
-            if (Input.GetAxis("Cancel") > oldAxis && !overlayScene.CancelDelay)
+            if (controls.UI.PauseMenu.ReadValue<float>() > oldAxis && !overlayScene.CancelDelay)
             {
                 overlayScene.CancelDelay = true;
                 overlayScene.cancelDelayCount = 0.1f;
@@ -184,7 +177,7 @@ namespace SpeedTutorMainMenuSystem
                 }
             }
 
-            oldAxis = Input.GetAxis("Cancel");
+            oldAxis = controls.UI.PauseMenu.ReadValue<float>();
 
             if (ResumeGameBtn.activeSelf == false && needResumeButton)
             {
@@ -226,14 +219,14 @@ namespace SpeedTutorMainMenuSystem
                 if (btn != null)
                 {
 
-                    float x = Mathf.Abs(Input.GetAxis("HorizontalCon"));
-                    float y = Mathf.Abs(Input.GetAxis("VerticalCon"));
+                    float x = Mathf.Abs(controls.Player.MoveX.ReadValue<float>());
+                    float y = Mathf.Abs(controls.Player.MoveY.ReadValue<float>());
 
                     if (x > 0 || y > 0)
                     {
                         if(x > y)
                         {
-                            if(Input.GetAxis("HorizontalCon") > 0)
+                            if(controls.Player.MoveX.ReadValue<float>() > 0)
                             {
                                 navRight();
                             }
@@ -244,7 +237,7 @@ namespace SpeedTutorMainMenuSystem
                         }
                         else
                         {
-                            if (Input.GetAxis("VerticalCon") > 0)
+                            if (controls.Player.MoveY.ReadValue<float>() > 0)
                             {
                                 navUp();
                             }

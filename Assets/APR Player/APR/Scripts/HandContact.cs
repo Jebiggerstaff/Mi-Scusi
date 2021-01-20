@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class HandContact : MonoBehaviour
 {
     public APRController APR_Player;
     public ParticleSystem PunchParticle;
+
+    private MiScusiActions controls;
 
     //Is left or right hand
     public bool Left;
@@ -34,15 +38,20 @@ public class HandContact : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
+
     void Update()
     {
-        if(APR_Player.useControls)
-        {
+
             //Left Hand
             //On input release destroy joint
             if(Left)
             {
-                if(hasJoint && Input.GetAxisRaw(APR_Player.reachLeft) == 0)
+                if(hasJoint && controls.Player.LeftGrab.ReadValue<float>() == 0)
                 {
                     this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
                     hasJoint = false;
@@ -65,7 +74,7 @@ public class HandContact : MonoBehaviour
             //On input release destroy joint
             if(!Left)
             {
-                if(hasJoint && Input.GetAxisRaw(APR_Player.reachRight) == 0)
+                if(hasJoint && controls.Player.RightGrab.ReadValue<float>() == 0)
                 {
                     this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
                     hasJoint = false;
@@ -84,7 +93,6 @@ public class HandContact : MonoBehaviour
                 }
             }
 
-        }
         if(APR_Player.leftGrab == true || APR_Player.rightGrab == true)
         {
             APR_Player.isgrabbing = true;
@@ -104,8 +112,6 @@ public class HandContact : MonoBehaviour
     //Grab on collision when input is used
     void OnCollisionEnter(Collision col)
     {
-        if (APR_Player.useControls)
-        {
             //Left Hand
             if (Left)
             {
@@ -139,7 +145,7 @@ public class HandContact : MonoBehaviour
                     }
 
 
-                    if (Input.GetAxisRaw(APR_Player.reachLeft) != 0 && !hasJoint && !APR_Player.punchingLeft){
+                    if (controls.Player.RightGrab.ReadValue<float>() != 0 && !hasJoint && !APR_Player.punchingLeft){
                         //Eat At Cafe Task
                         if (SceneManager.GetActiveScene().name == "NewYork"&& col.gameObject.name == "CafeFood" && NewYorkTaskManager.AteAtCafe==false){
                             NewYorkTaskManager.TaskCompleted("EatAtCafe");
@@ -238,7 +244,7 @@ public class HandContact : MonoBehaviour
                             }
                         }
                     }
-                    if (Input.GetAxisRaw(APR_Player.reachRight) != 0 && !hasJoint && !APR_Player.punchingRight)
+                    if (controls.Player.RightGrab.ReadValue<float>() != 0 && !hasJoint && !APR_Player.punchingRight)
                     {
 
                         //Eat At Cafe Task
@@ -309,7 +315,6 @@ public class HandContact : MonoBehaviour
                     }
                 }
             }
-        }
     }
 
 

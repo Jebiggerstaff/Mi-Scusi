@@ -4,8 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ItalyTaskManager : MonoBehaviour
 {
+
+    
+
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
 
@@ -35,14 +39,21 @@ public class ItalyTaskManager : MonoBehaviour
 
     }
 
+    private MiScusiActions controls;
+    private void Awake()
+    {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
+
     public void Update()
     {
-        if (Input.GetButtonDown("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
         }
-        if (Input.GetButtonUp("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
             TaskList.SetActive(false);
     }
 

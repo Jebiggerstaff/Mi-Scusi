@@ -10,6 +10,12 @@ public class OverlayScene : MonoBehaviour
         cancelDelayCount = 0;
     }
 
+    private MiScusiActions controls;
+    private void Awake()
+    {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,7 +29,7 @@ public class OverlayScene : MonoBehaviour
             CancelDelay = false;
         }
 
-        if (Input.GetAxis("Cancel") == 1)
+        if (controls.UI.PauseMenu.triggered)
         {
             if (menu.activeSelf == false && !CancelDelay)
             {

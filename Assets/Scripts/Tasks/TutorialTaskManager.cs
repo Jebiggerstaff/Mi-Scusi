@@ -23,14 +23,21 @@ public class TutorialTaskManager : MonoBehaviour
         Player = GameObject.Find("FinalPlayer");
     }
 
+    private MiScusiActions controls;
+    private void Awake()
+    {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
+
     public void Update()
     {
-        if (Input.GetButtonDown("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
         }
-        if (Input.GetButtonUp("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
             TaskList.SetActive(false);
     }
 

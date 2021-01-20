@@ -53,15 +53,21 @@ public class OfficeTaskManager : MonoBehaviour
             Instantiate(CoffeePrefab, new Vector3(54.8100014f, 34.8970032f, 10.0401859f), new Quaternion(0, 0, 0, 0));
         }
     }
+    private MiScusiActions controls;
+    private void Awake()
+    {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
 
     public void Update()
     {
-        if (Input.GetButtonDown("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
         }
-        if (Input.GetButtonUp("TaskMenu"))
+        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
             TaskList.SetActive(false);
     }
 
