@@ -23,11 +23,11 @@ public class TutorialDevice : MonoBehaviour
     {
         if (Gamepad.current==null)
         {
-            TutorialController.SetActive(true);
+            TutorialKeyboard.SetActive(true);
         }
         else
         {
-            TutorialKeyboard.SetActive(true);
+            TutorialController.SetActive(true);
         }
     }
 }
