@@ -34,8 +34,8 @@ public class NewAIMan : MonoBehaviour
 
 
         enableAgent();
-        
-        SetNewDestination();
+
+        forceNewDest();
     }
 
     // Update is called once per frame
