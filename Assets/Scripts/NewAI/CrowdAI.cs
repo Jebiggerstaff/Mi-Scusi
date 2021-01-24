@@ -73,6 +73,7 @@ public class CrowdAI : NewAIMan
                 go.GetComponent<NewAIMan>().maxHP = hp;
                 go.GetComponent<NewAIMan>().costume = costume;
                 go.GetComponent<NewAIMan>().SetCostume();
+                go.GetComponent<NewAIMan>().shovesPlayer = shovesPlayer;
                 if (hostile)
                 {
                     go.GetComponent<HostileAI>().moveTowardsPlayerOnAggro = true;

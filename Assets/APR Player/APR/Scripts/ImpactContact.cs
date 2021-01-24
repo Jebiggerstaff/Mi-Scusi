@@ -25,18 +25,22 @@ public class ImpactContact : MonoBehaviour
 		}
         */
         //Sound on impact
-        if(col.relativeVelocity.magnitude > APR_Player.ImpactForce)
+        if(APR_Player != null)
         {
-            
-            if(APR_Player.SoundSource != null)
+            if (col.relativeVelocity.magnitude > APR_Player.ImpactForce)
             {
-                if(!APR_Player.SoundSource.isPlaying && APR_Player.Impacts != null)
+
+                if (APR_Player.SoundSource != null)
                 {
-                    int i = Random.Range(0, APR_Player.Impacts.Length);
-                    APR_Player.SoundSource.clip = APR_Player.Impacts[i];
-                    APR_Player.SoundSource.Play();
+                    if (!APR_Player.SoundSource.isPlaying && APR_Player.Impacts != null)
+                    {
+                        int i = Random.Range(0, APR_Player.Impacts.Length);
+                        APR_Player.SoundSource.clip = APR_Player.Impacts[i];
+                        APR_Player.SoundSource.Play();
+                    }
                 }
             }
         }
+        
 	}
 }

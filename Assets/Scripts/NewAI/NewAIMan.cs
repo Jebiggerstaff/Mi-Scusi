@@ -6,6 +6,56 @@ using UnityEngine.AI;
 public class NewAIMan : MonoBehaviour
 {
 
+    public Vector3 currentDestination;
+
+    public bool useRandomDestinations = true;
+    public List<Vector3> destinations;
+    [HideInInspector]
+    public NavMeshAgent agent;
+    //Rigidbody rb;
+    [HideInInspector]
+    public bool grabbedByPlayer = false;
+    [HideInInspector]
+    public float stunCount;
+
+    public float minimumStopDistance;
+
+    public int maxHP;
+    [HideInInspector]
+    public int hp;
+
+    [Space]
+    public bool shovesPlayer;
+    public float shoveForce;
+    public float shoveAngle;
+    float shoveCooldown = 0;
+
+    [Header("Costumes")]
+    public int costume = 0;
+    public GameObject[] costumes;
+
+
+
+    bool needToUpdateDestination = false;
+
+    int currentDest;
+
+    [HideInInspector]
+    public bool quipped;
+    float quipTime;
+    float quipDistance = 10f;
+    Vector3 quipTarget;
+
+    float baseSpeed;
+    float baseAcceleration;
+    [HideInInspector]
+    public bool offByDistance = false;
+    public Animator anim;
+    public Collider myCol;
+
+
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,10 +67,11 @@ public class NewAIMan : MonoBehaviour
         needToUpdateDestination = false;
         int legNum = Random.Range(1, 4);
         baseSpeed = agent.speed;
+        shoveForce = 750;
+        shoveAngle = 30;
         baseAcceleration = agent.acceleration;
-        if(anim != null)
+        if(anim != null && (this is CrowdAI) == false)
         {
-
             anim.SetInteger("RunNumber", legNum);
             anim.SetBool("Running", true);
             anim.SetBool("Sitting", false);
@@ -46,7 +97,10 @@ public class NewAIMan : MonoBehaviour
         {
 
             
-
+            if(shoveCooldown > 0)
+            {
+                shoveCooldown -= Time.deltaTime;
+            }
             if (grabbedByPlayer)
             {
                 disableAgent();
@@ -245,9 +299,25 @@ public class NewAIMan : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+       
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && shovesPlayer && shoveCooldown <= 0)
         {
-            //rb.isKinematic = false;
+            Rigidbody root = collision.gameObject.GetComponentInParent<APRController>().Root.GetComponent<Rigidbody>();
+            Vector3 direction = root.transform.position - transform.position;
+            direction.y = Mathf.Tan(shoveAngle*Mathf.Deg2Rad) * Mathf.Sqrt( (direction.x * direction.x) + (direction.z * direction.z) )  ;
+            direction = direction.normalized;
+
+            float notGroundedAdjustment = 1;
+            if(root.GetComponentInParent<APRController>().inAir == true)
+            {
+                notGroundedAdjustment = 0.35f;
+            }
+
+            root.AddForce(direction * shoveForce * notGroundedAdjustment, ForceMode.Impulse);
+            shoveCooldown = 0.5f;
+
+            Debug.Log("Shove!");
         }
     }
 
@@ -255,11 +325,11 @@ public class NewAIMan : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
-            //rb.isKinematic = true;
+           
         }
-
     }
 
 
@@ -366,41 +436,5 @@ public class NewAIMan : MonoBehaviour
 
 
 
-    public Vector3 currentDestination;
-
-    public bool useRandomDestinations = true;
-    public List<Vector3> destinations;
-    [HideInInspector]
-    public NavMeshAgent agent;
-    //Rigidbody rb;
-    public bool grabbedByPlayer = false;
-    public float stunCount;
-
-    public float minimumStopDistance;
-
-    public int maxHP;
-    public int hp;
-
-    [Header("Costumes")]
-    public int costume = 0;
-    public GameObject[] costumes;
-
-
-
-    bool needToUpdateDestination = false;
-
-    int currentDest;
-
-    [HideInInspector]
-    public bool quipped;
-    float quipTime;
-    float quipDistance = 10f;
-    Vector3 quipTarget;
-
-    float baseSpeed;
-    float baseAcceleration;
-    [HideInInspector]
-    public bool offByDistance = false;
-    public Animator anim;
-    public Collider myCol;
+    
 }

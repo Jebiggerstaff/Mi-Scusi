@@ -11,6 +11,7 @@ public class StillAIHolder
     public int speed;
     public Vector3 target;
     public int costume = 0;
+    public bool shovesPlayer = false;
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -19,6 +20,7 @@ public class StillAIHolder
         newAI.maxHP = hp;
         newAI.destinations = new List<Vector3>();
         newAI.costume = costume;
+        newAI.shovesPlayer = shovesPlayer;
         (newAI as StayStillAIMan).target = target;
         newAI.SetCostume();
 

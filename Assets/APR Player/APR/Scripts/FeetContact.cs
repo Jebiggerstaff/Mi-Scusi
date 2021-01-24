@@ -27,17 +27,22 @@ public class FeetContact : MonoBehaviour
     //Alert APR player when feet colliders enter ground object layer
     void OnCollisionEnter(Collision col)
 	{
-        if(!APR_Player.isJumping && APR_Player.inAir)
+        if(APR_Player != null)
         {
-            if(col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+
+            if (!APR_Player.isJumping && APR_Player.inAir)
             {
-                APR_Player.PlayerLanded();
+                if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    APR_Player.PlayerLanded();
 
-                
 
 
+
+                }
             }
         }
+      
         if(col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             if (col.gameObject.GetComponent<WalkingSound>() != null)
