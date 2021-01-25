@@ -465,6 +465,14 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuReturn"",
+                    ""type"": ""Button"",
+                    ""id"": ""a43fdb95-04d7-4c7e-a9b1-ddcc3dd0c3fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -929,6 +937,17 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                     ""action"": ""Pause Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50a34df2-6b63-432b-a4ca-161751a0970f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuReturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1022,6 +1041,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TaskMenu = m_UI.FindAction("Task Menu ", throwIfNotFound: true);
         m_UI_PauseMenu = m_UI.FindAction("Pause Menu", throwIfNotFound: true);
+        m_UI_MenuReturn = m_UI.FindAction("MenuReturn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1188,6 +1208,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TaskMenu;
     private readonly InputAction m_UI_PauseMenu;
+    private readonly InputAction m_UI_MenuReturn;
     public struct UIActions
     {
         private @MiScusiActions m_Wrapper;
@@ -1204,6 +1225,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TaskMenu => m_Wrapper.m_UI_TaskMenu;
         public InputAction @PauseMenu => m_Wrapper.m_UI_PauseMenu;
+        public InputAction @MenuReturn => m_Wrapper.m_UI_MenuReturn;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1249,6 +1271,9 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 @PauseMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseMenu;
                 @PauseMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseMenu;
                 @PauseMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseMenu;
+                @MenuReturn.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
+                @MenuReturn.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
+                @MenuReturn.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1289,6 +1314,9 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 @PauseMenu.started += instance.OnPauseMenu;
                 @PauseMenu.performed += instance.OnPauseMenu;
                 @PauseMenu.canceled += instance.OnPauseMenu;
+                @MenuReturn.started += instance.OnMenuReturn;
+                @MenuReturn.performed += instance.OnMenuReturn;
+                @MenuReturn.canceled += instance.OnMenuReturn;
             }
         }
     }
@@ -1365,5 +1393,6 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTaskMenu(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
+        void OnMenuReturn(InputAction.CallbackContext context);
     }
 }

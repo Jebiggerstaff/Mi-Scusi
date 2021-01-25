@@ -146,7 +146,8 @@ namespace SpeedTutorMainMenuSystem
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
-            if (controls.UI.PauseMenu.ReadValue<float>() > oldAxis && !overlayScene.CancelDelay)
+
+            if ((controls.UI.PauseMenu.ReadValue<float>() > oldAxis || controls.UI.MenuReturn.triggered) && !overlayScene.CancelDelay)
             {
                 overlayScene.CancelDelay = true;
                 overlayScene.cancelDelayCount = 0.1f;
@@ -212,9 +213,16 @@ namespace SpeedTutorMainMenuSystem
             leftNavDelay -= Time.unscaledDeltaTime;
             rightNavDelay -= Time.unscaledDeltaTime;
 
+            
+
             if (ControllerCheck())
             {
                 var btn = EventSystem.current.currentSelectedGameObject;
+
+
+
+
+
 
                 if (btn != null)
                 {
