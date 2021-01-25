@@ -56,6 +56,7 @@ public class NewAIMan : MonoBehaviour
     List<Vector3> allOverrideDestinations = new List<Vector3>();
     Vector3 overrideDestination;
     readonly Vector3 NO_OVERRIDE_DEST = new Vector3(-99999, -99999, -99999);
+    bool beingScooted;
 
 
     private void Awake()
@@ -237,7 +238,23 @@ public class NewAIMan : MonoBehaviour
 
     IEnumerator playerCollideScoot(float time, Vector3 playerPos)
     {
+        disableAgent();
         playerPos.y = transform.position.y;
+
+        Vector3 direction = transform.position - playerPos;
+        direction.y = Mathf.Tan(45f * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
+        direction = direction.normalized;
+
+        
+
+        GetComponent<Rigidbody>().AddForce(direction * 500f, ForceMode.Impulse);
+        shoveCooldown = 0.5f;
+
+        yield return new WaitForSeconds(2.0f);
+
+        enableAgent();
+
+
         float xNeg = 1;
         if (playerPos.x > transform.position.x)
         {
@@ -250,7 +267,7 @@ public class NewAIMan : MonoBehaviour
         }
 
 
-        Vector3 targetOvr = transform.position + new Vector3(xNeg * Random.Range(2f, 5f), 0, zNeg * Random.Range(2f, 5f));
+        Vector3 targetOvr = transform.position + new Vector3(xNeg * Random.Range(5f, 7f), 0, zNeg * Random.Range(5f, 7f));
         allOverrideDestinations.Add(targetOvr);
 
         yield return new WaitForSeconds(time);
@@ -369,9 +386,14 @@ public class NewAIMan : MonoBehaviour
 
             Debug.Log("Shove!");
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && (!(this is HostileAI)))
         {
-            StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+            if(agent.enabled == true && shoveCooldown <= 0)
+            {
+
+                StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+
+            }
         }
 
 
