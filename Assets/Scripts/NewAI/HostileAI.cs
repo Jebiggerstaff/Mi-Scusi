@@ -21,6 +21,7 @@ public class HostileAI : NewAIMan
 
         if(!offByDistance)
         {
+            agent.acceleration = agent.speed * 4 / 3;
 
             if (isAggrod)
             {
@@ -47,6 +48,8 @@ public class HostileAI : NewAIMan
                 }
             }
             currentPunchCD -= Time.deltaTime;
+
+
 
         }
 

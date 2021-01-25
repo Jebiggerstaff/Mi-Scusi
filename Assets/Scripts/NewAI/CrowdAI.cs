@@ -137,7 +137,8 @@ public class CrowdAI : NewAIMan
         }
 
         bool shouldSetPoint = true;
-        if(hostile)
+        
+        if (hostile)
         {
             if( (man as HostileAI).isAggrod )
             {

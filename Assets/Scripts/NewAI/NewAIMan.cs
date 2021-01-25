@@ -53,7 +53,9 @@ public class NewAIMan : MonoBehaviour
     public Animator anim;
     public Collider myCol;
 
-
+    List<Vector3> allOverrideDestinations = new List<Vector3>();
+    Vector3 overrideDestination;
+    readonly Vector3 NO_OVERRIDE_DEST = new Vector3(-99999, -99999, -99999);
 
 
     private void Awake()
@@ -78,6 +80,7 @@ public class NewAIMan : MonoBehaviour
         }
         SetCostume();
         SetStopDistance();
+        overrideDestination = NO_OVERRIDE_DEST;
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -95,6 +98,20 @@ public class NewAIMan : MonoBehaviour
 
         if(!offByDistance)
         {
+
+            if(!quipped)
+            {
+                agent.acceleration = agent.speed * 0.6f;
+            }
+
+            if(allOverrideDestinations.Count > 0)
+            {
+                overrideDestination = allOverrideDestinations[allOverrideDestinations.Count - 1];
+            }
+            else
+            {
+                overrideDestination = NO_OVERRIDE_DEST;
+            }
 
             
             if(shoveCooldown > 0)
@@ -218,17 +235,50 @@ public class NewAIMan : MonoBehaviour
 
     }
 
+    IEnumerator playerCollideScoot(float time, Vector3 playerPos)
+    {
+        playerPos.y = transform.position.y;
+        float xNeg = 1;
+        if (playerPos.x > transform.position.x)
+        {
+            xNeg = -1;
+        }
+        float zNeg = 1;
+        if(playerPos.z > transform.position.z)
+        {
+            zNeg = -1;
+        }
+
+
+        Vector3 targetOvr = transform.position + new Vector3(xNeg * Random.Range(2f, 5f), 0, zNeg * Random.Range(2f, 5f));
+        allOverrideDestinations.Add(targetOvr);
+
+        yield return new WaitForSeconds(time);
+
+        allOverrideDestinations.Remove(targetOvr);
+
+        
+    }
+
 
     public void getnewDest()
     {
-        if(useRandomDestinations)
+        if(overrideDestination != NO_OVERRIDE_DEST)
         {
-            getnewRandDest();
+            SetNewDestination(overrideDestination);
         }
         else
         {
-            getNewOrderedDest();
+            if (useRandomDestinations)
+            {
+                getnewRandDest();
+            }
+            else
+            {
+                getNewOrderedDest();
+            }
         }
+        
     }
 
     public void getNewOrderedDest()
@@ -319,6 +369,13 @@ public class NewAIMan : MonoBehaviour
 
             Debug.Log("Shove!");
         }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+        }
+
+
+
     }
 
   
@@ -340,6 +397,11 @@ public class NewAIMan : MonoBehaviour
     }
     public void SetNewDestination(Vector3 target)
     {
+        if(overrideDestination != NO_OVERRIDE_DEST)
+        {
+            target = overrideDestination;
+        }
+
         if(currentDestination == target)
         {
             if (!(this is CrowdAI))
