@@ -60,17 +60,17 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Left Punch"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""a38dc039-ac2d-444f-96f4-1eed2a269aa8"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Right Punch"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""aecea592-64c7-44ae-bdab-4b24dcebe46f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },

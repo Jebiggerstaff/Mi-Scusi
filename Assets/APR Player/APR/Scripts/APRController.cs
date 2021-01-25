@@ -782,7 +782,7 @@ public class APRController : MonoBehaviour
     {
         
         //punch right
-        if (!punchingRight && controls.Player.RightPunch.triggered && !knockedOut)
+        if (!punchingRight && controls.Player.RightPunch.ReadValue<float>() != 0 && !knockedOut)
         {
             punchingRight= true;
             punchTimer = 0;
@@ -799,7 +799,7 @@ public class APRController : MonoBehaviour
             APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.6f, 0f, -0.5f, 1);
 		}
         
-        if(punchingRight && !controls.Player.RightPunch.triggered && !knockedOut)
+        if(punchingRight && controls.Player.RightPunch.ReadValue<float>() == 0 && !knockedOut)
         {
             punchTimer = 0;
             punchingRight = false;
@@ -818,7 +818,7 @@ public class APRController : MonoBehaviour
 			IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-                if(!controls.Player.RightPunch.triggered)
+                if(controls.Player.RightPunch.ReadValue<float>() == 0)
                 {
                     APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
                     APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
@@ -845,7 +845,7 @@ public class APRController : MonoBehaviour
         
         
         //punch left
-        if(!punchingLeft && controls.Player.LeftPunch.triggered && !knockedOut)
+        if(!punchingLeft && controls.Player.LeftPunch.ReadValue<float>() != 0 && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = true;
@@ -864,7 +864,7 @@ public class APRController : MonoBehaviour
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);*/
         }
         
-        if(punchingLeft && !controls.Player.LeftPunch.triggered && !knockedOut)
+        if(punchingLeft && controls.Player.LeftPunch.ReadValue<float>() == 0 && !knockedOut)
         {
             punchTimer = 0;
             punchingLeft = false;
@@ -886,7 +886,7 @@ public class APRController : MonoBehaviour
 			IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-                if(!controls.Player.LeftPunch.triggered)
+                if(controls.Player.LeftPunch.ReadValue<float>() == 0)
                 {
                     APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
                     APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
