@@ -139,9 +139,9 @@ public class NewAIMan : MonoBehaviour
 
                 }
 
-                if (agent.enabled == false && stunCount <= 0)
+                if (agent.enabled == false && stunCount <= 0 && notBeingShoved())
                 {
-                    enableAgent(); ;
+                    enableAgent(); 
                     //rb.isKinematic = true;
                     if (agent.isOnNavMesh)
                     {
@@ -155,7 +155,7 @@ public class NewAIMan : MonoBehaviour
                     }
                 }
 
-                if (needToUpdateDestination && stunCount <= 0)
+                if (needToUpdateDestination && stunCount <= 0 && notBeingShoved())
                 {
                     enableAgent();
                     //rb.isKinematic = true;
@@ -219,7 +219,21 @@ public class NewAIMan : MonoBehaviour
 
     }
 
-
+    private bool notBeingShoved()
+    {
+        if(shovesPlayer)
+        {
+            return true;
+        }
+        else
+        {
+            if(shoveCooldown <= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public void enableAgent()
     {
         agent.enabled = true;
@@ -247,10 +261,10 @@ public class NewAIMan : MonoBehaviour
 
         
 
-        GetComponent<Rigidbody>().AddForce(direction * 500f, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(direction * 25f, ForceMode.Impulse);
         shoveCooldown = 0.5f;
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         enableAgent();
 
