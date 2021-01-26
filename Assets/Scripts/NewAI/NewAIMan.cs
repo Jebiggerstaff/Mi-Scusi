@@ -250,6 +250,18 @@ public class NewAIMan : MonoBehaviour
 
     }
 
+    public void Explode(Vector3 playerPos)
+    {
+        if(this is CrowdAI || shovesPlayer)
+        {
+
+        }
+        else
+        {
+            StartCoroutine(playerCollideScoot(2f, playerPos));
+        }
+    }
+
     IEnumerator playerCollideScoot(float time, Vector3 playerPos)
     {
         disableAgent();

@@ -831,6 +831,8 @@ public class APRController : MonoBehaviour
             foreach (Collider hit in colliders)
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (hit.GetComponent<NewAIMan>() != null)
+                    hit.GetComponent<NewAIMan>().Explode(transform.position);
                 PunchR4.Play();
                 PunchR5.Play();
                 if (rb != null)
@@ -900,6 +902,10 @@ public class APRController : MonoBehaviour
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
 
+                if (hit.GetComponent<NewAIMan>() != null)
+                    hit.GetComponent<NewAIMan>().Explode(transform.position);
+                
+                  
                 if (rb != null)
                     rb.AddExplosionForce(powerLeft * 1000, explosionPos, 10, 3.0f * (powerLeft / 2));
             }
