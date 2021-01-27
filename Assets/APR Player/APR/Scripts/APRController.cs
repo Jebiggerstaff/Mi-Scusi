@@ -52,8 +52,6 @@ public class APRController : MonoBehaviour
     public float balanceStrength = 5000f;
     public float coreStrength = 1500f;
     public float limbStrength = 500f;
-    private bool spinefix = false;
-    public float spineTimer;
 
     //Walking
 	public float StepDuration = 0.2f;
@@ -244,7 +242,6 @@ public class APRController : MonoBehaviour
     
     
     //---Fixed Updates---//
-    //////////////////////
     void FixedUpdate()
     {
         Walking();
@@ -262,16 +259,7 @@ public class APRController : MonoBehaviour
 
     }
 
-
-
-    //-------------------------------------------------------------
-    //--Functions
-    //-------------------------------------------------------------
-
-
-
     //---Player Setup--//
-    ////////////////////
     void PlayerSetup()
     {
 
@@ -355,7 +343,6 @@ public class APRController : MonoBehaviour
     
     
     //---Ground Check---//
-    /////////////////////
 	void GroundCheck()
 	{
 		Ray ray = new Ray (APR_Parts[0].transform.position, -APR_Parts[0].transform.up);
@@ -397,7 +384,6 @@ public class APRController : MonoBehaviour
     
     
 	//---Step Prediction---//
-	////////////////////////
 	void StepPrediction()
 	{
 		//Reset variables when balanced
@@ -427,10 +413,7 @@ public class APRController : MonoBehaviour
         }
 	}
     
-    
-    
     //---Reset Walk Cycle---//
-    /////////////////////////
     void ResetWalkCycle()
     {
         //Reset variables when not moving
@@ -445,10 +428,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    
-    
-    //---Player Movement---//
-    ////////////////////////
+    //---Player Movement---//\
     void PlayerMovement()
     {
         if (balanced && !knockedOut)
@@ -489,37 +469,9 @@ public class APRController : MonoBehaviour
             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
             
         }
-        //Reseting the spine after 10 seconds
-        if(controls.Player.MoveX.ReadValue<float>() == 0 && controls.Player.MoveY.ReadValue<float>() == 0 && !knockedOut && !reachLeftAxisUsed && !reachRightAxisUsed)
-        {
-            if (spineTimer <= 0)
-            {
-                spineTimer = 10;
-                spinefix = false;
-            }
-            else
-            {
-                spineTimer -= Time.deltaTime;
-                if (spineTimer <= 0)
-                {
-                    spinefix = true;
-                }
-            }
-
-            if (spinefix)
-            {
-                MouseYAxisBody = 0;
-            }
-        }
-        else
-        {
-            spineTimer = 10;
-        }
     }
 
-
     //---Player Rotation---//
-    ////////////////////////
     void PlayerRotation()
     {
         if (!inAir)
@@ -538,10 +490,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    
-    
     //---Player GetUp & Jumping---//
-    ///////////////////////////////
     void PlayerGetUpJumping()
 	{
         if(controls.Player.Jump.triggered && !knockedOut)
@@ -594,8 +543,6 @@ public class APRController : MonoBehaviour
 		}
 	}
     
-    
-    
     //---Player Landed---//
     //////////////////////
     public void PlayerLanded()
@@ -608,10 +555,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    
-    
     //---Player Reach--//
-    ////////////////////
     void PlayerReach()
     {
         //Body Bending
@@ -647,10 +591,6 @@ public class APRController : MonoBehaviour
                 APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
                 APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
                 APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                    
-                //Adjust body joint strength
-                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
-                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
                 
                 reachLeftAxisUsed = true;
             }
@@ -684,9 +624,6 @@ public class APRController : MonoBehaviour
                     APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                     APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
                     APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                
-                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 }
                 
                 else if(!balanced)
@@ -716,10 +653,6 @@ public class APRController : MonoBehaviour
                 APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
                 APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
                 APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                    
-                //Adjust body joint strength
-                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = CoreStiffness;
-                //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = CoreStiffness;
                 
                 reachRightAxisUsed = true;
             }
@@ -754,9 +687,6 @@ public class APRController : MonoBehaviour
                     APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                     APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
                     APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                
-                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    //APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
                 }
                 
                 else if(!balanced)
@@ -774,10 +704,7 @@ public class APRController : MonoBehaviour
         
     }
     
-    
-    
     //---Player Punch---//
-    /////////////////////
     void PlayerPunch()
     {
         
@@ -861,9 +788,6 @@ public class APRController : MonoBehaviour
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.3f, 0f, -0.5f, 1);
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.6f, 0f, 0.5f, 1);
-            /*APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.62f, -0.51f, 0.02f, 1);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.31f, 0.5f, 0.5f, 1);*/
         }
         
         if(punchingLeft && controls.Player.LeftPunch.ReadValue<float>() == 0 && !knockedOut)
@@ -875,9 +799,6 @@ public class APRController : MonoBehaviour
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1f, 0.04f, 0f, 1f);
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);
-            /*APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.74f, 0.04f, 0f, 1);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);*/
 
             //Left hand punch force
             LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
@@ -917,10 +838,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    
-    
     //---Getting Punched Functions--//
-    /////////////////////////////////
     public void GotPunched()
     {
         currentHP--;
@@ -1012,9 +930,7 @@ public class APRController : MonoBehaviour
         }
     }
 
-
     //---Player Walking---//
-    ///////////////////////
     void Walking()
 	{
         if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
@@ -1141,14 +1057,6 @@ public class APRController : MonoBehaviour
             //feet force down
             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-
-            /* //reset to idle
-             APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
-             APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
-
-             //feet force down
-             APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse); */
         }
     }
     
@@ -1196,12 +1104,8 @@ public class APRController : MonoBehaviour
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
 	}
-	
-    
-    
 
 	//---Deactivate Ragdoll---//
-	///////////////////////////
 	void DeactivateRagdoll()
 	{
         isRagdoll = false;
@@ -1245,11 +1149,8 @@ public class APRController : MonoBehaviour
         
         ResetPose = true;
 	}
-	
-    
     
     //---Reset Player Pose---//
-    //////////////////////////
     void ResetPlayerPose()
     {
         if(ResetPose && !jumping && !knockedOut)
@@ -1266,10 +1167,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    
-    
 	//---Calculating Center of mass point---//
-	/////////////////////////////////////////
 	void CenterOfMass()
 	{
 			CenterOfMassPoint =
