@@ -34,7 +34,8 @@ public class NewAIMan : MonoBehaviour
     public int costume = 0;
     public GameObject[] costumes;
 
-
+    float percentStayChance = 0.25f;
+    float timeToWait = 3f;
 
     bool needToUpdateDestination = false;
 
@@ -73,12 +74,6 @@ public class NewAIMan : MonoBehaviour
         shoveForce = 750;
         shoveAngle = 30;
         baseAcceleration = agent.acceleration;
-        if(anim != null && (this is CrowdAI) == false)
-        {
-            anim.SetInteger("RunNumber", legNum);
-            anim.SetBool("Running", true);
-            anim.SetBool("Sitting", false);
-        }
         SetCostume();
         SetStopDistance();
         overrideDestination = NO_OVERRIDE_DEST;
@@ -86,11 +81,16 @@ public class NewAIMan : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-
+        if (anim != null && (this is CrowdAI) == false)
+        {
+            anim.SetBool("Idle", true);
+        }
 
         enableAgent();
 
         forceNewDest();
+        
+
     }
 
     // Update is called once per frame
@@ -258,7 +258,7 @@ public class NewAIMan : MonoBehaviour
         }
         else
         {
-            StartCoroutine(playerCollideScoot(2f, playerPos));
+            StartCoroutine(playerCollideScoot(3f, playerPos));
         }
     }
 
@@ -268,7 +268,7 @@ public class NewAIMan : MonoBehaviour
         playerPos.y = transform.position.y;
 
         Vector3 direction = transform.position - playerPos;
-        direction.y = Mathf.Tan(45f * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
+        direction.y = Mathf.Tan(30f * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
         direction = direction.normalized;
 
         
@@ -324,12 +324,28 @@ public class NewAIMan : MonoBehaviour
         
     }
 
+    IEnumerator AddStopDest(Vector3 loc)
+    {
+        allOverrideDestinations.Add(loc);
+        yield return new WaitForSeconds(timeToWait);
+        allOverrideDestinations.Remove(loc);
+    }
+
     public void getNewOrderedDest()
     {
        // if(agent.isStopped)
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
-            forceGetNewOrderedDest();
+            if (Random.Range(0f, 1f) <= percentStayChance)
+            {
+                StartCoroutine(AddStopDest(currentDestination));
+            }
+            else
+            {
+
+                forceGetNewOrderedDest();
+
+            }
         }
     }
 
@@ -338,7 +354,15 @@ public class NewAIMan : MonoBehaviour
         //if(agent.isStopped)
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
-            forceGetNewRandDest();
+
+            if (Random.Range(0f, 1f) <= percentStayChance)
+            {
+                StartCoroutine(AddStopDest(currentDestination));
+            }
+            else
+            {
+                forceGetNewRandDest();
+            }
         }
     }
     public void forceNewDest()
@@ -454,8 +478,8 @@ public class NewAIMan : MonoBehaviour
         {
             if (!(this is CrowdAI))
             {
-                if(anim.GetBool("Running") == true)
-                    anim.SetBool("Running", false);
+                if (anim != null)
+                    anim.SetBool("Idle", true);
 
             }
         }
@@ -463,8 +487,8 @@ public class NewAIMan : MonoBehaviour
         {
             if(!(this is CrowdAI))
             {
-                if (anim.GetBool("Running") == false)
-                    anim.SetBool("Running", true);
+                if (anim != null)
+                    anim.SetBool("Idle", false);
             }
         }
         if (quipped)

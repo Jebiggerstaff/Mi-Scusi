@@ -23,12 +23,12 @@ public class StayStillAIMan : NewAIMan
             {
 
                 if (anim != null)
-                    anim.SetBool("Running", false);
+                    anim.SetBool("Idle", true);
             }
             else
             {
                 if (anim != null)
-                    anim.SetBool("Running", true);
+                    anim.SetBool("Idle", false);
             }
         }
     }

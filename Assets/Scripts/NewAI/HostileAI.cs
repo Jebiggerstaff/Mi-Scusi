@@ -107,12 +107,16 @@ public class HostileAI : NewAIMan
 
     void punchRight()
     {
+        anim.ResetTrigger("RightPunch");
+        anim.SetTrigger("RightPunch");
         apr.AIPunch(true);
     }
     void punchLeft()
     {
-
+        anim.ResetTrigger("LeftPunch");
+        anim.SetTrigger("LeftPunch");
         apr.AIPunch(false);
+        
     }
 
 

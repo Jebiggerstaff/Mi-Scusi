@@ -7,7 +7,7 @@ public class SitDownAI : NewAIMan
     public override void Start()
     {
         base.Start();
-        GetComponentInChildren<Animator>().SetBool("Sitting", true);
+        anim.GetComponentInChildren<Animator>().SetBool("Sitting", true);
         foreach(var c in GetComponentsInChildren<Collider>())
         {
             Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>());
@@ -24,16 +24,12 @@ public class SitDownAI : NewAIMan
 
             if (sitting)
             {
-                if (agent.enabled == true)
-                {
-                    disableAgent();
-                }
+                disableAgent();
                 //if (myRB.useGravity == true)
                 //{
                     //myRB.useGravity = false;
                 //}
                 Vector3 targetSit = sitPlace.position;
-                targetSit += new Vector3(0, -0.9f, 0);
                 if (transform.position != targetSit)
                 {
                     transform.position = targetSit;
@@ -70,7 +66,7 @@ public class SitDownAI : NewAIMan
                 {
                     GetComponent<Rigidbody>().useGravity = true;
                 }
-                GetComponentInChildren<Animator>().SetBool("Sitting", false);
+                anim.SetBool("Sitting", false);
                 enableAgent();
                 foreach (var c in GetComponentsInChildren<Collider>())
                 {
