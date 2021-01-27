@@ -1896,7 +1896,6 @@ MonoBehaviour:
   balanceStrength: 50000
   coreStrength: 4000
   limbStrength: 1000
-  spineTimer: 0
   StepDuration: 0.2
   StepHeight: 1.7
   FeetMountForce: 25
@@ -3380,7 +3379,7 @@ ConfigurableJoint:
   m_XMotion: 2
   m_YMotion: 2
   m_ZMotion: 2
-  m_AngularXMotion: 2
+  m_AngularXMotion: 1
   m_AngularYMotion: 2
   m_AngularZMotion: 2
   m_LinearLimitSpring:
@@ -3391,14 +3390,14 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 0
-    damper: 0
+    spring: 10
+    damper: 5
   m_LowAngularXLimit:
-    limit: 0
+    limit: -20
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -4163,7 +4162,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 0
+    spring: 10
     damper: 0
   m_LowAngularXLimit:
     limit: -90

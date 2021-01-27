@@ -215,6 +215,11 @@ public class APRController : MonoBehaviour
 
     void Update()
     {
+        if(Time.deltaTime >= 1)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         if (canPunch && punchTimer > punchDelay)
         {
             PlayerPunch();          
