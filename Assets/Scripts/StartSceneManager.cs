@@ -74,8 +74,9 @@ public class StartSceneManager : MonoBehaviour
         switch (levelname)
         {
             case "Tutorial":
-                goToTransition = false;
-                SceneManager.LoadScene(levelname);
+                goToTransition = true;
+                //SceneManager.LoadScene(levelname);
+                data.videoIndex = 8;
                 break;
             case "Italy":
                 data.videoIndex = 1;
