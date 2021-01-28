@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraZoomScript : MonoBehaviour
 {
-    float timeLeft = 15.0f;
+    public float timeLeft = 15.0f;
     public Animator animator;
   
 
