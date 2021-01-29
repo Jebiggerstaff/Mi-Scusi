@@ -84,7 +84,7 @@ public class HostileAI : NewAIMan
     }
     void tryPunch()
     {
-        if(currentPunchCD <= 0)
+        if(currentPunchCD <= 0 && stunCount <= 0)
         {
             currentPunchCD = punchCD;
 
@@ -107,12 +107,14 @@ public class HostileAI : NewAIMan
 
     void punchRight()
     {
+        //UPDATE
         anim.ResetTrigger("RightPunch");
         anim.SetTrigger("RightPunch");
         apr.AIPunch(true);
     }
     void punchLeft()
     {
+        //UPDATE
         anim.ResetTrigger("LeftPunch");
         anim.SetTrigger("LeftPunch");
         apr.AIPunch(false);

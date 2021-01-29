@@ -64,7 +64,7 @@ public class NewAIMan : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         //rb = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
+        //anim = GetComponentInChildren<Animator>();
         hp = maxHP;
         currentDest = 0;
         quipped = false;
@@ -180,7 +180,7 @@ public class NewAIMan : MonoBehaviour
                     disableAgent();
                     //rb.isKinematic = false;
                     stunCount -= Time.deltaTime;
-
+                    anim.SetBool("Idle", true);
 
                     if (anim != null)
                         anim.SetBool("Stunned", true);
@@ -207,7 +207,7 @@ public class NewAIMan : MonoBehaviour
 
 
                 anim.speed = agent.speed / 3;
-
+                anim.speed = Mathf.Clamp(anim.speed, 0.25f, 2f);
 
 
 
@@ -258,28 +258,43 @@ public class NewAIMan : MonoBehaviour
         }
         else
         {
-            StartCoroutine(playerCollideScoot(3f, playerPos));
+            StartCoroutine(bump(playerPos));
         }
+    }
+
+    IEnumerator bump(Vector3 playerPos)
+    {
+        if(!( this is SitDownAI && (this as SitDownAI).sitting))
+        {
+            disableAgent();
+            playerPos.y = transform.position.y;
+
+            Vector3 direction = transform.position - playerPos;
+            direction.y = Mathf.Tan(10f * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
+            direction = direction.normalized;
+
+
+
+            GetComponent<Rigidbody>().AddForce(direction * 25f, ForceMode.Impulse);
+            shoveCooldown = 0.5f;
+
+            yield return new WaitForSeconds(1.0f);
+
+            if (stunCount <= 0)
+            {
+
+                enableAgent();
+
+            }
+        }
+        
     }
 
     IEnumerator playerCollideScoot(float time, Vector3 playerPos)
     {
-        disableAgent();
-        playerPos.y = transform.position.y;
 
-        Vector3 direction = transform.position - playerPos;
-        direction.y = Mathf.Tan(30f * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
-        direction = direction.normalized;
-
-        
-
-        GetComponent<Rigidbody>().AddForce(direction * 25f, ForceMode.Impulse);
-        shoveCooldown = 0.5f;
-
-        yield return new WaitForSeconds(1.0f);
-
-        enableAgent();
-
+        StartCoroutine(bump(playerPos));
+        yield return new WaitForSeconds(1f);
 
         float xNeg = 1;
         if (playerPos.x > transform.position.x)

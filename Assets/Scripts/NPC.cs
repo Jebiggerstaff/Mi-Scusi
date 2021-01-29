@@ -11,10 +11,16 @@ public class NPC : MonoBehaviour {
 
     public Transform ChatBackGround;
     public Transform NPCCharacter;
+    bool inRange;
+
+    public bool DEBUG_printDistance = false;
 
     private DialogueSystem dialogueSystem;
 
     public string Name;
+
+    float speakRange = 8f;
+    Transform player;
 
     [TextArea(5, 10)]
     public string[] sentences;
@@ -23,6 +29,9 @@ public class NPC : MonoBehaviour {
         if(SceneManager.GetActiveScene().name == "Italy")
             ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
         dialogueSystem = DialogueSystem.dialogueSystem;
+        player = FindObjectOfType<APRController>().Root.transform;
+
+        speakRange = 8f;
     }
 	
 	void Update () {
@@ -35,30 +44,53 @@ public class NPC : MonoBehaviour {
         {
             dialogueSystem = DialogueSystem.dialogueSystem;
         }
+
+        RangeCheck();
     }
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player") { 
-            this.gameObject.GetComponent<NPC>().enabled = true;
-            DialogueSystem.dialogueSystem.EnterRangeOfNPC();
-            if ((other.gameObject.tag == "Player") && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3)))
-            {
-                if (Name == "Former Gangster")
-                    ItalyTaskManager.TaskCompleted("HearAboutMafia");
 
-                this.gameObject.GetComponent<NPC>().enabled = true;
-                dialogueSystem.Names = Name;
-                dialogueSystem.dialogueLines = sentences;
-                DialogueSystem.dialogueSystem.NPCName();
-            }
+
+    void RangeCheck()
+    {
+        if(DEBUG_printDistance)
+        {
+            Debug.Log(Vector3.Distance(transform.position, player.position));
+        }
+        if (Vector3.Distance(transform.position, player.position) <= speakRange)
+        {
+            InRange();
+            
+        }
+        else
+        {
+            outOfRange();
         }
     }
 
-    public void OnTriggerExit()
+    void InRange()
     {
-        DialogueSystem.dialogueSystem.OutOfRange();
-        this.gameObject.GetComponent<NPC>().enabled = false;
+        DialogueSystem.dialogueSystem.EnterRangeOfNPC();
+        if ((DialogueSystem.dialogueSystem.controls.Player.Interact.triggered))
+        {
+            if (Name == "Former Gangster")
+                ItalyTaskManager.TaskCompleted("HearAboutMafia");
+
+            dialogueSystem.Names = Name;
+            dialogueSystem.dialogueLines = sentences;
+            DialogueSystem.dialogueSystem.NPCName();
+        }
+        inRange = true;
     }
+    void outOfRange()
+    {
+        if(inRange)
+        {
+            inRange = false;
+
+            DialogueSystem.dialogueSystem.OutOfRange();
+
+        }
+    }
+    
 }
 
