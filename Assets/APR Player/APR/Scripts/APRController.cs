@@ -215,7 +215,7 @@ public class APRController : MonoBehaviour
 
     void Update()
     {
-        if(Time.deltaTime >= 1)
+        if(Time.timeScale > 0.1f)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class DialogueSystem: MonoBehaviour {
 
+    [HideInInspector]
+    public MiScusiActions controls;
+
     public Text nameText;
     public Text dialogueText;
 
@@ -33,6 +36,9 @@ public class DialogueSystem: MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         dialogueText.text = "";
         dialogueSystem = this;
+
+        controls = new MiScusiActions();
+        controls.Enable();
     }
 
     void Update()
@@ -55,7 +61,7 @@ public class DialogueSystem: MonoBehaviour {
         outOfRange = false;
         dialogueBoxGUI.gameObject.SetActive(true);
         nameText.text = Names;
-        if (Input.GetKeyDown(KeyCode.F)||Input.GetKeyDown(KeyCode.JoystickButton3))
+        if (controls.Player.Interact.triggered)
         {
             if (!dialogueActive)
             {
@@ -90,7 +96,7 @@ public class DialogueSystem: MonoBehaviour {
 
             while (true)
             {
-                if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3) && dialogueEnded == false)
+                if (controls.Player.Interact.triggered && dialogueEnded == false)
                 {
                     break;
                 }
@@ -118,7 +124,7 @@ public class DialogueSystem: MonoBehaviour {
 
                 if (currentCharacterIndex < stringLength)
                 {
-                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3))
+                    if (controls.Player.Interact.triggered)
                     {
                         yield return new WaitForSeconds(letterDelay * letterMultiplier);
 
@@ -139,7 +145,7 @@ public class DialogueSystem: MonoBehaviour {
             }
             while (true)
             {
-                if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton3))
+                if (controls.Player.Interact.triggered)
                 {
                     break;
                 }
