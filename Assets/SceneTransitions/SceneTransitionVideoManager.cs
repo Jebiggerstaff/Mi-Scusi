@@ -10,6 +10,8 @@ public class SceneTransitionVideoManager : MonoBehaviour
     void Start()
     {
         getVideo();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class SceneTransitionVideoManager : MonoBehaviour
             }
         }
 
-        InvokeRepeating("SwapCheck", 1.5f, 0.25f);
+        //InvokeRepeating("SwapCheck", 1.5f, 0.25f);
 
     }
     void SwapCheck()

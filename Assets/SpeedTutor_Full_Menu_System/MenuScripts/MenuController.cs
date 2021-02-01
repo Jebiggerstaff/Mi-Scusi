@@ -143,9 +143,13 @@ namespace SpeedTutorMainMenuSystem
 
         private void Update()
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if(Time.timeScale <= 0.01)
+            {
 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+
+            }
 
             if ((controls.UI.PauseMenu.ReadValue<float>() > oldAxis || controls.UI.MenuReturn.triggered) && !overlayScene.CancelDelay)
             {
