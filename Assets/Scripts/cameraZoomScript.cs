@@ -2,18 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class cameraZoomScript : MonoBehaviour
 {
+    private MiScusiActions controls;
+
     public float timeLeft = 15.0f;
     public Animator animator;
-  
 
-    private void Update()
+    private void Awake()
     {
+        controls = new MiScusiActions();
+        controls.Enable();
+    }
+
+    void Update()
+    {
+
         timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        if (timeLeft <= 0)
         {
             animator.enabled = false;
         }
+
+        if (controls.Player.Jump.triggered)
+        {
+            animator.enabled = false;
+        }
+
     }
 }
