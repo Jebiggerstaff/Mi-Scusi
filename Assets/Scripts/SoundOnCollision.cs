@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SoundOnCollision : MonoBehaviour
 {
-    public AudioSource CollideWithWater;
-    public AudioSource CollideWithGround;
-    public AudioSource CollideWithPlayer;
-    public AudioSource PunchedByPlayer;
-    public AudioSource AIPunchedByPlayer;
-    public AudioSource AIPunchesPlayer;
-    public AudioSource KnockedOut;
+    public AudioSource audioSource;
+    public AudioClip CollideWithWater;
+    public AudioClip CollideWithGround;
+    public AudioClip CollideWithPlayer;
+    public AudioClip PunchedByPlayer;
+    public AudioClip AIPunchedByPlayer;
+    public AudioClip AIPunchesPlayer;
+    public AudioClip KnockedOut;
     //public AudioSource DraggedByPlayer;
 
     bool collidesWithWater;
@@ -111,14 +112,14 @@ public class SoundOnCollision : MonoBehaviour
     */
 
 
-    public void tryPlayAudio(AudioSource source)
+    public void tryPlayAudio(AudioClip clip)
     {
-        if(source != null)
+        if(clip != null)
         {
-            if(source.isPlaying == false)
+            if(!(audioSource.clip == clip && audioSource.isPlaying == true))
             {
-
-                source.Play();
+                audioSource.clip = clip;
+                audioSource.Play();
 
             }
         }
