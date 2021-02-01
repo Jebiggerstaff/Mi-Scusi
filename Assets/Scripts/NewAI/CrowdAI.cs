@@ -143,12 +143,10 @@ public class CrowdAI : NewAIMan
             if( (man as HostileAI).isAggrod )
             {
                 man.agent.speed = 9;
-                man.agent.angularSpeed = 720;
                 shouldSetPoint = false;
             }
             else
             {
-                man.agent.angularSpeed = 180;
             }
         }
 

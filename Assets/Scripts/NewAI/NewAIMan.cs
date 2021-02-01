@@ -81,10 +81,6 @@ public class NewAIMan : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        if (anim != null && (this is CrowdAI) == false)
-        {
-            anim.SetBool("Idle", true);
-        }
 
         enableAgent();
 
@@ -180,7 +176,6 @@ public class NewAIMan : MonoBehaviour
                     disableAgent();
                     //rb.isKinematic = false;
                     stunCount -= Time.deltaTime;
-                    anim.SetBool("Idle", true);
 
                     if (anim != null)
                         anim.SetBool("Stunned", true);
@@ -208,6 +203,18 @@ public class NewAIMan : MonoBehaviour
 
                 anim.speed = agent.speed / 3;
                 anim.speed = Mathf.Clamp(anim.speed, 0.25f, 2f);
+                if (anim != null)
+                {
+
+                    if (agent.enabled)
+                    {
+                        anim.SetFloat("Speed", agent.velocity.magnitude);
+                    }
+                    else
+                    {
+                        anim.SetFloat("Speed", 0);
+                    }
+                }
 
 
 
@@ -489,23 +496,7 @@ public class NewAIMan : MonoBehaviour
             target = overrideDestination;
         }
 
-        if(currentDestination == target)
-        {
-            if (!(this is CrowdAI))
-            {
-                if (anim != null)
-                    anim.SetBool("Idle", true);
-
-            }
-        }
-        else
-        {
-            if(!(this is CrowdAI))
-            {
-                if (anim != null)
-                    anim.SetBool("Idle", false);
-            }
-        }
+        
         if (quipped)
         {
             currentDestination = quipTarget;

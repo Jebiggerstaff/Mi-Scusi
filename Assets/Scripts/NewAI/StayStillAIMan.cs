@@ -18,18 +18,7 @@ public class StayStillAIMan : NewAIMan
 
             SetNewDestination(target);
 
-            //if(agent.isStopped)
-            if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
-            {
-
-                if (anim != null)
-                    anim.SetBool("Idle", true);
-            }
-            else
-            {
-                if (anim != null)
-                    anim.SetBool("Idle", false);
-            }
+            
         }
     }
     

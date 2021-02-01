@@ -7,7 +7,7 @@ public class SitDownAI : NewAIMan
     public override void Start()
     {
         base.Start();
-        anim.GetComponentInChildren<Animator>().SetBool("Sitting", true);
+        anim.SetBool("Sitting", true);
         foreach(var c in GetComponentsInChildren<Collider>())
         {
             Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>());
