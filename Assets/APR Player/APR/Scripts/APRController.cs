@@ -122,7 +122,6 @@ public class APRController : MonoBehaviour
     [HideInInspector]
     public Camera cam;
     private Vector3 Direction;
-	private Vector3 CenterOfMassPoint;
     
     //Active Ragdoll Player Parts Array
 	private GameObject[] APR_Parts;
@@ -240,7 +239,6 @@ public class APRController : MonoBehaviour
         }
         
         GroundCheck();
-        CenterOfMass();
         tryQuip();
     }
     
@@ -1171,35 +1169,5 @@ public class APRController : MonoBehaviour
             ResetPose = false;
         }
     }
-    
-	//---Calculating Center of mass point---//
-	void CenterOfMass()
-	{
-			CenterOfMassPoint =
-			
-			(APR_Parts[0].GetComponent<Rigidbody>().mass * APR_Parts[0].transform.position + 
-            APR_Parts[1].GetComponent<Rigidbody>().mass * APR_Parts[1].transform.position +
-            APR_Parts[2].GetComponent<Rigidbody>().mass * APR_Parts[2].transform.position +
-            APR_Parts[3].GetComponent<Rigidbody>().mass * APR_Parts[3].transform.position +
-            APR_Parts[4].GetComponent<Rigidbody>().mass * APR_Parts[4].transform.position +
-            APR_Parts[5].GetComponent<Rigidbody>().mass * APR_Parts[5].transform.position +
-            APR_Parts[6].GetComponent<Rigidbody>().mass * APR_Parts[6].transform.position +
-			APR_Parts[7].GetComponent<Rigidbody>().mass * APR_Parts[7].transform.position +
-			APR_Parts[8].GetComponent<Rigidbody>().mass * APR_Parts[8].transform.position +
-			APR_Parts[9].GetComponent<Rigidbody>().mass * APR_Parts[9].transform.position +
-			APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position) 
-            
-            /
-			
-            (APR_Parts[0].GetComponent<Rigidbody>().mass + APR_Parts[1].GetComponent<Rigidbody>().mass +
-            APR_Parts[2].GetComponent<Rigidbody>().mass + APR_Parts[3].GetComponent<Rigidbody>().mass +
-            APR_Parts[4].GetComponent<Rigidbody>().mass + APR_Parts[5].GetComponent<Rigidbody>().mass +
-            APR_Parts[6].GetComponent<Rigidbody>().mass + APR_Parts[7].GetComponent<Rigidbody>().mass +
-			APR_Parts[8].GetComponent<Rigidbody>().mass + APR_Parts[9].GetComponent<Rigidbody>().mass +
-			APR_Parts[10].GetComponent<Rigidbody>().mass);
-			
-			COMP.position = CenterOfMassPoint;
-	}
-    
     
 }
