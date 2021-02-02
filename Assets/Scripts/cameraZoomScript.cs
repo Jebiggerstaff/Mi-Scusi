@@ -25,7 +25,7 @@ public class cameraZoomScript : MonoBehaviour
             animator.enabled = false;
         }
 
-        if (controls.Player.Jump.triggered)
+        else if (controls.Player.Jump.triggered)
         {
             animator.enabled = false;
         }
