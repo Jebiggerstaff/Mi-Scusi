@@ -8,21 +8,20 @@ public class ThankYouPeter : MonoBehaviour
     public float speed = 0f;
     public float jumpForce = 0f;
    
-
-
     [Header("Unity Stuff")]
     public float jumpingRaycastDistance;
     public Rigidbody rb;
     public float stairRaycastCheckRadius;
+    public Transform Camera;
 
     //Internal Use Only
     bool grounded = true;
     float rotationCount = 0.2f;
     const float rotationResetCount = 0.2f;
-    float oldVMove = -5;
-    float oldHMove = -5;
     float notGroundedCount = 0;
 
+    Vector2 Movement;
+    Vector2 OldMovement=new Vector2(-5,-5);
 
     private MiScusiActions controls;
     private void Awake()
@@ -39,20 +38,23 @@ public class ThankYouPeter : MonoBehaviour
 
     void PlayerMovement()
     {
-        //Movement
-        float VMovement = controls.Player.MoveY.ReadValue<float>();
-        float HMovement = controls.Player.MoveX.ReadValue<float>();
 
-        Vector3 Direction = new Vector3(HMovement,0f,VMovement).normalized;
+        #region Movement
+        Movement.y = controls.Player.MoveY.ReadValue<float>();
+        Movement.x = controls.Player.MoveX.ReadValue<float>();
+
+        Vector3 Direction = Camera.rotation * new Vector3(Movement.x, 0f, Movement.y).normalized;
+        Direction.y = 0f;
         Direction = Direction * speed + new Vector3(0, rb.velocity.y, 0);
         rb.velocity = Vector3.Lerp(rb.velocity, Direction, .8f);
+        #endregion
 
-        //Rotation
-        if(oldHMove != HMovement || oldVMove != VMovement)
+        #region Rotation
+        if (OldMovement.x != Movement.x || OldMovement.y != Movement.y)
         {
             rotationCount = rotationResetCount;
         }
-        if (VMovement != 0f || HMovement != 0f)
+        if (Movement.y != 0f || Movement.x != 0f)
         {
             Vector3 Rotation = rb.velocity;
             Rotation.y = 0f;
@@ -63,15 +65,15 @@ public class ThankYouPeter : MonoBehaviour
 
             //adjust amount of rotation
             rotationCount = Mathf.Clamp(rotationCount + 0.01f, rotationResetCount, 1);
-            oldHMove = HMovement;
-            oldVMove = VMovement;
+            OldMovement= Movement;
         }
         else
         {
             rotationCount = rotationResetCount;
         }
+        #endregion
 
-        //Jump
+        #region Jump
         if (controls.Player.Jump.triggered && grounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -92,15 +94,17 @@ public class ThankYouPeter : MonoBehaviour
                 notGroundedCount += Time.fixedDeltaTime;
             }
         }
+        #endregion
 
-        //Stair Detection
+        #region Stair Detection
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, stairRaycastCheckRadius, Vector3.down, out hit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Stairs")))
         {
             rb.AddForce(Vector3.up * rb.mass, ForceMode.Force);
         }
+        #endregion
 
-    }   
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
