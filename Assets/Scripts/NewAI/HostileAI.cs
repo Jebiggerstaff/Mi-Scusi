@@ -86,19 +86,24 @@ public class HostileAI : NewAIMan
     {
         if(currentPunchCD <= 0 && stunCount <= 0)
         {
-            currentPunchCD = punchCD;
+            
+            if (Vector3.Angle(player.forward, transform.position - player.transform.position) < angle)
+            {
+                currentPunchCD = punchCD;
 
 
-            int rand = Random.Range(0, 2);
-            if (rand == 0)
-                punchRight();
-            else
-                punchLeft();
+                int rand = Random.Range(0, 2);
+                if (rand == 0)
+                    punchRight();
+                else
+                    punchLeft();
 
 
 
 
-            Debug.Log("Punching");
+                Debug.Log("Punching");
+            }
+            
         }
 
     }
@@ -136,6 +141,7 @@ public class HostileAI : NewAIMan
     public float punchCD;
 
     Transform player;
+    float angle = 45;
 
     [HideInInspector]
     public bool isAggrod;

@@ -21,6 +21,7 @@ public class ThankYouPeter : MonoBehaviour
     const float rotationResetCount = 0.2f;
     float oldVMove = -5;
     float oldHMove = -5;
+    float notGroundedCount = 0;
 
 
     private MiScusiActions controls;
@@ -75,6 +76,21 @@ public class ThankYouPeter : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             grounded = false;
+            notGroundedCount = 0;
+        }
+        if(!grounded)
+        {
+            if(notGroundedCount >= 1)
+            {
+                RaycastHit rhit;
+                if (Physics.Raycast(transform.position, Vector3.down, out rhit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Ground")) || Physics.Raycast(transform.position, Vector3.down, out rhit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Stairs")))
+                    grounded = true;
+                notGroundedCount = 0;
+            }
+            else
+            {
+                notGroundedCount += Time.fixedDeltaTime;
+            }
         }
 
         //Stair Detection
