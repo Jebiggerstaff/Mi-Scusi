@@ -145,10 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollideWithWater: {fileID: 0}
+  audioSource: {fileID: 4351928322894939664}
+  CollideWithWater: {fileID: 8300000, guid: 21c13c88a919fda4880a9d698ce3b84e, type: 3}
   CollideWithGround: {fileID: 0}
-  CollideWithPlayer: {fileID: 4351928322894939664}
+  CollideWithPlayer: {fileID: 8300000, guid: 2b9037a0f5f76274ab36e7c287e699c8, type: 3}
   PunchedByPlayer: {fileID: 0}
+  AIPunchedByPlayer: {fileID: 0}
+  AIPunchesPlayer: {fileID: 0}
+  KnockedOut: {fileID: 0}
 --- !u!1 &7463764190191762528
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,9 +194,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 626423781504e784699673634b9eb9b6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.029
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 0
   Mute: 0
