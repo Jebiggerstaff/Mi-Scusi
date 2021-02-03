@@ -36,6 +36,11 @@ public class ThankYouPeter : MonoBehaviour
         PlayerMovement();
     }
 
+    private void Update()
+    {
+        Jump();
+    }
+
     void PlayerMovement()
     {
 
@@ -73,6 +78,18 @@ public class ThankYouPeter : MonoBehaviour
         }
         #endregion
 
+        #region Stair Detection
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, stairRaycastCheckRadius, Vector3.down, out hit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Stairs")))
+        {
+            rb.AddForce(Vector3.up * rb.mass, ForceMode.Force);
+        }
+        #endregion
+
+    }
+
+    public void Jump()
+    {
         #region Jump
         if (controls.Player.Jump.triggered && grounded)
         {
@@ -80,9 +97,9 @@ public class ThankYouPeter : MonoBehaviour
             grounded = false;
             notGroundedCount = 0;
         }
-        if(!grounded)
+        if (!grounded)
         {
-            if(notGroundedCount >= 1)
+            if (notGroundedCount >= 1)
             {
                 RaycastHit rhit;
                 if (Physics.Raycast(transform.position, Vector3.down, out rhit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Ground")) || Physics.Raycast(transform.position, Vector3.down, out rhit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Stairs")))
@@ -95,16 +112,8 @@ public class ThankYouPeter : MonoBehaviour
             }
         }
         #endregion
-
-        #region Stair Detection
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, stairRaycastCheckRadius, Vector3.down, out hit, jumpingRaycastDistance, 1 << LayerMask.NameToLayer("Stairs")))
-        {
-            rb.AddForce(Vector3.up * rb.mass, ForceMode.Force);
-        }
-        #endregion
-
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
