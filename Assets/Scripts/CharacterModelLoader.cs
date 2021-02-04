@@ -5,23 +5,34 @@ using UnityEngine;
 //[RequireComponent(typeof(APRController))]
 public class CharacterModelLoader : MonoBehaviour
 {
+    public GameObject[] Hats;
+
+    [Space]
+    public GameObject[] Coats;
+
+    [Space]
+    public GameObject[] Shirts;
+
+    [Space]
+    public GameObject[] Accessories;
+
+    [Space]
+    public GameObject[] Pants;
+
+    [Space]
+    public GameObject[] Backpacks;
+
+    private int hatModel;
+    private int shirtModel;
+    private int coatModel;
+    private int pantsModel;
+    private int accessoryModel;
+    private int backpackModel;
 
     private void Awake()
     {
         GetInitialDefaults();
         LoadAllModels();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //StartCoroutine(Test());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void GetInitialDefaults()
@@ -184,38 +195,4 @@ public class CharacterModelLoader : MonoBehaviour
         
     }
     
-    public GameObject[] Hats;
-
-   
-    [Space]
-    public GameObject[] Coats;
-
-
-    [Space]
-    public GameObject[] Shirts;
-
-
-    [Space]
-    public GameObject[] Accessories;
-
-
-    [Space]
-    public GameObject[] Pants;
-
-
-    [Space]
-    public GameObject[] Backpacks;
-
-
-
-    
-
-    private int hatModel;
-    private int shirtModel;
-    private int coatModel;
-    private int pantsModel;
-    private int accessoryModel;
-    private int backpackModel;
-
-
 }

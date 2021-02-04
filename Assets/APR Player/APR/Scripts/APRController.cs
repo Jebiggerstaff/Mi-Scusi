@@ -341,6 +341,7 @@ public class APRController : MonoBehaviour
 
         currentHP = maxHP;
         StartHPRegen();
+        
     }  
     
     
