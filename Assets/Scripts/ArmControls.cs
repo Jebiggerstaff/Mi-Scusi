@@ -14,7 +14,12 @@ public class ArmControls : MonoBehaviour
     MiScusiActions controls;
     readonly Quaternion idleTargetRotation  = new Quaternion(0, 0.6f, 0, 1);
     readonly Quaternion rightReachTargetRotation = new Quaternion(1.54f, 1.65f, -1.28f, 1);
-    readonly Quaternion leftReachTargetRotation = new Quaternion(1.54f, -1.65f, 0.59f, 1);
+    readonly Quaternion leftReachTargetRotation = new Quaternion(-1.49f, 1.23f, 1.27f, 1);
+
+    [HideInInspector]
+    public bool reachingLeft;
+    [HideInInspector]
+    public bool reachingRight;
 
 
     private void Awake()
@@ -57,18 +62,22 @@ public class ArmControls : MonoBehaviour
 
     void reachRight()
     {
+        reachingRight = true;
         reach(rArm, rightReachTargetRotation);
     }
     void reachLeft()
     {
+        reachingLeft = true;
         reach(lArm, leftReachTargetRotation);
     }
     void resetReachRight()
     {
+        reachingRight = false;
         reach(rArm, idleTargetRotation);
     }
     void resetReachLeft()
     {
+        reachingLeft = false;
        reach(lArm, idleTargetRotation);
     }
 
