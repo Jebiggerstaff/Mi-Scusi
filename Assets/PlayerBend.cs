@@ -37,24 +37,16 @@ public class PlayerBend : MonoBehaviour
 			upperSpine
         };
     }
+
     void playerspine()
     {
-        bendAdd += controls.Player.Bend.ReadValue<float>();
+        bendAdd -= .2f * controls.Player.Bend.ReadValue<float>();
         //Mathf.Clamp(bendAdd,-90,90);
         if (bendAdd > 90)
             bendAdd = 90;
         if (bendAdd < -90)
             bendAdd = -90;
-        midSpine.transform.localRotation = Quaternion.Euler(bendAdd, 0f, 0f);
-
-        //midSpine.transform.localRotation = Quaternion.Euler(45, 0, 0);
-
-        
-
-           // MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
-            //MouseYAxisBody = MouseYAxisBody * 5;
-            //midSpine.transform.localRotation = Quaternion.Euler(-MouseYAxisBody, 0, 0);
-        
+        midSpine.transform.localRotation = Quaternion.Euler(bendAdd, 0f, 0f);       
         
     }
 }

@@ -28,6 +28,7 @@ public class NoirTaskManager : MonoBehaviour
     {
         controls = new MiScusiActions();
         controls.Enable();
+        
     }
 
     public void Update()
@@ -47,10 +48,10 @@ public class NoirTaskManager : MonoBehaviour
         switch (Task)
         {
             case "MurderWeapon":
-                Tasks[0].SetActive(true);
+                Tasks[1].SetActive(true);
                 break;
             case "MurderSuspect":
-                Tasks[1].SetActive(true);
+                Tasks[0].SetActive(true);
                 break;
             case "WantedPoster":
                 Tasks[2].SetActive(true);
