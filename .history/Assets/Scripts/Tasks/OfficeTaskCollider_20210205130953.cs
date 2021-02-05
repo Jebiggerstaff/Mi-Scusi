@@ -26,7 +26,7 @@ public class OfficeTaskCollider : MonoBehaviour
         }
         if (other.gameObject.name == "WaterJug" )
         {
-            FullWaterJug.SetActive(true);
+            FullWater.SetActive(true);
             Destroy(other.gameObject);
         }
         #endregion

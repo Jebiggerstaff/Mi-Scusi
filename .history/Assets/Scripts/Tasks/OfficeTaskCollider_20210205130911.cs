@@ -7,7 +7,7 @@ public class OfficeTaskCollider : MonoBehaviour
 
     public OfficeTaskManager OfficeTaskManager;
     bool PaperSpawned = false;
-    public GameObject FullWaterJug;
+    public gameObject = FullWaterJug;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class OfficeTaskCollider : MonoBehaviour
         }
         if (other.gameObject.name == "WaterJug" )
         {
-            FullWaterJug.SetActive(true);
+            FullWater.SetActive(true);
             Destroy(other.gameObject);
         }
         #endregion
