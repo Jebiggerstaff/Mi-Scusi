@@ -14,7 +14,7 @@ public class ArmControls : MonoBehaviour
     MiScusiActions controls;
     readonly Quaternion idleTargetRotation  = new Quaternion(0, 0.6f, 0, 1);
     readonly Quaternion rightReachTargetRotation = new Quaternion(1.54f, 1.65f, -1.28f, 1);
-    readonly Quaternion leftReachTargetRotation = new Quaternion(-1.49f, 1.23f, 1.27f, 1);
+    readonly Quaternion leftReachTargetRotation = new Quaternion(-1.54f, 1.65f, 1.28f, 1);
 
     [HideInInspector]
     public bool reachingLeft;
