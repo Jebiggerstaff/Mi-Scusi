@@ -25,6 +25,9 @@ public class ItalyTaskManager : MonoBehaviour
 
     private bool[] TaskFinished = new bool[10];
 
+    [Header("Audio Clips")]
+    public AudioClip genericCompeltionClip;
+
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -59,7 +62,7 @@ public class ItalyTaskManager : MonoBehaviour
 
     public void TaskCompleted(string Task)
     {
-        
+        RandomAudioMaker.makeAudio(genericCompeltionClip);
         switch (Task)
         {
             case "HearAboutMafia":

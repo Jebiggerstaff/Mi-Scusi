@@ -17,6 +17,7 @@ public class NoirTaskColider : MonoBehaviour
     public void Start()
     {
         NoirTaskManager = GameObject.Find("TaskUI").GetComponent<NoirTaskManager>();
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -25,12 +26,18 @@ public class NoirTaskColider : MonoBehaviour
         {
             foreach (GameObject suspect in NoirTaskManager.Suspects)
             {
-                if (other.name == suspect.name && SuspectIdentified == false)
+                Transform myT = other.gameObject.transform;
+                while(myT != null)
                 {
-                    SuspectIdentified = true;
-                    //have the AI say some shit
-                    NoirTaskManager.TaskCompleted("MurderSuspect");
+                    if (myT.gameObject.name == suspect.name && SuspectIdentified == false)
+                    {
+                        SuspectIdentified = true;
+                        //have the AI say some shit
+                        NoirTaskManager.TaskCompleted("MurderSuspect");
+                    }
+                    myT = myT.parent;
                 }
+                
             }
 
             if (other.name == NoirTaskManager.MurderWeapon.name && WeaponIdentified == false)
