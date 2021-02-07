@@ -763,7 +763,7 @@ public class APRController : MonoBehaviour
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
                 if (hit.GetComponent<NewAIMan>() != null)
-                    hit.GetComponent<NewAIMan>().Explode(transform.position);
+                    hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
                 PunchR4.Play();
                 PunchR5.Play();
                 if (rb != null)
@@ -828,7 +828,7 @@ public class APRController : MonoBehaviour
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
 
                 if (hit.GetComponent<NewAIMan>() != null)
-                    hit.GetComponent<NewAIMan>().Explode(transform.position);
+                    hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
                 
                   
                 if (rb != null)
