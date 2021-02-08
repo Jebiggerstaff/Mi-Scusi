@@ -39,6 +39,8 @@ public class NewYorkTaskManager : MonoBehaviour
     [HideInInspector] public int SignsMoved = 0;
     [HideInInspector] public bool AteAtCafe=false;
 
+    [Header("Audio Clips")]
+    public AudioClip genericCompletionClip;
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -68,6 +70,7 @@ public class NewYorkTaskManager : MonoBehaviour
 
     public void TaskCompleted(string Task)
     {
+        RandomAudioMaker.makeAudio(genericCompletionClip);
         TaskCompleteText.SetActive(true);
         switch (Task)
         {
