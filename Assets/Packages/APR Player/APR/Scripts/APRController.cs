@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class APRController : MonoBehaviour
 {
-
+    #region Variables
     private MiScusiActions controls;
 
     //particles
@@ -146,9 +146,9 @@ public class APRController : MonoBehaviour
 	public bool editorDebugMode;
 
     private string[] joystickNames;
+    #endregion
 
     //---Setup---//
-    //////////////
     void Awake()
     {
         controls = new MiScusiActions();
@@ -158,7 +158,6 @@ public class APRController : MonoBehaviour
         RP = PowerUpTimerRight();
         LP = PowerUpTimerLeft();
     }
-
 
     void tryQuip()
     {
@@ -211,7 +210,6 @@ public class APRController : MonoBehaviour
         
     }
 
-
     void Update()
     {
         if(Time.timeScale > 0.1f)
@@ -238,12 +236,10 @@ public class APRController : MonoBehaviour
             ResetWalkCycle();
         }
         
-        GroundCheck();
+        //GroundCheck();
         tryQuip();
     }
-    
-    
-    
+  
     //---Fixed Updates---//
     void FixedUpdate()
     {
@@ -344,8 +340,6 @@ public class APRController : MonoBehaviour
         
     }  
     
-    
-    
     //---Ground Check---//
 	void GroundCheck()
 	{
@@ -353,71 +347,38 @@ public class APRController : MonoBehaviour
 		RaycastHit hit;
 		
 		//Balance when ground is detected
-        if (Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")) && !inAir && !isJumping && !reachRightAxisUsed && !reachLeftAxisUsed)
-        {
-            if(!balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 3f)
-            {
-                if(autoGetUpWhenPossible)
-                {
-                    balanced = true;
-                }
-            }
-		}
-		
+        if (Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")) && !inAir && !isJumping && !reachRightAxisUsed && !reachLeftAxisUsed
+            && !balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 3f && autoGetUpWhenPossible)
+            balanced = true;
+
 		//Fall over when ground is not detected
 		else if(!Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")))
-		{
             if(balanced)
-            {
                 balanced = false;
-            }
-		}
 
-		
 		//Balance on/off
 		if(balanced && isRagdoll)
-		{
             DeactivateRagdoll();
-		}
+
         if (!balanced)
-        {
             balanced = true;
-        }
     }
     
-    
-    
-	//---Step Prediction---//
+	//Step Prediction
 	void StepPrediction()
 	{
-		//Reset variables when balanced
-		if(!WalkForward)
-        {
-            StepRight = false;
-            StepLeft = false;
-            Step_R_timer = 0;
-            Step_L_timer = 0;
-            Alert_Leg_Right = false;
-            Alert_Leg_Left = false;
-        }
+        ResetWalkCycle();
 		
 		//Check direction to walk when off balance
         //Forward
         if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
-        {
             WalkForward = true;
-        
-        }
         else
-        {
             if(!isKeyDown)
-			{
 				WalkForward = false;
-            }
-        }
 	}
     
-    //---Reset Walk Cycle---//
+    //Reset Walk Cycle
     void ResetWalkCycle()
     {
         //Reset variables when not moving
@@ -432,7 +393,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    //---Player Movement---//\
+    //Player Movement
     void PlayerMovement()
     {
         if (balanced && !knockedOut)
@@ -455,27 +416,19 @@ public class APRController : MonoBehaviour
         //reseting the legs when you stop moving
         if(controls.Player.MoveX.ReadValue<float>() == 0 && controls.Player.MoveY.ReadValue<float>() == 0 && !knockedOut )
         {
-            
             //reset to idle LEFT
-            APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
-            APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
-
-            //feet force down
-            APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
 
             //reset to idle RIGHT
-            APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation, UpperRightLegTarget, (8f) * Time.fixedDeltaTime);
-            APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation, LowerRightLegTarget, (17f) * Time.fixedDeltaTime);
+            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
 
             //feet force down
-            APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            
+            FeetForceDown(APR_Parts[11], APR_Parts[12]);
+
         }
     }
 
-    //---Player Rotation---//
+    //Player Rotation
     void PlayerRotation()
     {
         if (!inAir)
@@ -494,7 +447,7 @@ public class APRController : MonoBehaviour
         }
     }
     
-    //---Player GetUp & Jumping---//
+    //Player GetUp & Jumping
     void PlayerGetUpJumping()
 	{
         if(controls.Player.Jump.triggered && !knockedOut)
@@ -547,8 +500,7 @@ public class APRController : MonoBehaviour
 		}
 	}
     
-    //---Player Landed---//
-    //////////////////////
+    //Player Landed
     public void PlayerLanded()
     {
         if(inAir && !isJumping && !jumping)
@@ -559,153 +511,16 @@ public class APRController : MonoBehaviour
         }
     }
     
-    //---Player Reach--//
+    //Player Reach
     void PlayerReach()
     {
-        //Body Bending
-        if(!knockedOut)
-        {
-            //values for max rotation for bending
-            if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
-            {
-            MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
-            }
-            if (MouseYAxisBody > 0.9f)
-            {
-                MouseYAxisBody = 0.9f;
-            }
+        Bend();
 
-            else if (MouseYAxisBody < -0.9f)
-            {
-                MouseYAxisBody = -0.9f;
-            }
-            
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
-        }  
-            
-            
         //Reach Left
-        if(!knockedOut && controls.Player.LeftGrab.ReadValue<float>() != 0 && !punchingLeft)
-        {
-            
-            if(!reachLeftAxisUsed)
-            {
-                //Adjust Left Arm joint strength
-                APR_Parts[5].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
-                APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
-                APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                
-                reachLeftAxisUsed = true;
-            }
-            
-            if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
-            {
-                    MouseYAxisBody = controls.Player.Bend.ReadValue<float>();          
-            }
-            
-            else if(MouseYAxisArms > 1.2f)
-            {
-                MouseYAxisArms = 1.2f;
-            }
-            
-            else if(MouseYAxisArms < -1.2f)
-            {
-                MouseYAxisArms = -1.2f;
-            }
-            
-            //upper  left arm pose
-			 APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1);
-        }
-        
-        if(controls.Player.LeftGrab.ReadValue<float>() == 0 && !punchingLeft && !knockedOut)
-        {
-            if(reachLeftAxisUsed)
-            {
-                if(balanced)
-                {
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                }
-                
-                else if(!balanced)
-                {
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                }
-                
-                ResetPose = true;
-                reachLeftAxisUsed = false;
-            }
-        }
-        
-        
-            
-            
-        //Reach Right
-        if(controls.Player.RightGrab.ReadValue<float>() != 0 && !punchingRight && !knockedOut)
-        {
-            
-            if(!reachRightAxisUsed)
-            {
-                //Adjust Right Arm joint strength
-                APR_Parts[3].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
-                APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
-                APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
-                
-                reachRightAxisUsed = true;
-            }
-            
-            if(MouseYAxisArms <= 1.2f && MouseYAxisArms >= -1.2f)
-            {
-                    MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
+            reachLeftAxisUsed = Reach(APR_Parts[5], APR_Parts[6], reachLeftAxisUsed, new Quaternion(-0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1),controls.Player.LeftGrab.ReadValue<float>(),punchingLeft);
 
-            }
-            
-            else if(MouseYAxisArms > 1.2f)
-            {
-                MouseYAxisArms = 1.2f;
-            }
-            
-            else if(MouseYAxisArms < -1.2f)
-            {
-                MouseYAxisArms = -1.2f;
-            }
-            
-            //upper right arm pose
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1);
-        }
-        
-        if(controls.Player.RightGrab.ReadValue<float>() == 0 && !punchingRight && !knockedOut)
-        {
-            if(reachRightAxisUsed)
-            {
-                if(balanced)
-                {
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                }
-                
-                else if(!balanced)
-                {
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                }
-                
-                ResetPose = true;
-                reachRightAxisUsed = false;
-            }
-        }
-        
+        //Reach Right
+            reachRightAxisUsed = Reach(APR_Parts[3],APR_Parts[4],reachRightAxisUsed, new Quaternion(0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1),controls.Player.RightGrab.ReadValue<float>(),punchingRight);
     }
     
     //---Player Punch---//
@@ -934,7 +749,7 @@ public class APRController : MonoBehaviour
         }
     }
 
-    //---Player Walking---//
+    //Player Walking
     void Walking()
 	{
         if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
@@ -1063,10 +878,8 @@ public class APRController : MonoBehaviour
             APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
         }
     }
-    
-    
+     
     //---Activate Ragdoll---//
-    /////////////////////////
     public void ActivateRagdoll()
 	{
         isRagdoll = true;
@@ -1169,6 +982,88 @@ public class APRController : MonoBehaviour
             
             ResetPose = false;
         }
-    }
+    }   
     
+    //Reaching
+    bool Reach(GameObject UpperArm, GameObject LowerArm, bool ReachAxisUsed, Quaternion targetRot, float reach, bool punching)
+    {
+        if (!knockedOut && reach != 0 && !punching)
+        {
+            if (!ReachAxisUsed)
+            {
+                //Adjust Left Arm joint strength
+                UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
+                UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
+                LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = ReachStiffness;
+                LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = ReachStiffness;
+
+                ReachAxisUsed = true;
+            }
+
+            //upper  left arm pose
+            UpperArm.GetComponent<ConfigurableJoint>().targetRotation = targetRot;
+        }
+        if (reach == 0 && !punching && !knockedOut)
+        {
+            if (ReachAxisUsed)
+            {
+                if (balanced)
+                {
+                    UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                    UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
+                    LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                    LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
+                }
+
+                else if (!balanced)
+                {
+                    UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+                    UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+                    LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+                    LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+                }
+
+                ResetPose = true;
+                ReachAxisUsed = false;
+            }
+        }
+        return ReachAxisUsed;
+    }
+
+    //Body Bending
+    void Bend()
+    {
+        if (!knockedOut)
+        {
+            //values for max rotation for bending
+            if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
+            {
+                MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
+            }
+            if (MouseYAxisBody > 0.9f)
+            {
+                MouseYAxisBody = 0.9f;
+            }
+
+            else if (MouseYAxisBody < -0.9f)
+            {
+                MouseYAxisBody = -0.9f;
+            }
+
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
+        }
+
+    }
+
+    void ResetToIdle(GameObject UpperLeg,GameObject LowerLeg, Quaternion UpperLegTarget, Quaternion LowerLegTarget, float UpperTimeScale, float LowerTimeScale)
+    {
+        UpperLeg.GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(UpperLeg.GetComponent<ConfigurableJoint>().targetRotation, UpperLegTarget, UpperTimeScale * Time.fixedDeltaTime);
+        LowerLeg.GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(LowerLeg.GetComponent<ConfigurableJoint>().targetRotation, LowerLegTarget, LowerTimeScale * Time.fixedDeltaTime);
+    }
+
+    void FeetForceDown(GameObject LeftFoot,GameObject RightFoot)
+    {
+        LeftFoot.GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+        RightFoot.GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+    }
 }
