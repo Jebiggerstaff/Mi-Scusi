@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/MiScusiActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/MiScusiActions.inputactions'
 
 using System;
 using System.Collections;
