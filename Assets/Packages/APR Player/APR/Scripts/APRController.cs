@@ -116,7 +116,7 @@ public class APRController : MonoBehaviour
     
     //[HideInInspector]
     public bool 
-    jumping, isJumping, balanced = true, inAir,
+    jumping, isJumping, inAir,
     punchingRight, punchingLeft;
     
     [HideInInspector]
@@ -144,8 +144,6 @@ public class APRController : MonoBehaviour
 	[Header("Player Editor Debug Mode")]
 	//Debug
 	public bool editorDebugMode;
-
-    private string[] joystickNames;
     #endregion
 
     //---Setup---//
@@ -157,57 +155,6 @@ public class APRController : MonoBehaviour
         //this is for power punch
         RP = PowerUpTimerRight();
         LP = PowerUpTimerLeft();
-    }
-
-    void tryQuip()
-    {
-        if(currentQuipCooldown <= 0)
-        {
-            if (controls.Player.Interact.triggered)
-            {
-                Debug.Log("Quipping");
-                currentQuipCooldown = quipCooldown;
-                foreach(var ai in FindObjectsOfType<NewAIMan>())
-                {
-                    //conditions here?
-                    if(!(ai is CrowdAI))
-                    {
-                        if(Vector3.Distance(Root.transform.position, ai.transform.position) <= quipRange)
-                        {
-                            bool shouldQuip = true;
-                            if(ai is HostileAI)
-                            {
-                                shouldQuip = !(ai as HostileAI).isAggrod;
-                            }
-                            else if(ai is SitDownAI)
-                            {
-                                shouldQuip = !(ai as SitDownAI).sitting;
-                            }
-
-
-
-                            if(  shouldQuip )    
-                            {
-                                ai.getQuipped(quipDuration);
-                                Debug.Log("AI quipped");
-                            }
-
-                        }
-                    }
-                }
-
-                if(quipAudioSource != null)
-                {
-                    quipAudioSource.Play();
-                }
-
-            }
-        }
-        else
-        {
-            currentQuipCooldown -= Time.deltaTime;
-        }
-        
     }
 
     void Update()
@@ -226,7 +173,7 @@ public class APRController : MonoBehaviour
         
         PlayerReach();
         
-        if(balanced && useStepPrediction)
+        if(useStepPrediction)
         {
             StepPrediction();
         }
@@ -235,8 +182,7 @@ public class APRController : MonoBehaviour
         {
             ResetWalkCycle();
         }
-        
-        //GroundCheck();
+
         tryQuip();
     }
   
@@ -339,31 +285,7 @@ public class APRController : MonoBehaviour
         StartHPRegen();
         
     }  
-    
-    //---Ground Check---//
-	void GroundCheck()
-	{
-		Ray ray = new Ray (APR_Parts[0].transform.position, -APR_Parts[0].transform.up);
-		RaycastHit hit;
-		
-		//Balance when ground is detected
-        if (Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")) && !inAir && !isJumping && !reachRightAxisUsed && !reachLeftAxisUsed
-            && !balanced && APR_Parts[0].GetComponent<Rigidbody>().velocity.magnitude < 3f && autoGetUpWhenPossible)
-            balanced = true;
 
-		//Fall over when ground is not detected
-		else if(!Physics.Raycast(ray, out hit, balanceHeight, 1 << LayerMask.NameToLayer("Ground")))
-            if(balanced)
-                balanced = false;
-
-		//Balance on/off
-		if(balanced && isRagdoll)
-            DeactivateRagdoll();
-
-        if (!balanced)
-            balanced = true;
-    }
-    
 	//Step Prediction
 	void StepPrediction()
 	{
@@ -396,13 +318,13 @@ public class APRController : MonoBehaviour
     //Player Movement
     void PlayerMovement()
     {
-        if (balanced && !knockedOut)
+        if (!knockedOut)
         {
                 Direction = cam.transform.rotation * new Vector3(controls.Player.MoveX.ReadValue<float>(), 0.0f, controls.Player.MoveY.ReadValue<float>());
                 Direction.y = 0f;
                 APR_Parts[0].transform.GetComponent<Rigidbody>().velocity = Vector3.Lerp(APR_Parts[0].transform.GetComponent<Rigidbody>().velocity, (Direction * moveSpeed) + new Vector3(0, APR_Parts[0].transform.GetComponent<Rigidbody>().velocity.y, 0), 0.8f);
 
-                if (controls.Player.MoveX.ReadValue<float>() != 0 || controls.Player.MoveY.ReadValue<float>() != 0 && balanced)
+                if (controls.Player.MoveX.ReadValue<float>() != 0 || controls.Player.MoveY.ReadValue<float>() != 0)
                 {
                     if (!WalkForward && !moveAxisUsed && !isgrabbing)
                     {
@@ -454,16 +376,11 @@ public class APRController : MonoBehaviour
         {
             if(!jumpAxisUsed)
             {
-                if(balanced && !inAir)
+                if(!inAir)
                 {
                     JumpParticle.Play();
                     jumping = true;
 
-                }
-                
-                else if(!balanced)
-                {
-                    DeactivateRagdoll();
                 }
             }
 
@@ -721,7 +638,6 @@ public class APRController : MonoBehaviour
         while(count < KnockoutTime)
         {
             currentHP = 0;
-            balanced = false;
             count += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -777,105 +693,24 @@ public class APRController : MonoBehaviour
 
                 //Step right
                 if (StepRight)
-                {
-                    Step_R_timer += Time.fixedDeltaTime;
-
-                    //Right foot force down
-                    APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-
-                    //walk simulation
-                    if (WalkForward)
-                    {
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x + 0.09f * StepHeight, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
-                        APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.x - 0.09f * StepHeight * 2, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation.w);
-
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
-                    }
-
-                    //step duration
-                    if (Step_R_timer > StepDuration)
-                    {
-                        Step_R_timer = 0;
-                        StepRight = false;
-
-                        if (WalkForward)
-                        {
-                            StepLeft = true;
-                        }
-                    }
-                }
-                else
-                {
-                    //reset to idle
-                    APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation, UpperRightLegTarget, (8f) * Time.fixedDeltaTime);
-                    APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation, LowerRightLegTarget, (17f) * Time.fixedDeltaTime);
-
-                    //feet force down
-                    APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-                    APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-                }
+                    Step(false);
 
 
                 //Step left
-
                 if (StepLeft)
-                {
-                    Step_L_timer += Time.fixedDeltaTime;
-
-                    //Left foot force down
-                    APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-
-                    //walk simulation
-                    if (WalkForward)
-                    {
-                        APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.x + 0.09f * StepHeight, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation.w);
-                        APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.x - 0.09f * StepHeight * 2, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation.w);
-
-                        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.y, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation.w);
-                    }
-
-                    //Step duration
-                    if (Step_L_timer > StepDuration)
-                    {
-                        Step_L_timer = 0;
-                        StepLeft = false;
-
-                        if (WalkForward)
-                        {
-                            StepRight = true;
-                        }
-                    }
-                }
-                else
-                {
-                    //reset to idle
-                    APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
-                    APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
-
-                    //feet force down
-                    APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-                    APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-                }
-
+                    Step(true);
             }
         }
         else
         {
             //reset to idle LEFT
-            APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation, UpperLeftLegTarget, (7f) * Time.fixedDeltaTime);
-            APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation, LowerLeftLegTarget, (18f) * Time.fixedDeltaTime);
-
-            //feet force down
-            APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
 
             //reset to idle RIGHT
-            APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation, UpperRightLegTarget, (8f) * Time.fixedDeltaTime);
-            APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation, LowerRightLegTarget, (17f) * Time.fixedDeltaTime);
+            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
 
             //feet force down
-            APR_Parts[11].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-            APR_Parts[12].GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+            FeetForceDown(APR_Parts[11], APR_Parts[12]);
         }
     }
      
@@ -883,7 +718,6 @@ public class APRController : MonoBehaviour
     public void ActivateRagdoll()
 	{
         isRagdoll = true;
-		balanced = false;
 		
 		//Root
 		APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
@@ -926,7 +760,6 @@ public class APRController : MonoBehaviour
 	void DeactivateRagdoll()
 	{
         isRagdoll = false;
-		balanced = true;
 		
 		//Root
 		APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = BalanceOn;
@@ -967,12 +800,12 @@ public class APRController : MonoBehaviour
         ResetPose = true;
 	}
     
-    //---Reset Player Pose---//
+    //Reset Player Pose
     void ResetPlayerPose()
     {
         if(ResetPose && !jumping && !knockedOut)
         {
-             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
 			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
@@ -1007,21 +840,10 @@ public class APRController : MonoBehaviour
         {
             if (ReachAxisUsed)
             {
-                if (balanced)
-                {
-                    UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                    LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
-                    LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-                }
-
-                else if (!balanced)
-                {
-                    UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                    LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-                    LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-                }
+                UpperArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                UpperArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
+                LowerArm.GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
+                LowerArm.GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
 
                 ResetPose = true;
                 ReachAxisUsed = false;
@@ -1063,7 +885,144 @@ public class APRController : MonoBehaviour
 
     void FeetForceDown(GameObject LeftFoot,GameObject RightFoot)
     {
-        LeftFoot.GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
-        RightFoot.GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+        FootForceDown(LeftFoot);
+        FootForceDown(RightFoot);
+    }
+
+    void FootForceDown(GameObject Foot)
+    {
+        Foot.GetComponent<Rigidbody>().AddForce(-Vector3.up * FeetMountForce * Time.deltaTime, ForceMode.Impulse);
+    }
+
+    void tryQuip()
+    {
+        if (currentQuipCooldown <= 0)
+        {
+            if (controls.Player.Interact.triggered)
+            {
+                Debug.Log("Quipping");
+                currentQuipCooldown = quipCooldown;
+                foreach (var ai in FindObjectsOfType<NewAIMan>())
+                {
+                    //conditions here?
+                    if (!(ai is CrowdAI))
+                    {
+                        if (Vector3.Distance(Root.transform.position, ai.transform.position) <= quipRange)
+                        {
+                            bool shouldQuip = true;
+                            if (ai is HostileAI)
+                            {
+                                shouldQuip = !(ai as HostileAI).isAggrod;
+                            }
+                            else if (ai is SitDownAI)
+                            {
+                                shouldQuip = !(ai as SitDownAI).sitting;
+                            }
+
+
+
+                            if (shouldQuip)
+                            {
+                                ai.getQuipped(quipDuration);
+                                Debug.Log("AI quipped");
+                            }
+
+                        }
+                    }
+                }
+
+                if (quipAudioSource != null)
+                {
+                    quipAudioSource.Play();
+                }
+
+            }
+        }
+        else
+        {
+            currentQuipCooldown -= Time.deltaTime;
+        }
+
+    }
+
+    void Step(bool left)
+    {
+        float StepTimer;
+        bool FootStep;
+        GameObject TargetFoot;
+        GameObject UpperLeg;
+        GameObject LowerLeg;
+        GameObject OtherLeg;
+
+        if (left)
+        {
+            StepTimer = Step_L_timer;
+            FootStep = StepLeft;
+            TargetFoot = APR_Parts[12];
+            UpperLeg = APR_Parts[9];
+            LowerLeg = APR_Parts[10];
+            OtherLeg = APR_Parts[7];
+
+        }
+        else
+        {
+            StepTimer = Step_R_timer;
+            FootStep = StepRight;
+            TargetFoot = APR_Parts[11];
+            UpperLeg = APR_Parts[7];
+            LowerLeg = APR_Parts[8];
+            OtherLeg = APR_Parts[9];
+        }
+
+        if (FootStep)
+        {
+            StepTimer += Time.fixedDeltaTime;
+
+            FootForceDown(TargetFoot);
+
+            //walk simulation
+            if (WalkForward)
+            {
+                UpperLeg.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(UpperLeg.GetComponent<ConfigurableJoint>().targetRotation.x + 0.09f * StepHeight, UpperLeg.GetComponent<ConfigurableJoint>().targetRotation.y, UpperLeg.GetComponent<ConfigurableJoint>().targetRotation.z, UpperLeg.GetComponent<ConfigurableJoint>().targetRotation.w);
+                LowerLeg.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(LowerLeg.GetComponent<ConfigurableJoint>().targetRotation.x - 0.09f * StepHeight * 2, LowerLeg.GetComponent<ConfigurableJoint>().targetRotation.y, LowerLeg.GetComponent<ConfigurableJoint>().targetRotation.z, LowerLeg.GetComponent<ConfigurableJoint>().targetRotation.w);
+
+                OtherLeg.GetComponent<ConfigurableJoint>().GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(OtherLeg.GetComponent<ConfigurableJoint>().targetRotation.x - 0.12f * StepHeight / 2, OtherLeg.GetComponent<ConfigurableJoint>().targetRotation.y, OtherLeg.GetComponent<ConfigurableJoint>().targetRotation.z, OtherLeg.GetComponent<ConfigurableJoint>().targetRotation.w);
+            }
+
+            //step duration
+            if (StepTimer > StepDuration)
+            {
+                StepTimer = 0;
+                FootStep = false;
+
+                if (WalkForward)
+                {
+                    if (left)
+                        StepRight = true;
+                    else
+                        StepLeft = true;
+                }
+            }
+        }
+        else
+        {
+            //reset to idle RIGHT
+            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
+
+            //feet force down
+            FeetForceDown(APR_Parts[11], APR_Parts[12]);
+        }
+
+        if (left)
+        {
+            Step_L_timer = StepTimer;
+            StepLeft = FootStep;
+        }
+        else
+        {
+            Step_R_timer = StepTimer;
+            StepRight = FootStep;
+        }
+
     }
 }
