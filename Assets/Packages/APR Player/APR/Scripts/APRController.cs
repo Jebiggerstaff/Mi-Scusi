@@ -437,7 +437,7 @@ public class APRController : MonoBehaviour
             reachRightAxisUsed = Reach(APR_Parts[3],APR_Parts[4],reachRightAxisUsed, new Quaternion(0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1),controls.Player.RightGrab.ReadValue<float>(),punchingRight);
     }
     
-    //---Player Punch---//
+    //Player Punch
     void PlayerPunch()
     {
         //RightPunch
