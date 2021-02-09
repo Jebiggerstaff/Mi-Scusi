@@ -18,6 +18,10 @@ public class camera : MonoBehaviour
 
     private void Update()
     {
+        if(Player == null)
+        {
+            Player = FindObjectOfType<APRController>().Root.transform;
+        }
         YeetThatCamera();
         /*
         if (Physics.Linecast(transform.position, Player.position,out hit))

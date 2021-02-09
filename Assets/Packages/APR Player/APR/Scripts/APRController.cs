@@ -338,11 +338,8 @@ public class APRController : MonoBehaviour
         //reseting the legs when you stop moving
         if(controls.Player.MoveX.ReadValue<float>() == 0 && controls.Player.MoveY.ReadValue<float>() == 0 && !knockedOut )
         {
-            //reset to idle LEFT
-            ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
-
-            //reset to idle RIGHT
-            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
+            ResetLeftLeg();
+            ResetRightLeg();
 
             //feet force down
             FeetForceDown(APR_Parts[11], APR_Parts[12]);
@@ -443,51 +440,89 @@ public class APRController : MonoBehaviour
     //---Player Punch---//
     void PlayerPunch()
     {
+        //RightPunch
+        Punch(false, APR_Parts[1], APR_Parts[3], APR_Parts[4], new Quaternion(0.3f, 0f, 0.5f, 1), new Quaternion(1.6f, 0f, -0.5f, 1), 
+            new Quaternion(1f, 0.04f, 0f, 1), new Quaternion(0.2f, 0, 0, 1), RightHand, UpperRightArmTarget, LowerRightArmTarget);
+
+        //LeftPunch
+        Punch(true, APR_Parts[1], APR_Parts[5], APR_Parts[6], new Quaternion(-0.3f, 0f, -0.5f, 1), new Quaternion(-1.6f, 0f, 0.5f, 1),
+            new Quaternion(-1f, 0.04f, 0f, 1f), new Quaternion(-0.2f, 0, 0, 1), LeftHand, UpperLeftArmTarget, LowerLeftArmTarget);
         
-        //punch right
-        if (!punchingRight && controls.Player.RightPunch.ReadValue<float>() != 0 && !knockedOut)
+    }
+    
+    void Punch(bool left, GameObject body, GameObject UpperArm, GameObject LowerArm, Quaternion UpperArmPullRot, Quaternion LowerArmPullRot, Quaternion UpperArmReleaseRot,
+        Quaternion LowerArmReleaseRot, Rigidbody hand, Quaternion UpperArmTarget, Quaternion LowerArmTarget)
+    {
+        bool punchingThisArm;
+        float inputValue;
+        if(left)
         {
-            punchingRight= true;
+
+            punchingThisArm = punchingLeft;
+            inputValue = controls.Player.LeftPunch.ReadValue<float>();
+        }
+        else
+        {
+            punchingThisArm = punchingRight;
+            inputValue = controls.Player.RightPunch.ReadValue<float>();
+        }
+
+        
+        if (!punchingThisArm && inputValue != 0 && !knockedOut)
+        {
+            punchingThisArm = true;
             punchTimer = 0;
-            if(poweringUpR == false)
+            /*
+            if (poweringUpR == false)
             {
                 poweringUpR = true;
                 StartCoroutine(RP);
             }
-            
-            
+            */
+
             //Right hand punch pull back pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.3f, 0f, 0.5f, 1);
-            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.6f, 0f, -0.5f, 1);
-		}
-        
-        if(punchingRight && controls.Player.RightPunch.ReadValue<float>() == 0 && !knockedOut)
+            body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
+            UpperArm.GetComponent<ConfigurableJoint>().targetRotation = UpperArmPullRot;
+            LowerArm.GetComponent<ConfigurableJoint>().targetRotation = LowerArmPullRot;
+        }
+
+        if (punchingThisArm && inputValue == 0 && !knockedOut)
         {
             punchTimer = 0;
-            punchingRight = false;
-            
+            punchingThisArm = false;
+
             //Right hand punch release pose
-			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1f, 0.04f, 0f, 1);
-			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.2f, 0, 0, 1);
-            
+            body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
+            UpperArm.GetComponent<ConfigurableJoint>().targetRotation = UpperArmReleaseRot;
+            LowerArm.GetComponent<ConfigurableJoint>().targetRotation = LowerArmReleaseRot;
+
             //Right hand punch force
-			RightHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
- 
-			APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
-			
+           hand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
+            body.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
+
             StartCoroutine(DelayCoroutine());
-			IEnumerator DelayCoroutine()
+            IEnumerator DelayCoroutine()
             {
                 yield return new WaitForSeconds(0.3f);
-                if(controls.Player.RightPunch.ReadValue<float>() == 0)
+                if (left)
                 {
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
+                    inputValue = controls.Player.LeftPunch.ReadValue<float>();
+                }
+                else
+                {
+                    inputValue = controls.Player.RightPunch.ReadValue<float>();
+                }
+                if (inputValue == 0)
+                {
+                    UpperArm.GetComponent<ConfigurableJoint>().targetRotation = UpperArmTarget;
+                    LowerArm.GetComponent<ConfigurableJoint>().targetRotation = LowerArmTarget;
                 }
             }
-            Vector3 explosionPos = RightHand.transform.position;
+
+            
+            /*
+            Vector3 explosionPos = hand.transform.position;
             int layermask = 1 << 10;
             layermask = ~layermask;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, 100, layermask);
@@ -499,81 +534,29 @@ public class APRController : MonoBehaviour
                 PunchR4.Play();
                 PunchR5.Play();
                 if (rb != null)
-                    rb.AddExplosionForce(powerRight * 1000, explosionPos, 10, 3.0f * (powerRight/2));
+                    rb.AddExplosionForce(powerRight * 1000, explosionPos, 10, 3.0f * (powerRight / 2));
             }
             StopCoroutine(RP);
             poweringUpR = false;
             powerRight = 0f;
+            
             PunchR1.Stop(); PunchR2.Stop(); PunchR3.Stop();
             RP = PowerUpTimerRight();
+            */
         }
-        
-        
-        //punch left
-        if(!punchingLeft && controls.Player.LeftPunch.ReadValue<float>() != 0 && !knockedOut)
+        if (left)
         {
-            punchTimer = 0;
-            punchingLeft = true;
-            if (poweringUpL == false)
-            {
-                poweringUpL = true;
-                StartCoroutine(LP);
-            }
 
-            //Left hand punch pull back pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.3f, 0f, -0.5f, 1);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.6f, 0f, 0.5f, 1);
+            punchingLeft = punchingThisArm;
         }
-        
-        if(punchingLeft && controls.Player.LeftPunch.ReadValue<float>() == 0 && !knockedOut)
+        else
         {
-            punchTimer = 0;
-            punchingLeft = false;
-            
-            //Left hand punch release pose
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1f, 0.04f, 0f, 1f);
-            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.2f, 0, 0, 1);
-
-            //Left hand punch force
-            LeftHand.AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
- 
-            APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * punchForce, ForceMode.Impulse);
-			
-            StartCoroutine(DelayCoroutine());
-			IEnumerator DelayCoroutine()
-            {
-                yield return new WaitForSeconds(0.3f);
-                if(controls.Player.LeftPunch.ReadValue<float>() == 0)
-                {
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
-                }
-            }
-            Vector3 explosionPos = LeftHand.transform.position;
-            int layermask = 1 << 10;
-            layermask = ~layermask;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, 100, layermask);
-            foreach (Collider hit in colliders)
-            {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-                if (hit.GetComponent<NewAIMan>() != null)
-                    hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
-                
-                  
-                if (rb != null)
-                    rb.AddExplosionForce(powerLeft * 1000, explosionPos, 10, 3.0f * (powerLeft / 2));
-            }
-            StopCoroutine(LP);
-            poweringUpL = false;
-            powerLeft = 0f;
-            PunchL1.Stop(); PunchL2.Stop(); PunchL3.Stop();
-            LP = PowerUpTimerLeft();
+            punchingRight = punchingThisArm;
         }
+
     }
-    
+
+
     //---Getting Punched Functions--//
     public void GotPunched()
     {
@@ -674,7 +657,7 @@ public class APRController : MonoBehaviour
             {
                 if (WalkForward)
                 {
-                    //right leg
+                    //Set up right leg
                     if (APR_Parts[11].transform.position.z < APR_Parts[12].transform.position.z && !StepLeft && !Alert_Leg_Right)
                     {
                         StepRight = true;
@@ -682,7 +665,7 @@ public class APRController : MonoBehaviour
                         Alert_Leg_Left = true;
                     }
 
-                    //left leg
+                    //Set up left leg
                     if (APR_Parts[11].transform.position.z > APR_Parts[12].transform.position.z && !StepRight && !Alert_Leg_Left)
                     {
                         StepLeft = true;
@@ -692,22 +675,16 @@ public class APRController : MonoBehaviour
                 }
 
                 //Step right
-                if (StepRight)
-                    Step(false);
-
-
+                Step(false);
+                
                 //Step left
-                if (StepLeft)
-                    Step(true);
+                Step(true);
             }
         }
         else
         {
-            //reset to idle LEFT
-            ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
-
-            //reset to idle RIGHT
-            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
+            ResetLeftLeg();
+            ResetRightLeg();
 
             //feet force down
             FeetForceDown(APR_Parts[11], APR_Parts[12]);
@@ -877,6 +854,17 @@ public class APRController : MonoBehaviour
 
     }
 
+    void ResetLeftLeg()
+    {
+        //reset to idle LEFT
+        ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
+    }
+    void ResetRightLeg()
+    {
+        //reset to idle RIGHT
+        ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
+    }
+
     void ResetToIdle(GameObject UpperLeg,GameObject LowerLeg, Quaternion UpperLegTarget, Quaternion LowerLegTarget, float UpperTimeScale, float LowerTimeScale)
     {
         UpperLeg.GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(UpperLeg.GetComponent<ConfigurableJoint>().targetRotation, UpperLegTarget, UpperTimeScale * Time.fixedDeltaTime);
@@ -900,7 +888,6 @@ public class APRController : MonoBehaviour
         {
             if (controls.Player.Interact.triggered)
             {
-                Debug.Log("Quipping");
                 currentQuipCooldown = quipCooldown;
                 foreach (var ai in FindObjectsOfType<NewAIMan>())
                 {
@@ -945,6 +932,7 @@ public class APRController : MonoBehaviour
 
     }
 
+    //Step Controls
     void Step(bool left)
     {
         float StepTimer;
@@ -953,6 +941,9 @@ public class APRController : MonoBehaviour
         GameObject UpperLeg;
         GameObject LowerLeg;
         GameObject OtherLeg;
+        Quaternion UpperLegTarget;
+        Quaternion LowerLegTarget;
+        float timer1, timer2;
 
         if (left)
         {
@@ -962,6 +953,11 @@ public class APRController : MonoBehaviour
             UpperLeg = APR_Parts[9];
             LowerLeg = APR_Parts[10];
             OtherLeg = APR_Parts[7];
+            UpperLegTarget = UpperLeftLegTarget;
+            LowerLegTarget = LowerLeftLegTarget;
+            timer1 = 7f;
+            timer2 = 18f;
+            
 
         }
         else
@@ -972,6 +968,10 @@ public class APRController : MonoBehaviour
             UpperLeg = APR_Parts[7];
             LowerLeg = APR_Parts[8];
             OtherLeg = APR_Parts[9];
+            UpperLegTarget = UpperRightLegTarget;
+            LowerLegTarget = LowerRightLegTarget;
+            timer1 = 8f;
+            timer2 = 17f;
         }
 
         if (FootStep)
@@ -1006,8 +1006,8 @@ public class APRController : MonoBehaviour
         }
         else
         {
-            //reset to idle RIGHT
-            ResetToIdle(APR_Parts[7], APR_Parts[8], UpperRightLegTarget, LowerRightLegTarget, 8f, 17f);
+            //reset to idle
+            ResetToIdle(UpperLeg, LowerLeg, UpperLegTarget, LowerLegTarget, timer1, timer2);
 
             //feet force down
             FeetForceDown(APR_Parts[11], APR_Parts[12]);
