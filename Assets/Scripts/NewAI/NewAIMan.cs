@@ -124,7 +124,7 @@ public class NewAIMan : MonoBehaviour
             {
                 if(agent.enabled == true && agent.isOnNavMesh == false)
                 {
-                    Debug.Log("Help!  " + gameObject.name);
+
                     disableAgent();
                     enableAgent();
                 }

@@ -803,7 +803,7 @@ public class APRController : MonoBehaviour
     {
         if(ResetPose && !jumping && !knockedOut)
         {
-            //APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
+            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
 			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
