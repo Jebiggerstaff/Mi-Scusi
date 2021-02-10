@@ -144,6 +144,11 @@ public class APRController : MonoBehaviour
 	[Header("Player Editor Debug Mode")]
 	//Debug
 	public bool editorDebugMode;
+
+
+
+    //Internal Use
+    float hasntBentCount = 0;
     #endregion
 
     //---Setup---//
@@ -493,7 +498,9 @@ public class APRController : MonoBehaviour
             */
 
             //Right hand punch pull back pose
-            body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
+            //body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
+
+
             UpperArm.GetComponent<ConfigurableJoint>().targetRotation = UpperArmPullRot;
             LowerArm.GetComponent<ConfigurableJoint>().targetRotation = LowerArmPullRot;
         }
@@ -504,7 +511,9 @@ public class APRController : MonoBehaviour
             punchingThisArm = false;
 
             //Right hand punch release pose
-            body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
+            //body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
+
+
             UpperArm.GetComponent<ConfigurableJoint>().targetRotation = UpperArmReleaseRot;
             LowerArm.GetComponent<ConfigurableJoint>().targetRotation = LowerArmReleaseRot;
 
@@ -794,7 +803,7 @@ public class APRController : MonoBehaviour
     {
         if(ResetPose && !jumping && !knockedOut)
         {
-            APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
+            //APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
 			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
@@ -849,19 +858,27 @@ public class APRController : MonoBehaviour
         if (!knockedOut)
         {
             //values for max rotation for bending
-            if (MouseYAxisBody <= 0.9f && MouseYAxisBody >= -0.9f)
+
+            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -0.9f, 0.9f);
+            if(bendVal == 0)
             {
-                MouseYAxisBody = controls.Player.Bend.ReadValue<float>();
+                hasntBentCount += Time.deltaTime;
+                if (hasntBentCount >= 5f)
+                {
+                    MouseYAxisBody = 0;
+                    bendVal = 0;
+                    hasntBentCount = 0;
+                }
             }
-            if (MouseYAxisBody > 0.9f)
+            else
             {
-                MouseYAxisBody = 0.9f;
+                hasntBentCount = 0;
             }
 
-            else if (MouseYAxisBody < -0.9f)
-            {
-                MouseYAxisBody = -0.9f;
-            }
+            MouseYAxisBody = Mathf.Clamp(MouseYAxisBody + bendVal, -0.9f, 0.9f);
+            
+            
+            
 
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
         }
