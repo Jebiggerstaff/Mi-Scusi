@@ -17,6 +17,7 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject Player;
     public GameObject TaskCompleteText;
     public GameObject TaskList;
+    public GameObject NextLevel;
 
     [HideInInspector] public bool PunchedMafia = false;
     [HideInInspector] public bool PunchedCustomer = false;
@@ -95,6 +96,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(true);
                     Tasks[3].SetActive(true);
                     TaskFinished[3] = true;
+                    NextLevel.SetActive(true);
                 }
                 break;
             case "KnockFishermanIntoWater":
