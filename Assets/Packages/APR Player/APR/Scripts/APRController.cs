@@ -674,7 +674,7 @@ public class APRController : MonoBehaviour
 	{
         if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
         {
-            if (!inAir && !knockedOut)
+            if (/*!inAir &&*/ !knockedOut)
             {
                 if (WalkForward)
                 {
