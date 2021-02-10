@@ -16,7 +16,7 @@ public class HandContact : MonoBehaviour
     public bool Left;
 
     NewAIMan grabbedAI;
-
+    FixedJoint joint;
     
     //Have joint/grabbed
 	public bool hasJoint;
@@ -51,9 +51,9 @@ public class HandContact : MonoBehaviour
     {
         if(APR_Player.isgrabbing == false)
         {
-            if (this.gameObject.GetComponent<FixedJoint>())
+            if (joint != null)
             {
-                this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
+                joint.breakForce = 0;
             }
             UnGrab();
         }
@@ -155,9 +155,9 @@ public class HandContact : MonoBehaviour
                 //APR_Player.leftGrab = true;
 
 
-                this.gameObject.AddComponent<FixedJoint>();
-                this.gameObject.GetComponent<FixedJoint>().breakForce = Mathf.Infinity;
-                this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
+                joint = this.gameObject.AddComponent<FixedJoint>();
+                joint.breakForce = Mathf.Infinity;
+                joint.connectedBody = col.gameObject.GetComponent<Rigidbody>();
 
 
                 var ai = col.gameObject.GetComponent<NewAIMan>();
@@ -197,7 +197,7 @@ public class HandContact : MonoBehaviour
     {
         if(hasJoint)
         {
-            if(GetComponent<FixedJoint>().connectedBody.mass >= 10)
+            if(joint.connectedBody.mass >= 10)
             {
                 return true;
             }
@@ -209,7 +209,7 @@ public class HandContact : MonoBehaviour
     {
         if (hasJoint)
         {
-            this.gameObject.GetComponent<FixedJoint>().breakForce = 0;
+            joint.breakForce = 0;
             hasJoint = false;
         }
 
@@ -221,7 +221,7 @@ public class HandContact : MonoBehaviour
         }
 
 
-        if (hasJoint && this.gameObject.GetComponent<FixedJoint>() == null)
+        if (hasJoint && joint == null)
         {
             hasJoint = false;
         }
