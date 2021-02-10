@@ -147,6 +147,12 @@ public class HandContact : MonoBehaviour
                     }
                     Destroy(col.gameObject);
                 }
+                //Drink Coffee
+                if(col.gameObject.name == "CoffeeMug")
+                {
+                    CoffeeSpeed cof = new CoffeeSpeed();
+                    cof.SpeedUp();
+                }
 
 
                 hasJoint = true;

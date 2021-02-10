@@ -7,7 +7,8 @@ public class ScooterDrive : MonoBehaviour
     public float speed;
     public GameObject frontTire, backTire;
 
-    private bool driving = false, Grounded = true;
+    public bool driving = false, Grounded = true;
+    RaycastHit hit;
     private GameObject player;
 
     private void Start()
@@ -17,6 +18,13 @@ public class ScooterDrive : MonoBehaviour
 
     private void Update()
     {
+
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, 3f) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            Grounded = true;
+        else
+            Grounded = false;
+
+
         if (driving&&Grounded)
         {
             this.GetComponent<Rigidbody>().AddForce(-this.transform.forward*speed);
@@ -39,20 +47,12 @@ public class ScooterDrive : MonoBehaviour
         {
             driving = true;
         }
-        if (collision.gameObject.layer == 14)
-        {
-            Grounded = true;
-        }
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.GetComponent<HandContact>() != null)
         {
             driving = false;
-        }
-        if (collision.gameObject.layer == 14)
-        {
-            Grounded = false;
         }
     }
 
