@@ -283,7 +283,9 @@ public class APRController : MonoBehaviour
 
         currentHP = maxHP;
         StartHPRegen();
-        
+
+
+        cantgrabmmove = false;
     }  
 
 	//Step Prediction
@@ -431,10 +433,20 @@ public class APRController : MonoBehaviour
         Bend();
 
         //Reach Left
-            reachLeftAxisUsed = Reach(APR_Parts[5], APR_Parts[6], reachLeftAxisUsed, new Quaternion(-0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1),controls.Player.LeftGrab.ReadValue<float>(),punchingLeft);
+            reachLeftAxisUsed = Reach(APR_Parts[5], APR_Parts[6], reachLeftAxisUsed, new Quaternion(-0.8f - (MouseYAxisArms), -0.9f - (MouseYAxisArms), -0.8f, 1),controls.Player.LeftGrab.ReadValue<float>(),punchingLeft, LeftHand.gameObject);
 
         //Reach Right
-            reachRightAxisUsed = Reach(APR_Parts[3],APR_Parts[4],reachRightAxisUsed, new Quaternion(0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1),controls.Player.RightGrab.ReadValue<float>(),punchingRight);
+            reachRightAxisUsed = Reach(APR_Parts[3],APR_Parts[4],reachRightAxisUsed, new Quaternion(0.8f + (MouseYAxisArms), -0.9f - (MouseYAxisArms), 0.8f, 1),controls.Player.RightGrab.ReadValue<float>(),punchingRight, RightHand.gameObject);
+
+        
+
+        leftGrab = reachLeftAxisUsed;
+        rightGrab = reachRightAxisUsed;
+
+        isgrabbing = (leftGrab || rightGrab);
+
+        cantgrabmmove = isgrabbing;
+
     }
     
     //Player Punch
@@ -795,7 +807,7 @@ public class APRController : MonoBehaviour
     }   
     
     //Reaching
-    bool Reach(GameObject UpperArm, GameObject LowerArm, bool ReachAxisUsed, Quaternion targetRot, float reach, bool punching)
+    bool Reach(GameObject UpperArm, GameObject LowerArm, bool ReachAxisUsed, Quaternion targetRot, float reach, bool punching, GameObject hand)
     {
         if (!knockedOut && reach != 0 && !punching)
         {
@@ -824,6 +836,8 @@ public class APRController : MonoBehaviour
 
                 ResetPose = true;
                 ReachAxisUsed = false;
+
+                hand.GetComponent<HandContact>().UnGrab();
             }
         }
         return ReachAxisUsed;
