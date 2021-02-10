@@ -445,7 +445,7 @@ public class APRController : MonoBehaviour
 
         isgrabbing = (leftGrab || rightGrab);
 
-        cantgrabmmove = isgrabbing;
+        cantgrabmmove = LeftHand.GetComponent<HandContact>().ShouldNotRotate() || RightHand.GetComponent<HandContact>().ShouldNotRotate();
 
     }
     
