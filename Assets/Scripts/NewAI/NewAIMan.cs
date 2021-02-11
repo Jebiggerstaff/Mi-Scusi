@@ -438,35 +438,9 @@ public class NewAIMan : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-       
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && shovesPlayer && shoveCooldown <= 0)
-        {
-            Rigidbody root = collision.gameObject.GetComponentInParent<APRController>().Root.GetComponent<Rigidbody>();
-            Vector3 direction = root.transform.position - transform.position;
-            direction.y = Mathf.Tan(shoveAngle*Mathf.Deg2Rad) * Mathf.Sqrt( (direction.x * direction.x) + (direction.z * direction.z) )  ;
-            direction = direction.normalized;
 
-            float notGroundedAdjustment = 1;
-            if(root.GetComponentInParent<APRController>().inAir == true)
-            {
-                notGroundedAdjustment = 0.35f;
-            }
-
-            root.AddForce(direction * shoveForce * notGroundedAdjustment, ForceMode.Impulse);
-            shoveCooldown = 0.5f;
-
-            Debug.Log("Shove!");
-        }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && (!(this is HostileAI)))
-        {
-            if(agent.enabled == true && shoveCooldown <= 0)
-            {
-
-                StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
-
-            }
-        }
+        DoCollideThings(collision);
 
 
 
@@ -572,7 +546,36 @@ public class NewAIMan : MonoBehaviour
         //agent.stoppingDistance = minimumStopDistance;
     }
 
+    public void DoCollideThings(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && shovesPlayer && shoveCooldown <= 0)
+        {
+            Rigidbody root = collision.gameObject.GetComponentInParent<APRController>().Root.GetComponent<Rigidbody>();
+            Vector3 direction = root.transform.position - transform.position;
+            direction.y = Mathf.Tan(shoveAngle * Mathf.Deg2Rad) * Mathf.Sqrt((direction.x * direction.x) + (direction.z * direction.z));
+            direction = direction.normalized;
 
+            float notGroundedAdjustment = 1;
+            if (root.GetComponentInParent<APRController>().inAir == true)
+            {
+                notGroundedAdjustment = 0.35f;
+            }
+
+            root.AddForce(direction * shoveForce * notGroundedAdjustment, ForceMode.Impulse);
+            shoveCooldown = 0.5f;
+
+            Debug.Log("Shove!");
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && (!(this is HostileAI)))
+        {
+            if (agent.enabled == true && shoveCooldown <= 0)
+            {
+
+                StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+
+            }
+        }
+    }
 
 
 

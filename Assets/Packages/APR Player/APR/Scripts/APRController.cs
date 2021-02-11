@@ -859,7 +859,9 @@ public class APRController : MonoBehaviour
         {
             //values for max rotation for bending
 
-            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -0.9f, 0.9f);
+            float limit = 0.8f;
+
+            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -limit, limit);
             if(bendVal == 0)
             {
                 hasntBentCount += Time.deltaTime;
@@ -875,10 +877,8 @@ public class APRController : MonoBehaviour
                 hasntBentCount = 0;
             }
 
-            MouseYAxisBody = Mathf.Clamp(MouseYAxisBody + bendVal, -0.9f, 0.9f);
-            
-            
-            
+            MouseYAxisBody = Mathf.Clamp(MouseYAxisBody + bendVal, -limit, limit);
+
 
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(MouseYAxisBody, 0, 0, 1);
         }

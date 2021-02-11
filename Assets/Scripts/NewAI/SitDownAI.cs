@@ -8,10 +8,6 @@ public class SitDownAI : NewAIMan
     {
         base.Start();
         anim.SetBool("Sitting", true);
-        foreach(var c in GetComponentsInChildren<Collider>())
-        {
-            Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>());
-        }
         //myRB = GetComponent<Rigidbody>();
     }
 
@@ -25,10 +21,6 @@ public class SitDownAI : NewAIMan
             if (sitting)
             {
                 disableAgent();
-                //if (myRB.useGravity == true)
-                //{
-                    //myRB.useGravity = false;
-                //}
                 Vector3 targetSit = sitPlace.position;
                 if (transform.position != targetSit)
                 {
@@ -62,18 +54,14 @@ public class SitDownAI : NewAIMan
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
             {
                 sitting = false;
-                if (GetComponent<Rigidbody>().useGravity == false)
-                {
-                    GetComponent<Rigidbody>().useGravity = true;
-                }
                 anim.SetBool("Sitting", false);
                 enableAgent();
-                foreach (var c in GetComponentsInChildren<Collider>())
-                {
-                    Physics.IgnoreCollision(c, sitPlace.GetComponentInParent<Collider>(), false);
-                }
 
             }
+        }
+        else
+        {
+            base.DoCollideThings(collision);
         }
     }
 
