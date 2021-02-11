@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BoatTravel : MonoBehaviour
 {
-    List<GameObject> collisions;
-    public GameObject player;
-    Vector3 prevPos;
+    public APRController player;
+    bool pull;
+
 
 
     private void Awake()
-    {
-        collisions = new List<GameObject>();
-        prevPos = transform.position;
+    {   pull = false;
     }
 
     // Start is called before the first frame update
@@ -25,28 +23,33 @@ public class BoatTravel : MonoBehaviour
     void Update()
     {
         
-        if(collisions.Count >= 1)
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if(pull)
         {
-            Vector3 changeInPos = transform.position - prevPos;
-            player.transform.position += changeInPos;
+            player.Root.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(player.Root.GetComponent<Rigidbody>().position, transform.position, .5f));
         }
-        prevPos = transform.position;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        if(collision.gameObject.GetComponent<FeetContact>() != null)
         {
-            collisions.Add(collision.gameObject);
+            pull = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        if(collision.gameObject.GetComponent<FeetContact>() != null)
         {
-            collisions.Remove(collision.gameObject);
+            pull = false;
         }
     }
-    
+
+
 }
