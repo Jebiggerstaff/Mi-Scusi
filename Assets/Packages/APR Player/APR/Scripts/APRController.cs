@@ -196,11 +196,11 @@ public class APRController : MonoBehaviour
     {
         Walking();
 
-        if (!inAir)
-        {
+      //  if (!inAir)
+        //{
             PlayerMovement();
 
-        }
+        //}
 
         PlayerRotation();
         ResetPlayerPose();
@@ -357,8 +357,8 @@ public class APRController : MonoBehaviour
     //Player Rotation
     void PlayerRotation()
     {
-        if (!inAir)
-        {
+        //if (!inAir)
+        //{
             //keyboard movement
             if (!cantgrabmmove)
             {
@@ -370,7 +370,7 @@ public class APRController : MonoBehaviour
                 }
             }
 
-        }
+        //}
     }
     
     //Player GetUp & Jumping
@@ -674,7 +674,7 @@ public class APRController : MonoBehaviour
 	{
         if (controls.Player.MoveX.ReadValue<float>() != 0f || controls.Player.MoveY.ReadValue<float>() != 0f)
         {
-            if (/*!inAir &&*/ !knockedOut)
+            if (!inAir && !knockedOut)
             {
                 if (WalkForward)
                 {
