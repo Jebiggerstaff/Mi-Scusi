@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using System.Reflection;
 
 public class HandContact : MonoBehaviour
 {
@@ -198,12 +199,20 @@ public class HandContact : MonoBehaviour
         contact(this.Left, col);
     }
 
-    
+
     public bool ShouldNotRotate()
     {
-        if(hasJoint)
+        if (hasJoint)
         {
-            if(joint.connectedBody.mass >= 10)
+            if (joint.connectedBody == null)
+            {
+                return true;
+            }
+            if (joint.connectedBody.mass >= 10)
+            {
+                return true;
+            }
+            if (joint.connectedBody.isKinematic)
             {
                 return true;
             }
