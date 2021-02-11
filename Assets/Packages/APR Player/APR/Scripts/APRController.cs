@@ -860,8 +860,9 @@ public class APRController : MonoBehaviour
             //values for max rotation for bending
 
             float limit = 0.8f;
+            float bendChangeLimit = 0.65f;
 
-            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -limit, limit);
+            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -bendChangeLimit, bendChangeLimit);
             if(bendVal == 0)
             {
                 hasntBentCount += Time.deltaTime;
