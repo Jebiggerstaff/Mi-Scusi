@@ -286,6 +286,8 @@ public class APRController : MonoBehaviour
         UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
 
+        
+
         currentHP = maxHP;
         StartHPRegen();
 
@@ -860,9 +862,16 @@ public class APRController : MonoBehaviour
             //values for max rotation for bending
 
             float limit = 0.8f;
-            float bendChangeLimit = 0.65f;
+            float bendChangeLimit = 0.8f;
+            float bendMultiplier = 0.005f;
 
-            float bendVal = Mathf.Clamp(controls.Player.Bend.ReadValue<float>(), -bendChangeLimit, bendChangeLimit);
+            float bend = controls.Player.Bend.ReadValue<float>();
+            if(controls.Player.Bend.activeControl.device == Mouse.current)
+            {
+                bend *= bendMultiplier;
+            }
+
+            float bendVal = Mathf.Clamp(bend, -bendChangeLimit, bendChangeLimit);
             if(bendVal == 0)
             {
                 hasntBentCount += Time.deltaTime;
