@@ -115,19 +115,23 @@ public class HostileAI : NewAIMan
         //UPDATE
         anim.ResetTrigger("RightPunch");
         anim.SetTrigger("RightPunch");
-        apr.AIPunch(true);
+        RightHand.punching = true;
     }
     void punchLeft()
     {
         //UPDATE
         anim.ResetTrigger("LeftPunch");
         anim.SetTrigger("LeftPunch");
-        apr.AIPunch(false);
-        
+
+        LeftHand.punching = true;
+
     }
 
-
-
+    public override void unPunch()
+    {
+        RightHand.punching = false;
+        LeftHand.punching = false;
+    }
 
 
 
@@ -150,7 +154,8 @@ public class HostileAI : NewAIMan
     float currentPunchCD;
     float currentMaximumAllowedAggroTime;
 
-    public AIRagdollMan apr;
+    public AIHandContact RightHand;
+    public AIHandContact LeftHand;
 
     public bool isItalyTaskMan = false;
 }

@@ -76,7 +76,7 @@ public class SoundOnCollision : MonoBehaviour
         else if(aiPunchingPlayer && (GetComponent<AIHandContact>() != null && (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null)))
         {
             var hand = GetComponent<AIHandContact>();
-            if((hand.Left && hand.APR_Player.punchingLeft) || (!hand.Left && hand.APR_Player.punchingRight))
+            if((hand.punching))
             {
                 tryPlayAudio(AIPunchesPlayer);
             }

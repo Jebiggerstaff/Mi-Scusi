@@ -577,7 +577,10 @@ public class NewAIMan : MonoBehaviour
         }
     }
 
+    public virtual void unPunch()
+    {
+
+    }
 
 
-    
 }
