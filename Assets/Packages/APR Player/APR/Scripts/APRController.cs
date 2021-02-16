@@ -866,7 +866,7 @@ public class APRController : MonoBehaviour
             float bendMultiplier = 0.005f;
 
             float bend = controls.Player.Bend.ReadValue<float>();
-            if(Mouse.current != null && controls.Player.Bend.activeControl.device == Mouse.current)
+            if(Mouse.current != null && controls.Player.Bend.activeControl != null && controls.Player.Bend.activeControl.device == Mouse.current)
             {
                 bend *= bendMultiplier;
             }
@@ -1065,5 +1065,17 @@ public class APRController : MonoBehaviour
             StepRight = FootStep;
         }
 
+    }
+
+    public bool GrabbingWithHand(bool left)
+    {
+        if(left)
+        {
+            return leftGrab;
+        }
+        else
+        {
+            return rightGrab;
+        }
     }
 }

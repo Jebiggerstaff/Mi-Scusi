@@ -50,7 +50,7 @@ public class HandContact : MonoBehaviour
 
     void Update()
     {
-        if(APR_Player.isgrabbing == false)
+        if(APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
         {
             if (joint != null)
             {
