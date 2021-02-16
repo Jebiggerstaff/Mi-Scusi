@@ -18,13 +18,14 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
     public GameObject NextLevel;
+    public GameObject GiantMeatball;
 
     [HideInInspector] public bool PunchedMafia = false;
     [HideInInspector] public bool PunchedCustomer = false;
     [HideInInspector] public bool AteSpaghetti = false;
     [HideInInspector] public int DocumentsCollected = 0;
 
-    private bool[] TaskFinished = new bool[10];
+    private bool[] TaskFinished = new bool[11];
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -145,6 +146,17 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(true);
                     Tasks[9].SetActive(true);
                     TaskFinished[9] = true;
+                }
+                break;
+            case "GiantMeatball":
+                if(TaskFinished[10] == false)
+                {
+                    TaskCompleteText.SetActive(true);
+                    Tasks[10].SetActive(true);
+                    TaskFinished[10] = true;
+
+                    GiantMeatball.SetActive(true);
+                    GiantMeatball.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -2500), ForceMode.Impulse);
                 }
                 break;
         }

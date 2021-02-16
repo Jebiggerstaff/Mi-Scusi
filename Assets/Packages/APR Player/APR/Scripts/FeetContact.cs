@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
     //-------------------------------------------------------------
@@ -18,10 +19,25 @@ public class FeetContact : MonoBehaviour
 {
 	public APRController APR_Player;
 
+    private void Awake()
+    {
+        allowedWalkLayers.Add("Ground");
+        allowedWalkLayers.Add("GiantMeatball");
+    }
     private void Start()
     {
         if(SoundSource != null)
             SoundSource.loop = false;
+    }
+
+    bool checkAllowedLayers(Collision col)
+    {
+        foreach (var l in allowedWalkLayers)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer(l))
+                return true;
+        }
+        return false;
     }
 
     //Alert APR player when feet colliders enter ground object layer
@@ -73,6 +89,8 @@ public class FeetContact : MonoBehaviour
 
     public AudioSource SoundSource;
     public AudioClip defaultSound;
+
+    List<string> allowedWalkLayers;
 }
 
 
