@@ -19,6 +19,7 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject TaskList;
     public GameObject NextLevel;
     public GameObject GiantMeatball;
+    public NPC ChefMiti;
 
     [HideInInspector] public bool PunchedMafia = false;
     [HideInInspector] public bool PunchedCustomer = false;
@@ -157,6 +158,9 @@ public class ItalyTaskManager : MonoBehaviour
 
                     GiantMeatball.SetActive(true);
                     GiantMeatball.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -2500), ForceMode.Impulse);
+
+                    ChefMiti.sentences = new string[1];
+                    ChefMiti.sentences[0] = "Fantastico! That is a the greatest meatball I have ever a made!";
                 }
                 break;
         }

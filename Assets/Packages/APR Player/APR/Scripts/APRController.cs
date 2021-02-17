@@ -78,7 +78,6 @@ public class APRController : MonoBehaviour
     public float powerRight = 0f;
     public float powerLeft = 0f;
     public ParticleSystem PunchR1, PunchR2, PunchR3, PunchR4, PunchR5, PunchL1, PunchL2, PunchL3, PunchL4, PunchL5;
-    private IEnumerator RP, LP;
 
     //quip
     public float quipRange = 10f;
@@ -158,8 +157,6 @@ public class APRController : MonoBehaviour
         controls.Enable();
         PlayerSetup();
         //this is for power punch
-        RP = PowerUpTimerRight();
-        LP = PowerUpTimerLeft();
     }
 
     void Update()
@@ -474,30 +471,56 @@ public class APRController : MonoBehaviour
     {
         bool punchingThisArm;
         float inputValue;
+        float punchPower;
+        ParticleSystem p1, p2, p3, p4, p5;
         if(left)
         {
-
+            punchPower = powerLeft;
             punchingThisArm = punchingLeft;
             inputValue = controls.Player.LeftPunch.ReadValue<float>();
+            p1 = PunchL1;
+            p2 = PunchL2;
+            p3 = PunchL3;
+            p4 = PunchL4;
+            p5 = PunchL5;
         }
         else
         {
+            punchPower = powerRight;
             punchingThisArm = punchingRight;
             inputValue = controls.Player.RightPunch.ReadValue<float>();
+            p1 = PunchR1;
+            p2 = PunchR2;
+            p3 = PunchR3;
+            p4 = PunchR4;
+            p5 = PunchR5;
         }
 
+
+        if(inputValue != 0)
+        {
+
+            punchPower += Time.deltaTime;
+            if (punchPower >= 3 && p1.isPlaying == false)
+                p1.Play();
+            if (punchPower >= 6 && p2.isPlaying == false)
+                p2.Play();
+            if (punchPower >= 9 && p3.isPlaying == false)
+                p3.Play();
+        }
+        else
+        {
+            p1.Stop(); p2.Stop(); p3.Stop();
+        }
         
         if (!punchingThisArm && inputValue != 0 && !knockedOut)
         {
             punchingThisArm = true;
             punchTimer = 0;
-            /*
-            if (poweringUpR == false)
-            {
-                poweringUpR = true;
-                StartCoroutine(RP);
-            }
-            */
+            
+
+
+
 
             //Right hand punch pull back pose
             //body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, -0.15f, 0, 1);
@@ -543,42 +566,66 @@ public class APRController : MonoBehaviour
                 }
             }
 
-            
-            /*
-            Vector3 explosionPos = hand.transform.position;
-            int layermask = 1 << 10;
-            layermask = ~layermask;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, 100, layermask);
-            foreach (Collider hit in colliders)
+            punchPower = GetPowerAmount(punchPower);
+            if(punchPower > 0)
             {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-                if (hit.GetComponent<NewAIMan>() != null)
-                    hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
-                PunchR4.Play();
-                PunchR5.Play();
-                if (rb != null)
-                    rb.AddExplosionForce(powerRight * 1000, explosionPos, 10, 3.0f * (powerRight / 2));
+                Vector3 explosionPos = hand.transform.position;
+                int layermask = 1 << 10;
+                layermask = ~layermask;
+                Collider[] colliders = Physics.OverlapSphere(explosionPos, 20, layermask);
+                foreach (Collider hit in colliders)
+                {
+                    Rigidbody rb = hit.GetComponent<Rigidbody>();
+                    if (hit.GetComponent<NewAIMan>() != null)
+                        hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
+                    p4.Play();
+                    p5.Play();
+                    if (rb != null)
+                        rb.AddExplosionForce(punchPower * 1000, explosionPos, 10, 3.0f * (punchPower / 2));
+                }
+                p1.Stop(); p2.Stop(); p3.Stop();
+                punchPower = 0;
             }
-            StopCoroutine(RP);
-            poweringUpR = false;
-            powerRight = 0f;
             
-            PunchR1.Stop(); PunchR2.Stop(); PunchR3.Stop();
-            RP = PowerUpTimerRight();
-            */
+            
+            
         }
+
+        Debug.Log(punchPower);
+
+        //Reassign Values needed
         if (left)
         {
-
+            powerLeft = punchPower;
             punchingLeft = punchingThisArm;
         }
         else
         {
             punchingRight = punchingThisArm;
+            powerRight = punchPower;
         }
 
     }
+    float GetPowerAmount(float power)
+    {
+        float ret = 0;
 
+        if (power >= 9)
+            ret = 10;
+        else if (power >= 6)
+            ret = 5;
+        else if (ret >= 3)
+            ret = 2;
+        else
+            ret = 0;
+
+
+        return ret;
+
+
+
+        
+    }
 
     //---Getting Punched Functions--//
     public void GotPunched()
@@ -609,32 +656,7 @@ public class APRController : MonoBehaviour
         StartCoroutine(KnockoutTimer());
     }
 
-    private IEnumerator PowerUpTimerRight()
-    {
-        powerRight = 0f;
-        yield return new WaitForSeconds(3);
-        PunchR1.Play();
-        powerRight = 2f;
-        yield return new WaitForSeconds(3);
-        PunchR2.Play();
-        powerRight = 5f;
-        yield return new WaitForSeconds(3);
-        PunchR3.Play();
-        powerRight = 10f;
-    }
-    private IEnumerator PowerUpTimerLeft()
-    {
-        powerLeft = 0f;
-        yield return new WaitForSeconds(3);
-        PunchL1.Play();
-        powerLeft = 2f;
-        yield return new WaitForSeconds(3);
-        PunchL2.Play();
-        powerLeft = 5f;
-        yield return new WaitForSeconds(3);
-        PunchL3.Play();
-        powerLeft = 10f;
-    }
+    
 
     private IEnumerator KnockoutTimer()
     {
