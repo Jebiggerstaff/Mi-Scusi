@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!54 &3516383620838842846
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689214515024417529}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &8202113135050894812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11,7 +27,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2721178000292892450
 MonoBehaviour:
@@ -209,8 +225,9 @@ MonoBehaviour:
   moveTowardsPlayerOnAggro: 1
   chaseDuration: 5
   maximumAllowedAggroTime: 30
-  punchRange: 4
+  punchRange: 10
   punchCD: 2
+  angle: 135
   isAggrod: 0
   RightHand: {fileID: 2721178000292892450}
   LeftHand: {fileID: 8136692459350790633}
@@ -347,6 +364,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ai: {fileID: 5907326327517011406}
   visual: {fileID: 8695024129671302314}
+--- !u!54 &3324952053701195963
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455910385217613062}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &3422222790645229089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -358,7 +391,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8136692459350790633
 MonoBehaviour:
@@ -973,6 +1006,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3985628495227024654}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1689214515024417529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2323435578145155063, guid: 172d3ff33a424d74084f1713076d0767,
+    type: 3}
+  m_PrefabInstance: {fileID: 3985628495227024654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8345014085566750779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4936149594451481909, guid: 172d3ff33a424d74084f1713076d0767,
@@ -1000,12 +1039,6 @@ GameObject:
 --- !u!1 &900703004940184237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4264974145809833891, guid: 172d3ff33a424d74084f1713076d0767,
-    type: 3}
-  m_PrefabInstance: {fileID: 3985628495227024654}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1689214515024417529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2323435578145155063, guid: 172d3ff33a424d74084f1713076d0767,
     type: 3}
   m_PrefabInstance: {fileID: 3985628495227024654}
   m_PrefabAsset: {fileID: 0}
