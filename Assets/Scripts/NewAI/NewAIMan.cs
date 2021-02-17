@@ -518,7 +518,11 @@ public class NewAIMan : MonoBehaviour
 
             if(costume >= 0 && costume < costumes.Length)
             {
-                go = costumes[Random.Range(0,costumes.Length)];
+                go = costumes[costume];
+            }
+            else
+            {
+                go = costumes[Random.Range(0, costumes.Length)];
             }
 
             SwitchCostume(go);
