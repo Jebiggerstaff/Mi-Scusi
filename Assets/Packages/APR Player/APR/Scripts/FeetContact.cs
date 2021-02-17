@@ -21,6 +21,7 @@ public class FeetContact : MonoBehaviour
 
     private void Awake()
     {
+        allowedWalkLayers = new List<string>();
         allowedWalkLayers.Add("Ground");
         allowedWalkLayers.Add("GiantMeatball");
     }
@@ -48,7 +49,7 @@ public class FeetContact : MonoBehaviour
 
             if (!APR_Player.isJumping && APR_Player.inAir)
             {
-                if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                if (checkAllowedLayers(col))
                 {
                     APR_Player.PlayerLanded();
 
