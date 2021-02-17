@@ -88,7 +88,7 @@ public class HostileAI : NewAIMan
         if(currentPunchCD <= 0 && stunCount <= 0)
         {
             
-            if (Vector3.Angle(player.forward, transform.position - player.transform.position) < angle)
+            if (Mathf.Abs(Vector3.Angle(player.forward, transform.position - player.transform.position)) < angle)
             {
                 currentPunchCD = punchCD;
 
@@ -114,18 +114,32 @@ public class HostileAI : NewAIMan
     void punchRight()
     {
         //UPDATE
-        anim.ResetTrigger("RightPunch");
-        anim.SetTrigger("RightPunch");
+        anim.SetBool("RightPunch", true);
         RightHand.punching = true;
+        
+
+        StartCoroutine(timeUnPunch(1));
     }
     void punchLeft()
     {
-        //UPDATE
-        anim.ResetTrigger("LeftPunch");
-        anim.SetTrigger("LeftPunch");
-
+        anim.SetBool("LeftPunch", true);
         LeftHand.punching = true;
 
+        StartCoroutine(timeUnPunch(1));
+
+    }
+
+    IEnumerator timeUnPunch(float animTime)
+    {
+        float counter = 0;
+        while(counter < animTime)
+        {
+            counter += Time.deltaTime * anim.speed;
+            yield return null;
+        }
+        unPunch();
+        anim.SetBool("LeftPunch", false);
+        anim.SetBool("RightPunch", false);
     }
 
     public override void unPunch()
@@ -163,7 +177,7 @@ public class HostileAI : NewAIMan
     public float punchCD;
 
     Transform player;
-    float angle = 45;
+    public float angle = 45;
 
     [HideInInspector]
     public bool isAggrod;
