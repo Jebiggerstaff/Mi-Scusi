@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HostileAI : NewAIMan
 {
@@ -58,7 +59,7 @@ public class HostileAI : NewAIMan
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1") && shouldAggro())
         {
             AggroToPlayer();
         }
@@ -133,8 +134,25 @@ public class HostileAI : NewAIMan
         LeftHand.punching = false;
     }
 
+    bool shouldAggro()
+    {
+        if(SceneManager.GetActiveScene().name == "Italy")
+        {
+            if(playerWearingMafiaSkin())
+            {
+                return false;
+            }
+        }
 
 
+        return true;
+    }
+    bool playerWearingMafiaSkin()
+    {
+        //TODO: CHECK COSTUME
+
+        return false;
+    }
 
 
     public bool moveTowardsPlayerOnAggro;
