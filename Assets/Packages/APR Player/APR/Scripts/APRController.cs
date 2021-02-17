@@ -572,16 +572,17 @@ public class APRController : MonoBehaviour
                 Vector3 explosionPos = hand.transform.position;
                 int layermask = 1 << 10;
                 layermask = ~layermask;
-                Collider[] colliders = Physics.OverlapSphere(explosionPos, 20, layermask);
+                Collider[] colliders = Physics.OverlapSphere(explosionPos, 50, layermask);
                 foreach (Collider hit in colliders)
                 {
                     Rigidbody rb = hit.GetComponent<Rigidbody>();
-                    if (hit.GetComponent<NewAIMan>() != null)
-                        hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
+                    
                     p4.Play();
                     p5.Play();
                     if (rb != null)
                         rb.AddExplosionForce(punchPower * 1000, explosionPos, 10, 3.0f * (punchPower / 2));
+                    if (hit.GetComponent<NewAIMan>() != null)
+                        hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
                 }
                 p1.Stop(); p2.Stop(); p3.Stop();
                 punchPower = 0;
