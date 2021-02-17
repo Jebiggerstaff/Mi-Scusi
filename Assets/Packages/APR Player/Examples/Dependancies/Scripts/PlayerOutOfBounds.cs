@@ -58,7 +58,7 @@ public class PlayerOutOfBounds : MonoBehaviour
     {
         if(!checkedTrigger)
         {
-            if(col.gameObject.layer == LayerMask.NameToLayer(APR_Player.GetComponent<APRController>().thisPlayerLayer))
+            if(col.gameObject.layer == LayerMask.NameToLayer("Player_1"))
             {
                 checkedTrigger = true;
                 

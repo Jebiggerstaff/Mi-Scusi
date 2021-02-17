@@ -40,7 +40,7 @@ public class CarDriver : MonoBehaviour
         if (collision.gameObject.name == "APR_Root")
         {
             Debug.Log("Bonk");
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * CrashingForce);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * CrashingForce, ForceMode.Impulse);
             
         }
     }
