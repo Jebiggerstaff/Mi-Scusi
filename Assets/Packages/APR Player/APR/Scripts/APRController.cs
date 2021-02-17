@@ -8,6 +8,7 @@ public class APRController : MonoBehaviour
 {
     #region Variables
     private MiScusiActions controls;
+    public Transform RespawnPoint;
 
     //particles
     public ParticleSystem JumpParticle;
@@ -143,6 +144,7 @@ public class APRController : MonoBehaviour
 	[Header("Player Editor Debug Mode")]
 	//Debug
 	public bool editorDebugMode;
+    float resetTimer = 0f;
 
 
 
@@ -184,6 +186,8 @@ public class APRController : MonoBehaviour
         {
             ResetWalkCycle();
         }
+
+        Reset();
 
         tryQuip();
     }
@@ -592,7 +596,7 @@ public class APRController : MonoBehaviour
             
         }
 
-        Debug.Log(punchPower);
+        //Debug.Log(punchPower);
 
         //Reassign Values needed
         if (left)
@@ -607,6 +611,7 @@ public class APRController : MonoBehaviour
         }
 
     }
+
     float GetPowerAmount(float power)
     {
         float ret = 0;
@@ -657,8 +662,6 @@ public class APRController : MonoBehaviour
         StartCoroutine(KnockoutTimer());
     }
 
-    
-
     private IEnumerator KnockoutTimer()
     {
         float count = 0;
@@ -682,10 +685,12 @@ public class APRController : MonoBehaviour
     {
         InvokeRepeating("RegenHP", 1f / HPPerSecond, 1f / HPPerSecond);
     }
+
     private void StopHPRegen()
     {
         CancelInvoke("RegenHP");
     }
+
     private void RegenHP()
     {
         if(currentHP < maxHP)
@@ -923,6 +928,7 @@ public class APRController : MonoBehaviour
         //reset to idle LEFT
         ResetToIdle(APR_Parts[9], APR_Parts[10], UpperLeftLegTarget, LowerLeftLegTarget, 7f, 18f);
     }
+
     void ResetRightLeg()
     {
         //reset to idle RIGHT
@@ -1099,6 +1105,24 @@ public class APRController : MonoBehaviour
         else
         {
             return rightGrab;
+        }
+    }
+
+    private void Reset()
+    {
+
+        Debug.Log(controls.Player.Reset.ReadValue<float>()+","+ resetTimer);
+        if (controls.Player.Reset.ReadValue<float>() != 0f)
+        { 
+            resetTimer = resetTimer + .1f;
+            if (resetTimer > 6f)
+            {
+                APR_Parts[0].transform.position = RespawnPoint.position;
+            }
+        }
+
+        else{
+            resetTimer = 0;
         }
     }
 }

@@ -92,9 +92,9 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Reset"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""f68113b5-1fba-4abe-85b9-73323692a579"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 }

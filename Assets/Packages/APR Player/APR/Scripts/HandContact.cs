@@ -26,17 +26,11 @@ public class HandContact : MonoBehaviour
     NewYorkTaskManager NewYorkTaskManager;
     TutorialTaskManager TutorialTaskManager;
     ItalyTaskManager ItalyTaskManager;
+    public CosmeticUnlocker CosmeticUnlocker;
 
     private void Start()
     {
         grabbedAI = null;
-        if (SceneManager.GetActiveScene().name == "NewYork")
-            NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
-        if (SceneManager.GetActiveScene().name == "Tutorial")
-            TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
-        if (SceneManager.GetActiveScene().name == "Italy")
-            ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
-        
     }
 
     private void Awake()
@@ -50,7 +44,16 @@ public class HandContact : MonoBehaviour
 
     void Update()
     {
-        if(APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
+        if (SceneManager.GetActiveScene().name == "NewYork" && NewYorkTaskManager==null)
+            NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
+        if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager == null)
+            TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
+        if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager == null)
+            ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = GameObject.Find("UIController").GetComponent<CosmeticUnlocker>();
+
+        if (APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
         {
             if (joint != null)
             {
@@ -101,10 +104,15 @@ public class HandContact : MonoBehaviour
                         TutorialTaskManager.Punched = true;
                     }
                     //Mafia Punch Task
-                    if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name == "MafiaMember")
+                    Debug.Log(SceneManager.GetActiveScene().name);
+                    Debug.Log(ItalyTaskManager.PunchedMafia);
+                    Debug.Log(col.gameObject.name);
+                    if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name == "HatesOldPeople")
                     {
                         ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
                         ItalyTaskManager.PunchedMafia = true;
+                        CosmeticUnlocker.UnlockOutfit("Fedora");
+
                     }
                     //Angry Customer Punch Task
                     if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedCustomer == false && col.gameObject.name == "AngryCustomer")
