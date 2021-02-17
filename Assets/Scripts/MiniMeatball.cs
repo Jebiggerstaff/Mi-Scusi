@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniMeatball : MonoBehaviour
 {
     static int numMeatballsCollected;
+    public AudioClip plop;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class MiniMeatball : MonoBehaviour
             {
                 FindObjectOfType<ItalyTaskManager>().TaskCompleted("GiantMeatball");
             }
+            RandomAudioMaker.makeAudio(plop);
             Destroy(gameObject);
         }
     }
