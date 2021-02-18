@@ -65,12 +65,13 @@ public class ItalyTaskManager : MonoBehaviour
 
     public void TaskCompleted(string Task)
     {
-        RandomAudioMaker.makeAudio(genericCompeltionClip);
+        
         switch (Task)
         {
             case "HearAboutMafia":
                 if (TaskFinished[0] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
@@ -79,6 +80,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "BeatUpMafiaMembers":
                 if (TaskFinished[1] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
@@ -87,6 +89,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "InfiltrateMafiaHQ":
                 if (TaskFinished[2] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
@@ -95,6 +98,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "Collect5documents":
                 if (TaskFinished[3] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[3].SetActive(true);
                     TaskFinished[3] = true;
@@ -104,6 +108,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "KnockFishermanIntoWater":
                 if (TaskFinished[4] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
@@ -112,6 +117,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "FlowersToGirl":
                 if (TaskFinished[5] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[5].SetActive(true);
                     TaskFinished[5] = true;
@@ -120,6 +126,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "EatSpaghetti":
                 if (TaskFinished[6] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
@@ -128,6 +135,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "StealFromShop":
                 if (TaskFinished[7] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
@@ -136,6 +144,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "GetMoneyFromFountain":
                 if (TaskFinished[8] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[8].SetActive(true);
                     TaskFinished[8] = true;
@@ -144,6 +153,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "KnockoutAngryCustomer":
                 if (TaskFinished[9] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[9].SetActive(true);
                     TaskFinished[9] = true;
@@ -152,6 +162,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "GiantMeatball":
                 if(TaskFinished[10] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[10].SetActive(true);
                     TaskFinished[10] = true;
