@@ -26,8 +26,8 @@ public class NewAIMan : MonoBehaviour
 
     [Space]
     public bool shovesPlayer;
-    public float shoveForce;
-    public float shoveAngle;
+    float shoveForce;
+    float shoveAngle;
     float shoveCooldown = 0;
 
     [Header("Costumes")]
@@ -72,7 +72,7 @@ public class NewAIMan : MonoBehaviour
         int legNum = Random.Range(1, 4);
         baseSpeed = agent.speed;
         shoveForce = 750;
-        shoveAngle = 30;
+        shoveAngle = 0;
         baseAcceleration = agent.acceleration;
         SetCostume();
         SetStopDistance();
@@ -96,6 +96,8 @@ public class NewAIMan : MonoBehaviour
         if(!offByDistance)
         {
 
+            bool onGround = groundCheck();
+
             if(!quipped)
             {
                 agent.acceleration = agent.speed * 0.6f;
@@ -118,11 +120,15 @@ public class NewAIMan : MonoBehaviour
             if (grabbedByPlayer)
             {
                 disableAgent();
-                //rb.isKinematic = false;
             }
             else
             {
-                if(agent.enabled == true && agent.isOnNavMesh == false)
+                if (!onGround)
+                {
+                    disableAgent();
+                }
+
+                if (agent.enabled == true && agent.isOnNavMesh == false)
                 {
 
                     disableAgent();
@@ -135,7 +141,7 @@ public class NewAIMan : MonoBehaviour
 
                 }
 
-                if (agent.enabled == false && stunCount <= 0 && notBeingShoved())
+                if (agent.enabled == false && stunCount <= 0 && notBeingShoved() && onGround)
                 {
                     enableAgent(); 
                     //rb.isKinematic = true;
@@ -151,7 +157,7 @@ public class NewAIMan : MonoBehaviour
                     }
                 }
 
-                if (needToUpdateDestination && stunCount <= 0 && notBeingShoved())
+                if (needToUpdateDestination && stunCount <= 0 && notBeingShoved() && onGround)
                 {
                     enableAgent();
                     //rb.isKinematic = true;
@@ -226,6 +232,12 @@ public class NewAIMan : MonoBehaviour
 
     }
 
+    bool groundCheck()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        return Physics.Raycast(ray, 2, 1 << LayerMask.NameToLayer("Ground"));
+    }
+
     private bool notBeingShoved()
     {
         if(shovesPlayer)
@@ -287,7 +299,7 @@ public class NewAIMan : MonoBehaviour
 
             yield return new WaitForSeconds(1.0f);
 
-            if (stunCount <= 0)
+            if (stunCount <= 0 && groundCheck())
             {
 
                 enableAgent();
