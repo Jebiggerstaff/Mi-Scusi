@@ -10,7 +10,6 @@ public class NPC : MonoBehaviour {
     ItalyTaskManager ItalyTaskManager = new ItalyTaskManager();
 
     public Transform ChatBackGround;
-    public Transform NPCCharacter;
     bool inRange;
 
     public bool DEBUG_printDistance = false;
@@ -35,10 +34,7 @@ public class NPC : MonoBehaviour {
     }
 	
 	void Update () {
-          Vector3 Pos = Camera.main.WorldToScreenPoint(NPCCharacter.position);
      
-        Pos.y += 175;
-          ChatBackGround.position = Pos;
 
         if(dialogueSystem == null)
         {

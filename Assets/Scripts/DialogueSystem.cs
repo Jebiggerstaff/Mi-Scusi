@@ -39,6 +39,9 @@ public class DialogueSystem: MonoBehaviour {
 
         controls = new MiScusiActions();
         controls.Enable();
+
+
+        dialogueBoxGUI.gameObject.SetActive(false);
     }
 
     void Update()
