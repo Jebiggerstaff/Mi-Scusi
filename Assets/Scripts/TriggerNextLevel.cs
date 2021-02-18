@@ -27,11 +27,16 @@ public class TriggerNextLevel : MonoBehaviour
             if (other.GetComponent<APRController>() != null || other.GetComponentInParent<APRController>() != null || other.GetComponentInChildren<APRController>() != null)
             {
                 canvasIsUp = true;
+                /*
                 nextLevelCanvas.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 originalGameTIme = Time.timeScale;
                 Time.timeScale = 0f;
+                */
+
+
+                loadNextLevel();
             }
         }
         
@@ -59,7 +64,7 @@ public class TriggerNextLevel : MonoBehaviour
         if(level != "Menu")
             PlayerPrefs.SetString("SavedLevel", level);
 
-        Time.timeScale = originalGameTIme;
+        //Time.timeScale = originalGameTIme;
 
         //***OLD LOADING BAR****//
         //loadingScreen.SetActive(true);
