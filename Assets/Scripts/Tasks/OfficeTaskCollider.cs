@@ -47,15 +47,15 @@ public class OfficeTaskCollider : MonoBehaviour
         }
         #endregion
         #region MakeCoffee
-        if (other == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
+        if (other.gameObject == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
         }
-        if (other == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
+        if (other.gameObject == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
         }
-        if (other == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
+        if (other.gameObject == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
         }
