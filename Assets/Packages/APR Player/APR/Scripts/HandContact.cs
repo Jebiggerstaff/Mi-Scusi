@@ -51,7 +51,7 @@ public class HandContact : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager == null)
             ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
         if (CosmeticUnlocker == null)
-            CosmeticUnlocker = GameObject.Find("UIController").GetComponent<CosmeticUnlocker>();
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
 
         if (APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
         {
