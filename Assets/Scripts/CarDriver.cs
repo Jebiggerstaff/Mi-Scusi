@@ -14,6 +14,8 @@ public class CarDriver : MonoBehaviour
     private void Start()
     {
         transform.position = RoadPoints[0].transform.position;
+        GetComponent<Rigidbody>().isKinematic = true;
+        
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class CarDriver : MonoBehaviour
                 targetPoint += 1;
             else
                 targetPoint = 0;
+
         }
 
     }
@@ -42,6 +45,17 @@ public class CarDriver : MonoBehaviour
             Debug.Log("Bonk");
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * CrashingForce, ForceMode.Impulse);
             
+        }
+        else if(collision.gameObject.GetComponent<NewAIMan>() != null)
+        {
+            var ai = collision.gameObject.GetComponent<NewAIMan>();
+            ai.stun(30f);
+            ai.stun(30f);
+            ai.stun(30f);
+            ai.stun(30f);
+            ai.stun(30f);
+            ai.Explode(transform.position);
+            ai.Explode(transform.position);
         }
     }
 }
