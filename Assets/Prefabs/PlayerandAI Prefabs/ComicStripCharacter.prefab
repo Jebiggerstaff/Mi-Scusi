@@ -11980,7 +11980,7 @@ MonoBehaviour:
   PunchParticle: {fileID: 8921869253355801313}
   Left: 0
   hasJoint: 0
-  grabbedAI: []
+  CosmeticUnlocker: {fileID: 0}
 --- !u!1 &1655533077848730113
 GameObject:
   m_ObjectHideFlags: 0
@@ -12477,6 +12477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   CollideWithWater: {fileID: 9134155639377007915}
   CollideWithGround: {fileID: 6905406897521965138}
   CollideWithPlayer: {fileID: 0}
@@ -13686,7 +13687,7 @@ MonoBehaviour:
   PunchParticle: {fileID: 8921869251850522541}
   Left: 1
   hasJoint: 0
-  grabbedAI: []
+  CosmeticUnlocker: {fileID: 0}
 --- !u!1 &1655533078869514439
 GameObject:
   m_ObjectHideFlags: 0
@@ -14322,7 +14323,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ddaf4c9c5d14d6748a25ad4308b4359b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -20591,6 +20592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20a6e1c3ec15cc4badfddc68720960c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 0}
   JumpParticle: {fileID: 852892456920051900}
   HitParticle: {fileID: 3765399187141776091}
   Root: {fileID: 1655533078078600247}
@@ -20611,16 +20613,6 @@ MonoBehaviour:
   COMP: {fileID: 2636024963007460339}
   GrabRight: {fileID: 1655533077774212591}
   GrabLeft: {fileID: 1655533078837181753}
-  useControls: 1
-  usingController: 0
-  forwardBackward: Vertical
-  leftRight: Horizontal
-  jump: Jump
-  reachLeft: Fire1
-  reachRight: Fire2
-  quip: 
-  punchLeft: q
-  punchRight: e
   thisPlayerLayer: Player_1
   moveSpeed: 15
   turnSpeed: 6
@@ -20631,7 +20623,6 @@ MonoBehaviour:
   balanceStrength: 50000
   coreStrength: 4000
   limbStrength: 1000
-  spineTimer: 0
   StepDuration: 0.2
   StepHeight: 1.7
   FeetMountForce: 25
@@ -20644,7 +20635,21 @@ MonoBehaviour:
   canBeKnockoutByImpact: 0
   requiredForceToBeKO: 20
   canPunch: 1
+  poweringUpR: 0
+  poweringUpL: 0
   punchForce: 15
+  powerRight: 0
+  powerLeft: 0
+  PunchR1: {fileID: 0}
+  PunchR2: {fileID: 0}
+  PunchR3: {fileID: 0}
+  PunchR4: {fileID: 0}
+  PunchR5: {fileID: 0}
+  PunchL1: {fileID: 0}
+  PunchL2: {fileID: 0}
+  PunchL3: {fileID: 0}
+  PunchL4: {fileID: 0}
+  PunchL5: {fileID: 0}
   quipRange: 20
   quipDuration: 5
   quipCooldown: 10
@@ -20675,7 +20680,6 @@ MonoBehaviour:
   KnockoutTime: 5
   jumping: 0
   isJumping: 0
-  balanced: 1
   inAir: 0
   punchingRight: 0
   punchingLeft: 0
@@ -20703,6 +20707,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b198a9d1b9d7c4c9314da106b67da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ass: {fileID: 0}
+  Backpack: {fileID: 0}
+  Coat: {fileID: 0}
+  Hat: {fileID: 0}
+  Legs: {fileID: 0}
+  Shirt: {fileID: 0}
   Hats:
   - {fileID: 856877140597613672}
   - {fileID: 2506853103643162637}
@@ -20756,6 +20766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   CollideWithWater: {fileID: 0}
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 0}

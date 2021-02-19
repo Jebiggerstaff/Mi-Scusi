@@ -71,7 +71,7 @@ public class NewAIMan : MonoBehaviour
         needToUpdateDestination = false;
         int legNum = Random.Range(1, 4);
         baseSpeed = agent.speed;
-        shoveForce = 750;
+        shoveForce = 1500;
         shoveAngle = 0;
         baseAcceleration = agent.acceleration;
         SetCostume();

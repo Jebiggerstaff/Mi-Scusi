@@ -13,8 +13,13 @@ public class MoveitalyBridgeGuards : MonoBehaviour
     void Start()
     {
         ai = GetComponent<StayStillAIMan>();
-        ai.destinations[0] = originalTarget;
-        ai.currentDestination = originalTarget;
+        if(ai != null)
+        {
+
+            ai.destinations[0] = originalTarget;
+            ai.currentDestination = originalTarget;
+
+        }
     }
 
     // Update is called once per frame
@@ -22,13 +27,28 @@ public class MoveitalyBridgeGuards : MonoBehaviour
     {
         if(checkPlayerCostume())
         {
-            ai.target = moveTarget;
-            ai.shovesPlayer = false;
+            if(ai != null)
+            {
+                if(ai.target != moveTarget)
+                    ai.target = moveTarget;
+                ai.shovesPlayer = false;
+
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
-            ai.target = originalTarget;
-            ai.shovesPlayer = true;
+            if(ai != null)
+            {
+                if(ai.target != originalTarget)
+                    ai.target = originalTarget;
+                ai.shovesPlayer = true;
+                ai.minimumStopDistance = 1f;
+
+            }
         }
     }
 
