@@ -10,6 +10,7 @@ public class NewYorkTaskManager : MonoBehaviour
     //Public Variables
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
+    bool[] CompletedTasks;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -46,6 +47,7 @@ public class NewYorkTaskManager : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
         Player = GameObject.Find("FinalPlayer");
+        CompletedTasks = new bool[Tasks.Length];
         //Debug.Log("Found Player: " + Player);
 
     }
@@ -75,38 +77,84 @@ public class NewYorkTaskManager : MonoBehaviour
         switch (Task)
         {
             case "CutInLine":
-                Tasks[0].SetActive(true);
+                if (CompletedTasks[0] == false)
+                {
+                    Tasks[0].SetActive(true);
+                    CompletedTasks[0] = true;
+                }
                 break;
             case "HelpGuyMove":
-                Tasks[1].SetActive(true);
-                NextLevelBubble.SetActive(true);
-                break;
+                if (CompletedTasks[1] == false)
+                {
+                    Tasks[1].SetActive(true);
+                    NextLevelBubble.SetActive(true);
+
+                    CompletedTasks[1] = true;
+                }
+                    break;
             case "RemovePolitical":
-                Tasks[2].SetActive(true);
+                if (CompletedTasks[2] == false)
+                {
+
+                    CompletedTasks[2] = true;
+                    Tasks[2].SetActive(true);
+                }
                 break;
             case "PickUpTrash":
-                Tasks[3].SetActive(true);
+                if (CompletedTasks[3] == false)
+                {
+                    Tasks[3].SetActive(true);
+                    CompletedTasks[3] = true;
+                }
                 break;
             case "DefaceSSS":
-                Tasks[4].SetActive(true);
+                if (CompletedTasks[4] == false)
+                {
+                    Tasks[4].SetActive(true);
+                    CompletedTasks[4] = true;
+                }
                 break;
             case "ShatterWindows":
-                Tasks[5].SetActive(true);
+                if (CompletedTasks[5] == false)
+                {
+                    Tasks[5].SetActive(true);
+                    CompletedTasks[5] = true;
+                }
                 break;
             case "EatAtCafe":
-                Tasks[6].SetActive(true);
+                if (CompletedTasks[6] == false)
+                {
+                    Tasks[6].SetActive(true);
+                    CompletedTasks[6] = true;
+                }
                 break;
             case "CrossStreet":
-                Tasks[7].SetActive(true);
+                if (CompletedTasks[7] == false)
+                {
+                    Tasks[7].SetActive(true);
+                    CompletedTasks[7] = true;
+                }
                 break;
             case "ReturnBlueBikes":
-                Tasks[8].SetActive(true);
+                if (CompletedTasks[8] == false)
+                {
+                    Tasks[8].SetActive(true);
+                    CompletedTasks[8] = true;
+                }
                 break;
             case "DefaceHQ":
-                Tasks[9].SetActive(true);
+                if (CompletedTasks[9] == false)
+                {
+                    CompletedTasks[9] = true;
+                    Tasks[9].SetActive(true);
+                }
                 break;
             case "BringFood":
-                Tasks[10].SetActive(true);
+                if (CompletedTasks[10] == false)
+                {
+                    CompletedTasks[10] = true;
+                    Tasks[10].SetActive(true);
+                }
                 break;
         }
 
