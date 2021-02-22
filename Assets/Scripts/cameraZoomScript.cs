@@ -10,7 +10,7 @@ public class cameraZoomScript : MonoBehaviour
     public float timeLeft = 15.0f;
     public Animator animator;
 
-    private void Awake()
+    private void Start()
     {
         controls = new MiScusiActions();
         controls.Enable();
@@ -27,7 +27,11 @@ public class cameraZoomScript : MonoBehaviour
 
         else if (controls.Player.Jump.triggered)
         {
-            animator.enabled = false;
+            if (timeLeft <= 10.0f)
+            {
+                animator.enabled = false;
+            }
+            
         }
 
     }
