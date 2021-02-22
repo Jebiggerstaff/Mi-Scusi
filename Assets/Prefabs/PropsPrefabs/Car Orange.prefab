@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3831678026744448334}
   - component: {fileID: 3828227525670585335}
   - component: {fileID: 7239950208975221648}
+  - component: {fileID: 6200190076119494962}
   m_Layer: 14
   m_Name: Car Orange
   m_TagString: CanBeGrabbed
@@ -123,6 +124,22 @@ MonoBehaviour:
   AIPunchedByPlayer: {fileID: 0}
   AIPunchesPlayer: {fileID: 0}
   KnockedOut: {fileID: 0}
+--- !u!208 &6200190076119494962
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247109425409290642}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.93600005, y: 0.60200006, z: 1.963}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.586, z: -0.065000005}
+  m_TimeToStationary: 0.5
 --- !u!1 &7245692434407239732
 GameObject:
   m_ObjectHideFlags: 0

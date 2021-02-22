@@ -170,17 +170,23 @@ public class HandContact : MonoBehaviour
                 //APR_Player.leftGrab = true;
 
 
-                joint = this.gameObject.AddComponent<FixedJoint>();
-                joint.breakForce = Mathf.Infinity;
-                joint.connectedBody = col.gameObject.GetComponent<Rigidbody>();
-
-
                 var ai = col.gameObject.GetComponent<NewAIMan>();
-                if (ai != null)
+                
+                if(!(ai != null && ai.shovesPlayer))
                 {
-                    ai.grabbedByPlayer = true;
-                    grabbedAI = ai;
+
+                    joint = this.gameObject.AddComponent<FixedJoint>();
+                    joint.breakForce = Mathf.Infinity;
+                    joint.connectedBody = col.gameObject.GetComponent<Rigidbody>();
+
+                    if (ai != null)
+                    {
+                        ai.grabbedByPlayer = true;
+                        grabbedAI = ai;
+                    }
+
                 }
+
 
                 /*
                 //too check for grab constraints

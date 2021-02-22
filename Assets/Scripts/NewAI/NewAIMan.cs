@@ -66,7 +66,7 @@ public class NewAIMan : MonoBehaviour
         //rb = GetComponent<Rigidbody>();
         //anim = GetComponentInChildren<Animator>();
         hp = maxHP;
-        currentDest = 0;
+        currentDest = -1;
         quipped = false;
         needToUpdateDestination = false;
         int legNum = Random.Range(1, 4);
@@ -593,6 +593,7 @@ public class NewAIMan : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("GiantMeatball"))
         {
+            Explode(collision.gameObject.transform.position);
             Explode(collision.gameObject.transform.position);
         }
     }
