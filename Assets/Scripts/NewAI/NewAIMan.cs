@@ -594,7 +594,6 @@ public class NewAIMan : MonoBehaviour
         else if(collision.gameObject.layer == LayerMask.NameToLayer("GiantMeatball"))
         {
             Explode(collision.gameObject.transform.position);
-            Explode(collision.gameObject.transform.position);
         }
     }
 
