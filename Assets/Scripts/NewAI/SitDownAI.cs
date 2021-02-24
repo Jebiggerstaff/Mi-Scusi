@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class SitDownAI : NewAIMan
 {
+    //Rigidbody myRB;
+    public Transform sitPlace;
+    public bool sitting = true;
+    public bool AlwaysSit = false;
+
+
     public override void Start()
     {
         base.Start();
         anim.SetBool("Sitting", true);
         //myRB = GetComponent<Rigidbody>();
+        
     }
 
     public override void Update()
@@ -21,6 +28,9 @@ public class SitDownAI : NewAIMan
             if (sitting)
             {
                 disableAgent();
+
+                gameObject.layer = LayerMask.NameToLayer("AIMan");
+
                 Vector3 targetSit = sitPlace.position;
                 if (transform.position != targetSit)
                 {
@@ -65,11 +75,5 @@ public class SitDownAI : NewAIMan
         }
     }
 
-
-
-    //Rigidbody myRB;
-    public Transform sitPlace;
-    public bool sitting = true;
-    public bool AlwaysSit = false;
     
 }

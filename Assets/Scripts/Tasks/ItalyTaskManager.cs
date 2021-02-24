@@ -168,7 +168,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskFinished[10] = true;
 
                     GiantMeatball.SetActive(true);
-                    GiantMeatball.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -2500), ForceMode.Impulse);
+                    
 
                     ChefMiti.sentences = new string[1];
                     ChefMiti.sentences[0] = "Fantastico! That is a the greatest meatball I have ever a made!";
