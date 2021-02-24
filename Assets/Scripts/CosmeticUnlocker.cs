@@ -30,11 +30,84 @@ public class CosmeticUnlocker : MonoBehaviour
     public List<GameObject> Accessories;
     [SerializeField]
     public List<GameObject> AccessoryQuestionMarks;
+
+    public static readonly string CosmeticSaveName = "CosmoLock";
+    private static readonly string CosmeticBufferString = "&$&";
+
     #endregion
+
+    private void Start()
+    {
+        string prefs = "";
+        if(PlayerPrefs.HasKey(CosmeticSaveName))
+        {
+            prefs = PlayerPrefs.GetString(CosmeticSaveName, "");
+        }
+        else
+        {
+            PlayerPrefs.SetString(CosmeticSaveName, "");
+        }
+        foreach(var go in Hats)
+        {
+            if(prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+        foreach (var go in Shirts)
+        {
+            if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+        foreach (var go in Coats)
+        {
+            if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+        foreach (var go in Pants)
+        {
+            if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+        foreach (var go in Backpacks)
+        {
+            if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+        foreach (var go in Accessories)
+        {
+            if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
+            {
+                UnlockOutfit(go.name);
+            }
+        }
+    }
 
     public void UnlockOutfit(string name)
     {
         Debug.LogWarning("Unlock " + name);
+
+
+        string prefs = PlayerPrefs.GetString(CosmeticSaveName, "");
+        if (prefs.Contains(CosmeticBufferString + name + CosmeticBufferString))
+        {
+            //you have it
+        }
+        else
+        {
+            PlayerPrefs.SetString(CosmeticSaveName, PlayerPrefs.GetString(CosmeticSaveName, "") + CosmeticBufferString + name + CosmeticBufferString);
+            PlayerPrefs.Save();
+        }
+
+        Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
 
         #region Hats
         if (name == "CaptainHat") Hat(0);
@@ -54,7 +127,7 @@ public class CosmeticUnlocker : MonoBehaviour
 
         #region Coats
         if (name == "CaptainsJacket") Coat(0);
-        if (name == "Chef") Coat(1);
+        if (name == "ChefCoat") Coat(1);
         if (name == "Cowboy") Coat(2);
         if (name == "PuffyCoat") Coat(3);
         if (name == "TrenchCoat") Coat(4);
@@ -62,15 +135,15 @@ public class CosmeticUnlocker : MonoBehaviour
 
         #region Coats
         if (name == "CaptainsJacket") Coat(0);
-        if (name == "Chef") Coat(1);
+        if (name == "ChefCoat") Coat(1);
         if (name == "Cowboy") Coat(2);
         if (name == "PuffyCoat") Coat(3);
         if (name == "TrenchCoat") Coat(4);
         #endregion
 
         #region Shirts
-        if (name == "Desert") Shirt(0);
-        if (name == "Generic") Shirt(1);
+        if (name == "DesertShirt") Shirt(0);
+        if (name == "GenericShirt") Shirt(1);
         if (name == "TankTop") Shirt(2);
         #endregion
 
@@ -78,7 +151,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Jeans") Pant(0);
         if (name == "Pants") Pant(1);
         if (name == "Shorts") Pant(2);
-        if (name == "Cowboy") Pant(3);
+        if (name == "CowboyBoots") Pant(3);
         #endregion
 
         #region Backpacks

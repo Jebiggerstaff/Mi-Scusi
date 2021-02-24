@@ -92,7 +92,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "HelpGuyMove":
                 if (CompletedTasks[1] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Generic");
+                    CosmeticUnlocker.UnlockOutfit("GenericShirt");
                     Tasks[1].SetActive(true);
                     NextLevelBubble.SetActive(true);
 
