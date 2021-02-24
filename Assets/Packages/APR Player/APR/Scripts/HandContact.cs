@@ -26,7 +26,6 @@ public class HandContact : MonoBehaviour
     NewYorkTaskManager NewYorkTaskManager;
     TutorialTaskManager TutorialTaskManager;
     ItalyTaskManager ItalyTaskManager;
-    public CosmeticUnlocker CosmeticUnlocker;
 
     private void Start()
     {
@@ -50,8 +49,7 @@ public class HandContact : MonoBehaviour
             TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
         if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager == null)
             ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
-        if (CosmeticUnlocker == null)
-            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
+
 
         if (APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
         {
@@ -111,7 +109,6 @@ public class HandContact : MonoBehaviour
                     {
                         ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");
                         ItalyTaskManager.PunchedMafia = true;
-                        CosmeticUnlocker.UnlockOutfit("Fedora");
 
                     }
                     //Angry Customer Punch Task

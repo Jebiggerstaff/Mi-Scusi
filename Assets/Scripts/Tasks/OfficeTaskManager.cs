@@ -32,6 +32,8 @@ public class OfficeTaskManager : MonoBehaviour
     public int coffeePartsCollected=0;
     bool CoffeeSpawned = false;
 
+    public CosmeticUnlocker CosmeticUnlocker;
+
 
     public void Start()
     {
@@ -62,6 +64,9 @@ public class OfficeTaskManager : MonoBehaviour
 
     public void Update()
     {
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
+
         if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
@@ -85,6 +90,7 @@ public class OfficeTaskManager : MonoBehaviour
                 PaperStack2.SetActive(true);
                 break;
             case "GetBossCoffee":
+                CosmeticUnlocker.UnlockOutfit("Mustache");
                 Tasks[2].SetActive(true);
                 PaperStack3.SetActive(true);
                 break;

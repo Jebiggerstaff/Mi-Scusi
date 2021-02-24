@@ -17,6 +17,8 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
 
+    public CosmeticUnlocker CosmeticUnlocker;
+
     [Header("Collision Boxes")]
     public GameObject FrontOfLine;
     public GameObject[] SSSTags = new GameObject[0];
@@ -61,6 +63,9 @@ public class NewYorkTaskManager : MonoBehaviour
 
     public void Update()
     {
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
+
         if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
@@ -79,6 +84,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "CutInLine":
                 if (CompletedTasks[0] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Pants");
                     Tasks[0].SetActive(true);
                     CompletedTasks[0] = true;
                 }
@@ -86,6 +92,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "HelpGuyMove":
                 if (CompletedTasks[1] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Generic");
                     Tasks[1].SetActive(true);
                     NextLevelBubble.SetActive(true);
 
@@ -103,6 +110,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "PickUpTrash":
                 if (CompletedTasks[3] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Jeans");
                     Tasks[3].SetActive(true);
                     CompletedTasks[3] = true;
                 }
@@ -124,6 +132,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "EatAtCafe":
                 if (CompletedTasks[6] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Shorts");
                     Tasks[6].SetActive(true);
                     CompletedTasks[6] = true;
                 }
@@ -138,6 +147,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "ReturnBlueBikes":
                 if (CompletedTasks[8] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("GenericBP");
                     Tasks[8].SetActive(true);
                     CompletedTasks[8] = true;
                 }
@@ -145,6 +155,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "DefaceHQ":
                 if (CompletedTasks[9] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Expedition");
                     CompletedTasks[9] = true;
                     Tasks[9].SetActive(true);
                 }
@@ -152,6 +163,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "BringFood":
                 if (CompletedTasks[10] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("PuffyCoat");
                     CompletedTasks[10] = true;
                     Tasks[10].SetActive(true);
                 }

@@ -21,6 +21,8 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject GiantMeatball;
     public NPC ChefMiti;
 
+    public CosmeticUnlocker CosmeticUnlocker;
+
     [HideInInspector] public bool PunchedMafia = false;
     [HideInInspector] public bool PunchedCustomer = false;
     [HideInInspector] public bool AteSpaghetti = false;
@@ -54,6 +56,9 @@ public class ItalyTaskManager : MonoBehaviour
 
     public void Update()
     {
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
+
         if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
@@ -80,6 +85,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "BeatUpMafiaMembers":
                 if (TaskFinished[1] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Fedora");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[1].SetActive(true);
@@ -117,6 +123,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "FlowersToGirl":
                 if (TaskFinished[5] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Flower");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[5].SetActive(true);
@@ -162,6 +169,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "GiantMeatball":
                 if(TaskFinished[10] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("ChefItaly");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     Tasks[10].SetActive(true);

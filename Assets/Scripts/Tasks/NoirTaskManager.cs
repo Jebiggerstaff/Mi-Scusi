@@ -9,12 +9,16 @@ public class NoirTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
 
+    public CosmeticUnlocker CosmeticUnlocker;
+
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
 
     [Header("Murder GameObjects")]
     public GameObject[] Suspects = new GameObject[0];
     public GameObject MurderWeapon;
+
+
 
     void Start()
     {
@@ -33,6 +37,10 @@ public class NoirTaskManager : MonoBehaviour
 
     public void Update()
     {
+
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
+
         if (controls.UI.TaskMenu.ReadValue<float>() > 0)
         {
             TaskCompleteText.SetActive(false);
