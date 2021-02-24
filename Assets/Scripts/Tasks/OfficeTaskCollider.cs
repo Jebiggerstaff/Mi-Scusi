@@ -50,14 +50,17 @@ public class OfficeTaskCollider : MonoBehaviour
         if (other.gameObject == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
+            Destroy(other.gameObject);
         }
         if (other.gameObject == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
+            Destroy(other.gameObject);
         }
         if (other.gameObject == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
         {
             OfficeTaskManager.coffeePartsCollected++;
+            Destroy(other.gameObject);
         }
         #endregion
         #region CoffeeToBoss

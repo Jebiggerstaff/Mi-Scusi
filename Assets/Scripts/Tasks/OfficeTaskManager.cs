@@ -12,6 +12,8 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject Player;
     public GameObject TaskCompleteText;
     public GameObject TaskList;
+    public NPC DustyTheJanitor;
+    public NPC JaniceTheReceptionist;
 
     [Header("Task Objects")]
 
@@ -79,6 +81,13 @@ public class OfficeTaskManager : MonoBehaviour
             case "RefilWater":
                 Tasks[0].SetActive(true);
                 PaperStack1.SetActive(true);
+                DustyTheJanitor.sentences = new string[2];
+                DustyTheJanitor.sentences[0] = "Whelp, much obliged new guy!";
+                DustyTheJanitor.sentences[1] = "Well, I think I'm gonna take a nap now, so see yah later.";
+
+                JaniceTheReceptionist.sentences = new string[2];
+                JaniceTheReceptionist.sentences[0] = "Did you help Barnaby?";
+                JaniceTheReceptionist.sentences[1] = "Very good, head upstairs, I'm sure someone could use your help.";
                 break;
             case "HelpCoworker":
                 Tasks[1].SetActive(true);
