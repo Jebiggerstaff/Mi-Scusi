@@ -175,6 +175,7 @@ public class NewAIMan : MonoBehaviour
 
                 if (stunCount > 0)
                 {
+
                     if (stunCount > 30)
                     {
                         stunCount = 30;
@@ -184,14 +185,22 @@ public class NewAIMan : MonoBehaviour
                     stunCount -= Time.deltaTime;
 
                     if (anim != null)
+                    {
+
+                        SetRagdollWeight(1);
                         anim.SetBool("Stunned", true);
+                    }
 
 
                     if (stunCount <= 0)
                     {
                         hp = maxHP;
                         if (anim != null)
+                        {
+
+                            SetRagdollWeight(0);
                             anim.SetBool("Stunned", false);
+                        }
                     }
                 }
 
@@ -435,6 +444,13 @@ public class NewAIMan : MonoBehaviour
         if (hp <= 0)
         {
 
+            if(anim != null)
+            {
+                anim.SetTrigger("Hit");
+                anim.SetInteger("RandomHit", Random.Range(0, 4));
+                anim.SetLayerWeight(anim.GetLayerIndex("Ragdoll"), 1f);
+
+            }
             stunCount += time;
             var sound = GetComponent<SoundOnCollision>();
             if(sound == null)
@@ -446,8 +462,32 @@ public class NewAIMan : MonoBehaviour
                 sound.tryPlayAudio(sound.KnockedOut);
             }
         }
+        else
+        {
+            if(anim != null)
+            {
+                anim.SetTrigger("Hit");
+                anim.SetInteger("RandomHit", Random.Range(0, 4));
+                SetRagdollWeight(1);
+                StartCoroutine(SetRagdollWaitAfterTime(0, 1));
+            }
+        }
     }
     
+    IEnumerator SetRagdollWaitAfterTime(float f, float t)
+    {
+        yield return new WaitForSeconds(t);
+        SetRagdollWeight(f);
+    }
+    void SetRagdollWeight(float f)
+    {
+        if(f == 0)
+        {
+            anim.ResetTrigger("Hit");
+        }
+        anim.SetLayerWeight(anim.GetLayerIndex("Ragdoll"), f);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
 
