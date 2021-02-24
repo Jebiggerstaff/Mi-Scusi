@@ -168,6 +168,13 @@ public class NewYorkTaskManager : MonoBehaviour
                     Tasks[10].SetActive(true);
                 }
                 break;
+            case "777":
+                if(CompletedTasks[11] == false)
+                {
+                    CompletedTasks[11] = true;
+                    Tasks[11].SetActive(true);
+                }
+                break;
         }
 
     }

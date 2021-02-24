@@ -34,6 +34,10 @@ public class CasinoWheel : MonoBehaviour
         {
             unhideThisOne.SetActive(true);
             hideThisOne.SetActive(false);
+            if(FindObjectOfType<NewYorkTaskManager>() != null)
+            {
+                FindObjectOfType<NewYorkTaskManager>().TaskCompleted("777");
+            }
         }
 
     }

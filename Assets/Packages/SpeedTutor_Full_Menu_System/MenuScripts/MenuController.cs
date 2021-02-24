@@ -371,6 +371,7 @@ namespace SpeedTutorMainMenuSystem
             if (buttonType == "Exit")
             {
                 Debug.Log("YES QUIT!");
+                PlayerPrefs.Save();
                 Application.Quit();
             }
 
@@ -597,12 +598,12 @@ namespace SpeedTutorMainMenuSystem
 
         public void LoadCharacter()
         {
+            PlayerPrefs.Save();
             var modelLoaders = FindObjectsOfType<CharacterModelLoader>();
             foreach(var modelLoader in modelLoaders)
             {
                 modelLoader.LoadAllModels();
             }
-            PlayerPrefs.Save();
         }
         public void SetHat(int cosmetic)
         {
