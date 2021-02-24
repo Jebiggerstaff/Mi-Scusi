@@ -734,9 +734,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 21c13c88a919fda4880a9d698ce3b84e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -780,7 +780,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1683,14 +1683,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e8dd119b3526c49baf7b50e336a983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  CollideWithWater: {fileID: 0}
+  audioSource: {fileID: 5244568825295578936}
+  CollideWithWater: {fileID: 8300000, guid: 21c13c88a919fda4880a9d698ce3b84e, type: 3}
   CollideWithGround: {fileID: 0}
   CollideWithPlayer: {fileID: 0}
   PunchedByPlayer: {fileID: 0}
   AIPunchedByPlayer: {fileID: 0}
-  AIPunchesPlayer: {fileID: 0}
-  KnockedOut: {fileID: 0}
+  AIPunchesPlayer: {fileID: 8300000, guid: ccaabdcb1bdd9414a8e2e593cf23ee0c, type: 3}
+  KnockedOut: {fileID: 8300000, guid: 88049be5d8c322744a04fef18807e918, type: 3}
 --- !u!114 &5992005206104980708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6778,6 +6778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 15
   animator: {fileID: 867703356}
+  fadeCube: {fileID: 0}
 --- !u!1 &7440894493512646374
 GameObject:
   m_ObjectHideFlags: 0
