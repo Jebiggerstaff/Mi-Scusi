@@ -579,7 +579,8 @@ public class NewAIMan : MonoBehaviour
     {
         if(costumes.Length > 0)
         {
-            NewAiManSMR.sharedMesh = costumes[Random.Range(0, costumes.Length)];
+            int i= Random.Range(0, costumes.Length);
+            NewAiManSMR.sharedMesh = costumes[i];
         }
     }
 
