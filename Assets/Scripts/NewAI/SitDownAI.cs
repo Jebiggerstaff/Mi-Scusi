@@ -23,6 +23,7 @@ public class SitDownAI : NewAIMan
 
         if(!offByDistance)
         {
+            base.Update();
 
             if (sitting)
             {
@@ -49,7 +50,6 @@ public class SitDownAI : NewAIMan
             else
             {
 
-                base.Update();
             }
         }
 
