@@ -271,10 +271,16 @@ public class NewAIMan : MonoBehaviour
     }
     public void disableAgent()
     {
-        agent.enabled = false;
+        if(agent.enabled)
+            agent.enabled = false;
+
+
         gameObject.layer = LayerMask.NameToLayer("Ground");
-        if(GetComponent<Rigidbody>() != null)
-            GetComponent<Rigidbody>().isKinematic = false;
+
+        var rb = GetComponent<Rigidbody>();
+        if(rb != null)
+            if(rb.isKinematic)
+                rb.isKinematic = false;
 
     }
 

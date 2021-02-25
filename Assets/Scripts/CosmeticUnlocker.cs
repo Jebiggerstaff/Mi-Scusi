@@ -105,6 +105,8 @@ public class CosmeticUnlocker : MonoBehaviour
         {
             PlayerPrefs.SetString(CosmeticSaveName, PlayerPrefs.GetString(CosmeticSaveName, "") + CosmeticBufferString + name + CosmeticBufferString);
             PlayerPrefs.Save();
+
+            //TODO: SHOW COSMETIC UNLOCKED POPUP
         }
 
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));

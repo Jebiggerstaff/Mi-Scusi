@@ -20,7 +20,6 @@ public class SitDownAI : NewAIMan
 
     public override void Update()
     {
-        base.Update();
 
         if(!offByDistance)
         {
@@ -46,6 +45,11 @@ public class SitDownAI : NewAIMan
 
 
 
+            }
+            else
+            {
+
+                base.Update();
             }
         }
 
