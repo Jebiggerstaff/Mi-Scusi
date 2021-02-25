@@ -93,6 +93,8 @@ public class NewAIMan : MonoBehaviour
     public virtual void Update()
     {
 
+
+
         if(!offByDistance)
         {
 
@@ -120,9 +122,12 @@ public class NewAIMan : MonoBehaviour
             if (grabbedByPlayer)
             {
                 disableAgent();
+                anim.SetBool("isGrabbed", true);
+                anim.speed = 1;
             }
             else
             {
+                anim.SetBool("isGrabbed", false);
                 if (!onGround)
                 {
                     disableAgent();
@@ -215,8 +220,10 @@ public class NewAIMan : MonoBehaviour
 
                 }
 
-
-                anim.speed = agent.speed / 3;
+                if (agent.enabled == true)
+                    anim.speed = agent.speed / 3;
+                else
+                    anim.speed = 1;
                 anim.speed = Mathf.Clamp(anim.speed, 0.25f, 2f);
                 if (anim != null)
                 {
@@ -454,7 +461,7 @@ public class NewAIMan : MonoBehaviour
             {
                 anim.SetTrigger("Hit");
                 anim.SetInteger("RandomHit", Random.Range(0, 4));
-                anim.SetLayerWeight(anim.GetLayerIndex("Ragdoll"), 1f);
+               SetRagdollWeight(1);
 
             }
             stunCount += time;
