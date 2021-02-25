@@ -19,6 +19,7 @@ public class StillAIHolder
         newAI.GetComponent<NavMeshAgent>().speed = speed;
         newAI.maxHP = hp;
         newAI.destinations = new List<Vector3>();
+        newAI.destinations.Add(target);
         newAI.costume = costume;
         newAI.shovesPlayer = shovesPlayer;
         (newAI as StayStillAIMan).target = target;
