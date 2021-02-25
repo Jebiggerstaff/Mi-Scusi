@@ -20,7 +20,6 @@ public class StillAIHolder
         newAI.maxHP = hp;
         newAI.destinations = new List<Vector3>();
         newAI.destinations.Add(target);
-        newAI.costume = costume;
         newAI.shovesPlayer = shovesPlayer;
         (newAI as StayStillAIMan).target = target;
         newAI.SetCostume();

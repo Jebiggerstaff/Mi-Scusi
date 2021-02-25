@@ -31,8 +31,9 @@ public class NewAIMan : MonoBehaviour
     float shoveCooldown = 0;
 
     [Header("Costumes")]
-    public int costume = 0;
-    public GameObject[] costumes;
+    public SkinnedMeshRenderer NewAiManSMR;
+    public Mesh[] costumes;
+    
 
     float percentStayChance = 0.25f;
     float timeToWait = 3f;
@@ -578,32 +579,7 @@ public class NewAIMan : MonoBehaviour
     {
         if(costumes.Length > 0)
         {
-
-            GameObject go = costumes[0];
-
-            if(costume >= 0 && costume < costumes.Length)
-            {
-                go = costumes[costume];
-            }
-            else
-            {
-                go = costumes[Random.Range(0, costumes.Length)];
-            }
-
-            SwitchCostume(go);
-
-        }
-    }
-    void SwitchCostume(GameObject go)
-    {
-        if(go != null)
-        {
-
-            foreach (var g in costumes)
-            {
-                g.SetActive(false);
-            }
-            go.SetActive(true);
+            NewAiManSMR.sharedMesh = costumes[Random.Range(0, costumes.Length)];
         }
     }
 

@@ -23,7 +23,6 @@ public class AIHolder
         newAI.hp = hp;
         newAI.destinations = walkLocations;
         newAI.useRandomDestinations = !orderedDestinations;
-        newAI.costume = costume;
         newAI.shovesPlayer = shovesPlayer;
         newAI.SetCostume();
         newAI.GetComponent<NavMeshAgent>().Warp(startLocation);
