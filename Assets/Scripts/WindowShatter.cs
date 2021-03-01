@@ -32,13 +32,6 @@ public class WindowShatter : MonoBehaviour
                     if (NewYorkTaskManager.WindowsBroken == 15)
                         NewYorkTaskManager.TaskCompleted("ShatterWindows");
                 }
-                if (SceneManager.GetActiveScene().name == "Ship")
-                {
-                    CruiseShipTaskManager.ChinaBroken++;
-                    if (CruiseShipTaskManager.ChinaBroken == 25)
-                        NewYorkTaskManager.TaskCompleted("BreakChina");
-                }
-
 
                 Instantiate(destroyedVersion, transform.position, transform.rotation);
                 Destroy(gameObject);
@@ -52,14 +45,12 @@ public class WindowShatter : MonoBehaviour
         {
             if (platenum == 1)
             {
-                /*
-                if (SceneManager.GetActiveScene().name == "NewYork")
+                if (SceneManager.GetActiveScene().name == "Ship")
                 {
-                    NewYorkTaskManager.WindowsBroken++;
-                    if (NewYorkTaskManager.WindowsBroken == 15)
-                        NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                    CruiseShipTaskManager.ChinaBroken++;
+                    if (CruiseShipTaskManager.ChinaBroken == 25)
+                        CruiseShipTaskManager.TaskCompleted("BreakChina");
                 }
-                */
 
                 Instantiate(destroyedVersion, transform.position, transform.rotation);
                 Destroy(gameObject);
