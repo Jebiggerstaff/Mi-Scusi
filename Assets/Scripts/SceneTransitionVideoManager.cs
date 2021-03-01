@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class SceneTransitionVideoManager : MonoBehaviour
 {
@@ -32,35 +30,14 @@ public class SceneTransitionVideoManager : MonoBehaviour
             }
             else
             {
-                currentVideo = v.GetComponent<VideoPlayer>();
-                if(currentVideo.isPlaying == false)
-                {
-                    currentVideo.Play();
-                }
+                v.SetActive(true);
             }
         }
 
         //InvokeRepeating("SwapCheck", 1.5f, 0.25f);
 
     }
-    void SwapCheck()
-    {
-        if (currentVideo.isPlaying == false)
-        {
-            StartCoroutine(SwitchScene());
-            CancelInvoke("SwapCheck");
-        }
-    }
-    IEnumerator SwitchScene()
-    {
-        string level = data.sceneName;
-        Destroy(data.gameObject);
-        FindObjectOfType<StartSceneManager>().FadeScene(false);
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene(level);
-    }
 
     public CrossSceneData data;
     public List<GameObject> videos;
-    public VideoPlayer currentVideo;
 }

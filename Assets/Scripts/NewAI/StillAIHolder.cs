@@ -22,6 +22,7 @@ public class StillAIHolder
         newAI.destinations.Add(target);
         newAI.shovesPlayer = shovesPlayer;
         (newAI as StayStillAIMan).target = target;
+        newAI.costumeNumber = costume;
         newAI.SetCostume();
 
 

@@ -24,6 +24,8 @@ public class NewAIMan : MonoBehaviour
     [HideInInspector]
     public int hp;
 
+    public int costumeNumber;
+
     [Space]
     public bool shovesPlayer;
     float shoveForce;
@@ -579,9 +581,19 @@ public class NewAIMan : MonoBehaviour
     {
         if(costumes.Length > 0)
         {
+            
             int i= Random.Range(0, costumes.Length);
+            if(costumeNumber >= 0 && costumeNumber < costumes.Length)
+            {
+                i = costumeNumber;
+            }
             NewAiManSMR.sharedMesh = costumes[i];
         }
+    }
+
+    public void SetCostume(int i)
+    {
+
     }
 
 

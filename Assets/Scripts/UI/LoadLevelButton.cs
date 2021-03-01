@@ -12,12 +12,16 @@ public class LoadLevelButton : MonoBehaviour
     public GameObject nextpic;
 
     public int Trans = 1;
+    
 
     private void Awake()
     {
         controls = new MiScusiActions();
         controls.Enable();
+
+        
     }
+    
 
     public void TaskOnClick()
     {
@@ -36,14 +40,10 @@ public class LoadLevelButton : MonoBehaviour
 
     public void Update()
     {
-        if (Trans == 2)
+        if (controls.Player.Jump.triggered)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+            TaskOnClick();
         }
-
-        else if (controls.Player.Jump.triggered)
-        {
-            nextpic.SetActive(true);
-        }
+        
     }
 }

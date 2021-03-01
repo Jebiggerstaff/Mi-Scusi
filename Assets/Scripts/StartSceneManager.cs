@@ -76,31 +76,28 @@ public class StartSceneManager : MonoBehaviour
             case "Tutorial":
                 goToTransition = true;
                 //SceneManager.LoadScene(levelname);
-                data.videoIndex = 8;
+                data.videoIndex = 7;
                 break;
             case "Italy":
-                data.videoIndex = 1;
-                break;
-            case "California":
                 data.videoIndex = 0;
                 break;
             case "NewYork":
-                data.videoIndex = 2;
+                data.videoIndex = 1;
                 break;
             case "Noir":
-                data.videoIndex = 3;
+                data.videoIndex = 2;
                 break;
             case "Desert":
-                data.videoIndex = 4;
+                data.videoIndex = 3;
                 break;
             case "Office 1":
-                data.videoIndex = 5;
+                data.videoIndex = 4;
                 break;
             case "Ship":
-                data.videoIndex = 6;
+                data.videoIndex = 5;
                 break;
             case "Rio":
-                data.videoIndex = 7;
+                data.videoIndex = 6;
                 break;
             default:
                 data.videoIndex = 0;
