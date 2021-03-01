@@ -18,6 +18,8 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
 
+    public Text taskText;
+
     public CosmeticUnlocker CosmeticUnlocker;
 
     [Header("Collision Boxes")]
@@ -34,6 +36,7 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject[] MartBikes = new GameObject[0];
 
     public GameObject NextLevelBubble;
+
 
     [HideInInspector] public int SSStagsRemoved = 0;
     [HideInInspector] public int TrashPickedUp = 0;
@@ -78,6 +81,19 @@ public class NewYorkTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+
+        taskText.text = "Cut in line for a hot dog\n" +
+            "Help man at TechHQ move\n" +
+            "Remove the political competition\n" +
+            "Pick up the trash bags in the park (" + TrashPickedUp.ToString() + "/" + ParkTrash.Length.ToString() + ")\n" +
+            "Deface Street Slick Sam's 6 Tags (" + SSStagsRemoved.ToString() + "/6)\n" +
+            "Shatter 15 windows (" + WindowsBroken.ToString() + "/15)\n" +
+            "Eat at the South West cafe\n" +
+            "Cross the first street\n" +
+            "Return the 3 missing Blue Bikes (" + BikesReturned.ToString() + "/3)\n" +
+            "Deface the Tri-Gon headquarters\n" +
+            "Bring food to the construction worker\n" +
+            "Get lucky 777's";
     }
 
     public void TaskCompleted(string Task)
