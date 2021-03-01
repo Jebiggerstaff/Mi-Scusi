@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMeatball : MonoBehaviour
 {
-    static int numMeatballsCollected;
+    public static int numMeatballsCollected;
     public AudioClip plop;
 
     // Start is called before the first frame update

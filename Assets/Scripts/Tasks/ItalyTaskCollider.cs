@@ -7,7 +7,8 @@ public class ItalyTaskCollider : MonoBehaviour
 {
     ItalyTaskManager ItalyTaskManager = new ItalyTaskManager();
 
-    private int CoinsInFountain;
+    [HideInInspector]
+    public int CoinsInFountain;
 
 
     public void Start()

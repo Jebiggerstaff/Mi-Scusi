@@ -20,6 +20,9 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject NextLevel;
     public GameObject GiantMeatball;
     public NPC ChefMiti;
+    public ItalyTaskCollider fountainCollider;
+
+    public Text taskList;
 
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -66,6 +69,8 @@ public class ItalyTaskManager : MonoBehaviour
         }
         if (controls.UI.TaskMenu.ReadValue<float>() == 0)
             TaskList.SetActive(false);
+
+        taskList.text = "Speak to the lone Mafia Member **\nBeat up men in suits*\nBreak into Mafia HQ***\nCollect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5) ****\nGive the upset girl a flower\nEat spaghetti\nSteal from the shops\nGet some money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\nKnock out the angry customer\nHelp Chef Miti craft his meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
     }
 
     public void TaskCompleted(string Task)
