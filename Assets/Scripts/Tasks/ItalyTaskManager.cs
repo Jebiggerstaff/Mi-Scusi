@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class ItalyTaskManager : MonoBehaviour
 {
 
-    
-
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
 
@@ -34,7 +32,7 @@ public class ItalyTaskManager : MonoBehaviour
 
     private bool[] TaskFinished = new bool[11];
     private bool menuOpen;
-    private string CurrentMainTask = "Beat up men in suits*\n";
+    private string CurrentMainTask = "Beat up men in suits\n";
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -83,12 +81,12 @@ public class ItalyTaskManager : MonoBehaviour
         }
 
         taskList.text = CurrentMainTask +
-            "Give the upset girl a flower\n" +
+            "Give upset girl a flower\n" +
             "Eat spaghetti\n" +
             "Steal from the shops\n" +
-            "Get some money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\n" +
-            "Knock out the angry customer\n" +
-            "Help Chef Miti craft his meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
+            "Get money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\n" +
+            "Knock out angry customer\n" +
+            "Help Chef Miti make meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
     }
 
 
@@ -101,7 +99,8 @@ public class ItalyTaskManager : MonoBehaviour
                 if (TaskFinished[0] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(true);
+                    TaskCompleteText.SetActive(false);
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
                     CurrentMainTask = CurrentMainTask = "Infiltrate Mafia HQ\n";
@@ -112,7 +111,8 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     CosmeticUnlocker.UnlockOutfit("Fedora");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(true);
+                    TaskCompleteText.SetActive(false);
                     //Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
                     CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
@@ -122,7 +122,8 @@ public class ItalyTaskManager : MonoBehaviour
                 if (TaskFinished[2] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(true);
+                    TaskCompleteText.SetActive(false);
                     //Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
             }
@@ -132,6 +133,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[0].SetActive(true);
                     TaskFinished[3] = true;
                     NextLevel.SetActive(true);
@@ -142,6 +144,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
                 }
@@ -152,6 +155,7 @@ public class ItalyTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Flower");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[5].SetActive(true);
                     TaskFinished[5] = true;
                 }
@@ -161,6 +165,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
                 }
@@ -170,6 +175,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
                 }
@@ -179,6 +185,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[8].SetActive(true);
                     TaskFinished[8] = true;
                 }
@@ -188,6 +195,7 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[9].SetActive(true);
                     TaskFinished[9] = true;
                 }
@@ -198,6 +206,7 @@ public class ItalyTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("ChefItaly");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
+                    TaskUpdatedText.SetActive(false);
                     Tasks[10].SetActive(true);
                     TaskFinished[10] = true;
 

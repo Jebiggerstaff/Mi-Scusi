@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WindBox : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class WindBox : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up*windPower);
+            if (SceneManager.GetActiveScene().name == "Ship")
+                other.gameObject.GetComponent<Rigidbody>().AddForce(-this.transform.up * windPower);
+            else
+                other.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up*windPower);
+            
         }
     }
 }

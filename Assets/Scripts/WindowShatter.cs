@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class WindowShatter : MonoBehaviour
 {
     public NewYorkTaskManager NewYorkTaskManager;
+    public CruiseShipTaskManager CruiseShipTaskManager;
     public GameObject destroyedVersion;
 
     public int platenum = 0;
@@ -15,6 +16,8 @@ public class WindowShatter : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "NewYork")
             NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
+        if (SceneManager.GetActiveScene().name == "Ship")
+            CruiseShipTaskManager = GameObject.Find("TaskUI").GetComponent<CruiseShipTaskManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +31,12 @@ public class WindowShatter : MonoBehaviour
                     NewYorkTaskManager.WindowsBroken++;
                     if (NewYorkTaskManager.WindowsBroken == 15)
                         NewYorkTaskManager.TaskCompleted("ShatterWindows");
+                }
+                if (SceneManager.GetActiveScene().name == "Ship")
+                {
+                    CruiseShipTaskManager.ChinaBroken++;
+                    if (CruiseShipTaskManager.ChinaBroken == 25)
+                        NewYorkTaskManager.TaskCompleted("BreakChina");
                 }
 
 

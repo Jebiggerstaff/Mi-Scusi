@@ -19,6 +19,13 @@ public class BoatMap : MonoBehaviour
     public GameObject RightTurnButton;
     public GameObject ForwardButton;
 
+    CruiseShipTaskManager cruiseShipTaskManager = new CruiseShipTaskManager();
+
+    public void Start()
+    {
+        cruiseShipTaskManager = GameObject.Find("TaskUI").GetComponent<CruiseShipTaskManager>();
+    }
+
     void FixedUpdate()
     {
 
@@ -91,6 +98,10 @@ public class BoatMap : MonoBehaviour
 
     private void Update()
     {
+        if (goingForward || turningLeft || turningRight)
+        {
+            cruiseShipTaskManager.TaskCompleted("HijackTheShip");
+        }
 
         if (goingForward)
         {
