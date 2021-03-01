@@ -31,13 +31,17 @@ public class SceneTransitionVideoManager : MonoBehaviour
             else
             {
                 v.SetActive(true);
+
+                btn.pics = v.GetComponent<LevelImageHolder>().pictures;
+                btn.index = data.videoIndex;
+                btn.picsSet = true;
             }
         }
 
-        //InvokeRepeating("SwapCheck", 1.5f, 0.25f);
 
     }
 
     public CrossSceneData data;
     public List<GameObject> videos;
+    public LoadLevelButton btn;
 }
