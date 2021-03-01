@@ -16,6 +16,7 @@ public class ItalyTaskManager : MonoBehaviour
     [Header("Gameobjects")]
     public GameObject Player;
     public GameObject TaskCompleteText;
+    public GameObject TaskUpdatedText;
     public GameObject TaskList;
     public GameObject NextLevel;
     public GameObject GiantMeatball;
@@ -32,6 +33,8 @@ public class ItalyTaskManager : MonoBehaviour
     [HideInInspector] public int DocumentsCollected = 0;
 
     private bool[] TaskFinished = new bool[11];
+    private bool menuOpen;
+    private string CurrentMainTask = "Beat up men in suits*\n";
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -62,16 +65,32 @@ public class ItalyTaskManager : MonoBehaviour
         if (CosmeticUnlocker == null)
             CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
 
-        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
+        if (controls.UI.TaskMenu.triggered && menuOpen == false)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
+            menuOpen = true;
         }
-        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
+        else if (controls.UI.TaskMenu.triggered && menuOpen == true)
+        {
             TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
-        taskList.text = "Speak to the lone Mafia Member **\nBeat up men in suits*\nBreak into Mafia HQ***\nCollect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5) ****\nGive the upset girl a flower\nEat spaghetti\nSteal from the shops\nGet some money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\nKnock out the angry customer\nHelp Chef Miti craft his meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
+        if (TaskFinished[2] == true)
+        {
+            CurrentMainTask = "Collect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5)\n";
+        }
+
+        taskList.text = CurrentMainTask +
+            "Give the upset girl a flower\n" +
+            "Eat spaghetti\n" +
+            "Steal from the shops\n" +
+            "Get some money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\n" +
+            "Knock out the angry customer\n" +
+            "Help Chef Miti craft his meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
     }
+
 
     public void TaskCompleted(string Task)
     {
@@ -83,8 +102,9 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
-                    Tasks[0].SetActive(true);
+                    //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
+                    CurrentMainTask = CurrentMainTask = "Infiltrate Mafia HQ\n";
                 }
                 break;
             case "BeatUpMafiaMembers":
@@ -93,8 +113,9 @@ public class ItalyTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Fedora");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
-                    Tasks[1].SetActive(true);
+                    //Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
+                    CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
                 }
                 break;
             case "InfiltrateMafiaHQ":
@@ -102,16 +123,16 @@ public class ItalyTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
-                    Tasks[2].SetActive(true);
+                    //Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
-                }
+            }
                 break;
             case "Collect5documents":
                 if (TaskFinished[3] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
-                    Tasks[3].SetActive(true);
+                    Tasks[0].SetActive(true);
                     TaskFinished[3] = true;
                     NextLevel.SetActive(true);
                 }

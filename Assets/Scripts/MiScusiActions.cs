@@ -452,7 +452,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Task Menu "",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""97db8dcb-64fb-4c07-ae08-b0b1721d22a4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

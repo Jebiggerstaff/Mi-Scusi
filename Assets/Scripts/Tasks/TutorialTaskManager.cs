@@ -12,6 +12,7 @@ public class TutorialTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
+    private bool menuOpen;
 
     [HideInInspector] public bool Pickedup = false;
     [HideInInspector] public bool Punched=false;
@@ -32,13 +33,17 @@ public class TutorialTaskManager : MonoBehaviour
 
     public void Update()
     {
-        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
+        if (controls.UI.TaskMenu.triggered && menuOpen == false)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
+            menuOpen = true;
         }
-        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
+        else if (controls.UI.TaskMenu.triggered && menuOpen == true)
+        {
             TaskList.SetActive(false);
+            menuOpen = false;
+        }
     }
 
     public void TaskCompleted(string Task)

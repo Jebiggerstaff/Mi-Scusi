@@ -35,7 +35,7 @@ public class OfficeTaskManager : MonoBehaviour
     bool CoffeeSpawned = false;
 
     public CosmeticUnlocker CosmeticUnlocker;
-
+    private bool menuOpen;
 
     public void Start()
     {
@@ -69,13 +69,17 @@ public class OfficeTaskManager : MonoBehaviour
         if (CosmeticUnlocker == null)
             CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
 
-        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
+        if (controls.UI.TaskMenu.triggered && menuOpen == false)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
+            menuOpen = true;
         }
-        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
+        else if (controls.UI.TaskMenu.triggered && menuOpen == true)
+        {
             TaskList.SetActive(false);
+            menuOpen = false;
+        }
     }
 
     public void TaskCompleted(string Task)

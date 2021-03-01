@@ -11,6 +11,7 @@ public class NewYorkTaskManager : MonoBehaviour
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
     bool[] CompletedTasks;
+    private bool menuOpen;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -66,13 +67,17 @@ public class NewYorkTaskManager : MonoBehaviour
         if (CosmeticUnlocker == null)
             CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
 
-        if (controls.UI.TaskMenu.ReadValue<float>() > 0)
+        if (controls.UI.TaskMenu.triggered && menuOpen == false)
         {
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
+            menuOpen = true;
         }
-        if (controls.UI.TaskMenu.ReadValue<float>() == 0)
+        else if (controls.UI.TaskMenu.triggered && menuOpen == true)
+        {
             TaskList.SetActive(false);
+            menuOpen = false;
+        }
     }
 
     public void TaskCompleted(string Task)
