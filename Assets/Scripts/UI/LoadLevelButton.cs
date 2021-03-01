@@ -7,17 +7,18 @@ public class LoadLevelButton : MonoBehaviour
 {
     private MiScusiActions controls;
 
-    public int index = 4;
+    public int index;
+    public GameObject[] pics;
+    public bool picsSet;
+    int currentObj;
 
-    public GameObject nextpic;
-
-    public int Trans = 1;
-    
 
     private void Awake()
     {
         controls = new MiScusiActions();
         controls.Enable();
+
+        currentObj = 0;
 
         
     }
@@ -25,17 +26,25 @@ public class LoadLevelButton : MonoBehaviour
 
     public void TaskOnClick()
     {
-        if (Trans == 1)
-        {
-            nextpic.SetActive(true);
-        }
-
-        else if (Trans == 2)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
-        }
-
         
+        if(picsSet)
+        {
+
+            currentObj++;
+            if (currentObj >= pics.Length)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+
+            }
+            else
+            {
+                pics[currentObj - 1].SetActive(false);
+                pics[currentObj].SetActive(true);
+            }
+
+        }
+
+
     }
 
     public void Update()
