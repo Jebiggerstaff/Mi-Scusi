@@ -64,7 +64,7 @@ public class OfficeTaskCollider : MonoBehaviour
         }
         #endregion
         #region CoffeeToBoss
-        if (other.name == "CoffeeMugBoss" && name == "Boss")
+        if (other.name == "CoffeeMugBoss(Clone)" && name == "Boss")
         {
             OfficeTaskManager.TaskCompleted("GetBossCoffee");
         }
