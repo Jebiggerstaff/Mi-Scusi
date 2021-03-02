@@ -25,7 +25,7 @@ Shader "Roystan/Grass"
 	CGINCLUDE
 	#include "UnityCG.cginc"
 	#include "Autolight.cginc"
-	#include "Assets/ART/UnityGrassGeometryShader-master/Assets/Shaders/CustomTessellation.cginc"
+	#include "Assets/ART/CustomTessellation.cginc"
 	struct geometryOutput
 	{
 		float4 pos : SV_POSITION;
