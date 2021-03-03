@@ -866,6 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -2130,6 +2131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -2958,6 +2960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -3147,6 +3150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -5155,6 +5159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -6435,6 +6440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -6543,6 +6549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -7774,6 +7781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -9354,6 +9362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -12111,6 +12120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -14986,6 +14996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -17493,6 +17504,118 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517279240}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &518178198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 518178203}
+  - component: {fileID: 518178202}
+  - component: {fileID: 518178201}
+  - component: {fileID: 518178200}
+  - component: {fileID: 518178199}
+  m_Layer: 0
+  m_Name: BossStache
+  m_TagString: CanBeGrabbed
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &518178199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518178198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47033846, y: 0.10289116, z: 0.12684023}
+  m_Center: {x: -0.000000014901161, y: -0.014746152, z: 0.0109708905}
+--- !u!54 &518178200
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518178198}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
+--- !u!23 &518178201
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518178198}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 059716ac1fae8b842bf12cb3868c65c5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &518178202
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518178198}
+  m_Mesh: {fileID: 1055341584331775629, guid: 91ef4809dc270394ba00325e021709e5, type: 3}
+--- !u!4 &518178203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518178198}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 36.1, y: 73.59, z: -6.78}
+  m_LocalScale: {x: 12.392447, y: 12.392447, z: 12.392447}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!1001 &518505197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17604,6 +17727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -22456,6 +22580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -22615,6 +22740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -23456,6 +23582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -26487,6 +26614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -27569,6 +27697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -29073,6 +29202,12 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.1817578
       objectReference: {fileID: 0}
+    - target: {fileID: 9051696664859250364, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4379407390009927649, guid: bf0cb84b6d4aedc4d910e7246a69b22d,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 5359267096428534543, guid: dbfbbf677a9bf9e4aafd07fb365c85bb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dbfbbf677a9bf9e4aafd07fb365c85bb, type: 3}
@@ -29187,6 +29322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -29386,6 +29522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -30327,6 +30464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -30528,6 +30666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -30822,6 +30961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -31017,6 +31157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -31544,6 +31685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -31735,6 +31877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -33383,6 +33526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -34647,6 +34791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -35208,6 +35353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -35411,6 +35557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -36910,6 +37057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -37553,6 +37701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -39056,6 +39205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -41112,6 +41262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -41443,6 +41594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -42259,6 +42411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -45176,6 +45329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -51430,6 +51584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -51718,6 +51873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -52513,6 +52669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -55056,6 +55213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -55613,6 +55771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -55796,6 +55955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -56969,6 +57129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -57230,6 +57391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -58123,6 +58285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -58778,6 +58941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -62248,6 +62412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -63681,6 +63846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -65500,6 +65666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -65689,6 +65856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -65803,6 +65971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -65923,6 +66092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -66933,6 +67103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -68099,6 +68270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -68429,6 +68601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -68543,6 +68716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -69448,6 +69622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -69766,6 +69941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -69943,6 +70119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -70394,6 +70571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -70965,6 +71143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -71451,6 +71630,201 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1726133001}
     m_Modifications:
+    - target: {fileID: 1908593971925706547, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000075800344
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908593971925706547, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.68407124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908593971925706547, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000005364418
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875162700762626301, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000006889226
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875162700762626301, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6731088
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875162700762626301, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000010028016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951385946580901362, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000016475458
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951385946580901362, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.6998098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951385946580901362, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0050297957
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043342259487870370, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.53192735
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043342259487870370, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.27953038
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043342259487870370, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.008752456
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111791075125355172, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.42333835
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111791075125355172, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.6525473
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111791075125355172, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0017420761
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239254104652205778, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000003668845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239254104652205778, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5879832
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239254104652205778, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000036833808
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333609743258736330, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0000030023511
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333609743258736330, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.86373377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333609743258736330, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000053942204
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575351052908427049, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000042604515
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575351052908427049, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6730947
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575351052908427049, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00000064936467
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616501685379362144, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000001487175
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616501685379362144, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.75597703
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616501685379362144, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.000004751608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357028384487114417, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000003597932
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357028384487114417, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.6840713
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357028384487114417, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823912968142806555, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000025056581
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823912968142806555, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.67198503
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823912968142806555, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000034710392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895687105078277178, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000002757879
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895687105078277178, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.0813698
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895687105078277178, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000041648746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083967081092744024, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000007011433
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083967081092744024, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.1500014
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083967081092744024, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000012706732
+      objectReference: {fileID: 0}
     - target: {fileID: 5359267096428534543, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
       propertyPath: ChatBackGround
@@ -71552,6 +71926,111 @@ PrefabInstance:
       propertyPath: NPCCharacter
       value: 
       objectReference: {fileID: 1721350718}
+    - target: {fileID: 5553768324626930439, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.00000059767626
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553768324626930439, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.0813535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553768324626930439, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000052824616
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563508457968580873, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.53191996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563508457968580873, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.2795352
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563508457968580873, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.011923267
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721029830151652579, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0000010987278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721029830151652579, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.863734
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721029830151652579, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000050887465
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122780212697354041, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000026421221
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122780212697354041, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5038549
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122780212697354041, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.011544433
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367171554793108026, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 17.634083
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367171554793108026, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 50.714096
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367171554793108026, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -6.584961
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165782859248976312, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0000034842815
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165782859248976312, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.1499997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165782859248976312, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000034809054
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242285243113443091, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.4233495
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242285243113443091, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.6525757
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242285243113443091, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0029816926
+      objectReference: {fileID: 0}
     - target: {fileID: 8519918771183664769, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
       propertyPath: m_IsKinematic
@@ -71720,17 +72199,17 @@ PrefabInstance:
     - target: {fileID: 8519918771183664831, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 17.646446
+      value: 17.640263
       objectReference: {fileID: 0}
     - target: {fileID: 8519918771183664831, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 49.69256
+      value: 51.409813
       objectReference: {fileID: 0}
     - target: {fileID: 8519918771183664831, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -6.607971
+      value: -6.59647
       objectReference: {fileID: 0}
     - target: {fileID: 8519918771183664835, guid: dbfbbf677a9bf9e4aafd07fb365c85bb,
         type: 3}
@@ -72166,6 +72645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -72614,6 +73094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -73619,6 +74100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -74031,6 +74513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -74384,6 +74867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -75251,6 +75735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -76173,6 +76658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -77606,6 +78092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -78247,6 +78734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -78654,6 +79142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -78950,6 +79439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -79396,6 +79886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -81867,6 +82358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -81981,6 +82473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -82101,6 +82594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -82277,6 +82771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -83848,6 +84343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -84088,6 +84584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -84742,6 +85239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -85925,6 +86423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -86504,6 +87003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
@@ -86725,6 +87225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NewYorkTaskManager: {fileID: 0}
+  CruiseShipTaskManager: {fileID: 0}
   destroyedVersion: {fileID: 343458081143975618, guid: 4c7d4feb4833fb541a96d31d2ef9f017,
     type: 3}
   platenum: 0
