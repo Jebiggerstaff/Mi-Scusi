@@ -17,6 +17,7 @@ public class HandContact : MonoBehaviour
     public bool Left;
 
     NewAIMan grabbedAI;
+    PoolNoodle grabbedNoodle;
     FixedJoint joint;
     
     //Have joint/grabbed
@@ -184,6 +185,12 @@ public class HandContact : MonoBehaviour
 
                 }
 
+                var pn = col.gameObject.GetComponentInParent<PoolNoodle>();
+                if(pn != null)
+                {
+                    pn.handCount++;
+                    grabbedNoodle = pn;
+                }
 
                 /*
                 //too check for grab constraints
@@ -244,6 +251,12 @@ public class HandContact : MonoBehaviour
         {
             grabbedAI.grabbedByPlayer = false;
             grabbedAI = null;
+        }
+
+        if(grabbedNoodle != null)
+        {
+            grabbedNoodle.handCount--;
+            grabbedNoodle = null;
         }
 
 
