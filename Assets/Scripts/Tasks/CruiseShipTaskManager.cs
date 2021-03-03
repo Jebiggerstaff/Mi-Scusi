@@ -24,7 +24,7 @@ public class CruiseShipTaskManager : MonoBehaviour
     private string CurrentMainTask = "Take Chef's Clothes\n";
     [HideInInspector] public int MenThrownInWater = 0;
     [HideInInspector] public int ChinaBroken = 0;
-
+    [HideInInspector] public int BrigandsHit = 0;
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -146,5 +146,12 @@ public class CruiseShipTaskManager : MonoBehaviour
                 break;
         }
     }
-
+    public void HitBrigand()
+    {
+        BrigandsHit++;
+        if(BrigandsHit >= 6)
+        {
+            TaskCompleted("SavePrincess");
+        }
+    }
 }

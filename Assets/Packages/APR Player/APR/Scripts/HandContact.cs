@@ -18,6 +18,7 @@ public class HandContact : MonoBehaviour
 
     NewAIMan grabbedAI;
     PoolNoodle grabbedNoodle;
+    SuperSoakerOnOff grabbedSoaker;
     FixedJoint joint;
     
     //Have joint/grabbed
@@ -192,6 +193,13 @@ public class HandContact : MonoBehaviour
                     grabbedNoodle = pn;
                 }
 
+                var ss = col.gameObject.GetComponent<SuperSoakerOnOff>();
+                if(ss != null)
+                {
+                    ss.handCount++;
+                    grabbedSoaker = ss;
+                }
+
                 /*
                 //too check for grab constraints
                 if (col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
@@ -257,6 +265,12 @@ public class HandContact : MonoBehaviour
         {
             grabbedNoodle.handCount--;
             grabbedNoodle = null;
+        }
+
+        if(grabbedSoaker != null)
+        {
+            grabbedSoaker.handCount--;
+            grabbedSoaker = null;
         }
 
 

@@ -19,6 +19,11 @@ public class BoatMap : MonoBehaviour
     public GameObject RightTurnButton;
     public GameObject ForwardButton;
 
+    public GameObject lBorder;
+    public GameObject rBorder;
+    public GameObject bBorder;
+    public GameObject tBorder;
+
     CruiseShipTaskManager cruiseShipTaskManager = new CruiseShipTaskManager();
 
     public void Start()
@@ -100,12 +105,14 @@ public class BoatMap : MonoBehaviour
     {
         if (goingForward || turningLeft || turningRight)
         {
-            cruiseShipTaskManager.TaskCompleted("HijackTheShip");
+            
         }
 
         if (goingForward)
         {
-        marker.transform.position += transform.forward*movementSpeed; 
+            Vector3 proposedPosition = marker.transform.position + transform.forward * movementSpeed;
+            if (proposedPosition.z <= tBorder.transform.position.z && proposedPosition.z >= bBorder.transform.position.z && proposedPosition.x <= rBorder.transform.position.x && proposedPosition.x >= lBorder.transform.position.x)
+                marker.transform.position += transform.forward*movementSpeed; 
         }
 
         if (turningLeft)
@@ -116,6 +123,15 @@ public class BoatMap : MonoBehaviour
         {
             transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
 
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "NextLevelTarget")
+        {
+            cruiseShipTaskManager.TaskCompleted("HijackTheShip");
+            other.GetComponent<TriggerNextLevel>().loadNextLevel();
         }
     }
 

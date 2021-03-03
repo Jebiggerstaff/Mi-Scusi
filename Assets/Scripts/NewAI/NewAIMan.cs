@@ -477,6 +477,25 @@ public class NewAIMan : MonoBehaviour
             {
                 sound.tryPlayAudio(sound.KnockedOut);
             }
+
+
+            #region Task Bologna
+            if(gameObject.name == "Brigand")
+            {
+                if (FindObjectOfType<CruiseShipTaskManager>() != null)
+                {
+                    FindObjectOfType<CruiseShipTaskManager>().HitBrigand();
+                }
+            }
+            else if(gameObject.name == "SousChef")
+            {
+                if (FindObjectOfType<CruiseShipTaskManager>() != null)
+                {
+                    FindObjectOfType<CruiseShipTaskManager>().TaskCompleted("TakeChefClothes");
+                }
+            }
+            #endregion
+
         }
         else
         {

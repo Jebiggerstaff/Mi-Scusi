@@ -31,6 +31,12 @@ public class CruiseShipTaskColider : MonoBehaviour
             cruiseShipTaskManager.TaskCompleted("Waterslide");
         }
         #endregion
+        #region Mutiny
+        if(other.gameObject.name == "Captain")
+        {
+            cruiseShipTaskManager.TaskCompleted("Mutiny");
+        }
+        #endregion
 
     }
 }

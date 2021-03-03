@@ -12,11 +12,14 @@ public class WindBox : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
-            if (SceneManager.GetActiveScene().name == "Ship")
-                other.gameObject.GetComponent<Rigidbody>().AddForce(-this.transform.up * windPower);
-            else
-                other.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up*windPower);
-            
+            if (other.gameObject.GetComponent<NewAIMan>() != null)
+            {
+                other.gameObject.GetComponent<NewAIMan>().stun(0.25f);
+            }
+            other.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up * windPower);
+
+
+
         }
     }
 }
