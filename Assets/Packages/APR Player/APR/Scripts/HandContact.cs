@@ -161,6 +161,14 @@ public class HandContact : MonoBehaviour
                     CoffeeSpeed cof = new CoffeeSpeed();
                     cof.SpeedUp();
                 }
+                if(SceneManager.GetActiveScene().name == "Office" && col.gameObject.name == "BossStache")
+                {
+                    var rb = col.gameObject.GetComponent<Rigidbody>();
+                    
+                    rb.constraints = RigidbodyConstraints.None;
+
+                    FindObjectOfType<OfficeTaskManager>().TaskCompleted("BossStache");
+                }
 
 
                 hasJoint = true;

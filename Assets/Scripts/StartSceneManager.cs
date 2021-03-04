@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
+
+    public GameObject overlayStuff;
+    public bool isMenuScene = false;
+    public Vector3 playerSpawnLocation;
+
+    public Animator sceneFader;
+
+
+    public GameObject dataPrefab;
+    [HideInInspector]
+    public string TransitionScene = "SceneTransitions";
     // Start is called before the first frame update
     void Start()
     {
@@ -112,14 +123,4 @@ public class StartSceneManager : MonoBehaviour
     }
 
 
-
-    public GameObject overlayStuff;
-    public bool isMenuScene = false;
-    public Vector3 playerSpawnLocation;
-
-    public Animator sceneFader;
-
-
-    public GameObject dataPrefab;
-    public string TransitionScene = "SceneTransitions";
 }

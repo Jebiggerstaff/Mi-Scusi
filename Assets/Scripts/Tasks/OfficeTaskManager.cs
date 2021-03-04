@@ -31,6 +31,8 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject coffeeObject3;
     public GameObject CoffeePrefab;
 
+    public GameObject NextLevel;
+
     public int coffeePartsCollected=0;
     bool CoffeeSpawned = false;
 
@@ -109,6 +111,11 @@ public class OfficeTaskManager : MonoBehaviour
                 break;
             case "CopyButt":
                 Tasks[3].SetActive(true);
+                break;
+            case "BossStache":
+                Tasks[4].SetActive(true);
+                NextLevel.SetActive(true);
+                CosmeticUnlocker.UnlockOutfit("Mustache");
                 break;
         }
 
