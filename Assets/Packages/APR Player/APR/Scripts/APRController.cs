@@ -627,10 +627,6 @@ public class APRController : MonoBehaviour
 
 
         return ret;
-
-
-
-        
     }
 
     //---Getting Punched Functions--//
@@ -739,6 +735,8 @@ public class APRController : MonoBehaviour
 
             //feet force down
             FeetForceDown(APR_Parts[11], APR_Parts[12]);
+
+            ResetPlayerPose();
         }
     }
      
@@ -903,7 +901,7 @@ public class APRController : MonoBehaviour
             if(bendVal == 0)
             {
                 hasntBentCount += Time.deltaTime;
-                if (hasntBentCount >= 5f)
+                if (hasntBentCount >= 2f)
                 {
                     MouseYAxisBody = 0;
                     bendVal = 0;
