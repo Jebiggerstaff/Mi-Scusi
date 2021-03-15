@@ -645,10 +645,15 @@ public class NewAIMan : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Player_1") && (!(this is HostileAI)))
         {
+            Debug.Log(collision.gameObject.name);
+
             if (agent.enabled == true && shoveCooldown <= 0)
             {
-
-                StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+                var hc = collision.gameObject.GetComponent<HandContact>();
+                if(hc == null || !hc.isPunching())
+                {
+                    StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+                }
 
             }
         }

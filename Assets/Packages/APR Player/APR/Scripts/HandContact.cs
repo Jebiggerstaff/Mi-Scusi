@@ -29,6 +29,10 @@ public class HandContact : MonoBehaviour
     TutorialTaskManager TutorialTaskManager;
     ItalyTaskManager ItalyTaskManager;
 
+    Vector3 colliderOriginalSize;
+    BoxCollider myCollider;
+    bool holdPunch = false;
+
     private void Start()
     {
         grabbedAI = null;
@@ -38,6 +42,8 @@ public class HandContact : MonoBehaviour
     {
         controls = new MiScusiActions();
         controls.Enable();
+        myCollider = GetComponent<BoxCollider>();
+        colliderOriginalSize = myCollider.size;
     }
 
     
@@ -61,14 +67,83 @@ public class HandContact : MonoBehaviour
             }
             UnGrab();
         }
-        
+
+
+        punchingSizeDifference();
+    }
+    
+    public void holdPunching(float t = 0.4f)
+    {
+        StartCoroutine(keepPunch(t));
+    }
+    IEnumerator keepPunch(float t)
+    {
+        holdPunch = true;
+        yield return new WaitForSeconds(t);
+        holdPunch = false;
+    }
+    void punchingSizeDifference()
+    {
+        bool punchingThisArm;
+        float scale;
+        if (holdPunch)
+        {
+            punchingThisArm = true;
+            scale = 5;
+        }
+        else
+        {
+            scale = 2;
+            if (Left)
+            {
+                punchingThisArm = APR_Player.punchingLeft;
+
+            }
+            else
+            {
+                punchingThisArm = APR_Player.punchingRight;
+            }
+        }
+
+
+        if (punchingThisArm)
+        {
+            myCollider.size = colliderOriginalSize * scale;
+        }
+        else
+        {
+            myCollider.size = colliderOriginalSize;
+        }
     }
 
     bool correctLayerTags(Collision col)
     {
         return col.gameObject.tag == "CanBeGrabbed" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint;
     }
+    public bool isPunching()
+    {
+        bool punchingThisArm;
+        if(holdPunch)
+        {
+            punchingThisArm = true;
+        }
+        else
+        {
+            if (Left)
+            {
+                punchingThisArm = APR_Player.punchingLeft;
 
+            }
+            else
+            {
+                punchingThisArm = APR_Player.punchingRight;
+            }
+        }
+       
+
+        return punchingThisArm;
+
+    }
     void contact(bool left, Collision col)
     {
         bool punchingThisArm;
@@ -104,9 +179,6 @@ public class HandContact : MonoBehaviour
                         TutorialTaskManager.Punched = true;
                     }
                     //Mafia Punch Task
-                    Debug.Log(SceneManager.GetActiveScene().name);
-                    Debug.Log(ItalyTaskManager.PunchedMafia);
-                    Debug.Log(col.gameObject.name);
                     if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager.PunchedMafia == false && col.gameObject.name == "HatesOldPeople")
                     {
                         ItalyTaskManager.TaskCompleted("BeatUpMafiaMembers");

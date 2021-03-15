@@ -73,7 +73,8 @@ public class APRController : MonoBehaviour
     public float requiredForceToBeKO = 20f;
     public bool canPunch = true, poweringUpR = false, poweringUpL = false;
     public float punchForce = 15f;
-    private float punchTimer = 0f;
+    private float leftPunchTimer = 0f;
+    private float rightPunchTimer = 0f;
     private float punchDelay = 2f;
     private float punchPowerUp = 0f;
     public float powerRight = 0f;
@@ -168,13 +169,14 @@ public class APRController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        if (canPunch && punchTimer > punchDelay)
+        if (canPunch)
         {
             PlayerPunch();          
         }
 
-        punchTimer += .1f;
-        
+        leftPunchTimer += .1f;
+        rightPunchTimer += .1f;
+
         PlayerReach();
         
         if(useStepPrediction)
@@ -461,12 +463,20 @@ public class APRController : MonoBehaviour
     void PlayerPunch()
     {
         //RightPunch
-        Punch(false, APR_Parts[1], APR_Parts[3], APR_Parts[4], new Quaternion(0.3f, 0f, 0.5f, 1), new Quaternion(1.6f, 0f, -0.5f, 1), 
-            new Quaternion(1f, 0.04f, 0f, 1), new Quaternion(0.2f, 0, 0, 1), RightHand, UpperRightArmTarget, LowerRightArmTarget);
+        if(rightPunchTimer > punchDelay)
+        {
+            Punch(false, APR_Parts[1], APR_Parts[3], APR_Parts[4], new Quaternion(0.3f, 0f, 0.5f, 1), new Quaternion(1.6f, 0f, -0.5f, 1),
+                new Quaternion(1f, 0.04f, 0f, 1), new Quaternion(0.2f, 0, 0, 1), RightHand, UpperRightArmTarget, LowerRightArmTarget);
+
+        }
 
         //LeftPunch
-        Punch(true, APR_Parts[1], APR_Parts[5], APR_Parts[6], new Quaternion(-0.3f, 0f, -0.5f, 1), new Quaternion(-1.6f, 0f, 0.5f, 1),
-            new Quaternion(-1f, 0.04f, 0f, 1f), new Quaternion(-0.2f, 0, 0, 1), LeftHand, UpperLeftArmTarget, LowerLeftArmTarget);
+        if(leftPunchTimer > punchDelay)
+        {
+            Punch(true, APR_Parts[1], APR_Parts[5], APR_Parts[6], new Quaternion(-0.3f, 0f, -0.5f, 1), new Quaternion(-1.6f, 0f, 0.5f, 1),
+                new Quaternion(-1f, 0.04f, 0f, 1f), new Quaternion(-0.2f, 0, 0, 1), LeftHand, UpperLeftArmTarget, LowerLeftArmTarget);
+
+        }
         
     }
     
@@ -477,6 +487,9 @@ public class APRController : MonoBehaviour
         float inputValue;
         float punchPower;
         ParticleSystem p1, p2, p3, p4, p5;
+        float punchTimer;
+
+        #region Left Right Setup
         if(left)
         {
             punchPower = powerLeft;
@@ -487,6 +500,7 @@ public class APRController : MonoBehaviour
             p3 = PunchL3;
             p4 = PunchL4;
             p5 = PunchL5;
+            punchTimer = leftPunchTimer;
         }
         else
         {
@@ -498,10 +512,11 @@ public class APRController : MonoBehaviour
             p3 = PunchR3;
             p4 = PunchR4;
             p5 = PunchR5;
+            punchTimer = rightPunchTimer;
         }
+        #endregion
 
-
-        if(inputValue != 0)
+        if (inputValue != 0)
         {
 
             punchPower += Time.deltaTime;
@@ -538,6 +553,7 @@ public class APRController : MonoBehaviour
         {
             punchTimer = 0;
             punchingThisArm = false;
+            hand.GetComponent<HandContact>().holdPunching(0.45f);
 
             //Right hand punch release pose
             //body.GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.15f, 0.15f, 0, 1);
@@ -603,11 +619,13 @@ public class APRController : MonoBehaviour
         {
             powerLeft = punchPower;
             punchingLeft = punchingThisArm;
+            leftPunchTimer = punchTimer;
         }
         else
         {
             punchingRight = punchingThisArm;
             powerRight = punchPower;
+            rightPunchTimer = punchTimer;
         }
 
     }
