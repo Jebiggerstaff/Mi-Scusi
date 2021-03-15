@@ -11,6 +11,8 @@ public class ScooterDrive : MonoBehaviour
     RaycastHit hit;
     private GameObject player;
 
+    int driveCount = 0;
+
     private void Start()
     {
         player = GameObject.Find("FinalPlayer");
@@ -45,14 +47,18 @@ public class ScooterDrive : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<HandContact>() != null)
         {
-            driving = true;
+            driveCount++;
+            if(driveCount >= 2)
+                driving = true;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.GetComponent<HandContact>() != null)
         {
-            driving = false;
+            driveCount--;
+            if(driveCount < 2)
+                driving = false;
         }
     }
 

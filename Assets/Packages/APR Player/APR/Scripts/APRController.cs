@@ -1131,6 +1131,12 @@ public class APRController : MonoBehaviour
         if (controls.Player.Reset.ReadValue<float>() != 0f)
         { 
             resetTimer = resetTimer + .1f;
+            if(resetTimer > 5.5f)
+            {
+
+                LeftHand.GetComponent<HandContact>().UnGrab();
+                RightHand.GetComponent<HandContact>().UnGrab();
+            }
             if (resetTimer > 6f)
             {
                 APR_Parts[0].transform.position = RespawnPoint.position;
