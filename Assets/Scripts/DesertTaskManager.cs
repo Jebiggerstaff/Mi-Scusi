@@ -9,7 +9,7 @@ public class DesertTaskManager : MonoBehaviour
 {
 
     [Header("Tasks")]
-    public GameObject[] Tasks = new GameObject[0];
+    public GameObject[] Tasks;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -21,16 +21,14 @@ public class DesertTaskManager : MonoBehaviour
     public Text taskList;
 
     public CosmeticUnlocker CosmeticUnlocker;
-
-    [HideInInspector] public bool PunchedMafia = false;
-    [HideInInspector] public bool PunchedCustomer = false;
-    [HideInInspector] public bool AteSpaghetti = false;
-    [HideInInspector] public int DocumentsCollected = 0;
+    
+    [HideInInspector] public int guardsRemoved = 0;
+    [HideInInspector] public int AlienParts = 0;
+    [HideInInspector] public int ShopThingsMessedWith = 0;
 
     private bool[] TaskFinished;
     private bool menuOpen;
 
-    int guardsRemoved = 0;
 
     string MainTask;
 
