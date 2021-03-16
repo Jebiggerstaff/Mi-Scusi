@@ -11,7 +11,8 @@ public class ScooterDrive : MonoBehaviour
     RaycastHit hit;
     private GameObject player;
 
-    int driveCount = 0;
+    [HideInInspector]
+    public int driveCount = 0;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class ScooterDrive : MonoBehaviour
             Grounded = true;
         else
             Grounded = false;
+
+        driving = driveCount >= 2;
 
 
         if (driving&&Grounded)
@@ -43,23 +46,6 @@ public class ScooterDrive : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<HandContact>() != null)
-        {
-            driveCount++;
-            if(driveCount >= 2)
-                driving = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<HandContact>() != null)
-        {
-            driveCount--;
-            if(driveCount < 2)
-                driving = false;
-        }
-    }
+    
 
 }

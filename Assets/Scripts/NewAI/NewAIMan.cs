@@ -28,6 +28,7 @@ public class NewAIMan : MonoBehaviour
 
     [Space]
     public bool shovesPlayer;
+    public bool canBeQuipped = true;
     float shoveForce;
     float shoveAngle;
     float shoveCooldown = 0;
@@ -35,6 +36,7 @@ public class NewAIMan : MonoBehaviour
     [Header("Costumes")]
     public SkinnedMeshRenderer NewAiManSMR;
     public Mesh[] costumes;
+
     
 
     float percentStayChance = 0.25f;
@@ -573,26 +575,30 @@ public class NewAIMan : MonoBehaviour
    
     public void getQuipped(float time)
     {
-        quipped = true;
-        quipTime = time;
-
-        
-
-        Vector3 normalized = (transform.position - FindObjectOfType<APRController>().Root.transform.position).normalized;
-        normalized = Vector3.Cross(normalized, Vector3.up);
-        var l = Random.Range(0, 2) == 0;
-        if(!l)
+        if(canBeQuipped)
         {
-            normalized = -normalized;
+
+            quipped = true;
+            quipTime = time;
+
+
+
+            Vector3 normalized = (transform.position - FindObjectOfType<APRController>().Root.transform.position).normalized;
+            normalized = Vector3.Cross(normalized, Vector3.up);
+            var l = Random.Range(0, 2) == 0;
+            if (!l)
+            {
+                normalized = -normalized;
+            }
+            quipTarget = FindObjectOfType<APRController>().Root.transform.position + (normalized * quipDistance);
+
+            agent.speed = 7;
+            agent.acceleration = 5;
+
+
+
+            SetNewDestination(quipTarget);
         }
-        quipTarget = FindObjectOfType<APRController>().Root.transform.position + (normalized*quipDistance);
-
-        agent.speed = 7;
-        agent.acceleration = 5;
-
-
-
-        SetNewDestination(quipTarget);
     }
 
 
