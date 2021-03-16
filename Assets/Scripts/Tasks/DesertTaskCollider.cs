@@ -31,7 +31,15 @@ public class DesertTaskCollider : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-
+        if(other.name == "Parts" && name == "AlienShipCollider")
+        {
+            DesertTaskManager.AlienParts++;
+            if(DesertTaskManager.AlienParts == 3)
+            {
+                DesertTaskManager.TaskCompleted("Aliens");
+            }
+            Destroy(other.gameObject);
+        }
         
     }
     private void OnTriggerExit(Collider other)
