@@ -151,23 +151,34 @@ public class CharacterModelLoader : MonoBehaviour
 
     private void loadModelsFromInts()
     {
-
-        if (Hats.Length > 0)
+        if (hatModel == -1)
+            Hat.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Hats.Length > 0)
             Hat.GetComponent<SkinnedMeshRenderer>().sharedMesh = Hats[hatModel];
             //Hats[hatModel].SetActive(true);
-        if (Shirts.Length > 0)
+        if(shirtModel == -1)
+            Shirt.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Shirts.Length > 0)
             Shirt.GetComponent<SkinnedMeshRenderer>().sharedMesh = Shirts[shirtModel];
-            //Shirts[shirtModel].SetActive(true);
-        if (Coats.Length > 0)
+        //Shirts[shirtModel].SetActive(true);
+        if (coatModel == -1)
+            Coat.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Coats.Length > 0)
             Coat.GetComponent<SkinnedMeshRenderer>().sharedMesh = Coats[coatModel];
-            //Coats[coatModel].SetActive(true);
-        if (Pants.Length > 0)
+        //Coats[coatModel].SetActive(true);
+        if (pantsModel == -1)
+            Legs.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Pants.Length > 0)
             Legs.GetComponent<SkinnedMeshRenderer>().sharedMesh = Pants[pantsModel];
-            //Pants[pantsModel].SetActive(true);
-        if (Backpacks.Length > 0)
+        //Pants[pantsModel].SetActive(true);
+        if (backpackModel == -1)
+            Backpack.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Backpacks.Length > 0)
             Backpack.GetComponent<SkinnedMeshRenderer>().sharedMesh = Backpacks[backpackModel];
-            //Backpacks[backpackModel].SetActive(true);
-        if (Accessories.Length > 0)
+        //Backpacks[backpackModel].SetActive(true);
+        if (accessoryModel == -1)
+            Ass.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        else if (Accessories.Length > 0)
             Ass.GetComponent<SkinnedMeshRenderer>().sharedMesh = Accessories[accessoryModel];
             //Accessories[accessoryModel].SetActive(true);
         
