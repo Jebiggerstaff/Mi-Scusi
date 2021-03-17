@@ -17,8 +17,10 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject TaskUpdatedText;
     public GameObject TaskList;
     public GameObject NextLevel;
-
     public Text taskList;
+    [Space]
+    public Animator ufo;
+
 
     public CosmeticUnlocker CosmeticUnlocker;
     
@@ -191,7 +193,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
-                    
+                    ufo.enabled = true;
                 }
                 break;
         }
