@@ -25,22 +25,30 @@ public class SceneTransitionVideoManager : MonoBehaviour
 
         if(data.videoIndex == 4)
         {
-            if(data.prevIndex != 2)
+            if(data.prevIndex != 2 && data.prevIndex != 0)
             {
                 vid = videos[20];    //OFFICE TO NY INSTEAD OF ITALY TO NY
             }
         }
-        if(data.videoIndex == 10)
+        if(data.videoIndex == 10 )
         {
-            if(data.prevIndex == 9)
+            if(data.prevIndex == 9 && data.prevIndex != 0)
             {
-                vid = videos[19];
+                vid = videos[19];       //TO RUSSIA
             }
             else
             {
                 vid = videos[18];
             }
         }
+        if(data.videoIndex == 2)
+        {
+            if (data.prevIndex != 1 && data.prevIndex != 0)
+            {
+                vid = videos[17];    //ITALY FROM NOIR
+            }
+        }
+
 
         foreach(var v in videos)
         {

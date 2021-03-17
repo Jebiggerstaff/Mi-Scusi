@@ -48,6 +48,18 @@ public class StartSceneManager : MonoBehaviour
         }
 
         StartCoroutine(InitialSceneFade());
+
+
+        if (SceneManager.GetActiveScene().name == "Moon")
+        {
+            Physics.gravity = new Vector3(0, -6f, 0);
+            Physics.clothGravity = new Vector3(0, -6f, 0);
+        }
+        else
+        {
+            Physics.gravity = new Vector3(0, -25f, 0);
+            Physics.clothGravity = new Vector3(0, -25f, 0);
+        }
     }
 
     IEnumerator InitialSceneFade()

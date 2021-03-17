@@ -44,7 +44,13 @@ public class CarDriver : MonoBehaviour
         {
             Debug.Log("Bonk");
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * CrashingForce, ForceMode.Impulse);
-            
+            var player = FindObjectOfType<APRController>();
+            player.GotPunched();
+            player.GotPunched();
+            player.GotPunched();
+            player.GotPunched();
+            player.GotPunched();
+
         }
         else if(collision.gameObject.GetComponent<NewAIMan>() != null)
         {
