@@ -8,21 +8,27 @@ public class CharacterModelLoader : MonoBehaviour
     public GameObject Ass, Backpack, Coat, Hat, Legs, Shirt;
 
     public Mesh[] Hats;
+    public Mesh NoHat;
 
     [Space]
     public Mesh[] Coats;
+    public Mesh NoCoat;
 
     [Space]
     public Mesh[] Shirts;
+    public Mesh NoShirt;
 
     [Space]
     public Mesh[] Accessories;
+    public Mesh NoAccessory;
 
     [Space]
     public Mesh[] Pants;
+    public Mesh NoPants;
 
     [Space]
     public Mesh[] Backpacks;
+    public Mesh NoBackpack;
 
     private int hatModel;
     private int shirtModel;
@@ -152,32 +158,32 @@ public class CharacterModelLoader : MonoBehaviour
     private void loadModelsFromInts()
     {
         if (hatModel == -1)
-            Hat.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Hat.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoHat;
         else if (Hats.Length > 0)
             Hat.GetComponent<SkinnedMeshRenderer>().sharedMesh = Hats[hatModel];
             //Hats[hatModel].SetActive(true);
         if(shirtModel == -1)
-            Shirt.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Shirt.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoShirt;
         else if (Shirts.Length > 0)
             Shirt.GetComponent<SkinnedMeshRenderer>().sharedMesh = Shirts[shirtModel];
         //Shirts[shirtModel].SetActive(true);
         if (coatModel == -1)
-            Coat.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Coat.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoCoat;
         else if (Coats.Length > 0)
             Coat.GetComponent<SkinnedMeshRenderer>().sharedMesh = Coats[coatModel];
         //Coats[coatModel].SetActive(true);
         if (pantsModel == -1)
-            Legs.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Legs.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoPants;
         else if (Pants.Length > 0)
             Legs.GetComponent<SkinnedMeshRenderer>().sharedMesh = Pants[pantsModel];
         //Pants[pantsModel].SetActive(true);
         if (backpackModel == -1)
-            Backpack.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Backpack.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoBackpack;
         else if (Backpacks.Length > 0)
             Backpack.GetComponent<SkinnedMeshRenderer>().sharedMesh = Backpacks[backpackModel];
         //Backpacks[backpackModel].SetActive(true);
         if (accessoryModel == -1)
-            Ass.GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+            Ass.GetComponent<SkinnedMeshRenderer>().sharedMesh = NoAccessory;
         else if (Accessories.Length > 0)
             Ass.GetComponent<SkinnedMeshRenderer>().sharedMesh = Accessories[accessoryModel];
             //Accessories[accessoryModel].SetActive(true);

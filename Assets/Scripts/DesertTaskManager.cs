@@ -25,6 +25,7 @@ public class DesertTaskManager : MonoBehaviour
     [HideInInspector] public int guardsRemoved = 0;
     [HideInInspector] public int AlienParts = 0;
     [HideInInspector] public int ShopThingsMessedWith = 0;
+    [HideInInspector] public int speakersBroken = 0;
 
     private bool[] TaskFinished;
     private bool menuOpen;
@@ -124,7 +125,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "MessUpShop":
-                if(TaskFinished[2] == true)
+                if(TaskFinished[2] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -136,7 +137,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "Music":
-                if (TaskFinished[3] == true)
+                if (TaskFinished[3] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -148,7 +149,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "DrunkenSailor":
-                if (TaskFinished[4] == true)
+                if (TaskFinished[4] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -160,7 +161,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "Fireworks":
-                if (TaskFinished[5] == true)
+                if (TaskFinished[5] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -172,7 +173,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "Race":
-                if (TaskFinished[6] == true)
+                if (TaskFinished[6] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -183,7 +184,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "Aliens":
-                if (TaskFinished[7] == true)
+                if (TaskFinished[7] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);

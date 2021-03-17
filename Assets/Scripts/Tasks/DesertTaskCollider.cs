@@ -40,11 +40,25 @@ public class DesertTaskCollider : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        if(other.name == "StageSpeaker")
+        {
+            Debug.Log("Yeet");
+            DesertTaskManager.speakersBroken++;
+            if(DesertTaskManager.speakersBroken == 4)
+            {
+                DesertTaskManager.TaskCompleted("Music");
+            }
+        }
         
     }
     private void OnTriggerExit(Collider other)
     {
-        
+
+        if (other.name == "StageSpeaker")
+        {
+            DesertTaskManager.speakersBroken--;
+            Debug.Log("UnYeet");
+        }
 
     }
 }
