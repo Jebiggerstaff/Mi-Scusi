@@ -16,7 +16,7 @@ public class CrossSceneData : MonoBehaviour
         
     }
 
-
+    public int prevIndex;
     public int videoIndex;
     public string sceneName;
 }

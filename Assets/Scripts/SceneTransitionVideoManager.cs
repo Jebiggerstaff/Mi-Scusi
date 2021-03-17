@@ -22,6 +22,15 @@ public class SceneTransitionVideoManager : MonoBehaviour
     {
         data = FindObjectOfType<CrossSceneData>();
         var vid = videos[data.videoIndex];
+
+        if(data.videoIndex == 4)
+        {
+            if(data.prevIndex != 2)
+            {
+                vid = videos[20];    //OFFICE TO NY INSTEAD OF ITALY TO NY
+            }
+        }
+
         foreach(var v in videos)
         {
             if(v != vid)

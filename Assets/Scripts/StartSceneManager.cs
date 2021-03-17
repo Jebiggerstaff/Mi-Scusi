@@ -80,6 +80,7 @@ public class StartSceneManager : MonoBehaviour
         DontDestroyOnLoad(dataO);
         var data = dataO.GetComponent<CrossSceneData>();
         data.sceneName = levelname;
+        data.prevIndex = SceneManager.GetActiveScene().buildIndex;
 
         
         switch (levelname)
