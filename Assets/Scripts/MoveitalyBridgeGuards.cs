@@ -29,9 +29,7 @@ public class MoveitalyBridgeGuards : MonoBehaviour
         {
             if(ai != null)
             {
-                if(ai.target != moveTarget)
-                    ai.target = moveTarget;
-                ai.shovesPlayer = false;
+                gameObject.SetActive(false);
 
             }
             else
