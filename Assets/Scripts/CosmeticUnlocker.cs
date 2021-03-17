@@ -125,6 +125,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "RobotHead") Hat(10);
         if (name == "RubicksCube") Hat(11);
         if (name == "TallChefHat") Hat(12);
+        if (name == "MafiaHat") Hat(13);
         #endregion
 
         #region Coats
@@ -133,20 +134,15 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Cowboy") Coat(2);
         if (name == "PuffyCoat") Coat(3);
         if (name == "TrenchCoat") Coat(4);
+        if (name == "MafiaCoat") Coat(5);
         #endregion
-
-        #region Coats
-        if (name == "CaptainsJacket") Coat(0);
-        if (name == "ChefCoat") Coat(1);
-        if (name == "Cowboy") Coat(2);
-        if (name == "PuffyCoat") Coat(3);
-        if (name == "TrenchCoat") Coat(4);
-        #endregion
+        
 
         #region Shirts
         if (name == "DesertShirt") Shirt(0);
         if (name == "GenericShirt") Shirt(1);
         if (name == "TankTop") Shirt(2);
+        if (name == "MafiaShirt") Shirt(3);
         #endregion
 
         #region Pants
@@ -154,6 +150,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Pants") Pant(1);
         if (name == "Shorts") Pant(2);
         if (name == "CowboyBoots") Pant(3);
+        if (name == "MafiaPants") Pant(4);
         #endregion
 
         #region Backpacks

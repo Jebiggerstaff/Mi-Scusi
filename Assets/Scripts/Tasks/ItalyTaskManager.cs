@@ -116,6 +116,12 @@ public class ItalyTaskManager : MonoBehaviour
                     //Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
                     CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
+
+                    CosmeticUnlocker.UnlockOutfit("MafiaHat");
+                    CosmeticUnlocker.UnlockOutfit("MafiaCoat");
+                    CosmeticUnlocker.UnlockOutfit("MafiaShirt");
+                    CosmeticUnlocker.UnlockOutfit("MafiaPants");
+
                 }
                 break;
             case "InfiltrateMafiaHQ":
