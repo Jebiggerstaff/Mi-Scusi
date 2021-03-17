@@ -30,6 +30,17 @@ public class SceneTransitionVideoManager : MonoBehaviour
                 vid = videos[20];    //OFFICE TO NY INSTEAD OF ITALY TO NY
             }
         }
+        if(data.videoIndex == 10)
+        {
+            if(data.prevIndex == 9)
+            {
+                vid = videos[19];
+            }
+            else
+            {
+                vid = videos[18];
+            }
+        }
 
         foreach(var v in videos)
         {
