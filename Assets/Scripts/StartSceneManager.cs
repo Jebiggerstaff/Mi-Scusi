@@ -123,6 +123,12 @@ public class StartSceneManager : MonoBehaviour
             case "Rio":
                 data.videoIndex = 9;
                 break;
+            case "Moon":
+                break;
+            case "Russia":
+                break;
+            case "Pentagon":
+                break;
             default:
                 data.videoIndex = 0;
                 break;

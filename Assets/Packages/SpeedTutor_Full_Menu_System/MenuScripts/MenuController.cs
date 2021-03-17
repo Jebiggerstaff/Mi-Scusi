@@ -68,6 +68,17 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private Slider progressSlider;
         #endregion
 
+        #region Level Unlocking
+        public const string LevelUnlockedPref = "UnlockedLevels";
+        public const string LevelBuffer = "$%";
+        #endregion
+
+
+
+
+
+
+
         float originalGameTime;
         float oldAxis;
 
@@ -97,8 +108,17 @@ namespace SpeedTutorMainMenuSystem
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
             //ControllerCheck();
+
+
+            if(!PlayerPrefs.HasKey(LevelUnlockedPref))
+            {
+                PlayerPrefs.SetString(LevelUnlockedPref, "");
+            }
+
         }
         #endregion
+
+    
 
         //MAIN SECTION
         public IEnumerator ConfirmationBox()

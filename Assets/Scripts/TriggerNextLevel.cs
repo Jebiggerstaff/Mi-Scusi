@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SpeedTutorMainMenuSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -62,7 +63,16 @@ public class TriggerNextLevel : MonoBehaviour
     private IEnumerator loadScene(string level)
     {
         if(level != "Menu")
+        {
             PlayerPrefs.SetString("SavedLevel", level);
+
+            var s = PlayerPrefs.GetString(MenuController.LevelUnlockedPref, "");
+            if (!s.Contains(MenuController.LevelBuffer + level + MenuController.LevelBuffer))
+            {
+                PlayerPrefs.SetString(MenuController.LevelUnlockedPref, s + MenuController.LevelBuffer + level + MenuController.LevelBuffer);
+            }
+            PlayerPrefs.Save();
+        }
 
         //Time.timeScale = originalGameTIme;
 
