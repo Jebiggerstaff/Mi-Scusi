@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NoirTaskManager : MonoBehaviour
 {
+
+    public GameObject confetti;
+
     [Header("Gameobjects")]
     public GameObject Player;
     public GameObject TaskCompleteText;
@@ -74,6 +77,13 @@ public class NoirTaskManager : MonoBehaviour
                 break;
         }
 
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 
 }
