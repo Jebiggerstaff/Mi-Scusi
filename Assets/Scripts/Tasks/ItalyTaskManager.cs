@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class ItalyTaskManager : MonoBehaviour
 {
 
+    public GameObject confetti;
+
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
 
@@ -104,6 +106,7 @@ public class ItalyTaskManager : MonoBehaviour
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
                     CurrentMainTask = CurrentMainTask = "Infiltrate Mafia HQ\n";
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "BeatUpMafiaMembers":
@@ -121,6 +124,7 @@ public class ItalyTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("MafiaCoat");
                     CosmeticUnlocker.UnlockOutfit("MafiaShirt");
                     CosmeticUnlocker.UnlockOutfit("MafiaPants");
+                    StartCoroutine(confettistuff());
 
                 }
                 break;
@@ -132,7 +136,8 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
-            }
+                    StartCoroutine(confettistuff());
+                }
                 break;
             case "Collect5documents":
                 if (TaskFinished[3] == false)
@@ -143,6 +148,7 @@ public class ItalyTaskManager : MonoBehaviour
                     Tasks[0].SetActive(true);
                     TaskFinished[3] = true;
                     NextLevel.SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "KnockFishermanIntoWater":
@@ -153,6 +159,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "FlowersToGirl":
@@ -164,6 +171,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[5].SetActive(true);
                     TaskFinished[5] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "EatSpaghetti":
@@ -174,6 +182,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "StealFromShop":
@@ -184,6 +193,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "GetMoneyFromFountain":
@@ -194,6 +204,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[8].SetActive(true);
                     TaskFinished[8] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "KnockoutAngryCustomer":
@@ -204,6 +215,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[9].SetActive(true);
                     TaskFinished[9] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "GiantMeatball":
@@ -221,8 +233,16 @@ public class ItalyTaskManager : MonoBehaviour
 
                     ChefMiti.sentences = new string[1];
                     ChefMiti.sentences[0] = "Fantastico! That is a the greatest meatball I have ever a made!";
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 }
