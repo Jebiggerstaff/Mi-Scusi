@@ -7,6 +7,7 @@ public class OfficeTaskManager : MonoBehaviour
     //Public Variables
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
+    bool[] TasksCompleted;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -64,6 +65,7 @@ public class OfficeTaskManager : MonoBehaviour
     {
         controls = new MiScusiActions();
         controls.Enable();
+        TasksCompleted = new bool[Tasks.Length];
     }
 
     public void Update()
@@ -90,32 +92,52 @@ public class OfficeTaskManager : MonoBehaviour
         switch (Task)
         {
             case "RefilWater":
-                Tasks[0].SetActive(true);
-                PaperStack1.SetActive(true);
-                DustyTheJanitor.sentences = new string[2];
-                DustyTheJanitor.sentences[0] = "Whelp, much obliged new guy!";
-                DustyTheJanitor.sentences[1] = "Well, I think I'm gonna take a nap now, so see yah later.";
+                if (TasksCompleted[0] == false)
+                {
+                    TasksCompleted[0] = true;
+                    Tasks[0].SetActive(true);
+                    PaperStack1.SetActive(true);
+                    DustyTheJanitor.sentences = new string[2];
+                    DustyTheJanitor.sentences[0] = "Whelp, much obliged new guy!";
+                    DustyTheJanitor.sentences[1] = "Well, I think I'm gonna take a nap now, so see yah later.";
 
-                JaniceTheReceptionist.sentences = new string[2];
-                JaniceTheReceptionist.sentences[0] = "Did you help Barnaby?";
-                JaniceTheReceptionist.sentences[1] = "Very good, head upstairs, I'm sure someone could use your help.";
+                    JaniceTheReceptionist.sentences = new string[2];
+                    JaniceTheReceptionist.sentences[0] = "Did you help Barnaby?";
+                    JaniceTheReceptionist.sentences[1] = "Very good, head upstairs, I'm sure someone could use your help.";
+                }
                 break;
             case "HelpCoworker":
-                Tasks[1].SetActive(true);
-                PaperStack2.SetActive(true);
+                if (TasksCompleted[1] == false)
+                {
+                    TasksCompleted[1] = true;
+                    Tasks[1].SetActive(true);
+                    PaperStack2.SetActive(true);
+                }
                 break;
             case "GetBossCoffee":
-                CosmeticUnlocker.UnlockOutfit("Mustache");
-                Tasks[2].SetActive(true);
-                PaperStack3.SetActive(true);
+                if (TasksCompleted[2] == false)
+                {
+                    TasksCompleted[2] = true;
+                    CosmeticUnlocker.UnlockOutfit("Mustache");
+                    Tasks[2].SetActive(true);
+                    PaperStack3.SetActive(true);
+                }
                 break;
             case "CopyButt":
-                Tasks[3].SetActive(true);
+                if (TasksCompleted[3] == false)
+                {
+                    TasksCompleted[3] = true;
+                    Tasks[3].SetActive(true);
+                }
                 break;
             case "BossStache":
-                Tasks[4].SetActive(true);
-                NextLevel.SetActive(true);
-                CosmeticUnlocker.UnlockOutfit("Mustache");
+                if (TasksCompleted[4] == false)
+                {
+                    TasksCompleted[4] = true;
+                    Tasks[4].SetActive(true);
+                    NextLevel.SetActive(true);
+                    CosmeticUnlocker.UnlockOutfit("Mustache");
+                }
                 break;
         }
 

@@ -12,6 +12,7 @@ public class TutorialTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
+    bool[] TasksCompleted;
     private bool menuOpen;
 
     [HideInInspector] public bool Pickedup = false;
@@ -29,6 +30,7 @@ public class TutorialTaskManager : MonoBehaviour
     {
         controls = new MiScusiActions();
         controls.Enable();
+        TasksCompleted = new bool[Tasks.Length];
     }
 
     public void Update()
@@ -52,10 +54,18 @@ public class TutorialTaskManager : MonoBehaviour
         switch (Task)
         {
             case "GrabSomething":
-                Tasks[0].SetActive(true);
+                if (TasksCompleted[0] == false)
+                {
+                    TasksCompleted[0] = true;
+                    Tasks[0].SetActive(true);
+                }
                 break;
             case "PunchAGuy":
-                Tasks[1].SetActive(true);
+                if (TasksCompleted[1] == false)
+                {
+                    TasksCompleted[1] = true;
+                    Tasks[1].SetActive(true);
+                }
                 break;
         }
 

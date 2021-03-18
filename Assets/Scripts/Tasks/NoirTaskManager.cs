@@ -16,6 +16,7 @@ public class NoirTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
+    public bool[] TasksCompleted;
 
     [Header("Murder GameObjects")]
     public GameObject[] Suspects = new GameObject[0];
@@ -29,6 +30,7 @@ public class NoirTaskManager : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
         Player = GameObject.Find("FinalPlayer");
+        TasksCompleted = new bool[Tasks.Length];
     }
 
     private MiScusiActions controls;
@@ -64,16 +66,37 @@ public class NoirTaskManager : MonoBehaviour
         switch (Task)
         {
             case "MurderWeapon":
-                Tasks[1].SetActive(true);
+                if(TasksCompleted[1] == false)
+                {
+                    TasksCompleted[1] = true;
+                    Tasks[1].SetActive(true);
+                    StartCoroutine(confettistuff());
+                }
+                    
                 break;
             case "MurderSuspect":
-                Tasks[0].SetActive(true);
+                if (TasksCompleted[0] == false)
+                {
+                    TasksCompleted[0] = true;
+                    Tasks[0].SetActive(true);
+                    StartCoroutine(confettistuff());
+                }
                 break;
             case "WantedPoster":
-                Tasks[2].SetActive(true);
+                if (TasksCompleted[2] == false)
+                {
+                    TasksCompleted[2] = true;
+                    Tasks[2].SetActive(true);
+                    StartCoroutine(confettistuff());
+                }
                 break;
             case "Sevens":
-                Tasks[3].SetActive(true);
+                if (TasksCompleted[3] == false)
+                {
+                    TasksCompleted[3] = true;
+                    Tasks[3].SetActive(true);
+                    StartCoroutine(confettistuff());
+                }
                 break;
         }
 
