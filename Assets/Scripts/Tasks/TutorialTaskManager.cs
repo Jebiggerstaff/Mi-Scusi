@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TutorialTaskManager : MonoBehaviour
 {
+
+    public GameObject confetti;
+
     [Header("Gameobjects")]
     public GameObject Player;
     public GameObject TaskCompleteText;
@@ -58,6 +61,7 @@ public class TutorialTaskManager : MonoBehaviour
                 {
                     TasksCompleted[0] = true;
                     Tasks[0].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "PunchAGuy":
@@ -65,9 +69,17 @@ public class TutorialTaskManager : MonoBehaviour
                 {
                     TasksCompleted[1] = true;
                     Tasks[1].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
 
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 }

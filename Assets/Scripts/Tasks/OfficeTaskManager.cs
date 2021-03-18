@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OfficeTaskManager : MonoBehaviour
 {
+
+    public GameObject confetti;
+
     //Public Variables
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
@@ -104,6 +107,7 @@ public class OfficeTaskManager : MonoBehaviour
                     JaniceTheReceptionist.sentences = new string[2];
                     JaniceTheReceptionist.sentences[0] = "Did you help Barnaby?";
                     JaniceTheReceptionist.sentences[1] = "Very good, head upstairs, I'm sure someone could use your help.";
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "HelpCoworker":
@@ -112,6 +116,7 @@ public class OfficeTaskManager : MonoBehaviour
                     TasksCompleted[1] = true;
                     Tasks[1].SetActive(true);
                     PaperStack2.SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "GetBossCoffee":
@@ -121,6 +126,7 @@ public class OfficeTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Mustache");
                     Tasks[2].SetActive(true);
                     PaperStack3.SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "CopyButt":
@@ -128,6 +134,7 @@ public class OfficeTaskManager : MonoBehaviour
                 {
                     TasksCompleted[3] = true;
                     Tasks[3].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "BossStache":
@@ -137,9 +144,17 @@ public class OfficeTaskManager : MonoBehaviour
                     Tasks[4].SetActive(true);
                     NextLevel.SetActive(true);
                     CosmeticUnlocker.UnlockOutfit("Mustache");
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
 
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 }

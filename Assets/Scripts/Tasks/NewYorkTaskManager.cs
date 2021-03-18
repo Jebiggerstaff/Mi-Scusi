@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class NewYorkTaskManager : MonoBehaviour
 {
 
+    public GameObject confetti;
+
     //Public Variables
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
@@ -108,6 +110,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Pants");
                     Tasks[0].SetActive(true);
                     CompletedTasks[0] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "HelpGuyMove":
@@ -118,6 +121,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     NextLevelBubble.SetActive(true);
 
                     CompletedTasks[1] = true;
+                    StartCoroutine(confettistuff());
                 }
                     break;
             case "RemovePolitical":
@@ -126,6 +130,7 @@ public class NewYorkTaskManager : MonoBehaviour
 
                     CompletedTasks[2] = true;
                     Tasks[2].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "PickUpTrash":
@@ -134,6 +139,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Jeans");
                     Tasks[3].SetActive(true);
                     CompletedTasks[3] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "DefaceSSS":
@@ -141,6 +147,7 @@ public class NewYorkTaskManager : MonoBehaviour
                 {
                     Tasks[4].SetActive(true);
                     CompletedTasks[4] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "ShatterWindows":
@@ -148,6 +155,7 @@ public class NewYorkTaskManager : MonoBehaviour
                 {
                     Tasks[5].SetActive(true);
                     CompletedTasks[5] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "EatAtCafe":
@@ -156,6 +164,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Shorts");
                     Tasks[6].SetActive(true);
                     CompletedTasks[6] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "CrossStreet":
@@ -163,6 +172,7 @@ public class NewYorkTaskManager : MonoBehaviour
                 {
                     Tasks[7].SetActive(true);
                     CompletedTasks[7] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "ReturnBlueBikes":
@@ -171,6 +181,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("GenericBP");
                     Tasks[8].SetActive(true);
                     CompletedTasks[8] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "DefaceHQ":
@@ -179,6 +190,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Expedition");
                     CompletedTasks[9] = true;
                     Tasks[9].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "BringFood":
@@ -187,6 +199,7 @@ public class NewYorkTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("PuffyCoat");
                     CompletedTasks[10] = true;
                     Tasks[10].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "777":
@@ -194,10 +207,18 @@ public class NewYorkTaskManager : MonoBehaviour
                 {
                     CompletedTasks[11] = true;
                     Tasks[11].SetActive(true);
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
 
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 
 }
