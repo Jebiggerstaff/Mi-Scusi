@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CruiseShipTaskManager : MonoBehaviour
 {
 
+    public GameObject confetti;
+
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
 
@@ -82,6 +84,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     TaskFinished[0] = true;
                     CurrentMainTask = CurrentMainTask = "Hijack the ship\n";
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "HijackTheShip":
@@ -92,6 +95,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[0].SetActive(true);
                     TaskFinished[1] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "EvacuateShip":
@@ -102,6 +106,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[1].SetActive(true);
                     TaskFinished[2] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "SavePrincess":
@@ -112,6 +117,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[2].SetActive(true);
                     TaskFinished[3] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "BreakChina":
@@ -122,6 +128,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[3].SetActive(true);
                     TaskFinished[4] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "Waterslide":
@@ -132,6 +139,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[4].SetActive(true);
                     TaskFinished[5] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "Mutiny":
@@ -142,6 +150,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(false);
                     Tasks[5].SetActive(true);
                     TaskFinished[6] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
@@ -153,5 +162,12 @@ public class CruiseShipTaskManager : MonoBehaviour
         {
             TaskCompleted("SavePrincess");
         }
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 }
