@@ -125,7 +125,16 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "RobotHead") Hat(10);
         if (name == "RubicksCube") Hat(11);
         if (name == "TallChefHat") Hat(12);
-        if (name == "MafiaHat") Hat(13);
+        if (name == "WizardHat") Hat(13);
+        if (name == "Treasure") Hat(14);
+        if (name == "ArmorHelmet") Hat(15);
+        if (name == "TopHat") Hat(16);
+        if (name == "HorseHead") Hat(17);
+        if (name == "AlienHead") Hat(18);
+        if (name == "DesertHat") Hat(19);
+        if (name == "LizardHead") Hat(20);
+        if (name == "Noodle") Hat(21);
+        if (name == "PoofHair") Hat(22);
         #endregion
 
         #region Coats
@@ -135,14 +144,17 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "PuffyCoat") Coat(3);
         if (name == "TrenchCoat") Coat(4);
         if (name == "MafiaCoat") Coat(5);
+        if (name == "FurCoat") Coat(6);
+        if (name == "RainCoat") Coat(7);
+        if (name == "ArmorCoat") Coat(8);
         #endregion
-        
 
         #region Shirts
         if (name == "DesertShirt") Shirt(0);
         if (name == "GenericShirt") Shirt(1);
         if (name == "TankTop") Shirt(2);
         if (name == "MafiaShirt") Shirt(3);
+        if (name == "CopShirt") Shirt(4);
         #endregion
 
         #region Pants
@@ -151,18 +163,30 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Shorts") Pant(2);
         if (name == "CowboyBoots") Pant(3);
         if (name == "MafiaPants") Pant(4);
+        if (name == "ArmorPants") Pant(5);
+        if (name == "ArmorPants") Pant(6);
         #endregion
 
         #region Backpacks
         if (name == "Expedition") Backpack(0);
         if (name == "GenericBP") Backpack(1);
         if (name == "Guitar") Backpack(2);
+        if (name == "Shield") Backpack(3);
+        if (name == "Sword") Backpack(4);
+        if (name == "Tenticles") Backpack(5);
+        if (name == "Wings") Backpack(6);
+        if (name == "Graffiti") Backpack(7);
+        if (name == "Cat") Backpack(8);
         #endregion
 
         #region Accessories
         if (name == "Mustache") Accessory(0);
         if (name == "Pipe") Accessory(1);
         if (name == "SunGlasses") Accessory(2);
+        if (name == "Flower") Accessory(3);
+        if (name == "Book") Accessory(4);
+        if (name == "Satchel") Accessory(5);
+        if (name == "GraffitiSachel") Accessory(6);
         #endregion
 
     }
