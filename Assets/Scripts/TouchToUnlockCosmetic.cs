@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TouchToUnlockCosmetic : MonoBehaviour
 {
-    string cosmeticName;
+    public string cosmeticName;
+    CosmeticUnlocker CosmeticUnlocker;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +16,15 @@ public class TouchToUnlockCosmetic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CosmeticUnlocker == null)
+            CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
-            FindObjectOfType<CosmeticUnlocker>().UnlockOutfit(cosmeticName);
+            CosmeticUnlocker.UnlockOutfit(cosmeticName);
             Destroy(this.gameObject);
         }
 
