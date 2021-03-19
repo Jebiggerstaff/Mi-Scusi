@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class DesertTaskManager : MonoBehaviour
 {
 
+    public GameObject confetti;
+
     [Header("Tasks")]
     public GameObject[] Tasks;
 
@@ -114,6 +116,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "BurnBurningMan":
@@ -124,6 +127,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
             case "MessUpShop":
@@ -134,6 +138,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
+                    StartCoroutine(confettistuff());
 
                     //TODO: Remove guard
                 }
@@ -146,6 +151,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[3].SetActive(true);
                     TaskFinished[3] = true;
+                    StartCoroutine(confettistuff());
 
                     //TODO: Remove guard
                 }
@@ -158,6 +164,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
+                    StartCoroutine(confettistuff());
 
                     //TODO: Remove guard
                 }
@@ -170,6 +177,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[5].SetActive(true);
                     TaskFinished[5] = true;
+                    StartCoroutine(confettistuff());
 
                     //TODO: Remove guard
                 }
@@ -182,7 +190,8 @@ public class DesertTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
-                    
+                    StartCoroutine(confettistuff());
+
                 }
                 break;
             case "Aliens":
@@ -194,9 +203,17 @@ public class DesertTaskManager : MonoBehaviour
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
                     ufo.enabled = true;
+                    StartCoroutine(confettistuff());
                 }
                 break;
         }
+    }
+
+    IEnumerator confettistuff()
+    {
+        confetti.SetActive(true);
+        yield return new WaitForSeconds(2);
+        confetti.SetActive(false);
     }
 }
 
