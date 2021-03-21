@@ -7,15 +7,30 @@ public class SceneTransitionVideoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getVideo();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if(videos != null)
+        {
+            getVideo();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            imSet = true;
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(!imSet)
+        {
+            if (videos != null)
+            {
+                getVideo();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                imSet = true;
+
+            }
+        }
     }
 
     void getVideo()
@@ -72,4 +87,5 @@ public class SceneTransitionVideoManager : MonoBehaviour
     public CrossSceneData data;
     public List<GameObject> videos;
     public LoadLevelButton btn;
+    bool imSet = false;
 }
