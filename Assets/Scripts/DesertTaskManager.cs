@@ -19,6 +19,15 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject TaskUpdatedText;
     public GameObject TaskList;
     public GameObject NextLevel;
+
+    public GameObject StageGuard1;
+    public GameObject StageGuard2;
+    public GameObject StageGuard3;
+    public GameObject StageGuard4;
+    public GameObject GroundGuard1;
+    public GameObject GroundGuard2;
+    public GameObject GroundGuard3;
+    public GameObject GroundGuard4;
     public Text taskList;
     [Space]
     public Animator ufo;
@@ -140,7 +149,10 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[2] = true;
                     StartCoroutine(confettistuff());
 
-                    //TODO: Remove guard
+
+                    guardsRemoved++;
+                    GroundGuard2.SetActive(true);
+                    StageGuard2.SetActive(false);
                 }
                 break;
             case "Music":
@@ -153,7 +165,10 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[3] = true;
                     StartCoroutine(confettistuff());
 
-                    //TODO: Remove guard
+
+                    guardsRemoved++;
+                    GroundGuard3.SetActive(true);
+                    StageGuard3.SetActive(false);
                 }
                 break;
             case "DrunkenSailor":
@@ -166,7 +181,9 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[4] = true;
                     StartCoroutine(confettistuff());
 
-                    //TODO: Remove guard
+                    guardsRemoved++;
+                    GroundGuard1.SetActive(true);
+                    StageGuard1.SetActive(false);
                 }
                 break;
             case "Fireworks":
@@ -179,7 +196,10 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[5] = true;
                     StartCoroutine(confettistuff());
 
-                    //TODO: Remove guard
+
+                    guardsRemoved++;
+                    GroundGuard4.SetActive(true);
+                    StageGuard4.SetActive(false);
                 }
                 break;
             case "Race":
