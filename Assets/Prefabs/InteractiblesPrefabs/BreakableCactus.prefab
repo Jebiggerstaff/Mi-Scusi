@@ -756,6 +756,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 3
+--- !u!65 &3292591715143987073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755923266613681047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2247112, y: 2.4108775, z: 5.0516667}
+  m_Center: {x: -0.09057701, y: 0.19137487, z: -0.72575}
+--- !u!114 &3292591715143987077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755923266613681047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6d7c9d1a82baf4fa13554883185b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatAmI: 0
+  Unbroken: {fileID: 1755923266613681047}
+  Broken: {fileID: 8387289079255346971}
+  poof: {fileID: 3987035172549695190}
+  sound: {fileID: 3292591715873997495}
 --- !u!1 &2110672650662721151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,36 +1073,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3292591715143987073
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755923266613681047}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.2247112, y: 2.4108775, z: 5.0516667}
-  m_Center: {x: -0.09057701, y: 0.19137487, z: -0.72575}
---- !u!114 &3292591715143987077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755923266613681047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba6d7c9d1a82baf4fa13554883185b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cactus1Rock2: 2
-  Unbroken: {fileID: 1755923266613681047}
-  Broken: {fileID: 8387289079255346971}
-  poof: {fileID: 3987035172549695190}
-  sound: {fileID: 3292591715873997495}
 --- !u!1 &3292591715873997497
 GameObject:
   m_ObjectHideFlags: 0

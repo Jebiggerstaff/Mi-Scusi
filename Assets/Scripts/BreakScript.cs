@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BreakScript : MonoBehaviour
 {
-    public int Cactus1Rock2 = 1;
+    public Type whatAmI = Type.Rock;
 
     //if the number is set to 1 then it applies to breakable rocks with pickaxes
     //if the number is set to 2 then it applies to breakable cactuses with the player
@@ -17,9 +17,18 @@ public class BreakScript : MonoBehaviour
     public ParticleSystem poof;
     public AudioSource sound;
 
+    
+
+    public enum Type
+    {
+        Cactus,
+        Rock
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (Cactus1Rock2 == 1)
+        if (whatAmI == Type.Rock)
         {
             if (other.gameObject.CompareTag("Pickaxe"))
             {
@@ -31,7 +40,7 @@ public class BreakScript : MonoBehaviour
             }
         }
 
-        if (Cactus1Rock2 == 2)
+        if (whatAmI == Type.Cactus)
         {
             if (other.gameObject.CompareTag("Player"))
             {
@@ -39,6 +48,8 @@ public class BreakScript : MonoBehaviour
                 sound.Play();
                 Unbroken.SetActive(false);
                 Broken.SetActive(true);
+
+                FindObjectOfType<DesertCactusEffect>().ActivateCactus();
 
             }
 
