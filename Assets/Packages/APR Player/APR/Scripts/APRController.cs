@@ -520,11 +520,11 @@ public class APRController : MonoBehaviour
         {
 
             punchPower += Time.deltaTime;
-            if (punchPower >= 3 && p1.isPlaying == false)
+            if (punchPower >= 1 && p1.isPlaying == false)
                 p1.Play();
-            if (punchPower >= 6 && p2.isPlaying == false)
+            if (punchPower >= 3f && p2.isPlaying == false)
                 p2.Play();
-            if (punchPower >= 9 && p3.isPlaying == false)
+            if (punchPower >= 5 && p3.isPlaying == false)
                 p3.Play();
         }
         else
@@ -634,11 +634,11 @@ public class APRController : MonoBehaviour
     {
         float ret = 0;
 
-        if (power >= 9)
+        if (power >= 5)
             ret = 10;
-        else if (power >= 6)
+        else if (power >= 3)
             ret = 5;
-        else if (ret >= 3)
+        else if (ret >= 1)
             ret = 2;
         else
             ret = 0;

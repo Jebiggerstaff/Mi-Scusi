@@ -20,6 +20,7 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject TaskList;
     public GameObject NextLevel;
     public GameObject GiantMeatball;
+    public GameObject MeatballEffect;
     public NPC ChefMiti;
     public ItalyTaskCollider fountainCollider;
 
@@ -38,6 +39,7 @@ public class ItalyTaskManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
+    public AudioClip MeatballSound;
 
     public void Start()
     {
@@ -229,7 +231,8 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskFinished[10] = true;
 
                     GiantMeatball.SetActive(true);
-                    
+                    MeatballEffect.SetActive(true);
+                    RandomAudioMaker.makeAudio(MeatballSound);
 
                     ChefMiti.sentences = new string[1];
                     ChefMiti.sentences[0] = "Fantastico! That is a the greatest meatball I have ever a made!";
