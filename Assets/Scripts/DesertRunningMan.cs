@@ -53,11 +53,16 @@ public class DesertRunningMan : MonoBehaviour
 
     public void BackToStart()
     {
-        readyToRace = true;
-        speech.sentences = new string[3];
-        speech.sentences[0] = "I'm the fastest corredor in this festival!  (cont)";
-        speech.sentences[1] = "If you think you can keep up with my velocidad, then let's race! First one to the other side of these beams? (cont)";
-        speech.sentences[2] = "As soon as this conversation ends, vamanos amigo!  And no funny business, I'll shove you!";
+        if(!readyToRace)
+        {
+
+            readyToRace = true;
+            speech.sentences = new string[3];
+            speech.sentences[0] = "I'm the fastest corredor in this festival!  (cont)";
+            speech.sentences[1] = "If you think you can keep up with my velocidad, then let's race! First one to the other side of these beams? (cont)";
+            speech.sentences[2] = "As soon as this conversation ends, vamanos amigo!  And no funny business, I'll shove you!";
+
+        }
     }
 
     void SetTarget(Vector3 t)

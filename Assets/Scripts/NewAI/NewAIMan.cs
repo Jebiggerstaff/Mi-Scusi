@@ -397,6 +397,12 @@ public class NewAIMan : MonoBehaviour
        // if(agent.isStopped)
         if (Vector3.Distance(transform.position, currentDestination) < minimumStopDistance)
         {
+            if(GetComponent<DesertRunningMan>() != null)
+            {
+                GetComponent<DesertRunningMan>().BackToStart();
+            }
+
+
             if (Random.Range(0f, 1f) <= percentStayChance)
             {
                 StartCoroutine(AddStopDest(currentDestination));
