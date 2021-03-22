@@ -40,6 +40,7 @@ public class ItalyTaskManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
     public AudioClip MeatballSound;
+    public AudioClip DocumentGrabbedNoise;
 
     public void Start()
     {

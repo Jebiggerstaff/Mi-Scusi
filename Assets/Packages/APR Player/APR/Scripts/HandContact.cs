@@ -222,6 +222,7 @@ public class HandContact : MonoBehaviour
                 if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
                 {
                     ItalyTaskManager.DocumentsCollected++;
+                    RandomAudioMaker.makeAudio(FindObjectOfType<ItalyTaskManager>().DocumentGrabbedNoise);
                     if (ItalyTaskManager.DocumentsCollected == 5)
                     {
                         ItalyTaskManager.TaskCompleted("Collect5documents");
