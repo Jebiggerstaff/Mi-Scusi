@@ -89,6 +89,7 @@ public class CosmeticUnlocker : MonoBehaviour
                 UnlockOutfit(go.name);
             }
         }
+
     }
 
     public void UnlockOutfit(string name)
@@ -112,28 +113,27 @@ public class CosmeticUnlocker : MonoBehaviour
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
 
         #region Hats
-        if (name == "CaptainHat") Hat(0);
-        if (name == "ChefItaly") Hat(1);
-        if (name == "Cop") Hat(2);
-        if (name == "Crown") Hat(3);
-        if (name == "Desert") Hat(4);
-        if (name == "DicesSet") Hat(5);
-        if (name == "DoomGuy") Hat(6);
-        if (name == "Fedora") Hat(7);
-        if (name == "Flower") Hat(8);
-        if (name == "Headphones") Hat(9);
-        if (name == "RobotHead") Hat(10);
-        if (name == "RubicksCube") Hat(11);
-        if (name == "TallChefHat") Hat(12);
-        if (name == "WizardHat") Hat(13);
-        if (name == "Treasure") Hat(14);
-        if (name == "ArmorHelmet") Hat(15);
-        if (name == "TopHat") Hat(16);
-        if (name == "HorseHead") Hat(17);
-        if (name == "AlienHead") Hat(18);
-        if (name == "LizardHead") Hat(19);
-        if (name == "Noodle") Hat(20);
-        if (name == "PoofHair") Hat(21);
+        
+        if (name == "ChefItaly") Hat(0);
+        if (name == "Cop") Hat(1);
+        if (name == "Crown") Hat(2);
+        if (name == "Desert") Hat(3);
+        if (name == "DoomGuy") Hat(4);
+        if (name == "Fedora") Hat(5);
+        if (name == "CaptainHat") Hat(6);
+        if (name == "RobotHead") Hat(7);
+        if (name == "RubicksCube") Hat(8);
+        if (name == "TallChefHat") Hat(9);
+        if (name == "WizardHat") Hat(10);
+        if (name == "Treasure") Hat(11);
+        if (name == "ArmorHelmet") Hat(12);
+        if (name == "TopHat") Hat(13);
+        if (name == "HorseHead") Hat(14);
+        if (name == "AlienHead") Hat(15);
+        if (name == "LizardHead") Hat(16);
+        if (name == "Noodle") Hat(17);
+        if (name == "PoofHair") Hat(18);
+        if (name == "RainHat") Hat(19);
         #endregion
 
         #region Coats
@@ -186,6 +186,8 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Book") Accessory(4);
         if (name == "Satchel") Accessory(5);
         if (name == "GraffitiSachel") Accessory(6);
+        if (name == "Flower") Accessory(7);
+        if (name == "Headphones") Accessory(8);
         #endregion
 
     }
@@ -215,7 +217,7 @@ public class CosmeticUnlocker : MonoBehaviour
     {
         Shirts[i].GetComponent<Image>().color = Color.white;
         Shirts[i].GetComponent<Button>().interactable = true;
-        ShirtQuestionMarks[i-1].SetActive(false);
+        ShirtQuestionMarks[i].SetActive(false);
     }
 
     public void Coat(int i)
@@ -229,7 +231,7 @@ public class CosmeticUnlocker : MonoBehaviour
     {
         Hats[i].GetComponent<Image>().color = Color.white;
         Hats[i].GetComponent<Button>().interactable = true;
-        HatQuestionMarks[i-1].SetActive(false);
+        HatQuestionMarks[i].SetActive(false);
     }
 
 }

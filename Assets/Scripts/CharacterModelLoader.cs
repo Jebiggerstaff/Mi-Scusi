@@ -60,8 +60,8 @@ public class CharacterModelLoader : MonoBehaviour
         }
         else
         {
-            shirtModel = 0;
-            PlayerPrefs.SetInt("Costume_Shirt", 0);
+            shirtModel = 3;
+            PlayerPrefs.SetInt("Costume_Shirt", 3);
         }
         if (PlayerPrefs.HasKey("Costume_Coat"))
         {
@@ -69,8 +69,8 @@ public class CharacterModelLoader : MonoBehaviour
         }
         else
         {
-            coatModel = 0;
-            PlayerPrefs.SetInt("Costume_Coat", 0);
+            coatModel = -1;
+            PlayerPrefs.SetInt("Costume_Coat", -1);
         }
         if (PlayerPrefs.HasKey("Costume_Pants"))
         {
@@ -87,8 +87,8 @@ public class CharacterModelLoader : MonoBehaviour
         }
         else
         {
-            backpackModel = 0;
-            PlayerPrefs.SetInt("Costume_Backpack", 0);
+            backpackModel = -1;
+            PlayerPrefs.SetInt("Costume_Backpack", -1);
         }
         if (PlayerPrefs.HasKey("Costume_Accessory"))
         {
