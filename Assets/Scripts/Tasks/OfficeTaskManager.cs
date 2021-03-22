@@ -129,7 +129,6 @@ public class OfficeTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[2] = true;
-                    CosmeticUnlocker.UnlockOutfit("Mustache");
                     Tasks[2].SetActive(true);
                     PaperStack3.SetActive(true);
                     StartCoroutine(confettistuff());

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TouchToUnlockCosmetic : MonoBehaviour
 {
     public string cosmeticName;
+    public bool DestoryOnTouch = true;
     CosmeticUnlocker CosmeticUnlocker;
 
     // Start is called before the first frame update
@@ -25,7 +26,8 @@ public class TouchToUnlockCosmetic : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
             CosmeticUnlocker.UnlockOutfit(cosmeticName);
-            Destroy(this.gameObject);
+            if(DestoryOnTouch)
+                Destroy(this.gameObject);
         }
 
     }

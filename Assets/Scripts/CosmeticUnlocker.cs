@@ -215,7 +215,7 @@ public class CosmeticUnlocker : MonoBehaviour
     {
         Shirts[i].GetComponent<Image>().color = Color.white;
         Shirts[i].GetComponent<Button>().interactable = true;
-        ShirtQuestionMarks[i].SetActive(false);
+        ShirtQuestionMarks[i-1].SetActive(false);
     }
 
     public void Coat(int i)

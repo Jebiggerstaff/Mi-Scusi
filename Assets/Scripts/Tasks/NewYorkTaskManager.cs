@@ -127,7 +127,6 @@ public class NewYorkTaskManager : MonoBehaviour
             case "RemovePolitical":
                 if (CompletedTasks[2] == false)
                 {
-
                     CompletedTasks[2] = true;
                     Tasks[2].SetActive(true);
                     StartCoroutine(confettistuff());
@@ -145,6 +144,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "DefaceSSS":
                 if (CompletedTasks[4] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Headphones");
                     Tasks[4].SetActive(true);
                     CompletedTasks[4] = true;
                     StartCoroutine(confettistuff());
@@ -153,6 +153,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "ShatterWindows":
                 if (CompletedTasks[5] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("PoofHair");
                     Tasks[5].SetActive(true);
                     CompletedTasks[5] = true;
                     StartCoroutine(confettistuff());

@@ -79,6 +79,7 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "TakeChefClothes":
                 if (TaskFinished[0] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("TallChefHat");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
                     TaskCompleteText.SetActive(false);
@@ -101,6 +102,7 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "EvacuateShip":
                 if (TaskFinished[2] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("TankTop");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
@@ -112,6 +114,9 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "SavePrincess":
                 if (TaskFinished[3] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("ArmorHelmet");
+                    CosmeticUnlocker.UnlockOutfit("ArmorCoat");
+                    CosmeticUnlocker.UnlockOutfit("ArmorPants");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
@@ -145,6 +150,8 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "Mutiny":
                 if (TaskFinished[6] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("CaptainHat");
+                    CosmeticUnlocker.UnlockOutfit("CaptainsJacket");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
