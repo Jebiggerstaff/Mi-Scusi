@@ -131,10 +131,9 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "TopHat") Hat(16);
         if (name == "HorseHead") Hat(17);
         if (name == "AlienHead") Hat(18);
-        if (name == "DesertHat") Hat(19);
-        if (name == "LizardHead") Hat(20);
-        if (name == "Noodle") Hat(21);
-        if (name == "PoofHair") Hat(22);
+        if (name == "LizardHead") Hat(19);
+        if (name == "Noodle") Hat(20);
+        if (name == "PoofHair") Hat(21);
         #endregion
 
         #region Coats
@@ -163,7 +162,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Shorts") Pant(2);
         if (name == "CowboyBoots") Pant(3);
         if (name == "MafiaPants") Pant(4);
-        if (name == "ArmorPants") Pant(5);
+        if (name == "CopPants") Pant(5);
         if (name == "ArmorPants") Pant(6);
         #endregion
 
@@ -230,7 +229,7 @@ public class CosmeticUnlocker : MonoBehaviour
     {
         Hats[i].GetComponent<Image>().color = Color.white;
         Hats[i].GetComponent<Button>().interactable = true;
-        HatQuestionMarks[i].SetActive(false);
+        HatQuestionMarks[i-1].SetActive(false);
     }
 
 }
