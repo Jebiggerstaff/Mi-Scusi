@@ -92,7 +92,12 @@ public class DialogueSystem: MonoBehaviour {
                     if (currentDialogueIndex >= dialogueLength)
                     {
                         dialogueEnded = true;
+
+
+                        
+
                     }
+                    
                 }
                 yield return 0;
             }
@@ -101,6 +106,12 @@ public class DialogueSystem: MonoBehaviour {
             {
                 if (controls.Player.Interact.triggered && dialogueEnded == false)
                 {
+                    
+                    if (Names == "Speedy Gonzo")
+                    {
+                        FindObjectOfType<DesertRunningMan>().StartRace();
+                    }
+                    
                     break;
                 }
                 yield return 0;

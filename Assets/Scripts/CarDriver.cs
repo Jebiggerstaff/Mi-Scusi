@@ -55,11 +55,10 @@ public class CarDriver : MonoBehaviour
         else if(collision.gameObject.GetComponent<NewAIMan>() != null)
         {
             var ai = collision.gameObject.GetComponent<NewAIMan>();
-            ai.stun(30f);
-            ai.stun(30f);
-            ai.stun(30f);
-            ai.stun(30f);
-            ai.stun(30f);
+            for(int i = 0; i < 1000; i++)
+            {
+                ai.stun(30f);
+            }
             ai.Explode(transform.position);
             ai.Explode(transform.position);
         }

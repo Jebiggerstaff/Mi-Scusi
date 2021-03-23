@@ -49,6 +49,13 @@ public class DesertTaskCollider : MonoBehaviour
                 DesertTaskManager.TaskCompleted("Music");
             }
         }
+       if(name == "RaceWinArea" && other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            if(DesertTaskManager.CanWinRace)
+            {
+                DesertTaskManager.TaskCompleted("Race");
+            }
+        }
         
     }
     private void OnTriggerExit(Collider other)

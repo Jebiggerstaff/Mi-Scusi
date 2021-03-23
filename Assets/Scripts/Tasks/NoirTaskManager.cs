@@ -68,15 +68,16 @@ public class NoirTaskManager : MonoBehaviour
             case "MurderWeapon":
                 if(TasksCompleted[1] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Sword");
                     TasksCompleted[1] = true;
                     Tasks[1].SetActive(true);
                     StartCoroutine(confettistuff());
-                }
-                    
+                }   
                 break;
             case "MurderSuspect":
                 if (TasksCompleted[0] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Pipe");
                     TasksCompleted[0] = true;
                     Tasks[0].SetActive(true);
                     StartCoroutine(confettistuff());
@@ -93,6 +94,7 @@ public class NoirTaskManager : MonoBehaviour
             case "Sevens":
                 if (TasksCompleted[3] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("FurCoat");
                     TasksCompleted[3] = true;
                     Tasks[3].SetActive(true);
                     StartCoroutine(confettistuff());

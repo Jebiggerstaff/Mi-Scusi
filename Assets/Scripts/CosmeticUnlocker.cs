@@ -89,6 +89,7 @@ public class CosmeticUnlocker : MonoBehaviour
                 UnlockOutfit(go.name);
             }
         }
+
     }
 
     public void UnlockOutfit(string name)
@@ -112,20 +113,27 @@ public class CosmeticUnlocker : MonoBehaviour
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
 
         #region Hats
-        if (name == "CaptainHat") Hat(0);
-        if (name == "ChefItaly") Hat(1);
-        if (name == "Cop") Hat(2);
-        if (name == "Crown") Hat(3);
-        if (name == "Desert") Hat(4);
-        if (name == "DicesSet") Hat(5);
-        if (name == "DoomGuy") Hat(6);
-        if (name == "Fedora") Hat(7);
-        if (name == "Flower") Hat(8);
-        if (name == "Headphones") Hat(9);
-        if (name == "RobotHead") Hat(10);
-        if (name == "RubicksCube") Hat(11);
-        if (name == "TallChefHat") Hat(12);
-        if (name == "MafiaHat") Hat(13);
+        
+        if (name == "ChefItaly") Hat(0);
+        if (name == "Cop") Hat(1);
+        if (name == "Crown") Hat(2);
+        if (name == "Desert") Hat(3);
+        if (name == "DoomGuy") Hat(4);
+        if (name == "Fedora") Hat(5);
+        if (name == "CaptainHat") Hat(6);
+        if (name == "RobotHead") Hat(7);
+        if (name == "RubicksCube") Hat(8);
+        if (name == "TallChefHat") Hat(9);
+        if (name == "WizardHat") Hat(10);
+        if (name == "Treasure") Hat(11);
+        if (name == "ArmorHelmet") Hat(12);
+        if (name == "TopHat") Hat(13);
+        if (name == "HorseHead") Hat(14);
+        if (name == "AlienHead") Hat(15);
+        if (name == "LizardHead") Hat(16);
+        if (name == "Noodle") Hat(17);
+        if (name == "PoofHair") Hat(18);
+        if (name == "RainHat") Hat(19);
         #endregion
 
         #region Coats
@@ -135,14 +143,17 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "PuffyCoat") Coat(3);
         if (name == "TrenchCoat") Coat(4);
         if (name == "MafiaCoat") Coat(5);
+        if (name == "FurCoat") Coat(6);
+        if (name == "RainCoat") Coat(7);
+        if (name == "ArmorCoat") Coat(8);
         #endregion
-        
 
         #region Shirts
         if (name == "DesertShirt") Shirt(0);
         if (name == "GenericShirt") Shirt(1);
         if (name == "TankTop") Shirt(2);
         if (name == "MafiaShirt") Shirt(3);
+        if (name == "CopShirt") Shirt(4);
         #endregion
 
         #region Pants
@@ -151,18 +162,31 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Shorts") Pant(2);
         if (name == "CowboyBoots") Pant(3);
         if (name == "MafiaPants") Pant(4);
+        if (name == "CopPants") Pant(5);
+        if (name == "ArmorPants") Pant(6);
         #endregion
 
         #region Backpacks
         if (name == "Expedition") Backpack(0);
         if (name == "GenericBP") Backpack(1);
         if (name == "Guitar") Backpack(2);
+        if (name == "Shield") Backpack(3);
+        if (name == "Sword") Backpack(4);
+        if (name == "Tenticles") Backpack(5);
+        if (name == "Wings") Backpack(6);
+        if (name == "Graffiti") Backpack(7);
+        if (name == "Cat") Backpack(8);
         #endregion
 
         #region Accessories
         if (name == "Mustache") Accessory(0);
         if (name == "Pipe") Accessory(1);
         if (name == "SunGlasses") Accessory(2);
+        if (name == "Flower") Accessory(6);
+        if (name == "Book") Accessory(3);
+        if (name == "Satchel") Accessory(4);
+        if (name == "GraffitiSachel") Accessory(5);
+        if (name == "Headphones") Accessory(7);
         #endregion
 
     }

@@ -20,6 +20,7 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject TaskList;
     public GameObject NextLevel;
     public GameObject GiantMeatball;
+    public GameObject MeatballEffect;
     public NPC ChefMiti;
     public ItalyTaskCollider fountainCollider;
 
@@ -38,6 +39,8 @@ public class ItalyTaskManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
+    public AudioClip MeatballSound;
+    public AudioClip DocumentGrabbedNoise;
 
     public void Start()
     {
@@ -112,7 +115,6 @@ public class ItalyTaskManager : MonoBehaviour
             case "BeatUpMafiaMembers":
                 if (TaskFinished[1] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Fedora");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
                     TaskCompleteText.SetActive(false);
@@ -120,7 +122,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskFinished[1] = true;
                     CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
 
-                    CosmeticUnlocker.UnlockOutfit("MafiaHat");
+                    CosmeticUnlocker.UnlockOutfit("Fedora");
                     CosmeticUnlocker.UnlockOutfit("MafiaCoat");
                     CosmeticUnlocker.UnlockOutfit("MafiaShirt");
                     CosmeticUnlocker.UnlockOutfit("MafiaPants");
@@ -151,17 +153,6 @@ public class ItalyTaskManager : MonoBehaviour
                     StartCoroutine(confettistuff());
                 }
                 break;
-            case "KnockFishermanIntoWater":
-                if (TaskFinished[4] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskCompleteText.SetActive(true);
-                    TaskUpdatedText.SetActive(false);
-                    Tasks[4].SetActive(true);
-                    TaskFinished[4] = true;
-                    StartCoroutine(confettistuff());
-                }
-                break;
             case "FlowersToGirl":
                 if (TaskFinished[5] == false)
                 {
@@ -177,6 +168,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "EatSpaghetti":
                 if (TaskFinished[6] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Noodle");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
@@ -199,6 +191,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "GetMoneyFromFountain":
                 if (TaskFinished[8] == false)
                 {
+                    CosmeticUnlocker.UnlockOutfit("Treasure");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
@@ -229,7 +222,8 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskFinished[10] = true;
 
                     GiantMeatball.SetActive(true);
-                    
+                    MeatballEffect.SetActive(true);
+                    RandomAudioMaker.makeAudio(MeatballSound);
 
                     ChefMiti.sentences = new string[1];
                     ChefMiti.sentences[0] = "Fantastico! That is a the greatest meatball I have ever a made!";

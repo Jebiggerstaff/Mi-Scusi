@@ -43,6 +43,9 @@ public class OfficeTaskManager : MonoBehaviour
     public CosmeticUnlocker CosmeticUnlocker;
     private bool menuOpen;
 
+    [Header("Audio Clips")]
+    public AudioClip genericCompeltionClip;
+
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -97,6 +100,7 @@ public class OfficeTaskManager : MonoBehaviour
             case "RefilWater":
                 if (TasksCompleted[0] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[0] = true;
                     Tasks[0].SetActive(true);
                     PaperStack1.SetActive(true);
@@ -113,6 +117,7 @@ public class OfficeTaskManager : MonoBehaviour
             case "HelpCoworker":
                 if (TasksCompleted[1] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[1] = true;
                     Tasks[1].SetActive(true);
                     PaperStack2.SetActive(true);
@@ -122,8 +127,8 @@ public class OfficeTaskManager : MonoBehaviour
             case "GetBossCoffee":
                 if (TasksCompleted[2] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[2] = true;
-                    CosmeticUnlocker.UnlockOutfit("Mustache");
                     Tasks[2].SetActive(true);
                     PaperStack3.SetActive(true);
                     StartCoroutine(confettistuff());
@@ -132,6 +137,7 @@ public class OfficeTaskManager : MonoBehaviour
             case "CopyButt":
                 if (TasksCompleted[3] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[3] = true;
                     Tasks[3].SetActive(true);
                     StartCoroutine(confettistuff());
@@ -140,6 +146,7 @@ public class OfficeTaskManager : MonoBehaviour
             case "BossStache":
                 if (TasksCompleted[4] == false)
                 {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TasksCompleted[4] = true;
                     Tasks[4].SetActive(true);
                     NextLevel.SetActive(true);
