@@ -9,9 +9,10 @@ public class DesertRunningMan : MonoBehaviour
 
     public NewAIMan aiMan;
     public NPC speech;
-    public float targetSpeed = 20f;
+    public float targetSpeed = 3f;
 
     bool readyToRace = true;
+    bool racing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,29 @@ public class DesertRunningMan : MonoBehaviour
         if(Time.timeScale == 1)
         {
             aiMan.agent.speed = targetSpeed;
+            if (!racing && !readyToRace)
+                aiMan.agent.speed /= 2;
         }
         else
         {
             aiMan.agent.speed = targetSpeed / 2;
+            if (!racing && !readyToRace)
+                aiMan.agent.speed /= 2;
+        }
+
+        if(racing)
+        {
+            if(Vector3.Distance(transform.position, target) <= 4)
+            {
+                RestartRace();
+            }
+        }
+        if(!racing && !readyToRace)
+        {
+            if (Vector3.Distance(transform.position, origTarget) <= 4)
+            {
+                BackToStart();
+            }
         }
     }
 
@@ -41,6 +61,8 @@ public class DesertRunningMan : MonoBehaviour
             speech.sentences = new string[1];
             speech.sentences[0] = "You can't catch me, amigo!";
             readyToRace = false;
+            racing = true;
+            FindObjectOfType<DesertTaskManager>().CanWinRace = true;
 
         }
     }
@@ -48,7 +70,9 @@ public class DesertRunningMan : MonoBehaviour
     {
         SetTarget(origTarget);
         speech.sentences[0] = "Good race, amigo!  Let's do it again sometime!";
-        
+        racing = false;
+        FindObjectOfType<DesertTaskManager>().CanWinRace = false;
+
     }
 
     public void BackToStart()

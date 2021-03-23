@@ -39,6 +39,7 @@ public class DesertTaskManager : MonoBehaviour
     [HideInInspector] public int AlienParts = 0;
     [HideInInspector] public int ShopThingsMessedWith = 0;
     [HideInInspector] public int speakersBroken = 0;
+    [HideInInspector] public bool CanWinRace = false;
 
     private bool[] TaskFinished;
     private bool menuOpen;
@@ -61,7 +62,7 @@ public class DesertTaskManager : MonoBehaviour
         {
             TaskFinished[i] = false;
         }
-
+        CanWinRace = false;
 
     }
 
@@ -106,8 +107,8 @@ public class DesertTaskManager : MonoBehaviour
         "Pause the music...forever\n" +
         "Discover what to do with a drunken sailor\n" +
         "Have some fun at the fireworks stand\n" +
-        "Win the American Ninja Warrior obstacle race\n" +
-        "Find the source of the strange occurences in the cliffs\n";
+        "Win the foot race\n" +
+        "Resolve the strange occurences in the cliffs\n";
         
     }
 

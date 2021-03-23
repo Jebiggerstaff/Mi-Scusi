@@ -94,12 +94,10 @@ public class DialogueSystem: MonoBehaviour {
                         dialogueEnded = true;
 
 
-                        if(Names == "Speedy Gonzo")
-                        {
-                            FindObjectOfType<DesertRunningMan>().StartRace();
-                        }
+                        
 
                     }
+                    
                 }
                 yield return 0;
             }
@@ -108,6 +106,12 @@ public class DialogueSystem: MonoBehaviour {
             {
                 if (controls.Player.Interact.triggered && dialogueEnded == false)
                 {
+                    
+                    if (Names == "Speedy Gonzo")
+                    {
+                        FindObjectOfType<DesertRunningMan>().StartRace();
+                    }
+                    
                     break;
                 }
                 yield return 0;

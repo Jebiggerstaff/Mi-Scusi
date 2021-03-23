@@ -44,6 +44,6 @@ public class DesertCactusEffect : MonoBehaviour
 
     public void ActivateCactus()
     {
-        cactusTimer = 30f;
+        cactusTimer = 60f;
     }
 }
