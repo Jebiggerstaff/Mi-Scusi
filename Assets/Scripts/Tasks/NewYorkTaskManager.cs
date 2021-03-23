@@ -20,6 +20,9 @@ public class NewYorkTaskManager : MonoBehaviour
     public GameObject TaskCompleteText;
     public GameObject TaskList;
 
+    public GameObject hostileSam;
+    public GameObject normalSam;
+
     public Text taskText;
 
     public CosmeticUnlocker CosmeticUnlocker;
@@ -148,6 +151,8 @@ public class NewYorkTaskManager : MonoBehaviour
                     Tasks[4].SetActive(true);
                     CompletedTasks[4] = true;
                     StartCoroutine(confettistuff());
+                    hostileSam.SetActive(true);
+                    normalSam.SetActive(false);
                 }
                 break;
             case "ShatterWindows":

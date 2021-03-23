@@ -182,12 +182,11 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Mustache") Accessory(0);
         if (name == "Pipe") Accessory(1);
         if (name == "SunGlasses") Accessory(2);
-        if (name == "Flower") Accessory(3);
-        if (name == "Book") Accessory(4);
-        if (name == "Satchel") Accessory(5);
-        if (name == "GraffitiSachel") Accessory(6);
-        if (name == "Flower") Accessory(7);
-        if (name == "Headphones") Accessory(8);
+        if (name == "Flower") Accessory(6);
+        if (name == "Book") Accessory(3);
+        if (name == "Satchel") Accessory(4);
+        if (name == "GraffitiSachel") Accessory(5);
+        if (name == "Headphones") Accessory(7);
         #endregion
 
     }
