@@ -224,7 +224,21 @@ public class DesertTaskManager : MonoBehaviour
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
                     ufo.enabled = true;
+                    foreach(var cf in ufo.GetComponentsInChildren<ConfigurableJoint>())
+                    {
+                        Destroy(cf);
+                    }
+                    foreach (var rb in ufo.GetComponentsInChildren<Rigidbody>())
+                    {
+                        Destroy(rb);
+                    }
+
+                    foreach (var c in ufo.GetComponentsInChildren<Collider>())
+                    {
+                        Destroy(c);
+                    }
                     StartCoroutine(confettistuff());
+                    CosmeticUnlocker.UnlockOutfit("AlienHead");
                 }
                 break;
         }
