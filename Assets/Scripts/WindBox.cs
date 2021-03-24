@@ -28,14 +28,14 @@ public class WindBox : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Rigidbody>() != null)
         {
-            if (other.gameObject.GetComponent<NewAIMan>() != null)
+            if (other.gameObject.GetComponent<NoPushScript>() == null)
             {
-                other.gameObject.GetComponent<NewAIMan>().stun(0.25f);
+                if (other.gameObject.GetComponent<NewAIMan>() != null)
+                {
+                    other.gameObject.GetComponent<NewAIMan>().stun(0.25f);
+                }
+                other.gameObject.GetComponent<Rigidbody>().AddForce(direction * windPower);
             }
-            other.gameObject.GetComponent<Rigidbody>().AddForce(direction * windPower);
-
-
-
         }
     }
 
