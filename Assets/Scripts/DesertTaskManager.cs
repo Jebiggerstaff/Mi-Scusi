@@ -68,6 +68,7 @@ public class DesertTaskManager : MonoBehaviour
         }
         CanWinRace = false;
 
+        menuOpen = true;
     }
 
     private MiScusiActions controls;
