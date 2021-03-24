@@ -14,7 +14,7 @@ public class Firework : MonoBehaviour
     public float baseFlightSpeed;
     float currentFlightSpeed;
     public float flightAcceleration;
-    public float explosionRadius
+    public float explosionRadius;
     Vector3 direction;
     Rigidbody rb;
 
