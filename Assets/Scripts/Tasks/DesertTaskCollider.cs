@@ -27,6 +27,11 @@ public class DesertTaskCollider : MonoBehaviour
                 Destroy(this);
             }
         }
+
+        if(name == "Burning man" && col.gameObject.name == "BurningPlank" && DesertTaskManager.guardsRemoved >= 4)
+        {
+            DesertTaskManager.TaskCompleted("BurnBurningMan");
+        }
     }
 
     public void OnTriggerEnter(Collider other)

@@ -28,6 +28,7 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject GroundGuard2;
     public GameObject GroundGuard3;
     public GameObject GroundGuard4;
+    public List<GameObject> BurningManFire;
     public Text taskList;
     public NPC sailor;
     public NPC DJ;
@@ -148,19 +149,24 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[0] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
+
+                    foreach(var go in BurningManFire)
+                    {
+                        go.SetActive(true);
+                    }
+
+                    NextLevel.SetActive(true);
                 }
                 break;
             case "MessUpShop":
                 if(TaskFinished[2] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
                     StartCoroutine(confettistuff());
@@ -175,8 +181,7 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[3] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[3].SetActive(true);
                     TaskFinished[3] = true;
                     StartCoroutine(confettistuff());
@@ -193,8 +198,7 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[4] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
                     StartCoroutine(confettistuff());
@@ -210,8 +214,7 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[5] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[5].SetActive(true);
                     TaskFinished[5] = true;
                     StartCoroutine(confettistuff());
@@ -229,8 +232,7 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[6] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
                     StartCoroutine(confettistuff());
@@ -241,8 +243,7 @@ public class DesertTaskManager : MonoBehaviour
                 if (TaskFinished[7] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
                     ufo.enabled = true;
