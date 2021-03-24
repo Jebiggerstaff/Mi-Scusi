@@ -45,16 +45,23 @@ public class Firework : MonoBehaviour
 
         }
 
-        if(flying)
+        
+    }
+    private void FixedUpdate()
+    {
+        if (flying)
         {
-            currentFlightTime += Time.deltaTime;
+            currentFlightTime += Time.fixedDeltaTime;
 
-            if(currentFlightTime >= flightTime)
+            if (currentFlightTime >= flightTime)
             {
                 Explode();
             }
-            rb.velocity = direction * currentFlightSpeed;
-            currentFlightSpeed += flightAcceleration * Time.deltaTime;
+            direction = transform.forward;
+            transform.LookAt(transform.position + direction);
+            rb.AddForce(direction * currentFlightSpeed * rb.mass);
+            currentFlightSpeed += (flightAcceleration * Time.fixedDeltaTime);
+            
         }
     }
 
@@ -65,9 +72,9 @@ public class Firework : MonoBehaviour
             BeginLaunch();
 
         }
-        if(flying)
+        if(collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
         {
-            direction = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal).normalized;
+            rb.freezeRotation = false;
         }
     }
 
@@ -105,7 +112,7 @@ public class Firework : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             
             if (rb != null)
-                rb.AddExplosionForce(1000, explosionPos, explosionRadius, 3);
+                rb.AddExplosionForce(5000, explosionPos, explosionRadius, 3);
             if (hit.GetComponent<NewAIMan>() != null)
             {
                 hit.GetComponent<NewAIMan>().Explode(transform.position);
