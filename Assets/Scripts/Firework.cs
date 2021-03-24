@@ -126,6 +126,11 @@ public class Firework : MonoBehaviour
             if(hit.gameObject.name == "ShopThing")
             {
                 FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith++;
+                if (FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith >= 15)
+                {
+                    Debug.Log("Done!");
+                    FindObjectOfType<DesertTaskManager>().TaskCompleted("MessUpShop");
+                }
             }
             
         }

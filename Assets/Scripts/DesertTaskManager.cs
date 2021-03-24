@@ -49,7 +49,7 @@ public class DesertTaskManager : MonoBehaviour
     [HideInInspector] public int shopFireworks = 0;
     [HideInInspector] public int GasCollected = 0;
 
-    private bool[] TaskFinished;
+    [HideInInspector]public bool[] TaskFinished;
     private bool menuOpen;
 
 
@@ -115,7 +115,7 @@ public class DesertTaskManager : MonoBehaviour
         taskList.text = MainTask + "\n" +
         "Make a mess in the gift shop\n" +
         "Pause the music...forever\n" +
-        "Send the submarine off to sea (" + GasCollected.ToString() + "/3\n" +
+        "Send the submarine off to sea (" + GasCollected.ToString() + "/3)\n" +
         "Party hard and \"blow the roof off\" at the fireworks stand\n" +
         "Win the foot race\n" +
         "Resolve the strange occurences in the cliffs\n";
@@ -146,7 +146,7 @@ public class DesertTaskManager : MonoBehaviour
                 }
                 break;
             case "BurnBurningMan":
-                if (TaskFinished[0] == false)
+                if (TaskFinished[1] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
