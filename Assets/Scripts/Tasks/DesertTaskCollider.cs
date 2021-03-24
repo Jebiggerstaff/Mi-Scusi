@@ -56,6 +56,15 @@ public class DesertTaskCollider : MonoBehaviour
                 DesertTaskManager.TaskCompleted("Race");
             }
         }
+       if(name == "SubmarineDropoff" && other.gameObject.name == "Gasoline")
+        {
+            Destroy(other.gameObject);
+            DesertTaskManager.GasCollected++;
+            if (DesertTaskManager.GasCollected >= 3)
+            {
+                DesertTaskManager.TaskCompleted("Sailor");
+            }
+        }
         
     }
     private void OnTriggerExit(Collider other)

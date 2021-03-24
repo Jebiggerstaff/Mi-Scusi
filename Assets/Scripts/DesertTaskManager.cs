@@ -29,8 +29,10 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject GroundGuard3;
     public GameObject GroundGuard4;
     public Text taskList;
+    public ExplodeBuilding fireworkStand;
     [Space]
     public Animator ufo;
+    public Animator sub;
 
 
     public CosmeticUnlocker CosmeticUnlocker;
@@ -40,6 +42,8 @@ public class DesertTaskManager : MonoBehaviour
     [HideInInspector] public int ShopThingsMessedWith = 0;
     [HideInInspector] public int speakersBroken = 0;
     [HideInInspector] public bool CanWinRace = false;
+    [HideInInspector] public int shopFireworks = 0;
+    [HideInInspector] public int GasCollected = 0;
 
     private bool[] TaskFinished;
     private bool menuOpen;
@@ -83,6 +87,7 @@ public class DesertTaskManager : MonoBehaviour
             TaskCompleteText.SetActive(false);
             TaskList.SetActive(true);
             menuOpen = true;
+            TaskUpdatedText.SetActive(false);
         }
         else if (controls.UI.TaskMenu.triggered && menuOpen == true)
         {
@@ -105,10 +110,16 @@ public class DesertTaskManager : MonoBehaviour
         taskList.text = MainTask + "\n" +
         "Make a mess in the gift shop\n" +
         "Pause the music...forever\n" +
-        "Discover what to do with a drunken sailor\n" +
-        "Have some fun at the fireworks stand\n" +
+        "Send the submarine off to sea (" + GasCollected.ToString() + "/3\n" +
+        "Party hard and \"blow the roof off\" at the fireworks stand\n" +
         "Win the foot race\n" +
         "Resolve the strange occurences in the cliffs\n";
+
+
+        if(guardsRemoved >= 4)
+        {
+            TaskCompleted("GuardsRemoved");
+        }
         
     }
 
@@ -172,7 +183,7 @@ public class DesertTaskManager : MonoBehaviour
                     StageGuard3.SetActive(false);
                 }
                 break;
-            case "DrunkenSailor":
+            case "Sailor":
                 if (TaskFinished[4] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -181,7 +192,7 @@ public class DesertTaskManager : MonoBehaviour
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
                     StartCoroutine(confettistuff());
-
+                    sub.enabled = true;
                     guardsRemoved++;
                     GroundGuard1.SetActive(true);
                     StageGuard1.SetActive(false);
@@ -197,6 +208,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[5] = true;
                     StartCoroutine(confettistuff());
 
+                    fireworkStand.Explode();
 
                     guardsRemoved++;
                     GroundGuard4.SetActive(true);

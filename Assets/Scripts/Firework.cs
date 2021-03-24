@@ -79,7 +79,7 @@ public class Firework : MonoBehaviour
     }
 
 
-    void BeginLaunch()
+    public void BeginLaunch()
     {
         if(!launching && !flying)
         {
@@ -88,7 +88,7 @@ public class Firework : MonoBehaviour
             launchParticles.Play();
         }
     }
-    void BeginFlight()
+    public void BeginFlight()
     {
         if(!flying)
         {
@@ -100,7 +100,7 @@ public class Firework : MonoBehaviour
 
         }
     }
-    void Explode()
+    public void Explode()
     {
         flightParticles.Stop();
         Instantiate(explosionParticles, transform.position, transform.rotation);
@@ -110,14 +110,35 @@ public class Firework : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-            
+            if (hit.GetComponent<Firework>() != null)
+            {
+                hit.GetComponent<Firework>().BeginFlight();
+                rb.freezeRotation = false;
+
+            }
             if (rb != null)
-                rb.AddExplosionForce(5000, explosionPos, explosionRadius, 3);
+                rb.AddExplosionForce(1250, explosionPos, explosionRadius, 1);
             if (hit.GetComponent<NewAIMan>() != null)
             {
                 hit.GetComponent<NewAIMan>().Explode(transform.position);
             }
+            if(hit.gameObject.name == "ShopThing")
+            {
+                FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith++;
+            }
+            
         }
+
+        if(gameObject.name == "ShopFirework")
+        {
+            FindObjectOfType<DesertTaskManager>().shopFireworks++;
+            if ( FindObjectOfType<DesertTaskManager>().shopFireworks >= 6)
+            {
+
+                FindObjectOfType<DesertTaskManager>().TaskCompleted("Fireworks");
+            }
+        }
+
 
         Destroy(gameObject);
 
