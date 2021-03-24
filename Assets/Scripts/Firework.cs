@@ -17,6 +17,7 @@ public class Firework : MonoBehaviour
     public float explosionRadius;
     Vector3 direction;
     Rigidbody rb;
+    public float explosionForce = 1250f;
 
     public GameObject explosionParticles;
     public ParticleSystem flightParticles;
@@ -117,7 +118,7 @@ public class Firework : MonoBehaviour
 
             }
             if (rb != null)
-                rb.AddExplosionForce(1250, explosionPos, explosionRadius, 1);
+                rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 1);
             if (hit.GetComponent<NewAIMan>() != null)
             {
                 hit.GetComponent<NewAIMan>().Explode(transform.position);

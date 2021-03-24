@@ -29,6 +29,9 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject GroundGuard3;
     public GameObject GroundGuard4;
     public Text taskList;
+    public NPC sailor;
+    public NPC DJ;
+    public GameObject fireworkStandGuy;
     public ExplodeBuilding fireworkStand;
     [Space]
     public Animator ufo;
@@ -182,6 +185,8 @@ public class DesertTaskManager : MonoBehaviour
                     guardsRemoved++;
                     GroundGuard3.SetActive(true);
                     StageGuard3.SetActive(false);
+
+                    DJ.sentences[0] = "What happened to the music, man?";
                 }
                 break;
             case "Sailor":
@@ -197,6 +202,8 @@ public class DesertTaskManager : MonoBehaviour
                     guardsRemoved++;
                     GroundGuard1.SetActive(true);
                     StageGuard1.SetActive(false);
+                    sailor.sentences = new string[1];
+                    sailor.sentences[0] = "Well, guess I'm stuck here now...";
                 }
                 break;
             case "Fireworks":
@@ -214,6 +221,8 @@ public class DesertTaskManager : MonoBehaviour
                     guardsRemoved++;
                     GroundGuard4.SetActive(true);
                     StageGuard4.SetActive(false);
+
+                    Destroy(fireworkStandGuy.gameObject);
                 }
                 break;
             case "Race":
