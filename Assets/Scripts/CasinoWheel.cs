@@ -9,6 +9,8 @@ public class CasinoWheel : MonoBehaviour
     public GameObject hideThisOne;
     int Count = 0;
 
+    public GameObject destroyblock;
+
     
     void OnTriggerEnter(Collider other)
     {
@@ -38,6 +40,8 @@ public class CasinoWheel : MonoBehaviour
             {
                 FindObjectOfType<NewYorkTaskManager>().TaskCompleted("777");
             }
+
+            Destroy(destroyblock);
         }
 
     }
