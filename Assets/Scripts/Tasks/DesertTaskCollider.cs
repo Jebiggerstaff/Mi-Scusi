@@ -42,15 +42,6 @@ public class DesertTaskCollider : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-        if(other.name == "StageSpeaker")
-        {
-            Debug.Log("Yeet");
-            DesertTaskManager.speakersBroken++;
-            if(DesertTaskManager.speakersBroken == 4)
-            {
-                DesertTaskManager.TaskCompleted("Music");
-            }
-        }
        if(name == "RaceWinArea" && other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
             if(DesertTaskManager.CanWinRace)
@@ -84,9 +75,12 @@ public class DesertTaskCollider : MonoBehaviour
 
         if (other.name == "StageSpeaker")
         {
-            DesertTaskManager.speakersBroken--;
-            Debug.Log("UnYeet");
+            Debug.Log("Yeet");
+            DesertTaskManager.speakersBroken++;
+            if (DesertTaskManager.speakersBroken == 4)
+            {
+                DesertTaskManager.TaskCompleted("Music");
+            }
         }
-
     }
 }
