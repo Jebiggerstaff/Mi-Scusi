@@ -273,5 +273,18 @@ public class DesertTaskManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         confetti.SetActive(false);
     }
+
+
+
+    public void FireworkExploded()
+    {
+        Firework.numSpawned++;
+        Invoke("reductionOfFirework", .5f);
+    }
+    void reductionOfFirework()
+    {
+        Firework.numSpawned--;
+    }
+
 }
 

@@ -28,7 +28,7 @@ public class ExplodeBuilding : MonoBehaviour
         BrokenBuilding.SetActive(true);
         foreach(var go in BrokenPieces)
         {
-            go.GetComponent<Rigidbody>().AddExplosionForce(1000, explosionPoint.transform.position, 3);
+            go.GetComponent<Rigidbody>().AddExplosionForce(5000, explosionPoint.transform.position, 50, 3);
         }
     }
 }

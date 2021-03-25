@@ -22,7 +22,7 @@ public class Firework : MonoBehaviour
     public GameObject explosionParticles;
     public ParticleSystem flightParticles;
     public ParticleSystem launchParticles;
-
+    public static int numSpawned = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -104,35 +104,44 @@ public class Firework : MonoBehaviour
     public void Explode()
     {
         flightParticles.Stop();
-        Instantiate(explosionParticles, transform.position, transform.rotation);
 
-        Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-        foreach (Collider hit in colliders)
+        if (numSpawned < 10)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (hit.GetComponent<Firework>() != null)
+
+            Instantiate(explosionParticles, transform.position, transform.rotation);
+
+            Vector3 explosionPos = transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+            foreach (Collider hit in colliders)
             {
-                hit.GetComponent<Firework>().BeginFlight();
-                rb.freezeRotation = false;
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (hit.GetComponent<Firework>() != null)
+                {
+                    hit.GetComponent<Firework>().BeginFlight();
+                    rb.freezeRotation = false;
+
+                }
+                if (rb != null)
+                    rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 1);
+                if (hit.GetComponent<NewAIMan>() != null)
+                {
+                    hit.GetComponent<NewAIMan>().Explode(transform.position);
+                }
+                if (hit.gameObject.name == "ShopThing")
+                {
+                    FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith++;
+                    if (FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith >= 15)
+                    {
+                        Debug.Log("Done!");
+                        FindObjectOfType<DesertTaskManager>().TaskCompleted("MessUpShop");
+                    }
+                }
 
             }
-            if (rb != null)
-                rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 1);
-            if (hit.GetComponent<NewAIMan>() != null)
-            {
-                hit.GetComponent<NewAIMan>().Explode(transform.position);
-            }
-            if(hit.gameObject.name == "ShopThing")
-            {
-                FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith++;
-                if (FindObjectOfType<DesertTaskManager>().ShopThingsMessedWith >= 15)
-                {
-                    Debug.Log("Done!");
-                    FindObjectOfType<DesertTaskManager>().TaskCompleted("MessUpShop");
-                }
-            }
-            
+
+
+            FindObjectOfType<DesertTaskManager>().FireworkExploded();
+
         }
 
         if(gameObject.name == "ShopFirework")
@@ -150,4 +159,7 @@ public class Firework : MonoBehaviour
 
 
     }
+
+    
+    
 }
