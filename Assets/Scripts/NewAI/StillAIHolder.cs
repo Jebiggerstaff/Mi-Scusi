@@ -11,6 +11,7 @@ public class StillAIHolder
     public int speed;
     public Vector3 target;
     public int costume = 0;
+    public List<int> allowedCostumeIndexes;
     public bool shovesPlayer = false;
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
@@ -22,6 +23,7 @@ public class StillAIHolder
         newAI.destinations.Add(target);
         newAI.shovesPlayer = shovesPlayer;
         (newAI as StayStillAIMan).target = target;
+        newAI.allowedRandomCostumes = allowedCostumeIndexes.ToArray();
         newAI.costumeNumber = costume;
         newAI.SetCostume();
 
