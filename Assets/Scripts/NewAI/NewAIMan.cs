@@ -36,6 +36,7 @@ public class NewAIMan : MonoBehaviour
     [Header("Costumes")]
     public SkinnedMeshRenderer NewAiManSMR;
     public Mesh[] costumes;
+    public int[] allowedRandomCostumes;
 
     
 
@@ -609,19 +610,31 @@ public class NewAIMan : MonoBehaviour
     {
         if(costumes.Length > 0)
         {
+
+            int length = costumes.Length;
+            int i;
+
+            if(allowedRandomCostumes != null && allowedRandomCostumes.Length > 0)
+            {
+                length = allowedRandomCostumes.Length;
+                i = allowedRandomCostumes[Random.Range(0, length)];
+            }
+            else
+            {
+                i = Random.Range(0, length);
+            }
             
-            int i= Random.Range(0, costumes.Length);
             if(costumeNumber >= 0 && costumeNumber < costumes.Length)
             {
                 i = costumeNumber;
             }
-            NewAiManSMR.sharedMesh = costumes[i];
+            SetCostume(i);
         }
     }
 
     public void SetCostume(int i)
     {
-
+        NewAiManSMR.sharedMesh = costumes[i];
     }
 
 

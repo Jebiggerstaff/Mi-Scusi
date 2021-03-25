@@ -14,6 +14,7 @@ public class AIHolder
     public List<Vector3> walkLocations;
     public int costume = 0;
     public bool shovesPlayer = false;
+    public List<int> allowedCostumeIndexes;
 
     public virtual NewAIMan MakeAI(GameObject AIMan)
     {
@@ -24,6 +25,7 @@ public class AIHolder
         newAI.destinations = walkLocations;
         newAI.useRandomDestinations = !orderedDestinations;
         newAI.shovesPlayer = shovesPlayer;
+        newAI.allowedRandomCostumes = allowedCostumeIndexes.ToArray();
         newAI.costumeNumber = costume;
         newAI.SetCostume();
         newAI.GetComponent<NavMeshAgent>().Warp(startLocation);
