@@ -236,7 +236,7 @@ public class DesertTaskManager : MonoBehaviour
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
                     StartCoroutine(confettistuff());
-
+                    CosmeticUnlocker.UnlockOutfit("DesertShirt");
                 }
                 break;
             case "Aliens":

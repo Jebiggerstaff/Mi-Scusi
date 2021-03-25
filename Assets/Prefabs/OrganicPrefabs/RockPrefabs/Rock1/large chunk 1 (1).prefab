@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2455526475342003884}
   - component: {fileID: 6865965157107664026}
   - component: {fileID: 897420864882440291}
-  - component: {fileID: 7451624082158233970}
+  - component: {fileID: 4081680340792651335}
   m_Layer: 14
   m_Name: large chunk 1 (1)
   m_TagString: CanBeGrabbed
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,8 +81,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7451624082158233970
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4081680340792651335
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: cc3eb6a5a2dd20a4e98821298dc164b3, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 3.2708294, y: 3.4204419, z: 2.863309}
+  m_Center: {x: 0.006536865, y: 0.067827955, z: 1.199243}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2348065046374841597}
   - component: {fileID: 4293897231204965674}
   - component: {fileID: 4293897231204965675}
-  - component: {fileID: 8637190444521336378}
+  - component: {fileID: 7944635307214218266}
   m_Layer: 0
   m_Name: Firework
   m_TagString: CanBeGrabbed
@@ -119,12 +119,13 @@ MonoBehaviour:
   baseFlightSpeed: 400
   flightAcceleration: 50
   explosionRadius: 100
+  explosionForce: 1250
   explosionParticles: {fileID: 4972900957164026776, guid: f95fe786694e4a34d9b9ce44ee227bb6,
     type: 3}
   flightParticles: {fileID: 5497639754954091407}
   launchParticles: {fileID: 6003115361037833389}
---- !u!136 &8637190444521336378
-CapsuleCollider:
+--- !u!65 &7944635307214218266
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,10 +134,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.1590644
-  m_Height: 10.715344
-  m_Direction: 2
-  m_Center: {x: 0, y: 1.6364256e-14, z: -4}
+  serializedVersion: 2
+  m_Size: {x: 1.652851, y: 1.6528512, z: 10.715344}
+  m_Center: {x: 0, y: 0, z: -4.357672}
 --- !u!1 &5497639754954091402
 GameObject:
   m_ObjectHideFlags: 0

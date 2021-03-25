@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4651971901765902230}
   - component: {fileID: 4455213913945269664}
   - component: {fileID: 7991795973667821913}
-  - component: {fileID: 4838857719571609370}
+  - component: {fileID: 2752736222443130366}
   m_Layer: 14
   m_Name: flat rock 3
   m_TagString: CanBeGrabbed
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,8 +81,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &4838857719571609370
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2752736222443130366
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 289301614986012343, guid: 96baf5a515f6be3478c89b31037b31c0, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.6732628, y: 2.809802, z: 2.8374376}
+  m_Center: {x: -0.02861364, y: 0.15560819, z: 0.6725698}
