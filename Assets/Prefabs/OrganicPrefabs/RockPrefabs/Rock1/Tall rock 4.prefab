@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8715186711989087993}
   - component: {fileID: 408022840724378831}
   - component: {fileID: 6238928008490821686}
-  - component: {fileID: 6676154050293895375}
+  - component: {fileID: 3116450032063261181}
   m_Layer: 14
   m_Name: Tall rock 4
   m_TagString: CanBeGrabbed
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6676154050293895375
-BoxCollider:
+--- !u!64 &3116450032063261181
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.740155, y: 4.6701684, z: 2.5728443}
-  m_Center: {x: 0.090980515, y: 0.0055146194, z: 0.9551325}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: b77760828fd74c543b9cb8f7cba48e3f, type: 3}
