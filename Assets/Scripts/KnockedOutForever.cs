@@ -18,6 +18,11 @@ public class KnockedOutForever : MonoBehaviour
         if(ai.stunCount > 0)
         {
             ai.stun(1);
+            if(ai.anim.speed > 0)
+            {
+                ai.anim.speed = Mathf.Clamp(ai.anim.speed - Time.deltaTime, 0, 2);
+                Debug.Log(ai.anim.speed);
+            }
         }
         
     }

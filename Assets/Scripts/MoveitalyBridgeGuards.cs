@@ -54,7 +54,7 @@ public class MoveitalyBridgeGuards : MonoBehaviour
 
     bool checkPlayerCostume()
     {
-        if(PlayerPrefs.GetInt("Costume_Hat", 0) == 13 && PlayerPrefs.GetInt("Costume_Coat", 0) == 4 && PlayerPrefs.GetInt("Costume_Shirt", 0) == 4 && PlayerPrefs.GetInt("Costume_Pants", 0) == 4)
+        if (PlayerPrefs.GetInt("Costume_Hat", 0) == 6 && PlayerPrefs.GetInt("Costume_Coat", 0) == 5 && PlayerPrefs.GetInt("Costume_Shirt", 0) == 4 && PlayerPrefs.GetInt("Costume_Pants", 0) == 4)
             return true;
         
         else

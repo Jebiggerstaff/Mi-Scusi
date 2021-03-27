@@ -228,9 +228,9 @@ public class NewAIMan : MonoBehaviour
 
                 if (agent.enabled == true)
                     anim.speed = agent.speed / 3;
-                else
+                else if(GetComponent<KnockedOutForever>() == null)
                     anim.speed = 1;
-                anim.speed = Mathf.Clamp(anim.speed, 0.25f, 2f);
+                anim.speed = Mathf.Clamp(anim.speed, 0f, 2f);
                 if (anim != null)
                 {
 
@@ -579,7 +579,7 @@ public class NewAIMan : MonoBehaviour
    
     public void getQuipped(float time)
     {
-        if(canBeQuipped)
+        if(canBeQuipped && stunCount <= 0)
         {
 
             quipped = true;
