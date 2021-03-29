@@ -473,6 +473,14 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateChar"",
+                    ""type"": ""Value"",
+                    ""id"": ""2ed993a9-38e2-4201-81d7-053545ed79cd"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -948,6 +956,39 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                     ""action"": ""MenuReturn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shouldewr"",
+                    ""id"": ""1ec171ee-5829-4a6e-a78f-9ac603857a27"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateChar"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dc1cef40-db9e-4615-a963-4a2e4fde4b93"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateChar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""047b2883-e686-442e-b23a-8b7c397b3e0e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateChar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1042,6 +1083,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         m_UI_TaskMenu = m_UI.FindAction("Task Menu ", throwIfNotFound: true);
         m_UI_PauseMenu = m_UI.FindAction("Pause Menu", throwIfNotFound: true);
         m_UI_MenuReturn = m_UI.FindAction("MenuReturn", throwIfNotFound: true);
+        m_UI_RotateChar = m_UI.FindAction("RotateChar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1209,6 +1251,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TaskMenu;
     private readonly InputAction m_UI_PauseMenu;
     private readonly InputAction m_UI_MenuReturn;
+    private readonly InputAction m_UI_RotateChar;
     public struct UIActions
     {
         private @MiScusiActions m_Wrapper;
@@ -1226,6 +1269,7 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         public InputAction @TaskMenu => m_Wrapper.m_UI_TaskMenu;
         public InputAction @PauseMenu => m_Wrapper.m_UI_PauseMenu;
         public InputAction @MenuReturn => m_Wrapper.m_UI_MenuReturn;
+        public InputAction @RotateChar => m_Wrapper.m_UI_RotateChar;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1274,6 +1318,9 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 @MenuReturn.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
                 @MenuReturn.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
                 @MenuReturn.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenuReturn;
+                @RotateChar.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRotateChar;
+                @RotateChar.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRotateChar;
+                @RotateChar.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRotateChar;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1317,6 +1364,9 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
                 @MenuReturn.started += instance.OnMenuReturn;
                 @MenuReturn.performed += instance.OnMenuReturn;
                 @MenuReturn.canceled += instance.OnMenuReturn;
+                @RotateChar.started += instance.OnRotateChar;
+                @RotateChar.performed += instance.OnRotateChar;
+                @RotateChar.canceled += instance.OnRotateChar;
             }
         }
     }
@@ -1394,5 +1444,6 @@ public class @MiScusiActions : IInputActionCollection, IDisposable
         void OnTaskMenu(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnMenuReturn(InputAction.CallbackContext context);
+        void OnRotateChar(InputAction.CallbackContext context);
     }
 }
