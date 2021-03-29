@@ -161,7 +161,7 @@ public class HandContact : MonoBehaviour
             punchingThisArm = APR_Player.punchingRight;
         }
 
-        if (correctLayerTags(col))
+        if (correctLayerTags(col) && APR_Player.IsKnockedOut() == false)
         {
             if (col.gameObject.GetComponent<NewAIMan>() != null)
             {

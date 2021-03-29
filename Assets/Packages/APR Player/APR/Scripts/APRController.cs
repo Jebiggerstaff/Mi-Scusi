@@ -1163,4 +1163,9 @@ public class APRController : MonoBehaviour
             resetTimer = 0;
         }
     }
+
+    public bool IsKnockedOut()
+    {
+        return knockedOut;
+    }
 }
