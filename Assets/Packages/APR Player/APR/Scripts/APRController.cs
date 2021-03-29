@@ -798,7 +798,13 @@ public class APRController : MonoBehaviour
 		APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-	}
+
+        //Other
+        LeftHand.GetComponent<HandContact>().UnGrab();
+        RightHand.GetComponent<HandContact>().UnGrab();
+        Root.GetComponent<ConfigurableJoint>().angularXMotion = ConfigurableJointMotion.Free;
+        Root.GetComponent<ConfigurableJoint>().angularZMotion = ConfigurableJointMotion.Free;
+    }
 
 	//---Deactivate Ragdoll---//
 	void DeactivateRagdoll()
@@ -840,7 +846,13 @@ public class APRController : MonoBehaviour
 		APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = PoseOn;
 		APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = PoseOn;
-        
+
+
+
+        Root.GetComponent<ConfigurableJoint>().angularXMotion = ConfigurableJointMotion.Locked;
+        Root.GetComponent<ConfigurableJoint>().angularZMotion = ConfigurableJointMotion.Locked;
+
+
         ResetPose = true;
 	}
     
