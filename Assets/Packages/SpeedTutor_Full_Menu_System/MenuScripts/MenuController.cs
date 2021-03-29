@@ -693,7 +693,7 @@ namespace SpeedTutorMainMenuSystem
             if (needResumeButton)
             {
                 ResumeGameBtn.SetActive(true);
-
+                newGameBtn.GetComponent<Text>().text = "Level Select";
                 EventSystem.current.SetSelectedGameObject(ResumeGameBtn);
             }
             else
@@ -701,6 +701,7 @@ namespace SpeedTutorMainMenuSystem
                 
                 ResumeGameBtn.SetActive(false);
 
+                newGameBtn.GetComponent<Text>().text = "Play";
                 EventSystem.current.SetSelectedGameObject(newGameBtn);
             }
         }
