@@ -116,9 +116,9 @@ public class DesertTaskManager : MonoBehaviour
         "Make a mess in the gift shop\n" +
         "Pause the music...forever\n" +
         "Send the submarine off to sea (" + GasCollected.ToString() + "/3)\n" +
-        "Party hard and \"blow the roof off\" at the fireworks stand\n" +
+        "\"Raise the roof\" at the fireworks stand\n" +
         "Win the foot race\n" +
-        "Resolve the strange occurences in the cliffs\n";
+        "Resolve the mystery in the cliffs\n";
 
 
         if(guardsRemoved >= 4)
