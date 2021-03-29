@@ -35,7 +35,7 @@ public class ItalyMoveNoirGuards : MonoBehaviour
 
     bool checkPlayerCostume()
     {
-        if (PlayerPrefs.GetInt("Costume_Hat", 0) == 15 && PlayerPrefs.GetInt("Costume_Shirt", 0) == 5 && PlayerPrefs.GetInt("Costume_Pants", 0) == 5)
+        if (PlayerPrefs.GetInt("Costume_Hat", 0) == 2 && PlayerPrefs.GetInt("Costume_Shirt", 0) == 5 && PlayerPrefs.GetInt("Costume_Pants", 0) == 5)
             return true;
 
         return false;
