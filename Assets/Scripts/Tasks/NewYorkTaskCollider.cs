@@ -29,7 +29,7 @@ public class NewYorkTaskCollider : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         #region SSStags
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1") && name == "SSSTag")
+        if (other.name=="APR_Head" && name == "SSSTag")
         {
             int index = System.Array.IndexOf(NewYorkTaskManager.SSSTags,this.gameObject);
             NewYorkTaskManager.ScusiTags[index].SetActive(true);
