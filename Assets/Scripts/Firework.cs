@@ -23,6 +23,9 @@ public class Firework : MonoBehaviour
     public ParticleSystem flightParticles;
     public ParticleSystem launchParticles;
     public static int numSpawned = 0;
+    public AudioClip fireworklaunch;
+    public AudioClip explodingtheshop;
+    public AudioClip fireworkprep;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,7 @@ public class Firework : MonoBehaviour
     {
         if (flying)
         {
+            RandomAudioMaker.makeAudio(fireworklaunch);
             currentFlightTime += Time.fixedDeltaTime;
 
             if (currentFlightTime >= flightTime)
@@ -84,7 +88,7 @@ public class Firework : MonoBehaviour
     {
         if(!launching && !flying)
         {
-
+            RandomAudioMaker.makeAudio(fireworkprep);
             launching = true;
             launchParticles.Play();
         }
@@ -149,7 +153,7 @@ public class Firework : MonoBehaviour
             FindObjectOfType<DesertTaskManager>().shopFireworks++;
             if ( FindObjectOfType<DesertTaskManager>().shopFireworks >= 6)
             {
-
+                RandomAudioMaker.makeAudio(explodingtheshop);
                 FindObjectOfType<DesertTaskManager>().TaskCompleted("Fireworks");
             }
         }
