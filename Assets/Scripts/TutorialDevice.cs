@@ -8,8 +8,6 @@ public class TutorialDevice : MonoBehaviour
 {
     private MiScusiActions controls;
 
-    
-
     public GameObject TutorialKeyboard;
     public GameObject TutorialController;
 
