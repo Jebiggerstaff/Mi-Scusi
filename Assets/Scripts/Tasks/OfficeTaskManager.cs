@@ -63,7 +63,7 @@ public class OfficeTaskManager : MonoBehaviour
             Destroy(coffeeObject2);
             Destroy(coffeeObject3);
             CoffeeSpawned = true;
-            Instantiate(CoffeePrefab, new Vector3(54.8100014f, 34.8970032f, 10.0401859f), new Quaternion(0, 0, 0, 0));
+            Instantiate(CoffeePrefab, new Vector3(52f,47f,11f), new Quaternion(0, 0, 0, 0));
         }
     }
     private MiScusiActions controls;

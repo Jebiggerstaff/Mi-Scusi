@@ -31,11 +31,11 @@ public class OfficeTaskCollider : MonoBehaviour
         }
         #endregion
         #region OfficeDouche
-        if (other.name == "APR_Head" && name == "OfficeDouche")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1") && name == "OfficeDouche")
         {
             if (!PaperSpawned)
             {
-                Instantiate(OfficeTaskManager.PhoneNumberPrefab, new Vector3(65.61f, 34.63f, -23.56f), new Quaternion(0, 0, 0, 0));
+                Instantiate(OfficeTaskManager.PhoneNumberPrefab, new Vector3(65.6f,50.55f,-24.6f), new Quaternion(0, 0, 0, 0));
                 PaperSpawned = true;
             }
         }
