@@ -133,8 +133,16 @@ public class DialogueSystem: MonoBehaviour {
 
             while (currentCharacterIndex < stringLength)
             {
+
+                if (controls.Player.Interact.triggered)
+                {
+                    currentCharacterIndex = stringLength - 1;
+                }
+
+
                 dialogueText.text += stringToDisplay[currentCharacterIndex];
                 currentCharacterIndex++;
+
 
                 if (currentCharacterIndex < stringLength)
                 {
