@@ -8,6 +8,8 @@ public class DesertCactusEffect : MonoBehaviour
     float cactusTimer;
     bool isOn = false;
 
+    public float Timescaleinteger = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,7 @@ public class DesertCactusEffect : MonoBehaviour
             if(Time.timeScale == 1)
             {
 
-                Time.timeScale = 2;
+                Time.timeScale = Timescaleinteger;
 
             }
             isOn = true;
