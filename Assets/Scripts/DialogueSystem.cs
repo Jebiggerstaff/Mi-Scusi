@@ -124,6 +124,7 @@ public class DialogueSystem: MonoBehaviour {
 
     private IEnumerator DisplayString(string stringToDisplay)
     {
+        bool skipDelay = false;
         if (outOfRange == false)
         {
             int stringLength = stringToDisplay.Length;
@@ -134,10 +135,7 @@ public class DialogueSystem: MonoBehaviour {
             while (currentCharacterIndex < stringLength)
             {
 
-                if (controls.Player.Interact.triggered)
-                {
-                    currentCharacterIndex = stringLength - 1;
-                }
+                
 
 
                 dialogueText.text += stringToDisplay[currentCharacterIndex];
@@ -164,12 +162,23 @@ public class DialogueSystem: MonoBehaviour {
                     dialogueEnded = false;
                     break;
                 }
+                if (controls.Player.Interact.triggered)
+                {
+                    dialogueText.text = stringToDisplay;
+                    currentCharacterIndex = stringLength;
+                    skipDelay = true;
+                }
             }
             while (true)
             {
                 if (controls.Player.Interact.triggered)
                 {
-                    break;
+                    if(!skipDelay)
+                        break;
+                }
+                else
+                {
+                    skipDelay = false;
                 }
                 yield return 0;
             }
