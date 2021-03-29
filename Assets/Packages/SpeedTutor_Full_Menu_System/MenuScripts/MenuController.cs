@@ -250,7 +250,7 @@ namespace SpeedTutorMainMenuSystem
 
                 if (btn != null)
                 {
-
+                    /*
                     float x = Mathf.Abs(controls.Player.MoveX.ReadValue<float>());
                     float y = Mathf.Abs(controls.Player.MoveY.ReadValue<float>());
 
@@ -292,7 +292,7 @@ namespace SpeedTutorMainMenuSystem
                         upNavDelay = 0;
                         leftNavDelay = 0;
                     }
-
+                    */
                 }
             }
 
