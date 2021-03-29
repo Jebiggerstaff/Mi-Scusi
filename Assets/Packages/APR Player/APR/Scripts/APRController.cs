@@ -919,12 +919,17 @@ public class APRController : MonoBehaviour
 
             float limit = 0.8f;
             float bendChangeLimit = 0.8f;
-            float bendMultiplier = 0.005f;
+            float mBendMultiplier = 0.00055f;
+            float cBendMultiplier = 0.1f;
 
             float bend = controls.Player.Bend.ReadValue<float>();
             if(Mouse.current != null && controls.Player.Bend.activeControl != null && controls.Player.Bend.activeControl.device == Mouse.current)
             {
-                bend *= bendMultiplier;
+                bend *= mBendMultiplier;
+            }
+            else
+            {
+                bend *= cBendMultiplier;
             }
 
             float bendVal = Mathf.Clamp(bend, -bendChangeLimit, bendChangeLimit);
@@ -1157,5 +1162,10 @@ public class APRController : MonoBehaviour
         else{
             resetTimer = 0;
         }
+    }
+
+    public bool IsKnockedOut()
+    {
+        return knockedOut;
     }
 }

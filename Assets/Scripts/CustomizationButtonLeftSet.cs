@@ -96,7 +96,7 @@ public class CustomizationButtonLeftSet : MonoBehaviour
             }
         }
 
-        if (nav.selectOnLeft == null)
+        if (nav.selectOnLeft == null && defaultPath.activeSelf == true)
             nav.selectOnLeft = defaultPath.GetComponent<Button>();
 
         me.navigation = nav;
