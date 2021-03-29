@@ -221,16 +221,16 @@ public class HandContact : MonoBehaviour
                 //Steal 5 doucments Task
                 if (SceneManager.GetActiveScene().name == "Italy" && col.gameObject.name == "Document")
                 {
+                    Destroy(col.gameObject);
                     ItalyTaskManager.DocumentsCollected++;
-                    RandomAudioMaker.makeAudio(FindObjectOfType<ItalyTaskManager>().DocumentGrabbedNoise);
                     if (ItalyTaskManager.DocumentsCollected == 5)
                     {
                         ItalyTaskManager.TaskCompleted("Collect5documents");
                     }
-                    Destroy(col.gameObject);
+                    RandomAudioMaker.makeAudio(FindObjectOfType<ItalyTaskManager>().DocumentGrabbedNoise);
                 }
                 //Drink Coffee
-                if(col.gameObject.name == "CoffeeMug")
+                if (col.gameObject.name == "CoffeeMug")
                 {
                     CoffeeSpeed cof = new CoffeeSpeed();
                     cof.SpeedUp();
