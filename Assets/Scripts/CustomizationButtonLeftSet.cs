@@ -11,6 +11,7 @@ public class CustomizationButtonLeftSet : MonoBehaviour
     public GameObject coat;
     public GameObject backpack;
     public GameObject accessory;
+    public GameObject defaultPath;
     [Space]
     public Button me;
     // Start is called before the first frame update
@@ -94,6 +95,9 @@ public class CustomizationButtonLeftSet : MonoBehaviour
                 }
             }
         }
+
+        if (nav.selectOnLeft == null)
+            nav.selectOnLeft = defaultPath.GetComponent<Button>();
 
         me.navigation = nav;
     }

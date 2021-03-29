@@ -460,6 +460,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RotateChar",
+                    "type": "Value",
+                    "id": "2ed993a9-38e2-4201-81d7-053545ed79cd",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -935,6 +943,39 @@
                     "action": "MenuReturn",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Shouldewr",
+                    "id": "1ec171ee-5829-4a6e-a78f-9ac603857a27",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateChar",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "dc1cef40-db9e-4615-a963-4a2e4fde4b93",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateChar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "047b2883-e686-442e-b23a-8b7c397b3e0e",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateChar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

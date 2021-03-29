@@ -1138,8 +1138,7 @@ public class APRController : MonoBehaviour
 
     private void Reset()
     {
-
-        Debug.Log(controls.Player.Reset.ReadValue<float>()+","+ resetTimer);
+        
         if (controls.Player.Reset.ReadValue<float>() != 0f)
         { 
             resetTimer = resetTimer + .1f;
