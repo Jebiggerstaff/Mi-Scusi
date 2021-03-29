@@ -32,5 +32,9 @@ public class controllerlookup : MonoBehaviour
         {
             A.SetActive(true);
         }
+        else
+        {
+            A.SetActive(true);
+        }
     }
 }
