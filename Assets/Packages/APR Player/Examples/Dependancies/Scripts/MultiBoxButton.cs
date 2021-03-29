@@ -19,7 +19,20 @@ public class MultiBoxButton : MonoBehaviour
     public MultiBoxDoorButton controller;
     
     private bool pressed = false;
-    
+
+    public MeshRenderer mesh;
+
+    public Material nonPress;
+    public Material press;
+
+    private void Update()
+    {
+        if (pressed)
+            mesh.material = press;
+        else
+            mesh.material = nonPress;
+    }
+
     void OnTriggerStay(Collider col)
     {
         if(!pressed)
