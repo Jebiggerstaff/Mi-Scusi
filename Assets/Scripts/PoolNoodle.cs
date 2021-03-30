@@ -43,4 +43,9 @@ public class PoolNoodle : MonoBehaviour
 
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        CollideThings(collision);
+    }
 }

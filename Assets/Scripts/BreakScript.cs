@@ -32,10 +32,20 @@ public class BreakScript : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Pickaxe"))
             {
+                if (gameObject.name == "LockerRoomCrackedWall")
+                {
+                    FindObjectOfType<RioTaskManager>().TaskCompleted("LockerRoom");
+                }
+                if(gameObject.name == "StatueWall")
+                {
+                    FindObjectOfType<RioTaskManager>().TaskCompleted("Booty");
+
+                }
                 poof.Play();
                 sound.Play();
                 Unbroken.SetActive(false);
                 Broken.SetActive(true);
+
 
             }
         }

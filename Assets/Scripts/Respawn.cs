@@ -15,7 +15,7 @@ public class Respawn : MonoBehaviour
         foreach (GameObject obj in objects) {
 
 
-            if (obj.transform.position.y < RespawnHeight)
+            if (obj != null &&  obj.transform.position.y < RespawnHeight)
             {
                 obj.transform.position = SpawnPoint.transform.position;
             }
