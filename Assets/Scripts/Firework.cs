@@ -55,7 +55,6 @@ public class Firework : MonoBehaviour
     {
         if (flying)
         {
-            RandomAudioMaker.makeAudio(fireworklaunch);
             currentFlightTime += Time.fixedDeltaTime;
 
             if (currentFlightTime >= flightTime)
@@ -88,7 +87,7 @@ public class Firework : MonoBehaviour
     {
         if(!launching && !flying)
         {
-            RandomAudioMaker.makeAudio(fireworkprep);
+            RandomAudioMaker.makeAudio(fireworkprep, 0.5f);
             launching = true;
             launchParticles.Play();
         }
@@ -97,6 +96,7 @@ public class Firework : MonoBehaviour
     {
         if(!flying)
         {
+            RandomAudioMaker.makeAudio(fireworklaunch, 0.5f);
             launchParticles.Stop();
             flightParticles.Play();
             launching = false;
@@ -143,6 +143,8 @@ public class Firework : MonoBehaviour
 
             }
 
+            RandomAudioMaker.makeAudio(explodingtheshop, 0.5f);
+
 
             FindObjectOfType<DesertTaskManager>().FireworkExploded();
 
@@ -153,7 +155,6 @@ public class Firework : MonoBehaviour
             FindObjectOfType<DesertTaskManager>().shopFireworks++;
             if ( FindObjectOfType<DesertTaskManager>().shopFireworks >= 6)
             {
-                RandomAudioMaker.makeAudio(explodingtheshop);
                 FindObjectOfType<DesertTaskManager>().TaskCompleted("Fireworks");
             }
         }

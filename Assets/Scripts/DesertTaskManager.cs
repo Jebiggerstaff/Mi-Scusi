@@ -34,6 +34,7 @@ public class DesertTaskManager : MonoBehaviour
     public NPC DJ;
     public GameObject fireworkStandGuy;
     public ExplodeBuilding fireworkStand;
+    public GameObject music;
     [Space]
     public Animator ufo;
     public Animator sub;
@@ -186,6 +187,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[3] = true;
                     StartCoroutine(confettistuff());
 
+                    Destroy(music);
 
                     guardsRemoved++;
                     GroundGuard3.SetActive(true);
@@ -224,6 +226,7 @@ public class DesertTaskManager : MonoBehaviour
                     guardsRemoved++;
                     GroundGuard4.SetActive(true);
                     StageGuard4.SetActive(false);
+
 
                     Destroy(fireworkStandGuy.gameObject);
                 }
