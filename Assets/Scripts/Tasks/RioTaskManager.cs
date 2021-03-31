@@ -109,10 +109,10 @@ public class RioTaskManager : MonoBehaviour
             "Help everyone go shopping";
 
 
-        if(!TaskFinished[1])
+        if (!TaskFinished[1])
         {
-            TaskCompleted("Outfit");
-            //CHECK PLAYER COSTUME FOR FOOTBALL
+            if (PlayerPrefs.GetInt("Costume_Shirt", 0) == 6 && PlayerPrefs.GetInt("Costume_Pants", 0) == 7)
+                TaskCompleted("Outfit");
         }
 
         

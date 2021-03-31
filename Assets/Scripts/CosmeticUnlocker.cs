@@ -154,6 +154,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "TankTop") Shirt(2);
         if (name == "MafiaShirt") Shirt(3);
         if (name == "CopShirt") Shirt(4);
+        if (name == "ShirtFootball") Shirt(5);
         #endregion
 
         #region Pants
@@ -164,6 +165,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "MafiaPants") Pant(4);
         if (name == "CopPants") Pant(5);
         if (name == "ArmorPants") Pant(6);
+        if (name == "PantsFootball") Pant(7);
         #endregion
 
         #region Backpacks
