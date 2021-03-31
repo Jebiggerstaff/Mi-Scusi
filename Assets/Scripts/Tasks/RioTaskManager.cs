@@ -165,7 +165,10 @@ public class RioTaskManager : MonoBehaviour
                     }
                     hammer.SetActive(true);
 
-                    //SEND AI INTO FRENZY
+                    foreach(var ai in FindObjectsOfType<RioCrowdAI>())
+                    {
+                        ai.GoalMade();
+                    }
                     
                 }
                 break;

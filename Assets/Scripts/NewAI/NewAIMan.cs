@@ -60,6 +60,9 @@ public class NewAIMan : MonoBehaviour
     public Animator anim;
     public Collider myCol;
 
+    [HideInInspector]
+    public float animSpeedCap;
+
     List<Vector3> allOverrideDestinations = new List<Vector3>();
     Vector3 overrideDestination;
     readonly Vector3 NO_OVERRIDE_DEST = new Vector3(-99999, -99999, -99999);
@@ -83,6 +86,7 @@ public class NewAIMan : MonoBehaviour
         SetCostume();
         SetStopDistance();
         overrideDestination = NO_OVERRIDE_DEST;
+        animSpeedCap = 2;
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -230,7 +234,6 @@ public class NewAIMan : MonoBehaviour
                     anim.speed = agent.speed / 3;
                 else if(GetComponent<KnockedOutForever>() == null)
                     anim.speed = 1;
-                anim.speed = Mathf.Clamp(anim.speed, 0f, 2f);
                 if (anim != null)
                 {
 
@@ -248,7 +251,7 @@ public class NewAIMan : MonoBehaviour
 
             }
 
-            
+            anim.speed = Mathf.Clamp(anim.speed, 0, animSpeedCap);
 
         }
 
