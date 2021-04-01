@@ -29,6 +29,7 @@ public class NewAIMan : MonoBehaviour
     [Space]
     public bool shovesPlayer;
     public bool canBeQuipped = true;
+    public bool canBeBumped = true;
     float shoveForce;
     float shoveAngle;
     float shoveCooldown = 0;
@@ -677,7 +678,8 @@ public class NewAIMan : MonoBehaviour
                 var hc = collision.gameObject.GetComponent<HandContact>();
                 if(hc == null || !hc.isPunching())
                 {
-                    StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
+                    if(canBeBumped)
+                        StartCoroutine(playerCollideScoot(2.0f, collision.gameObject.transform.position));
                 }
 
             }

@@ -47,6 +47,10 @@ public class RioCrowdAI : MonoBehaviour
             }
             
         }
+        else
+        {
+            transform.LookAt(Centerfield);
+        }
     }
 
 
