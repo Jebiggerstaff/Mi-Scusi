@@ -41,6 +41,10 @@ public class BreakScript : MonoBehaviour
                     FindObjectOfType<RioTaskManager>().TaskCompleted("Booty");
 
                 }
+                if(gameObject.name == "RussiaFactoryWall")
+                {
+                    FindObjectOfType<RussiaTaskManager>().TaskCompleted("BreakIn");
+                }
                 poof.Play();
                 sound.Play();
                 Unbroken.SetActive(false);
