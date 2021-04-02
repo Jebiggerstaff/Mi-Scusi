@@ -919,7 +919,7 @@ public class APRController : MonoBehaviour
 
             float limit = 0.8f;
             float bendChangeLimit = 0.8f;
-            float mBendMultiplier = 0.00055f;
+            float mBendMultiplier = 0.00065f;
             float cBendMultiplier = 0.1f;
 
             float bend = controls.Player.Bend.ReadValue<float>();
