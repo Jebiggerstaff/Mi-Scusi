@@ -260,8 +260,10 @@ public class NewAIMan : MonoBehaviour
 
     bool groundCheck()
     {
+        float distance = 2;
+        distance *= transform.lossyScale.y;
         Ray ray = new Ray(transform.position, Vector3.down);
-        return Physics.Raycast(ray, 2, 1 << LayerMask.NameToLayer("Ground"));
+        return Physics.Raycast(ray, distance, 1 << LayerMask.NameToLayer("Ground"));
     }
 
     private bool notBeingShoved()

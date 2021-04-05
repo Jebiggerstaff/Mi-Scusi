@@ -45,6 +45,14 @@ public class BreakScript : MonoBehaviour
                 {
                     FindObjectOfType<RussiaTaskManager>().TaskCompleted("BreakIn");
                 }
+                if(gameObject.name == "MonsterWall")
+                {
+                    var rtm = FindObjectOfType<RussiaTaskManager>();
+                    rtm.Monster.gameObject.SetActive(true);
+                    rtm.Monster.AggroToPlayer();
+
+                    
+                }
                 poof.Play();
                 sound.Play();
                 Unbroken.SetActive(false);

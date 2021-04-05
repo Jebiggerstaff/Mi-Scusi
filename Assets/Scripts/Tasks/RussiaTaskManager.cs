@@ -23,7 +23,8 @@ public class RussiaTaskManager : MonoBehaviour
     public Rigidbody Table;
     public NPC Brunettedilocks;
     int correctSizeCount;
-
+    public HostileAI Monster;
+    public GameObject Explosion;
     [Space]
 
 
@@ -100,7 +101,7 @@ public class RussiaTaskManager : MonoBehaviour
         correctSizeCount = 0;
 
 
-
+        #region Brunttedilocks
         if(Bed.mass >= 64f)
         {
             correctSizeCount++;
@@ -147,8 +148,13 @@ public class RussiaTaskManager : MonoBehaviour
             Brunettedilocks.sentences[0] = "Everything is just right!";
             TaskCompleted("Brunettedilocks");
         }
-
-
+        #endregion
+        #region Monster
+        if(Monster.gameObject.activeSelf && Monster.stunCount > 0)
+        {
+            TaskCompleted("Monster");
+        }
+        #endregion
 
 
     }
@@ -180,6 +186,7 @@ public class RussiaTaskManager : MonoBehaviour
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
 
+                    Explosion.SetActive(true);
 
                     NextLevel.SetActive(true);
                 }
