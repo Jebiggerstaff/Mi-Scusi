@@ -52,6 +52,11 @@ public class HandContact : MonoBehaviour
 
     void Update()
     {
+        if(APR_Player == null)
+        {
+            APR_Player = GetComponentInParent<APRController>();
+        }
+
         if (SceneManager.GetActiveScene().name == "NewYork" && NewYorkTaskManager==null)
             NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
         if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager == null)

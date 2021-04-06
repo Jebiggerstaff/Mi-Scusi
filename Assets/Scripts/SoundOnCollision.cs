@@ -114,7 +114,7 @@ public class SoundOnCollision : MonoBehaviour
 
     public void tryPlayAudio(AudioClip clip)
     {
-        if(clip != null)
+        if(clip != null && audioSource != null)
         {
             if(!(audioSource.clip == clip && audioSource.isPlaying == true))
             {

@@ -60,7 +60,7 @@ public class NoirTaskColider : MonoBehaviour
             sevens++;
             if (sevens >= 3 && sevensCompleted == false){
                 sevensCompleted = true;
-                NoirTaskManager.TaskCompleted("SevensInCasino");
+                NoirTaskManager.TaskCompleted("Sevens");
             }
 
         }
