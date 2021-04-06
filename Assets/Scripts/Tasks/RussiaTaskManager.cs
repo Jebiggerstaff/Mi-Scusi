@@ -26,8 +26,8 @@ public class RussiaTaskManager : MonoBehaviour
     public HostileAI Monster;
     public GameObject Explosion;
     [Space]
-
-
+    public AudioClip[] explosions;
+    [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
@@ -159,6 +159,15 @@ public class RussiaTaskManager : MonoBehaviour
 
     }
 
+    IEnumerator explosionsSounds()
+    {
+        while(true)
+        {
+            RandomAudioMaker.makeAudio(explosions[Random.Range(0, explosions.Length)], 0.5f);
+            yield return new WaitForSeconds(Random.Range(0.25f, 1f));
+        }
+    }
+
 
     public void TaskCompleted(string Task)
     {
@@ -187,6 +196,8 @@ public class RussiaTaskManager : MonoBehaviour
                     StartCoroutine(confettistuff());
 
                     Explosion.SetActive(true);
+
+                    StartCoroutine(explosionsSounds());
 
                     NextLevel.SetActive(true);
                 }
