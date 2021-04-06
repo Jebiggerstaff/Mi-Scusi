@@ -11,13 +11,13 @@ public class BoatMap : MonoBehaviour
     public float turnSpeed;
     public GameObject CrashDetector;
 
-    private bool insideMap=true;
+    private bool insideMap = true;
     private bool turningLeft, turningRight, goingForward;
     private bool forward, pressed;
 
-    public GameObject LeftTurnButton;
-    public GameObject RightTurnButton;
-    public GameObject ForwardButton;
+    public CruiseBtnHelper LeftTurnButton;
+    public CruiseBtnHelper RightTurnButton;
+    public CruiseBtnHelper ForwardButton;
 
     public GameObject lBorder;
     public GameObject rBorder;
@@ -35,63 +35,28 @@ public class BoatMap : MonoBehaviour
     {
 
         //Left Turn
-        if (controller.RightHand.GetComponent<FixedJoint>() != null)
+        if (LeftTurnButton.pressed)
         {
-            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == LeftTurnButton.gameObject.GetComponent<Rigidbody>())
-            {
-                turningLeft = true;
-            }
-
-        }
-        else if(controller.LeftHand.GetComponent<FixedJoint>() != null)
-        {
-            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == LeftTurnButton.gameObject.GetComponent<Rigidbody>())
-            {
-                turningLeft = true;
-            }
-
+            turningLeft = true;
         }
         else
         {
             turningLeft = false;
         }
         //Right Turn
-        if (controller.RightHand.GetComponent<FixedJoint>() != null)
-        {
-            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == RightTurnButton.gameObject.GetComponent<Rigidbody>())
-            {
-                turningRight = true;
-            }
 
-        }
-        else if (controller.LeftHand.GetComponent<FixedJoint>() != null)
+        if (RightTurnButton.pressed)
         {
-            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == RightTurnButton.gameObject.GetComponent<Rigidbody>())
-            {
-                turningRight = true;
-            }
-
+            turningRight = true;
         }
         else
         {
             turningRight = false;
         }
         //Going Straight
-        if (controller.RightHand.GetComponent<FixedJoint>() != null)
+        if (ForwardButton.pressed)
         {
-            if (controller.RightHand.GetComponent<FixedJoint>().connectedBody == ForwardButton.gameObject.GetComponent<Rigidbody>())
-            {
-                goingForward = true;
-            }
-
-        }
-        else if (controller.LeftHand.GetComponent<FixedJoint>() != null)
-        {
-            if (controller.LeftHand.GetComponent<FixedJoint>().connectedBody == ForwardButton.gameObject.GetComponent<Rigidbody>())
-            {
-                goingForward = true;
-            }
-
+            goingForward = true;
         }
         else
         {
@@ -103,10 +68,6 @@ public class BoatMap : MonoBehaviour
 
     private void Update()
     {
-        if (goingForward || turningLeft || turningRight)
-        {
-            
-        }
 
         if (goingForward)
         {
