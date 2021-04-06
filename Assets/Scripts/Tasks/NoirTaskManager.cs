@@ -11,6 +11,7 @@ public class NoirTaskManager : MonoBehaviour
     public GameObject Player;
     public GameObject TaskCompleteText;
     public GameObject TaskList;
+    public GameObject NextLevel;
 
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -57,6 +58,11 @@ public class NoirTaskManager : MonoBehaviour
         {
             TaskList.SetActive(false);
             menuOpen = false;
+        }
+
+        if(TasksCompleted[1] && TasksCompleted[0] && TasksCompleted[1])
+        {
+            NextLevel.SetActive(true);
         }
     }
 

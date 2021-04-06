@@ -17,17 +17,18 @@ public class ShipKitchenMove : MonoBehaviour
     {
         if(checkPlayerCostume())
         {
-            aiman.target = new Vector3(-150.509995f, 181.869995f, 172.75f);
-            aiman.shovesPlayer = false;
+            Destroy(gameObject);
         }
     }
 
 
     bool checkPlayerCostume()
     {
-        //TODO: CHECK PLAYER OUTFIT
-
-
-        return false;
+        if(PlayerPrefs.GetInt("Costume_Hat", 0) == 10 && PlayerPrefs.GetInt("Costume_Coat", 0) == 1)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }

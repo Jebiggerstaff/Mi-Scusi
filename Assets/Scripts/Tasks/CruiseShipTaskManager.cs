@@ -80,6 +80,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                 if (TaskFinished[0] == false)
                 {
                     CosmeticUnlocker.UnlockOutfit("TallChefHat");
+                    CosmeticUnlocker.UnlockOutfit("ChefCoat");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
                     TaskCompleteText.SetActive(false);
