@@ -18,6 +18,7 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject TaskList;
     public NPC DustyTheJanitor;
     public NPC JaniceTheReceptionist;
+    //public Text taskList;
 
     [Header("Task Objects")]
 
@@ -110,7 +111,7 @@ public class OfficeTaskManager : MonoBehaviour
 
                     JaniceTheReceptionist.sentences = new string[2];
                     JaniceTheReceptionist.sentences[0] = "Did you help Barnaby?";
-                    JaniceTheReceptionist.sentences[1] = "Very good, head upstairs, I'm sure someone could use your help.";
+                    JaniceTheReceptionist.sentences[1] = "Very good, head up the mail tube, I'm sure someone could use your help.";
                     StartCoroutine(confettistuff());
                 }
                 break;
