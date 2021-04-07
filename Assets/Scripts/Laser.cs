@@ -125,7 +125,7 @@ public class Laser : MonoBehaviour
                             }
                             Destroy(hit.collider.gameObject);
                         }
-                        if(hit.collider.tag == "LaserButton")
+                        if(hit.collider.tag == "LaserButton" && !KillsAI)
                         {
                             FindObjectOfType<PentagonTaskManager>().TaskCompleted("Door");
                         }

@@ -27,6 +27,7 @@ public class PentagonTaskManager : MonoBehaviour
     public GameObject DoorOne;
     public GameObject DoorTwo;
     public GameObject[] BurningManFire;
+    public GameObject LaunchParticles;
     [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -196,7 +197,8 @@ public class PentagonTaskManager : MonoBehaviour
                     Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
-                    
+
+                    LaunchParticles.SetActive(true);
 
                     NextLevel.SetActive(true);
                 }

@@ -30,7 +30,11 @@ public class PentagonTaskCollider : MonoBehaviour
         }
         if(name == "MacaroniSpot" && other.name == "Macaroni")
         {
-
+            PentagonTaskManager.TaskCompleted("Macaroni");
+        }
+        if(name == "RocketButton" && other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            PentagonTaskManager.TaskCompleted("Rocket");
         }
     }
 }
