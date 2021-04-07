@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AIManager : MonoBehaviour
 {
+    public int[] RegularDudeAllowedCostumes;
+    public int[] StayStillAllowedCostumes;
+    public int[] SitDownAllowedCostumes;
+    public int[] HostileAllowedCostumes;
+
     private void Awake()
     {
         aimanager = this;
@@ -343,22 +348,50 @@ public class AIManager : MonoBehaviour
     {
         foreach(var rd in RegularDudes)
         {
+            if(RegularDudeAllowedCostumes != null)
+            {
+                rd.allowedCostumeIndexes = new List<int>(RegularDudeAllowedCostumes);
+            }
             people.Add(rd.MakeAI(normalAI));
         }
         foreach(var cd in CrowdDudes)
         {
+            if (cd.hostile)
+            {
+                if(RegularDudeAllowedCostumes != null)
+                {
+                    cd.allowedCostumeIndexes = new List<int>(RegularDudeAllowedCostumes);
+                }
+            }
+            else
+            {
+                if(HostileAllowedCostumes != null)
+                    cd.allowedCostumeIndexes = new List<int>(HostileAllowedCostumes);
+            }
             crowds.Add(cd.MakeAI(crowdAI) as CrowdAI);
         }
         foreach(var sa in StandStillDudes)
         {
+            if (StayStillAllowedCostumes != null)
+            {
+                sa.allowedCostumeIndexes = new List<int>(StayStillAllowedCostumes);
+            }
             stillPeople.Add(sa.MakeAI(stillAI) as StayStillAIMan);
         }
         foreach(var hd in HostileDudes)
         {
+            if (HostileAllowedCostumes != null)
+            {
+                hd.allowedCostumeIndexes = new List<int>(HostileAllowedCostumes);
+            }
             hostilePeople.Add(hd.MakeAI(hostileAI) as HostileAI);
         }
         foreach(var sd in SitDownDudes)
         {
+            if (SitDownAllowedCostumes != null)
+            {
+                sd.allowedCostumeIndexes = new List<int>(SitDownAllowedCostumes);
+            }
             sitdownPeople.Add(sd.MakeAI(sitDownAI) as SitDownAI);
         }
     }

@@ -24,9 +24,14 @@ public class PentagonTaskManager : MonoBehaviour
     public GameObject AlienObjects;
     public GameObject BurningObjects;
     [Space]
+    public GameObject DoorOne;
+    public GameObject DoorTwo;
+    public GameObject[] BurningManFire;
+    [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
+    [HideInInspector] public bool[] TaskAllowed;
     private bool menuOpen;
 
 
@@ -52,9 +57,11 @@ public class PentagonTaskManager : MonoBehaviour
         //Debug.Log("Found Player: " + Player);
 
         TaskFinished = new bool[Tasks.Length];
+        TaskAllowed = new bool[Tasks.Length];
         for (int i = 0; i < TaskFinished.Length; i++)
         {
             TaskFinished[i] = false;
+            TaskAllowed[i] = true;
         }
 
         menuOpen = true;
@@ -62,40 +69,43 @@ public class PentagonTaskManager : MonoBehaviour
         if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Aliens"))
         {
             SaveAliens = "Save your alien pals from captivity!";
-
-            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Princess"))
-            {
-                SlayPrincess = "Save the princess...from existing!";
-            }
-            else
-            {
-                PrincessObjects.SetActive(false);
-            }
-            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("SSS"))
-            {
-                SlaySSS = "Defeat your street tagging nemesis...once and for all!";
-            }
-            else
-            {
-                SSSObjects.SetActive(false);
-            }
-            SlayMafia = "Finish off the mafia boss!";
-            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Macaroni"))
-            {
-                SaveMacaroni = "Help your macaroni friend see the WHOLE world!";
-            }
-            else
-            {
-                MacObjects.SetActive(false);
-            }
         }
         else
         {
             AlienObjects.SetActive(false);
-            MacObjects.SetActive(false);
-            SSSObjects.SetActive(false);
-            PrincessObjects.SetActive(false);
+            TaskAllowed[2] = false;
         }
+
+        if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Princess"))
+        {
+            SlayPrincess = "Save the princess...from existing!";
+        }
+        else
+        {
+            PrincessObjects.SetActive(false);
+            TaskAllowed[3] = false;
+        }
+
+        if (PlayerPrefs.GetString(CompletedExtras, "").Contains("SSS"))
+        {
+            SlaySSS = "Defeat your street tagging nemesis...once and for all!";
+        }
+        else
+        {
+            SSSObjects.SetActive(false);
+            TaskAllowed[6] = false;
+        }
+
+        if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Macaroni"))
+        {
+            SaveMacaroni = "Help your macaroni friend see the WHOLE world!";
+        }
+        else
+        {
+            MacObjects.SetActive(false);
+            TaskAllowed[5] = false;
+        }
+
         if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Burning"))
         {
             BurnBurningMan = "Burn down burning man...again!";
@@ -103,8 +113,10 @@ public class PentagonTaskManager : MonoBehaviour
         else
         {
             BurningObjects.SetActive(false);
+            TaskAllowed[7] = false;
         }
 
+        SlayMafia = "Finish off the mafia boss!";
 
     }
 
@@ -161,7 +173,7 @@ public class PentagonTaskManager : MonoBehaviour
         switch (Task)
         {
             case "Door":
-                if (TaskFinished[0] == false)
+                if (TaskFinished[0] == false && TaskAllowed[0])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskUpdatedText.SetActive(true);
@@ -169,10 +181,13 @@ public class PentagonTaskManager : MonoBehaviour
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
+
+                    DoorOne.transform.Translate(0, -.63f, 0, Space.Self);
+                    DoorTwo.transform.Translate(0, .63f, 0, Space.Self);
                 }
                 break;
             case "Rocket":
-                if (TaskFinished[1] == false)
+                if (TaskFinished[1] == false && TaskAllowed[1])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -187,7 +202,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "Aliens":
-                if (TaskFinished[2] == false)
+                if (TaskFinished[2] == false && TaskAllowed[2])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -200,7 +215,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "Princess":
-                if (TaskFinished[3] == false)
+                if (TaskFinished[3] == false && TaskAllowed[3])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -213,7 +228,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "Mafia":
-                if (TaskFinished[4] == false)
+                if (TaskFinished[4] == false && TaskAllowed[4])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -226,7 +241,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "Macaroni":
-                if (TaskFinished[5] == false)
+                if (TaskFinished[5] == false && TaskAllowed[5])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -239,7 +254,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "SSS":
-                if (TaskFinished[6] == false)
+                if (TaskFinished[6] == false && TaskAllowed[6])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -252,7 +267,7 @@ public class PentagonTaskManager : MonoBehaviour
                 }
                 break;
             case "BurningMan":
-                if (TaskFinished[7] == false)
+                if (TaskFinished[7] == false && TaskAllowed[7])
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
@@ -261,6 +276,11 @@ public class PentagonTaskManager : MonoBehaviour
                     Tasks[7].SetActive(true);
                     TaskFinished[7] = true;
                     StartCoroutine(confettistuff());
+
+                    foreach (var go in BurningManFire)
+                    {
+                        go.SetActive(true);
+                    }
 
                 }
                 break;

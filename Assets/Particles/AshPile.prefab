@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 372751625714790323}
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.005, y: 0.0033, z: 0.0164}
-  m_LocalScale: {x: 0.09373984, y: 0.106120385, z: 0.50636536}
+  m_LocalScale: {x: 0.09373984, y: 0.05, z: 0.50636536}
   m_Children: []
   m_Father: {fileID: 4977925197196475258}
   m_RootOrder: 0
@@ -606,7 +606,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4823,9 +4823,11 @@ GameObject:
   - component: {fileID: 4977925197196475258}
   - component: {fileID: 8267200454330660063}
   - component: {fileID: 6151363259606974485}
+  - component: {fileID: 4149981913214906668}
+  - component: {fileID: 3513812765592917415}
   m_Layer: 0
   m_Name: AshPile
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4894,3 +4896,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4149981913214906668
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647219517612155328}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3513812765592917415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647219517612155328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017050292, y: 0.0149261765, z: 0.022542063}
+  m_Center: {x: 0, y: 3.4298674e-17, z: 0.0096542165}

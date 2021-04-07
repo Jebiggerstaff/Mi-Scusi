@@ -14,6 +14,9 @@ public class Laser : MonoBehaviour
     public int maxSplit;
     private float timer = 0;
     private LineRenderer mLineRenderer;
+    public bool KillsAI;
+    bool grabbed;
+    [HideInInspector] public int grabCount;
 
     // Use this for initialization
     void Start()
@@ -26,6 +29,7 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        grabbed = grabCount > 0;
         if (gameObject.tag != spawnedBeamTag)
         {
             if (timer >= updateFrequency)
@@ -55,56 +59,88 @@ public class Laser : MonoBehaviour
         mLineRenderer.SetVertexCount(1);
         mLineRenderer.SetPosition(0, transform.position);
         RaycastHit hit;
-
-        while (loopActive)
-        {
-            //Debug.Log("Physics.Raycast(" + lastLaserPosition + ", " + laserDirection + ", out hit , " + laserDistance + ")");
-            if (Physics.Raycast(lastLaserPosition, laserDirection, out hit, laserDistance) && ((hit.transform.gameObject.tag == bounceTag) || (hit.transform.gameObject.tag == splitTag)))
+        if (!KillsAI || (KillsAI && grabbed))
+            while (loopActive)
             {
-                //Debug.Log("Bounce");
-                laserReflected++;
-                vertexCounter += 3;
-                mLineRenderer.SetVertexCount(vertexCounter);
-                mLineRenderer.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
-                mLineRenderer.SetPosition(vertexCounter - 2, hit.point);
-                mLineRenderer.SetPosition(vertexCounter - 1, hit.point);
-                mLineRenderer.SetWidth(.9f, .9f);
-                lastLaserPosition = hit.point;
-                Vector3 prevDirection = laserDirection;
-                laserDirection = Vector3.Reflect(laserDirection, hit.normal);
-
-                if (hit.transform.gameObject.tag == splitTag)
+                //Debug.Log("Physics.Raycast(" + lastLaserPosition + ", " + laserDirection + ", out hit , " + laserDistance + ")");
+                if (Physics.Raycast(lastLaserPosition, laserDirection, out hit, laserDistance) && ((hit.transform.gameObject.tag == bounceTag) || (hit.transform.gameObject.tag == splitTag)))
                 {
-                    //Debug.Log("Split");
-                    if (laserSplit >= maxSplit)
+                    //Debug.Log("Bounce");
+                    laserReflected++;
+                    vertexCounter += 3;
+                    mLineRenderer.SetVertexCount(vertexCounter);
+                    mLineRenderer.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
+                    mLineRenderer.SetPosition(vertexCounter - 2, hit.point);
+                    mLineRenderer.SetPosition(vertexCounter - 1, hit.point);
+                    mLineRenderer.SetWidth(.9f, .9f);
+                    lastLaserPosition = hit.point;
+                    Vector3 prevDirection = laserDirection;
+                    laserDirection = Vector3.Reflect(laserDirection, hit.normal);
+
+                    if (hit.transform.gameObject.tag == splitTag)
                     {
-                        Debug.Log("Max split reached.");
+                        //Debug.Log("Split");
+                        if (laserSplit >= maxSplit)
+                        {
+                            Debug.Log("Max split reached.");
+                        }
+                        else
+                        {
+                            //Debug.Log("Splitting...");
+                            laserSplit++;
+                            Object go = Instantiate(gameObject, hit.point, Quaternion.LookRotation(prevDirection));
+                            go.name = spawnedBeamTag;
+                            ((GameObject)go).tag = spawnedBeamTag;
+                        }
+                    }
+                }
+                else
+                {
+                    //Debug.Log("No Bounce");
+                    laserReflected++;
+                    vertexCounter++;
+                    mLineRenderer.SetVertexCount(vertexCounter);
+                    Vector3 lastPos = lastLaserPosition + (laserDirection.normalized * laserDistance);
+                    //Debug.Log("InitialPos " + lastLaserPosition + " Last Pos" + lastPos);
+
+
+
+                    if (Physics.Raycast(lastLaserPosition, laserDirection, out hit, laserDistance))
+                    {
+                        mLineRenderer.SetPosition(vertexCounter - 1, hit.point);
+                        if (KillsAI && hit.collider.gameObject.GetComponent<NewAIMan>() != null)
+                        {
+                            GetComponent<Raygun>().SpawnEffects(hit.collider.gameObject.transform.position);
+                            if (hit.collider.gameObject.name == "MafiaBoss")
+                            {
+                                FindObjectOfType<PentagonTaskManager>().TaskCompleted("Mafia");
+                            }
+                            if (hit.collider.gameObject.name == "SSS")
+                            {
+                                FindObjectOfType<PentagonTaskManager>().TaskCompleted("SSS");
+                            }
+                            if (hit.collider.gameObject.name == "Princess")
+                            {
+                                FindObjectOfType<PentagonTaskManager>().TaskCompleted("Princess");
+                            }
+                            Destroy(hit.collider.gameObject);
+                        }
+                        if(hit.collider.tag == "LaserButton")
+                        {
+                            FindObjectOfType<PentagonTaskManager>().TaskCompleted("Door");
+                        }
                     }
                     else
                     {
-                        //Debug.Log("Splitting...");
-                        laserSplit++;
-                        Object go = Instantiate(gameObject, hit.point, Quaternion.LookRotation(prevDirection));
-                        go.name = spawnedBeamTag;
-                        ((GameObject)go).tag = spawnedBeamTag;
+                        mLineRenderer.SetPosition(vertexCounter - 1, lastLaserPosition + (laserDirection.normalized * laserDistance));
                     }
-                }
-            }
-            else
-            {
-                //Debug.Log("No Bounce");
-                laserReflected++;
-                vertexCounter++;
-                mLineRenderer.SetVertexCount(vertexCounter);
-                Vector3 lastPos = lastLaserPosition + (laserDirection.normalized * laserDistance);
-                //Debug.Log("InitialPos " + lastLaserPosition + " Last Pos" + lastPos);
-                mLineRenderer.SetPosition(vertexCounter - 1, lastLaserPosition + (laserDirection.normalized * laserDistance));
 
-                loopActive = false;
+
+                    loopActive = false;
+                }
+                if (laserReflected > maxBounce)
+                    loopActive = false;
             }
-            if (laserReflected > maxBounce)
-                loopActive = false;
-        }
 
         yield return new WaitForEndOfFrame();
     }

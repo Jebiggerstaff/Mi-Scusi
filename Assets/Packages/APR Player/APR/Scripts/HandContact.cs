@@ -20,6 +20,7 @@ public class HandContact : MonoBehaviour
     PoolNoodle grabbedNoodle;
     SuperSoakerOnOff grabbedSoaker;
     ScooterDrive grabbedScooter;
+    Laser grabbedLaser;
     FixedJoint joint;
     
     //Have joint/grabbed
@@ -294,6 +295,13 @@ public class HandContact : MonoBehaviour
                     grabbedScooter = sd;
                 }
 
+                var l = col.gameObject.GetComponent<Laser>();
+                if(l != null)
+                {
+                    l.grabCount++;
+                    grabbedLaser = l;
+                }
+
                 /*
                 //too check for grab constraints
                 if (col.gameObject.GetComponent<Rigidbody>() && col.gameObject.GetComponent<Rigidbody>().mass >= 10)
@@ -371,6 +379,12 @@ public class HandContact : MonoBehaviour
         {
             grabbedScooter.driveCount--;
             grabbedScooter = null;
+        }
+
+        if(grabbedLaser != null)
+        {
+            grabbedLaser.grabCount--;
+            grabbedLaser = null;
         }
 
 
