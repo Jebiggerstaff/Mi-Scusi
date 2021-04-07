@@ -124,6 +124,12 @@ public class CruiseShipTaskManager : MonoBehaviour
                     Tasks[2].SetActive(true);
                     TaskFinished[3] = true;
                     StartCoroutine(confettistuff());
+
+
+                    if (PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("Princess") == false)
+                    {
+                        PlayerPrefs.SetString(PentagonTaskManager.CompletedExtras, PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "") + "Princess");
+                    }
                 }
                 break;
             case "BreakChina":

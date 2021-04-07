@@ -153,6 +153,11 @@ public class NewYorkTaskManager : MonoBehaviour
                     StartCoroutine(confettistuff());
                     hostileSam.SetActive(true);
                     normalSam.SetActive(false);
+
+                    if(PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("SSS") == false)
+                    {
+                        PlayerPrefs.SetString(PentagonTaskManager.CompletedExtras, PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "") + "SSS");
+                    }
                 }
                 break;
             case "ShatterWindows":

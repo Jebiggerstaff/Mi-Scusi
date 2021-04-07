@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RussiaTaskManager : MonoBehaviour
+public class PentagonTaskManager : MonoBehaviour
 {
     public GameObject confetti;
 
@@ -18,15 +18,11 @@ public class RussiaTaskManager : MonoBehaviour
     public GameObject NextLevel;
     public Text taskList;
     [Space]
-    public Rigidbody Bed;
-    public Rigidbody Chair;
-    public Rigidbody Table;
-    public NPC Brunettedilocks;
-    int correctSizeCount;
-    public HostileAI Monster;
-    public GameObject Explosion;
-    [Space]
-    public AudioClip[] explosions;
+    public GameObject PrincessObjects;
+    public GameObject SSSObjects;
+    public GameObject MacObjects;
+    public GameObject AlienObjects;
+    public GameObject BurningObjects;
     [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -35,6 +31,15 @@ public class RussiaTaskManager : MonoBehaviour
 
 
     string MainTask;
+    string SlayPrincess = "Complete other side tasks in the game to unlock this side task!";
+    string SlaySSS = "Complete other side tasks in the game to unlock this side task!";
+    string SlayMafia = "Complete other side tasks in the game to unlock this side task!";
+    string SaveAliens = "Complete other side tasks in the game to unlock this side task!";
+    string SaveMacaroni = "Complete other side tasks in the game to unlock this side task!";
+    string BurnBurningMan = "Complete other side tasks in the game to unlock this side task!";
+
+
+    public static string CompletedExtras = "CompletedExtras";
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -53,6 +58,54 @@ public class RussiaTaskManager : MonoBehaviour
         }
 
         menuOpen = true;
+
+        if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Aliens"))
+        {
+            SaveAliens = "Save your alien pals from captivity!";
+
+            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Princess"))
+            {
+                SlayPrincess = "Save the princess...from existing!";
+            }
+            else
+            {
+                PrincessObjects.SetActive(false);
+            }
+            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("SSS"))
+            {
+                SlaySSS = "Defeat your street tagging nemesis...once and for all!";
+            }
+            else
+            {
+                SSSObjects.SetActive(false);
+            }
+            SlayMafia = "Finish off the mafia boss!";
+            if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Macaroni"))
+            {
+                SaveMacaroni = "Help your macaroni friend see the WHOLE world!";
+            }
+            else
+            {
+                MacObjects.SetActive(false);
+            }
+        }
+        else
+        {
+            AlienObjects.SetActive(false);
+            MacObjects.SetActive(false);
+            SSSObjects.SetActive(false);
+            PrincessObjects.SetActive(false);
+        }
+        if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Burning"))
+        {
+            BurnBurningMan = "Burn down burning man...again!";
+        }
+        else
+        {
+            BurningObjects.SetActive(false);
+        }
+
+
     }
 
     private MiScusiActions controls;
@@ -81,99 +134,33 @@ public class RussiaTaskManager : MonoBehaviour
         }
 
         MainTask = "";
-        if(TaskFinished[0] == false)
+        if (TaskFinished[0] == false)
         {
-            MainTask = "Break into the factory";
+            MainTask = "Open the door to the launch bay.";
         }
         else
         {
-            MainTask = "Destroy the factory";
+            MainTask = "Launch the rocket!";
         }
 
         taskList.text = MainTask + "\n" +
-            "Slay the radioactive monster\n" + 
-            "Acquire a larger than life portrait of yourself\n" + 
-            "Help make everything just right";
+            SaveAliens + "\n" + 
+            SlayPrincess + "\n" + 
+            SlayMafia + "\n" + 
+            SaveMacaroni + "\n" +
+            SlaySSS + "\n" + 
+            BurnBurningMan;
 
-
-
-
-        correctSizeCount = 0;
-
-
-        #region Brunttedilocks
-        if(Bed.mass >= 64f)
-        {
-            correctSizeCount++;
-            Brunettedilocks.sentences[1] = "My bed is just right!";
-        }
-        else
-        {
-            Brunettedilocks.sentences[1] = "My bed is too small!";
-        }
-
-        if(Chair.mass == 8f)
-        {
-            correctSizeCount++;
-            Brunettedilocks.sentences[2] = "My chair is just right!";
-        }
-        else if(Chair.mass < 8)
-        {
-
-            Brunettedilocks.sentences[2] = "My chair is too small!";
-        }
-        else
-        {
-
-            Brunettedilocks.sentences[2] = "My chair is too big!";
-        }
-
-        if (Table.mass <= 1)
-        {
-            correctSizeCount++;
-            Brunettedilocks.sentences[3] = "My table is just right!";
-        }
-        else
-        {
-            Brunettedilocks.sentences[3] = "My table is too big!";
-        }
-
-
-        if (correctSizeCount == 0)
-            Brunettedilocks.sentences[0] = "Oh, none of this is just right!";
-        else if (correctSizeCount < 3)
-            Brunettedilocks.sentences[0] = "Well, at least some of this is just right!";
-        else
-        {
-            Brunettedilocks.sentences[0] = "Everything is just right!";
-            TaskCompleted("Brunettedilocks");
-        }
-        #endregion
-        #region Monster
-        if(Monster.gameObject.activeSelf && Monster.stunCount > 0)
-        {
-            TaskCompleted("Monster");
-        }
-        #endregion
+        
 
 
     }
-
-    IEnumerator explosionsSounds()
-    {
-        while(true)
-        {
-            RandomAudioMaker.makeAudio(explosions[Random.Range(0, explosions.Length)], 0.5f);
-            yield return new WaitForSeconds(Random.Range(0.25f, 1f));
-        }
-    }
-
-
+    
     public void TaskCompleted(string Task)
     {
         switch (Task)
         {
-            case "BreakIn":
+            case "Door":
                 if (TaskFinished[0] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -184,7 +171,7 @@ public class RussiaTaskManager : MonoBehaviour
                     StartCoroutine(confettistuff());
                 }
                 break;
-            case "DestroyFactory":
+            case "Rocket":
                 if (TaskFinished[1] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -194,15 +181,12 @@ public class RussiaTaskManager : MonoBehaviour
                     Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
-
-                    Explosion.SetActive(true);
-
-                    StartCoroutine(explosionsSounds());
+                    
 
                     NextLevel.SetActive(true);
                 }
                 break;
-            case "Monster":
+            case "Aliens":
                 if (TaskFinished[2] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -215,7 +199,7 @@ public class RussiaTaskManager : MonoBehaviour
 
                 }
                 break;
-            case "Portrait":
+            case "Princess":
                 if (TaskFinished[3] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -228,7 +212,7 @@ public class RussiaTaskManager : MonoBehaviour
 
                 }
                 break;
-            case "Brunettedilocks":
+            case "Mafia":
                 if (TaskFinished[4] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -237,6 +221,45 @@ public class RussiaTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(true);
                     Tasks[4].SetActive(true);
                     TaskFinished[4] = true;
+                    StartCoroutine(confettistuff());
+
+                }
+                break;
+            case "Macaroni":
+                if (TaskFinished[5] == false)
+                {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
+
+                    TaskUpdatedText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
+                    Tasks[5].SetActive(true);
+                    TaskFinished[5] = true;
+                    StartCoroutine(confettistuff());
+
+                }
+                break;
+            case "SSS":
+                if (TaskFinished[6] == false)
+                {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
+
+                    TaskUpdatedText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
+                    Tasks[6].SetActive(true);
+                    TaskFinished[6] = true;
+                    StartCoroutine(confettistuff());
+
+                }
+                break;
+            case "BurningMan":
+                if (TaskFinished[7] == false)
+                {
+                    RandomAudioMaker.makeAudio(genericCompeltionClip);
+
+                    TaskUpdatedText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
+                    Tasks[7].SetActive(true);
+                    TaskFinished[7] = true;
                     StartCoroutine(confettistuff());
 
                 }

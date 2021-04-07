@@ -161,6 +161,11 @@ public class DesertTaskManager : MonoBehaviour
                     }
 
                     NextLevel.SetActive(true);
+
+                    if (PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("Burning") == false)
+                    {
+                        PlayerPrefs.SetString(PentagonTaskManager.CompletedExtras, PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "") + "Burning");
+                    }
                 }
                 break;
             case "MessUpShop":
@@ -265,6 +270,12 @@ public class DesertTaskManager : MonoBehaviour
                     }
                     StartCoroutine(confettistuff());
                     CosmeticUnlocker.UnlockOutfit("AlienHead");
+
+
+                    if (PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("Aliens") == false)
+                    {
+                        PlayerPrefs.SetString(PentagonTaskManager.CompletedExtras, PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "") + "Aliens");
+                    }
                 }
                 break;
         }
