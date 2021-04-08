@@ -37,12 +37,12 @@ public class PentagonTaskManager : MonoBehaviour
 
 
     string MainTask;
-    string SlayPrincess = "Complete other side tasks in the game to unlock this side task!";
-    string SlaySSS = "Complete other side tasks in the game to unlock this side task!";
-    string SlayMafia = "Complete other side tasks in the game to unlock this side task!";
-    string SaveAliens = "Complete other side tasks in the game to unlock this side task!";
-    string SaveMacaroni = "Complete other side tasks in the game to unlock this side task!";
-    string BurnBurningMan = "Complete other side tasks in the game to unlock this side task!";
+    string SlayPrincess = "Complete other tasks in the game to unlock this!";
+    string SlaySSS = "Complete other tasks in the game to unlock this!";
+    string SlayMafia = "Complete other tasks in the game to unlock this!";
+    string SaveAliens = "Complete other tasks in the game to unlock this!";
+    string SaveMacaroni = "Complete other tasks in the game to unlock this!";
+    string BurnBurningMan = "Complete other tasks in the game to unlock this!";
 
 
     public static string CompletedExtras = "CompletedExtras";
