@@ -49,6 +49,7 @@ public class PentagonTaskManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
+    public AudioClip ShuttleLaunch;
 
     public void Start()
     {
@@ -185,8 +186,9 @@ public class PentagonTaskManager : MonoBehaviour
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
 
-                    DoorOne.transform.Translate(0, -.63f, 0, Space.Self);
-                    DoorTwo.transform.Translate(0, .63f, 0, Space.Self);
+
+                    Destroy(DoorOne);
+                    Destroy(DoorTwo);
                 }
                 break;
             case "Rocket":
@@ -203,6 +205,8 @@ public class PentagonTaskManager : MonoBehaviour
                     LaunchParticles.SetActive(true);
 
                     NextLevel.SetActive(true);
+
+                    RandomAudioMaker.makeAudio(ShuttleLaunch, 0.5f);
                 }
                 break;
             case "Aliens":
