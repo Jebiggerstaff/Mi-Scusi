@@ -358,15 +358,15 @@ public class AIManager : MonoBehaviour
         {
             if (cd.hostile)
             {
-                if(RegularDudeAllowedCostumes != null)
+                if(HostileAllowedCostumes != null)
                 {
-                    cd.allowedCostumeIndexes = new List<int>(RegularDudeAllowedCostumes);
+                    cd.allowedCostumeIndexes = new List<int>(HostileAllowedCostumes);
                 }
             }
             else
             {
-                if(HostileAllowedCostumes != null)
-                    cd.allowedCostumeIndexes = new List<int>(HostileAllowedCostumes);
+                if(RegularDudeAllowedCostumes != null)
+                    cd.allowedCostumeIndexes = new List<int>(RegularDudeAllowedCostumes);
             }
             crowds.Add(cd.MakeAI(crowdAI) as CrowdAI);
         }

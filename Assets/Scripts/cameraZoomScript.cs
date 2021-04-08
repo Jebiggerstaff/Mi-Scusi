@@ -28,6 +28,7 @@ public class cameraZoomScript : MonoBehaviour
         if (timeLeft <= 0)
         {
             animator.enabled = false;
+            if(fadeCube != null)
             fadeCube.SetActive(false);
         }
 
@@ -36,7 +37,8 @@ public class cameraZoomScript : MonoBehaviour
             if (timeLeft <= badTime)
             {
                 animator.enabled = false;
-            fadeCube.SetActive(false);
+                if (fadeCube != null)
+                    fadeCube.SetActive(false);
             }
             
         }
