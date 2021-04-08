@@ -30,6 +30,7 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject PaperStack3;
 
     public GameObject PhoneNumberPrefab;
+    public GameObject ButtPrintPrefab;
 
     public GameObject coffeeObject1;
     public GameObject coffeeObject2;

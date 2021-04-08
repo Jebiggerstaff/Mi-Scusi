@@ -73,6 +73,7 @@ public class OfficeTaskCollider : MonoBehaviour
         if (other.name == "APR_Head" && name == "Copy Machine")
         {
             OfficeTaskManager.TaskCompleted("CopyButt");
+            Instantiate(OfficeTaskManager.ButtPrintPrefab, new Vector3(69.4499969f,49.4700012f,20.3880005f), new Quaternion(0, 0, 0, 0));
         }
         #endregion
 
