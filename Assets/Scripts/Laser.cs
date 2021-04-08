@@ -17,6 +17,8 @@ public class Laser : MonoBehaviour
     public bool KillsAI;
     bool grabbed;
     [HideInInspector] public int grabCount;
+    public AudioSource HoldNoise;
+    public AudioClip HitNoise;
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,15 @@ public class Laser : MonoBehaviour
     void Update()
     {
         grabbed = grabCount > 0;
+        if(HoldNoise != null)
+        {
+
+            if (grabbed && !HoldNoise.isPlaying)
+                HoldNoise.Play();
+            else if(!grabbed && HoldNoise.isPlaying)
+                HoldNoise.Stop();
+
+        }
         if (gameObject.tag != spawnedBeamTag)
         {
             if (timer >= updateFrequency)
@@ -111,6 +122,7 @@ public class Laser : MonoBehaviour
                         if (KillsAI && hit.collider.gameObject.GetComponent<NewAIMan>() != null)
                         {
                             GetComponent<Raygun>().SpawnEffects(hit.collider.gameObject.transform.position);
+                            RandomAudioMaker.makeAudio(HitNoise, 0.5f);
                             if (hit.collider.gameObject.name == "MafiaBoss")
                             {
                                 FindObjectOfType<PentagonTaskManager>().TaskCompleted("Mafia");

@@ -18,8 +18,8 @@ public class PentagonTaskManager : MonoBehaviour
     public GameObject NextLevel;
     public Text taskList;
     [Space]
-    public GameObject PrincessObjects;
-    public GameObject SSSObjects;
+    public GameObject[] PrincessObjects;
+    public GameObject[] SSSObjects;
     public GameObject MacObjects;
     public GameObject AlienObjects;
     public GameObject BurningObjects;
@@ -83,7 +83,8 @@ public class PentagonTaskManager : MonoBehaviour
         }
         else
         {
-            PrincessObjects.SetActive(false);
+            foreach(var go in PrincessObjects)
+                go.SetActive(false);
             TaskAllowed[3] = false;
         }
 
@@ -93,7 +94,8 @@ public class PentagonTaskManager : MonoBehaviour
         }
         else
         {
-            SSSObjects.SetActive(false);
+            foreach (var go in SSSObjects)
+                go.SetActive(false);
             TaskAllowed[6] = false;
         }
 
