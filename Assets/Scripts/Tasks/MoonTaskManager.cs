@@ -24,6 +24,7 @@ public class MoonTaskManager : MonoBehaviour
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
+    [HideInInspector] public int PowerCellsRemoved;
     private bool menuOpen;
 
 
@@ -76,35 +77,19 @@ public class MoonTaskManager : MonoBehaviour
         MainTask = "";
         if (TaskFinished[0] == false)
         {
-            MainTask = "Break into the locker room.";
-        }
-        else if (TaskFinished[1] == false)
-        {
-            MainTask = "Put on a player's outfit.";
-        }
-        else if (TaskFinished[2] == false)
-        {
-            MainTask = "Score a goal in the big game";
+            MainTask = "Tear out power cells. (" + PowerCellsRemoved.ToString() +  "/6)";
         }
         else
         {
-            MainTask = "Escape with the trophy!";
+            MainTask = "Push the poorly labled button.";
         }
 
 
 
-        taskList.text = MainTask + "\n" +
-            "Find the hidden booty of Rio\n" +
-            "Help your friendly neighborhood crime lord\n" +
-            "Get the ball rolling\n" +
-            "Help everyone go shopping";
+        taskList.text = MainTask + "\n";
+            
 
-
-        if (!TaskFinished[1])
-        {
-            if (PlayerPrefs.GetInt("Costume_Shirt", 0) == 6 && PlayerPrefs.GetInt("Costume_Pants", 0) == 7)
-                TaskCompleted("Outfit");
-        }
+        
 
 
 
@@ -115,7 +100,7 @@ public class MoonTaskManager : MonoBehaviour
     {
         switch (Task)
         {
-            case "LockerRoom":
+            case "Power":
                 if (TaskFinished[0] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -126,7 +111,7 @@ public class MoonTaskManager : MonoBehaviour
                     StartCoroutine(confettistuff());
                 }
                 break;
-            case "Outfit":
+            case "Button":
                 if (TaskFinished[1] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
@@ -139,86 +124,7 @@ public class MoonTaskManager : MonoBehaviour
 
                 }
                 break;
-            case "Goal":
-                if (TaskFinished[2] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
-                    TaskFinished[2] = true;
-                    StartCoroutine(confettistuff());
-                    
-
-                }
-                break;
-            case "Getaway":
-                if (TaskFinished[3] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(false);
-                    TaskCompleteText.SetActive(true);
-                    Tasks[3].SetActive(true);
-                    TaskFinished[3] = true;
-                    StartCoroutine(confettistuff());
-
-
-                    NextLevel.SetActive(true);
-                }
-                break;
-            case "Booty":
-                if (TaskFinished[4] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(false);
-                    TaskCompleteText.SetActive(true);
-                    Tasks[4].SetActive(true);
-                    TaskFinished[4] = true;
-                    StartCoroutine(confettistuff());
-
-                }
-                break;
-            case "CrimeLord":
-                if (TaskFinished[5] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(false);
-                    TaskCompleteText.SetActive(true);
-                    Tasks[5].SetActive(true);
-                    TaskFinished[5] = true;
-                    StartCoroutine(confettistuff());
-
-                }
-                break;
-            case "Ball":
-                if (TaskFinished[6] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(false);
-                    TaskCompleteText.SetActive(true);
-                    Tasks[6].SetActive(true);
-                    TaskFinished[6] = true;
-                    StartCoroutine(confettistuff());
-
-                }
-                break;
-            case "Shopping":
-                if (TaskFinished[7] == false)
-                {
-                    RandomAudioMaker.makeAudio(genericCompeltionClip);
-
-                    TaskUpdatedText.SetActive(false);
-                    TaskCompleteText.SetActive(true);
-                    Tasks[7].SetActive(true);
-                    TaskFinished[7] = true;
-                    StartCoroutine(confettistuff());
-
-                }
-                break;
+           
         }
 
     }
