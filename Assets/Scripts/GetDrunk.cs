@@ -22,7 +22,7 @@ public class GetDrunk : MonoBehaviour
 
         if (kegCactus.activeSelf == true)
         {
-            drunktime = 12.0f;
+            drunktime = 30.0f;
             kegCactus.SetActive(false);
         }
 
