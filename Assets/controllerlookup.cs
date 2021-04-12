@@ -20,11 +20,12 @@ public class controllerlookup : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Gamepad.current.name);
         if (Gamepad.current == null)
         {
             spacebar.SetActive(true);
         }
-        else if(Gamepad.current.name== "PlayStation 4 Controller")
+        else if(Gamepad.current.name== "DualShock4GamepadHID")
         {
             X.SetActive(true);
         }
