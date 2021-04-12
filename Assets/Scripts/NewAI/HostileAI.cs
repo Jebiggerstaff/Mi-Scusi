@@ -51,6 +51,8 @@ public class HostileAI : NewAIMan
             currentPunchCD -= Time.deltaTime;
 
 
+            if (RightHand.punching || LeftHand.punching)
+                anim.speed = 1;
 
         }
 

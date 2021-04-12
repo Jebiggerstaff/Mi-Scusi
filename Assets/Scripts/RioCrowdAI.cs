@@ -71,7 +71,7 @@ public class RioCrowdAI : MonoBehaviour
                 ai.anim.SetBool("LeftPunch", true);
             }
 
-            ai.animSpeedCap = Random.Range(0.5f, 1f);
+            ai.animSpeedCap = Random.Range(1f, 2.5f);
             ai.Explode(transform.position - (Centerfield.position - transform.position).normalized);
             ai.Explode(transform.position - (Centerfield.position - transform.position).normalized);
             goalmade = true;
