@@ -11,7 +11,7 @@ public class MoonLaserTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = towards - origin;
+        direction = origin - towards;
     }
 
     // Update is called once per frame
@@ -22,6 +22,12 @@ public class MoonLaserTrap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.attachedRigidbody.AddForce(direction.normalized * 30f);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            FindObjectOfType<APRController>().GotPunched();
+            other.attachedRigidbody.AddForce(direction.normalized * 2000f);
+            FindObjectOfType<APRController>().Root.GetComponent<Rigidbody>().AddForce(direction.normalized * 2000f);
+
+        }
     }
 }

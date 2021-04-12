@@ -18,13 +18,14 @@ public class MoonTaskManager : MonoBehaviour
     public GameObject NextLevel;
     public Text taskList;
     [Space]
+    [HideInInspector] public int PowerCellsRemoved;
+    public GameObject Door;
     [Space]
 
 
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
-    [HideInInspector] public int PowerCellsRemoved;
     private bool menuOpen;
 
 
@@ -87,9 +88,10 @@ public class MoonTaskManager : MonoBehaviour
 
 
         taskList.text = MainTask + "\n";
-            
 
-        
+
+        if (PowerCellsRemoved >= 6)
+            TaskCompleted("Power");
 
 
 
@@ -109,6 +111,7 @@ public class MoonTaskManager : MonoBehaviour
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
+                    Destroy(Door);
                 }
                 break;
             case "Button":
