@@ -8,6 +8,7 @@ public class PoolNoodle : MonoBehaviour
     public bool isGrabbed;
     [HideInInspector]
     public int handCount;
+    public AudioClip bonk;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class PoolNoodle : MonoBehaviour
         {
             if (isGrabbed)
             {
-
+                RandomAudioMaker.makeAudio(bonk);
                 ai.Explode(transform.position);
                 ai.Explode(transform.position);
                 ai.stun(5f);
