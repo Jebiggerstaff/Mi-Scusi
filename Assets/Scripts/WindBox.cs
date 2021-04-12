@@ -8,11 +8,16 @@ public class WindBox : MonoBehaviour
     bool facingUp = true;
 
     public float windPower = 0f;
+    float soundCD = 0;
 
     Vector3 direction;
 
+    public AudioClip windsound;
+
     private void Update()
     {
+        if (soundCD > 0)
+            soundCD -= Time.deltaTime;
         if(facingUp)
         {
             direction = transform.up;
@@ -33,6 +38,12 @@ public class WindBox : MonoBehaviour
                 if (other.gameObject.GetComponent<NewAIMan>() != null)
                 {
                     other.gameObject.GetComponent<NewAIMan>().stun(0.25f);
+                }
+                if(soundCD <= 0)
+                {
+
+                    RandomAudioMaker.makeAudio(windsound);
+                    soundCD = 2;
                 }
                 other.gameObject.GetComponent<Rigidbody>().AddForce(direction * windPower);
             }
