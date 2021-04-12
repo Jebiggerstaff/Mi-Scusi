@@ -69,6 +69,11 @@ public class NewAIMan : MonoBehaviour
     readonly Vector3 NO_OVERRIDE_DEST = new Vector3(-99999, -99999, -99999);
     bool beingScooted;
 
+    [Space]
+    public SkinnedMeshRenderer skin;
+    public Material[] skinColors;
+    public Material vertexTest;
+
 
     private void Awake()
     {
@@ -96,7 +101,17 @@ public class NewAIMan : MonoBehaviour
         enableAgent();
 
         forceNewDest();
-        
+
+        if(skin != null)
+        {
+            Material[] mats = new Material[2];
+            mats[0] = vertexTest;
+            int test = Random.Range(0, skinColors.Length);
+            while(test == 12)
+                test = Random.Range(0, skinColors.Length);
+            mats[1] = skinColors[test];
+            skin.materials = mats;
+        }
 
     }
 
