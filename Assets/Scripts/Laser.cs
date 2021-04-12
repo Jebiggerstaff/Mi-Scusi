@@ -19,6 +19,7 @@ public class Laser : MonoBehaviour
     [HideInInspector] public int grabCount;
     public AudioSource HoldNoise;
     public AudioClip HitNoise;
+    public GameObject MoonDoor;
 
     // Use this for initialization
     void Start()
@@ -139,7 +140,10 @@ public class Laser : MonoBehaviour
                         }
                         if(hit.collider.tag == "LaserButton" && !KillsAI)
                         {
-                            FindObjectOfType<PentagonTaskManager>().TaskCompleted("Door");
+                            if (FindObjectOfType<PentagonTaskCollider>() != null)
+                                FindObjectOfType<PentagonTaskManager>().TaskCompleted("Door");
+                            else
+                                Destroy(MoonDoor);
                         }
                     }
                     else
