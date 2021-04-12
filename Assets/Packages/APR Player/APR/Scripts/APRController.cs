@@ -153,6 +153,8 @@ public class APRController : MonoBehaviour
     float hasntBentCount = 0;
     #endregion
 
+    public GameObject SwagUnlockNotifation;
+
     //---Setup---//
     void Awake()
     {
@@ -160,6 +162,8 @@ public class APRController : MonoBehaviour
         controls.Enable();
         PlayerSetup();
         //this is for power punch
+        SwagUnlockNotifation = GameObject.Find("SwagUnlockNotification");
+        SwagUnlockNotifation.SetActive(false);
     }
 
     void Update()
@@ -1170,4 +1174,19 @@ public class APRController : MonoBehaviour
     {
         return knockedOut;
     }
+
+    public void skinUnlockNotification()
+    {
+        SwagUnlockNotifation.SetActive(true);
+        StartCoroutine(MildBobbySauce());
+    }
+
+    public IEnumerator MildBobbySauce()
+    {
+
+        yield return new WaitForSecondsRealtime(4);
+        SwagUnlockNotifation.SetActive(false);
+
+    }
+
 }

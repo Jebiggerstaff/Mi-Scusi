@@ -107,7 +107,8 @@ public class CosmeticUnlocker : MonoBehaviour
             PlayerPrefs.SetString(CosmeticSaveName, PlayerPrefs.GetString(CosmeticSaveName, "") + CosmeticBufferString + name + CosmeticBufferString);
             PlayerPrefs.Save();
 
-            //TODO: SHOW COSMETIC UNLOCKED POPUP
+            GameObject.Find("FinalPlayer").GetComponent<APRController>().skinUnlockNotification();
+            StartCoroutine(GameObject.Find("FinalPlayer").GetComponent<APRController>().MildBobbySauce());
         }
 
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
@@ -234,6 +235,8 @@ public class CosmeticUnlocker : MonoBehaviour
         Hats[i].GetComponent<Button>().interactable = true;
         HatQuestionMarks[i].SetActive(false);
     }
+
+
 
 }
 
