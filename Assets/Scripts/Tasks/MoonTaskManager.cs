@@ -119,12 +119,12 @@ public class MoonTaskManager : MonoBehaviour
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
 
-                    TaskUpdatedText.SetActive(true);
-                    TaskCompleteText.SetActive(false);
+                    TaskUpdatedText.SetActive(false);
+                    TaskCompleteText.SetActive(true);
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
 
-
+                    NextLevel.SetActive(true);
                 }
                 break;
            
