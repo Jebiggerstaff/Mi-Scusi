@@ -27,6 +27,8 @@ public class RandomAudioMaker : MonoBehaviour
 
     public static void makeAudio(AudioClip clip, float volume)
     {
+        if(clip!=null)
+        {
         var go = Instantiate(new GameObject());
         go.AddComponent<AudioSource>();
         go.transform.position = FindObjectOfType<APRController>().transform.position;
@@ -38,5 +40,6 @@ public class RandomAudioMaker : MonoBehaviour
         go.GetComponent<AudioSource>().Play();
         
         Destroy(go, clip.length * 1.5f);
+        }
     }
 }

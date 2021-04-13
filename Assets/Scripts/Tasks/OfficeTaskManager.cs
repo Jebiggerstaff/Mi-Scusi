@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OfficeTaskManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class OfficeTaskManager : MonoBehaviour
     public GameObject TaskList;
     public NPC DustyTheJanitor;
     public NPC JaniceTheReceptionist;
-    //public Text taskList;
+    public Text taskList;
 
     [Header("Task Objects")]
 
@@ -43,7 +44,10 @@ public class OfficeTaskManager : MonoBehaviour
     bool CoffeeSpawned = false;
 
     public CosmeticUnlocker CosmeticUnlocker;
+    
     private bool menuOpen;
+    string MainTask;
+    string CoffeeTask;
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -54,6 +58,8 @@ public class OfficeTaskManager : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
         Player = GameObject.Find("FinalPlayer");
         //Debug.Log("Found Player: " + Player);
+
+        
 
     }
 
@@ -92,6 +98,27 @@ public class OfficeTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+
+        //TaskList Stuff
+
+        CoffeeTask = "";
+        MainTask = "Take the Boss's stache";
+        if(coffeePartsCollected < 3)
+            {
+                CoffeeTask = "Make coffee for the boss (" + coffeePartsCollected.ToString() + "/3)\n";
+            }
+            else
+            {
+                CoffeeTask = "Take coffee to the boss\n";
+            }
+
+        taskList.text = MainTask + "\n" +
+            "Refill the water cooler\n" + 
+            "Help your coworker get a date\n" +
+            CoffeeTask +
+            "Copy your butt";
+
+
     }
 
     public void TaskCompleted(string Task)
