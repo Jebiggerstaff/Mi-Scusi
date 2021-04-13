@@ -18,7 +18,8 @@ public class HostileAI : NewAIMan
     {
         base.Update();
 
-        
+        if (player == null)
+            player = FindObjectOfType<APRController>().Root.transform;
 
         if(!offByDistance)
         {
