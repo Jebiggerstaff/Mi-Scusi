@@ -13,6 +13,8 @@ public class SpaceScooter : MonoBehaviour
     [HideInInspector]
     public int driveCount = 0;
 
+    public ParticleSystem particles;
+
     private void Start()
     {
         player = GameObject.Find("FinalPlayer");
@@ -34,10 +36,13 @@ public class SpaceScooter : MonoBehaviour
             
 
            this.GetComponent<Rigidbody>().freezeRotation = true;
+
+            particles.gameObject.SetActive(true);
         }
         else
         {
             this.GetComponent<Rigidbody>().freezeRotation = false;
+            particles.gameObject.SetActive(false);
         }
     }
 
