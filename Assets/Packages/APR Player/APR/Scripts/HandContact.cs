@@ -16,6 +16,8 @@ public class HandContact : MonoBehaviour
     //Is left or right hand
     public bool Left;
 
+    public bool ShouldHit = false;
+
     NewAIMan grabbedAI;
     PoolNoodle grabbedNoodle;
     SuperSoakerOnOff grabbedSoaker;
@@ -86,9 +88,11 @@ public class HandContact : MonoBehaviour
     }
     IEnumerator keepPunch(float t)
     {
+        ShouldHit = true;
         holdPunch = true;
         yield return new WaitForSeconds(t);
         holdPunch = false;
+        ShouldHit = false;
     }
     void punchingSizeDifference()
     {
@@ -101,7 +105,7 @@ public class HandContact : MonoBehaviour
         }
         else
         {
-            scale = 2;
+            scale = 1;
             if (Left)
             {
                 punchingThisArm = APR_Player.punchingLeft;
@@ -172,7 +176,7 @@ public class HandContact : MonoBehaviour
         {
             if (col.gameObject.GetComponent<NewAIMan>() != null)
             {
-                if (punchingThisArm)
+                if (ShouldHit)
                 {
                     PunchParticle.Play();
 
