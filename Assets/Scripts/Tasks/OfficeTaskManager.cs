@@ -102,7 +102,17 @@ public class OfficeTaskManager : MonoBehaviour
         //TaskList Stuff
 
         CoffeeTask = "";
-        MainTask = "Take the Boss's stache";
+        MainTask = "";
+
+        if(TasksCompleted[0] == false && TasksCompleted[1] == false && TasksCompleted[2] == false)
+        {
+            MainTask = "Help your coworkers";
+        }
+        else
+        {
+            MainTask = "Take the Boss's stache";
+        }
+
         if(coffeePartsCollected < 3)
             {
                 CoffeeTask = "Make coffee for the boss (" + coffeePartsCollected.ToString() + "/3)\n";
