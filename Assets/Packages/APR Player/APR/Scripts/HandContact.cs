@@ -243,7 +243,7 @@ public class HandContact : MonoBehaviour
                 //Drink Coffee
                 if (col.gameObject.name == "CoffeeMug")
                 {
-                    CoffeeSpeed cof = new CoffeeSpeed();
+                    var cof = FindObjectOfType<CoffeeSpeed>();
                     cof.SpeedUp();
                 }
                 if(SceneManager.GetActiveScene().name == "Office" && col.gameObject.name == "BossStache")
