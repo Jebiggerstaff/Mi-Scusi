@@ -27,19 +27,28 @@ public class RandomAudioMaker : MonoBehaviour
 
     public static void makeAudio(AudioClip clip, float volume)
     {
-        if(clip!=null)
+        makeAudio(clip, volume, FindObjectOfType<APRController>().transform.position);
+    }
+
+    public static void makeAudio(AudioClip clip, float volume, Vector3 location)
+    {
+        if (clip != null)
         {
-        var go = Instantiate(new GameObject());
-        go.AddComponent<AudioSource>();
-        go.transform.position = FindObjectOfType<APRController>().transform.position;
-        go.GetComponent<AudioSource>().clip = clip;
-        go.GetComponent<AudioSource>().loop = false;
+            var go = Instantiate(new GameObject());
+            go.AddComponent<AudioSource>();
+            go.transform.position = location;
+            go.GetComponent<AudioSource>().clip = clip;
+            go.GetComponent<AudioSource>().loop = false;
 
-        go.GetComponent<AudioSource>().volume = volume;
+            go.GetComponent<AudioSource>().volume = volume;
 
-        go.GetComponent<AudioSource>().Play();
-        
-        Destroy(go, clip.length * 1.5f);
+            go.GetComponent<AudioSource>().Play();
+
+            Destroy(go, clip.length * 1.5f);
         }
+    }
+    public static void makeAudio(AudioClip clip, Vector3 location)
+    {
+        makeAudio(clip, 1, location);
     }
 }
