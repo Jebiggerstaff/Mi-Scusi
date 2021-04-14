@@ -42,6 +42,10 @@ public class DesertTaskCollider : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        if(name == "AlienShipCollider" && other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            DesertTaskManager.FoundAliens = true;
+        }
        if(name == "RaceWinArea" && other.gameObject.layer == LayerMask.NameToLayer("Player_1"))
         {
             if(DesertTaskManager.CanWinRace)

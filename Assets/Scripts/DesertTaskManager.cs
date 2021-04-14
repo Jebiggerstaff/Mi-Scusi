@@ -54,7 +54,10 @@ public class DesertTaskManager : MonoBehaviour
     private bool menuOpen;
 
 
+    [HideInInspector] public bool FoundAliens = false;
+
     string MainTask;
+    string AlienTask;
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -110,7 +113,9 @@ public class DesertTaskManager : MonoBehaviour
         {
             MainTask = "Burn down the Burning Man";
         }
-
+        AlienTask = "Discover the mystery in the cliffs\n";
+        if (FoundAliens)
+            AlienTask = "Find the 3 alien parts (" + AlienParts.ToString() + "/3)\n";
 
 
         taskList.text = MainTask + "\n" +
@@ -119,7 +124,7 @@ public class DesertTaskManager : MonoBehaviour
         "Send the submarine off to sea (" + GasCollected.ToString() + "/3)\n" +
         "\"Raise the roof\" at the fireworks stand\n" +
         "Win the foot race\n" +
-        "Resolve the mystery in the cliffs\n";
+        AlienTask;
 
 
         if(guardsRemoved >= 4)
