@@ -204,6 +204,15 @@ public class DesertTaskManager : MonoBehaviour
                     StageGuard3.SetActive(false);
 
                     DJ.sentences[0] = "What happened to the music, man?";
+
+                    foreach(var naim in FindObjectsOfType<NewAIMan>())
+                    {
+                        naim.transform.SetParent(null);
+                    }
+                    foreach(var cai in FindObjectsOfType<CrowdAI>())
+                    {
+                        Destroy(cai);
+                    }
                 }
                 break;
             case "Sailor":
