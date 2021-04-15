@@ -163,7 +163,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "ShatterWindows":
                 if (CompletedTasks[5] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("PoofHair");
+                    CosmeticUnlocker.UnlockOutfit("Poofy Hair");
                     Tasks[5].SetActive(true);
                     CompletedTasks[5] = true;
                     StartCoroutine(confettistuff());
@@ -207,7 +207,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "BringFood":
                 if (CompletedTasks[10] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("PuffyCoat");
+                    CosmeticUnlocker.UnlockOutfit("Puffy Coat");
                     CompletedTasks[10] = true;
                     Tasks[10].SetActive(true);
                     StartCoroutine(confettistuff());

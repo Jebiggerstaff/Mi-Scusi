@@ -19,6 +19,7 @@ public class CruiseShipTaskColider : MonoBehaviour
         if (other.GetComponent<NewAIMan>() != null && name == "Water")
         {
             cruiseShipTaskManager.MenThrownInWater++;
+            Destroy(other.gameObject);
             if (cruiseShipTaskManager.MenThrownInWater == 10)
             {
                 cruiseShipTaskManager.TaskCompleted("EvacuateShip");

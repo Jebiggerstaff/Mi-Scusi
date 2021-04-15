@@ -52,8 +52,8 @@ public class StartSceneManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Moon")
         {
-            Physics.gravity = new Vector3(0, -6f, 0);
-            Physics.clothGravity = new Vector3(0, -6f, 0);
+            Physics.gravity = new Vector3(0, -9f, 0);
+            Physics.clothGravity = new Vector3(0, -9f, 0);
         }
         else
         {

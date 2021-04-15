@@ -157,8 +157,8 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "Mutiny":
                 if (TaskFinished[6] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("CaptainHat");
-                    CosmeticUnlocker.UnlockOutfit("CaptainsJacket");
+                    CosmeticUnlocker.UnlockOutfit("Captain's Hat");
+                    CosmeticUnlocker.UnlockOutfit("Captain's Jacket");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
