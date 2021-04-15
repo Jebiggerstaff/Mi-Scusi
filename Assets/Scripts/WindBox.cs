@@ -12,7 +12,7 @@ public class WindBox : MonoBehaviour
 
     Vector3 direction;
 
-    public AudioClip windsound;
+
 
     private void Update()
     {
@@ -42,8 +42,7 @@ public class WindBox : MonoBehaviour
                 if(soundCD <= 0)
                 {
 
-                    RandomAudioMaker.makeAudio(windsound);
-                    soundCD = 2;
+
                 }
                 other.gameObject.GetComponent<Rigidbody>().AddForce(direction * windPower);
             }

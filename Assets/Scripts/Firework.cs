@@ -87,7 +87,7 @@ public class Firework : MonoBehaviour
     {
         if(!launching && !flying)
         {
-            RandomAudioMaker.makeAudio(fireworkprep, 0.5f);
+            RandomAudioMaker.makeAudio(fireworkprep, 0.5f, transform.position);
             launching = true;
             launchParticles.Play();
         }
@@ -96,7 +96,7 @@ public class Firework : MonoBehaviour
     {
         if(!flying)
         {
-            RandomAudioMaker.makeAudio(fireworklaunch, 0.5f);
+            RandomAudioMaker.makeAudio(fireworklaunch, 0.5f, transform.position);
             launchParticles.Stop();
             flightParticles.Play();
             launching = false;
@@ -143,7 +143,7 @@ public class Firework : MonoBehaviour
 
             }
 
-            RandomAudioMaker.makeAudio(explodingtheshop, 0.5f);
+            RandomAudioMaker.makeAudio(explodingtheshop, 0.5f, transform.position);
 
 
             FindObjectOfType<DesertTaskManager>().FireworkExploded();
