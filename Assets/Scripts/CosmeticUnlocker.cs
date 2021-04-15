@@ -46,6 +46,7 @@ public class CosmeticUnlocker : MonoBehaviour
         else
         {
             PlayerPrefs.SetString(CosmeticSaveName, "");
+            PlayerPrefs.Save();
         }
         foreach(var go in Hats)
         {
@@ -115,80 +116,80 @@ public class CosmeticUnlocker : MonoBehaviour
 
         #region Hats
         
-        if (name == "ChefItaly") Hat(0);
+        if (name == "Chef's Hat") Hat(0);
         if (name == "Cop") Hat(1);
         if (name == "Crown") Hat(2);
-        if (name == "Desert") Hat(3);
-        if (name == "DoomGuy") Hat(4);
+        if (name == "Desert Hood") Hat(3);
+        if (name == "Doom Helm") Hat(4);
         if (name == "Fedora") Hat(5);
-        if (name == "CaptainHat") Hat(6);
-        if (name == "RobotHead") Hat(7);
-        if (name == "RubicksCube") Hat(8);
-        if (name == "TallChefHat") Hat(9);
-        if (name == "WizardHat") Hat(10);
+        if (name == "Captain's Hat") Hat(6);
+        if (name == "Robot") Hat(7);
+        if (name == "Rubicks") Hat(8);
+        if (name == "Tall Chef's Hat") Hat(9);
+        if (name == "Wizard Hat") Hat(10);
         if (name == "Treasure") Hat(11);
-        if (name == "ArmorHelmet") Hat(12);
-        if (name == "TopHat") Hat(13);
-        if (name == "HorseHead") Hat(14);
-        if (name == "AlienHead") Hat(15);
-        if (name == "LizardHead") Hat(16);
+        if (name == "Helmet") Hat(12);
+        if (name == "Top Hat") Hat(13);
+        if (name == "Horse Head") Hat(14);
+        if (name == "Alien Head") Hat(15);
+        if (name == "Lizard Head") Hat(16);
         if (name == "Noodle") Hat(17);
-        if (name == "PoofHair") Hat(18);
-        if (name == "RainHat") Hat(19);
+        if (name == "Poofy Hair") Hat(18);
+        if (name == "Rain Hood") Hat(19);
         #endregion
 
         #region Coats
-        if (name == "CaptainsJacket") Coat(0);
-        if (name == "ChefCoat") Coat(1);
-        if (name == "Cowboy") Coat(2);
-        if (name == "PuffyCoat") Coat(3);
-        if (name == "TrenchCoat") Coat(4);
-        if (name == "MafiaCoat") Coat(5);
-        if (name == "FurCoat") Coat(6);
-        if (name == "RainCoat") Coat(7);
-        if (name == "ArmorCoat") Coat(8);
+        if (name == "Captain's Jacket") Coat(0);
+        if (name == "Chef Coat") Coat(1);
+        if (name == "Cowboy Vest") Coat(2);
+        if (name == "Puffy Coat") Coat(3);
+        if (name == "Trench Coat") Coat(4);
+        if (name == "Mafia Coat") Coat(5);
+        if (name == "Fur Coat") Coat(6);
+        if (name == "Rain Coat") Coat(7);
+        if (name == "Plate Armor") Coat(8);
         #endregion
 
         #region Shirts
-        if (name == "DesertShirt") Shirt(0);
-        if (name == "GenericShirt") Shirt(1);
-        if (name == "TankTop") Shirt(2);
-        if (name == "MafiaShirt") Shirt(3);
-        if (name == "CopShirt") Shirt(4);
-        if (name == "ShirtFootball") Shirt(5);
+        if (name == "Desert Tank") Shirt(0);
+        if (name == "Generic Shirt") Shirt(1);
+        if (name == "Tank Top") Shirt(2);
+        if (name == "Mafia Shirt") Shirt(3);
+        if (name == "Cop Shirt") Shirt(4);
+        if (name == "Football Shirt") Shirt(5);
         #endregion
 
         #region Pants
         if (name == "Jeans") Pant(0);
-        if (name == "Pants") Pant(1);
+        if (name == "Tan Pants") Pant(1);
         if (name == "Shorts") Pant(2);
-        if (name == "CowboyBoots") Pant(3);
-        if (name == "MafiaPants") Pant(4);
-        if (name == "CopPants") Pant(5);
-        if (name == "ArmorPants") Pant(6);
-        if (name == "PantsFootball") Pant(7);
+        if (name == "Cowboy Boots") Pant(3);
+        if (name == "Mafia Pants") Pant(4);
+        if (name == "Cop Pants") Pant(5);
+        if (name == "Plate Legguards") Pant(6);
+        if (name == "Football Pants") Pant(7);
         #endregion
 
         #region Backpacks
         if (name == "Expedition") Backpack(0);
-        if (name == "GenericBP") Backpack(1);
+        if (name == "Generic") Backpack(1);
         if (name == "Guitar") Backpack(2);
         if (name == "Shield") Backpack(3);
         if (name == "Sword") Backpack(4);
-        if (name == "Tenticles") Backpack(5);
+        if (name == "Tentacles") Backpack(5);
         if (name == "Wings") Backpack(6);
-        if (name == "Graffiti") Backpack(7);
+        if (name == "Graffiti Pack") Backpack(7);
         if (name == "Cat") Backpack(8);
         #endregion
 
         #region Accessories
         if (name == "Mustache") Accessory(0);
         if (name == "Pipe") Accessory(1);
-        if (name == "SunGlasses") Accessory(2);
+        if (name == "Sunglasses") Accessory(2);
         if (name == "Flower") Accessory(6);
         if (name == "Book") Accessory(3);
         if (name == "Satchel") Accessory(4);
-        if (name == "GraffitiSachel") Accessory(5);
+        if (name == "Graffiti Bag") Accessory(5);
         if (name == "Headphones") Accessory(7);
         #endregion
 

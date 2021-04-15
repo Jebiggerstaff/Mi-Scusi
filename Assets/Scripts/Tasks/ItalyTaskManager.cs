@@ -123,9 +123,9 @@ public class ItalyTaskManager : MonoBehaviour
                     CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
 
                     CosmeticUnlocker.UnlockOutfit("Fedora");
-                    CosmeticUnlocker.UnlockOutfit("MafiaCoat");
-                    CosmeticUnlocker.UnlockOutfit("MafiaShirt");
-                    CosmeticUnlocker.UnlockOutfit("MafiaPants");
+                    CosmeticUnlocker.UnlockOutfit("Mafia Coat");
+                    CosmeticUnlocker.UnlockOutfit("Mafia Shirt");
+                    CosmeticUnlocker.UnlockOutfit("Mafia Pants");
                     StartCoroutine(confettistuff());
 
                 }
@@ -214,7 +214,7 @@ public class ItalyTaskManager : MonoBehaviour
             case "GiantMeatball":
                 if(TaskFinished[10] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("ChefItaly");
+                    CosmeticUnlocker.UnlockOutfit("Chef's Hat");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
