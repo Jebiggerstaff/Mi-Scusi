@@ -21,11 +21,11 @@ public class MoonCubePuzzle : MonoBehaviour
     void Update()
     {
         if (X.pressed)
-            cube.transform.rotation = Quaternion.Euler(cube.transform.rotation.eulerAngles + new Vector3(30 * Time.deltaTime, 0, 0));
+            cube.transform.Rotate(30 * Time.deltaTime, 0, 0, Space.Self);
         if (Y.pressed)
-            cube.transform.rotation = Quaternion.Euler(cube.transform.rotation.eulerAngles + new Vector3(0, 30 * Time.deltaTime, 0));
+            cube.transform.Rotate(0, 30 * Time.deltaTime, 0, Space.Self);
         if (Z.pressed)
-            cube.transform.rotation = Quaternion.Euler(cube.transform.rotation.eulerAngles + new Vector3(0, 0, 30 * Time.deltaTime));
+            cube.transform.Rotate(0,0,30 * Time.deltaTime, Space.Self);
 
         sampleCube.transform.rotation = cube.transform.rotation;
 

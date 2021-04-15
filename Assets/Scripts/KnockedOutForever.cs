@@ -5,11 +5,12 @@ using UnityEngine;
 public class KnockedOutForever : MonoBehaviour
 {
     public NewAIMan ai;
+    public SoundOnCollision sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sound = GetComponent<SoundOnCollision>();
     }
 
     // Update is called once per frame
@@ -18,6 +19,11 @@ public class KnockedOutForever : MonoBehaviour
         if(ai.stunCount > 0)
         {
             ai.stun(1);
+
+            if (sound != null)
+                Destroy(sound);
+            
+
             if(ai.anim.speed > 0)
             {
                 ai.anim.speed = Mathf.Clamp(ai.anim.speed - Time.deltaTime, 0, 2);

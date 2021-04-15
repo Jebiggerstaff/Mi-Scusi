@@ -1162,6 +1162,7 @@ public class APRController : MonoBehaviour
             if (resetTimer > 6f)
             {
                 APR_Parts[0].transform.position = RespawnPoint.position;
+                APR_Parts[0].GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
 

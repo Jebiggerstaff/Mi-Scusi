@@ -124,7 +124,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Fedora") Hat(5);
         if (name == "Captain's Hat") Hat(6);
         if (name == "Robot") Hat(7);
-        if (name == "Rubicks") Hat(8);
+        if (name == "Rubicks Cube") Hat(8);
         if (name == "Tall Chef's Hat") Hat(9);
         if (name == "Wizard Hat") Hat(10);
         if (name == "Treasure") Hat(11);

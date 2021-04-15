@@ -26,6 +26,11 @@ public class SpaceScooter : MonoBehaviour
         driving = driveCount >= 2;
 
 
+        
+    }
+
+    void FixedUpdate()
+    {
         if (driving)
         {
             Vector3 force = transform.forward * speed;
@@ -33,9 +38,9 @@ public class SpaceScooter : MonoBehaviour
 
             this.GetComponent<Rigidbody>().AddForce(force);
             player.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(force);
-            
 
-           this.GetComponent<Rigidbody>().freezeRotation = true;
+
+            this.GetComponent<Rigidbody>().freezeRotation = true;
 
             particles.gameObject.SetActive(true);
         }

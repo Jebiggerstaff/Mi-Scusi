@@ -123,7 +123,7 @@ public class MoonTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(true);
                     TaskFinished[1] = true;
                     StartCoroutine(confettistuff());
-
+                    Tasks[1].SetActive(true);
                     NextLevel.SetActive(true);
                 }
                 break;

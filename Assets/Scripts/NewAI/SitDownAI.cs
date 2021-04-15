@@ -27,21 +27,29 @@ public class SitDownAI : NewAIMan
 
             if (sitting)
             {
-                disableAgent();
 
-                gameObject.layer = LayerMask.NameToLayer("AIMan");
+                if (sitPlace == null)
+                    sitting = false;
+                else
+                {
 
-                Vector3 targetSit = sitPlace.position;
-                if (transform.position != targetSit)
-                {
-                    transform.position = targetSit;
+                    disableAgent();
+
+                    gameObject.layer = LayerMask.NameToLayer("AIMan");
+
+                    Vector3 targetSit = sitPlace.position;
+                    if (transform.position != targetSit)
+                    {
+                        transform.position = targetSit;
+                    }
+                    Vector3 targetRot = sitPlace.rotation.eulerAngles;
+                    if (transform.rotation.eulerAngles != targetRot)
+                    {
+                        transform.rotation = Quaternion.Euler(targetRot);
+                    }
+                    anim.SetBool("Sitting", true);
                 }
-                Vector3 targetRot = sitPlace.rotation.eulerAngles;
-                if (transform.rotation.eulerAngles != targetRot)
-                {
-                    transform.rotation = Quaternion.Euler(targetRot);
-                }
-                anim.SetBool("Sitting", true);
+
 
 
 
