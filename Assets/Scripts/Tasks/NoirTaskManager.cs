@@ -100,7 +100,7 @@ public class NoirTaskManager : MonoBehaviour
             case "Sevens":
                 if (TasksCompleted[3] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("FurCoat");
+                    CosmeticUnlocker.UnlockOutfit("Fur Coat");
                     TasksCompleted[3] = true;
                     Tasks[3].SetActive(true);
                     StartCoroutine(confettistuff());

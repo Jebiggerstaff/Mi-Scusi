@@ -110,7 +110,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "CutInLine":
                 if (CompletedTasks[0] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Pants");
+                    CosmeticUnlocker.UnlockOutfit("Tan Pants");
                     Tasks[0].SetActive(true);
                     CompletedTasks[0] = true;
                     StartCoroutine(confettistuff());
@@ -119,7 +119,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "HelpGuyMove":
                 if (CompletedTasks[1] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("GenericShirt");
+                    CosmeticUnlocker.UnlockOutfit("Generic Shirt");
                     Tasks[1].SetActive(true);
                     NextLevelBubble.SetActive(true);
 
@@ -172,7 +172,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "EatAtCafe":
                 if (CompletedTasks[6] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Shorts");
+                    CosmeticUnlocker.UnlockOutfit("Tan Shorts");
                     Tasks[6].SetActive(true);
                     CompletedTasks[6] = true;
                     StartCoroutine(confettistuff());
@@ -189,7 +189,7 @@ public class NewYorkTaskManager : MonoBehaviour
             case "ReturnBlueBikes":
                 if (CompletedTasks[8] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("GenericBP");
+                    CosmeticUnlocker.UnlockOutfit("Generic");
                     Tasks[8].SetActive(true);
                     CompletedTasks[8] = true;
                     StartCoroutine(confettistuff());

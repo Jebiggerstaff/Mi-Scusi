@@ -162,7 +162,7 @@ public class CosmeticUnlocker : MonoBehaviour
         #region Pants
         if (name == "Jeans") Pant(0);
         if (name == "Tan Pants") Pant(1);
-        if (name == "Shorts") Pant(2);
+        if (name == "Tan Shorts") Pant(2);
         if (name == "Cowboy Boots") Pant(3);
         if (name == "Mafia Pants") Pant(4);
         if (name == "Cop Pants") Pant(5);

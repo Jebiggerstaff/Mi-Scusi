@@ -258,7 +258,7 @@ public class DesertTaskManager : MonoBehaviour
                     Tasks[6].SetActive(true);
                     TaskFinished[6] = true;
                     StartCoroutine(confettistuff());
-                    CosmeticUnlocker.UnlockOutfit("DesertShirt");
+                    CosmeticUnlocker.UnlockOutfit("Desert Tank");
                 }
                 break;
             case "Aliens":
@@ -283,7 +283,7 @@ public class DesertTaskManager : MonoBehaviour
                         Destroy(c);
                     }
                     StartCoroutine(confettistuff());
-                    CosmeticUnlocker.UnlockOutfit("AlienHead");
+                    CosmeticUnlocker.UnlockOutfit("Alien Head");
 
 
                     if (PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("Aliens") == false)
