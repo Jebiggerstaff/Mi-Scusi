@@ -104670,10 +104670,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364222276260254732, guid: 172d3ff33a424d74084f1713076d0767,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364222276260254732, guid: 172d3ff33a424d74084f1713076d0767,
+        type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4245691615173168563, guid: bf0cb84b6d4aedc4d910e7246a69b22d,
         type: 3}
+    - target: {fileID: 7364222276260254732, guid: 172d3ff33a424d74084f1713076d0767,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 131ce1ac32bd26a4788e46a562ccbecf, type: 2}
     - target: {fileID: 7548512067930843309, guid: 172d3ff33a424d74084f1713076d0767,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -116056,6 +116066,7 @@ GameObject:
   - component: {fileID: 4575674925706025489}
   - component: {fileID: 5907326327127976258}
   - component: {fileID: 1776813081231320681}
+  - component: {fileID: 4575674925706025504}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -116085,6 +116096,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!114 &4575674925706025504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674925706025502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &4575674925909212320
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116277,6 +116300,7 @@ GameObject:
   - component: {fileID: 4575674925946526990}
   - component: {fileID: 5907326327956729437}
   - component: {fileID: 1776813081480241526}
+  - component: {fileID: 4575674925946526980}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -116339,6 +116363,18 @@ CapsuleCollider:
   m_Height: 4.993284
   m_Direction: 1
   m_Center: {x: 0, y: 1.4966421, z: 0}
+--- !u!114 &4575674925946526980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674925946526977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4575674925946526988
 Transform:
   m_ObjectHideFlags: 0
@@ -116473,6 +116509,7 @@ GameObject:
   - component: {fileID: 4575674926288539256}
   - component: {fileID: 5907326327644437803}
   - component: {fileID: 1776813081788609024}
+  - component: {fileID: 4575674926288539257}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -116496,6 +116533,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
+--- !u!114 &4575674926288539257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674926288539255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4575674926288539258
 Transform:
   m_ObjectHideFlags: 0
@@ -116600,6 +116649,7 @@ GameObject:
   - component: {fileID: 4575674926337970322}
   - component: {fileID: 5907326328634434497}
   - component: {fileID: 1776813079726173418}
+  - component: {fileID: 4575674926337970336}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -116662,6 +116712,18 @@ CapsuleCollider:
   m_Height: 4.993284
   m_Direction: 1
   m_Center: {x: 0, y: 1.4966421, z: 0}
+--- !u!114 &4575674926337970336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674926337970333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &4575674926587911076
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -116820,6 +116882,7 @@ GameObject:
   - component: {fileID: 5907326328341727848}
   - component: {fileID: 1776813080019649859}
   - component: {fileID: 1458165672}
+  - component: {fileID: 4575674926664988986}
   m_Layer: 17
   m_Name: Princess
   m_TagString: CanBeGrabbed
@@ -116929,6 +116992,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4575674926664988986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674926664988980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4575674926664988987
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117024,6 +117099,7 @@ GameObject:
   - component: {fileID: 4575674926968241266}
   - component: {fileID: 5907326329111596833}
   - component: {fileID: 1776813080320901130}
+  - component: {fileID: 4575674926968241280}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -117086,6 +117162,18 @@ CapsuleCollider:
   m_Height: 4.993284
   m_Direction: 1
   m_Center: {x: 0, y: 1.4966421, z: 0}
+--- !u!114 &4575674926968241280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674926968241277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4575674927091901988
 Transform:
   m_ObjectHideFlags: 0
@@ -117165,6 +117253,7 @@ GameObject:
   - component: {fileID: 4575674927091901990}
   - component: {fileID: 5907326328966829429}
   - component: {fileID: 1776813080469609054}
+  - component: {fileID: 4575674927091901996}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -117227,6 +117316,18 @@ CapsuleCollider:
   m_Height: 4.993284
   m_Direction: 1
   m_Center: {x: 0, y: 1.4966421, z: 0}
+--- !u!114 &4575674927091901996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674927091901993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4575674927109276965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117339,6 +117440,7 @@ GameObject:
   - component: {fileID: 4575674927109276965}
   - component: {fileID: 5907326328937035382}
   - component: {fileID: 1776813080497584477}
+  - component: {fileID: 4575674927109276972}
   m_Layer: 17
   m_Name: Brigand
   m_TagString: CanBeGrabbed
@@ -117368,6 +117470,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!114 &4575674927109276972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674927109276970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62fd8ed441ad174f93550b8ced6a27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4575674927378422469
 Rigidbody:
   m_ObjectHideFlags: 0

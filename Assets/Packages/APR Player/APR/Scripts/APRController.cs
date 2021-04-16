@@ -606,7 +606,18 @@ public class APRController : MonoBehaviour
                     if (rb != null)
                         rb.AddExplosionForce(punchPower * 1000, explosionPos, 10, 3.0f * (punchPower / 2));
                     if (hit.GetComponent<NewAIMan>() != null)
+                    {
+
                         hit.GetComponent<NewAIMan>().Explode(Root.transform.position);
+                        if(hit.gameObject.name == "Monster")
+                        {
+                            if(hit.attachedRigidbody.mass < 5)
+                            {
+                                for(int i = 0; i < 40; i++)
+                                    hit.GetComponent<NewAIMan>().stun(1);
+                            }
+                        }
+                    }
                     if (hit.gameObject.name == "rocket")
                         FindObjectOfType<PentagonTaskManager>().TaskCompleted("Rocket");
                 }

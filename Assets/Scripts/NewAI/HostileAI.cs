@@ -27,6 +27,8 @@ public class HostileAI : NewAIMan
 
             if (isAggrod)
             {
+                minimumStopDistance = 1;
+
                 if (moveTowardsPlayerOnAggro)
                 {
                     SetNewDestination(player.position);
@@ -48,6 +50,11 @@ public class HostileAI : NewAIMan
                     isAggrod = false;
 
                 }
+            }
+            else
+            {
+
+                minimumStopDistance = 3;
             }
             currentPunchCD -= Time.deltaTime;
 
@@ -77,6 +84,9 @@ public class HostileAI : NewAIMan
     {
         if(FindObjectOfType<APRController>().currentHP > 0)
         {
+
+
+
             if (!isAggrod)
             {
                 currentMaximumAllowedAggroTime = maximumAllowedAggroTime;
@@ -84,6 +94,15 @@ public class HostileAI : NewAIMan
             isAggrod = true;
             aggroTime = time;
             quipped = false;
+
+            if(GetComponent<ChainAggro>() != null)
+            {
+                foreach(var c in FindObjectsOfType<ChainAggro>())
+                {
+                    if (c.GetComponent<HostileAI>().isAggrod == false)
+                        c.GetComponent<HostileAI>().AggroToPlayer();
+                }
+            }
         }
     }
     void tryPunch()

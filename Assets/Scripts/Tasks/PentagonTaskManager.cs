@@ -259,6 +259,11 @@ public class PentagonTaskManager : MonoBehaviour
                     TaskFinished[5] = true;
                     StartCoroutine(confettistuff());
 
+                    if (PlayerPrefs.GetString(CompletedExtras, "").Contains("Penroni") == false)
+                    {
+                        PlayerPrefs.SetString(CompletedExtras, PlayerPrefs.GetString(CompletedExtras, "") + "Penroni");
+                        PlayerPrefs.Save();
+                    }
                 }
                 break;
             case "SSS":
