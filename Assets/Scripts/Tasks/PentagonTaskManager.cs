@@ -156,7 +156,7 @@ public class PentagonTaskManager : MonoBehaviour
         }
         else
         {
-            MainTask = "Launch the rocket!";
+            MainTask = "Launch the rocket with a mighty punch!";
         }
 
         taskList.text = MainTask + "\n" +
