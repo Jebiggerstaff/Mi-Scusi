@@ -182,6 +182,7 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[2] = true;
                     StartCoroutine(confettistuff());
 
+                    CosmeticUnlocker.UnlockOutfit("Cowboy Vest");
 
                     guardsRemoved++;
                     GroundGuard2.SetActive(true);

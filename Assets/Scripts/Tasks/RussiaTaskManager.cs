@@ -214,6 +214,7 @@ public class RussiaTaskManager : MonoBehaviour
                     Tasks[2].SetActive(true);
                     TaskFinished[2] = true;
                     StartCoroutine(confettistuff());
+                    CosmeticUnlocker.UnlockOutfit("Rain Coat");
 
                 }
                 break;

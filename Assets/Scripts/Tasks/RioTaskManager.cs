@@ -239,6 +239,8 @@ public class RioTaskManager : MonoBehaviour
                     TaskFinished[7] = true;
                     StartCoroutine(confettistuff());
 
+                    CosmeticUnlocker.UnlockOutfit("Satchel");
+
                 }
                 break;
         }
