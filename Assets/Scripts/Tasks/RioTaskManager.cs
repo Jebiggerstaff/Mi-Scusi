@@ -24,6 +24,8 @@ public class RioTaskManager : MonoBehaviour
     public GameObject UFO;
     public GameObject Bike;
     public GameObject miniTrophy;
+
+    [HideInInspector] public int peopleHelped;
     [Space]
     public List<GameObject> GoalConfetti;
     public GameObject hammer;
@@ -106,7 +108,7 @@ public class RioTaskManager : MonoBehaviour
             "Find the hidden booty of Rio\n" +
             "Help your friendly neighborhood crime lord\n" + 
             "Get the ball rolling\n" +
-            "Help everyone go shopping";
+            "Help everyone go shopping (" + peopleHelped.ToString() + "/7)";
 
 
         if (!TaskFinished[1])

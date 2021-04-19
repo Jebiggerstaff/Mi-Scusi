@@ -45,6 +45,7 @@ public class RioTaskCollider : MonoBehaviour
             RioTaskManager.Scooter.SetActive(true);
             Destroy(other.gameObject);
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
+            RioTaskManager.peopleHelped++;
             Destroy(gameObject);
             
 
@@ -70,6 +71,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop2" && other.gameObject.name == "Scooter")
         {
             RioTaskManager.Sword.SetActive(true);
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -77,6 +79,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop3" && other.gameObject.name == "ToySword")
         {
             RioTaskManager.Bike.SetActive(true);
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -85,6 +88,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop4" && other.gameObject.name == "TaskBike")
         {
             RioTaskManager.Coin.SetActive(true);
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -92,6 +96,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop5" && other.gameObject.name == "TaskCoin")
         {
             RioTaskManager.UFO.SetActive(true);
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -99,6 +104,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop6" && other.gameObject.name == "TaskUFO")
         {
             RioTaskManager.miniTrophy.SetActive(true);
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -106,6 +112,7 @@ public class RioTaskCollider : MonoBehaviour
         if (name == "Shop7" && other.gameObject.name == "MiniTrophy")
         {
             RioTaskManager.TaskCompleted("Shopping");
+            RioTaskManager.peopleHelped++;
             RelevantNPC.sentences = new string[1];
             RelevantNPC.sentences[0] = "Thanks!  I got what I want.";
             Destroy(other.gameObject);

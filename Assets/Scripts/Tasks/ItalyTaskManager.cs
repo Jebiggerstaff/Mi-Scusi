@@ -23,6 +23,7 @@ public class ItalyTaskManager : MonoBehaviour
     public GameObject MeatballEffect;
     public NPC ChefMiti;
     public ItalyTaskCollider fountainCollider;
+    public GameObject mafiaman;
 
     public Text taskList;
 
@@ -128,6 +129,7 @@ public class ItalyTaskManager : MonoBehaviour
                     CosmeticUnlocker.UnlockOutfit("Mafia Pants");
                     StartCoroutine(confettistuff());
 
+                    mafiaman.SetActive(true);
                 }
                 break;
             case "InfiltrateMafiaHQ":
