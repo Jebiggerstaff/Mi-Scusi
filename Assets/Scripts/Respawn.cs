@@ -26,8 +26,8 @@ public class Respawn : MonoBehaviour
         if (Player.transform.position.y < RespawnHeight)
         {
             Player.transform.position = SpawnPoint.transform.position;
-            Player.GetComponent<APRController>().GrabLeft.UnGrab();
-            Player.GetComponent<APRController>().GrabRight.UnGrab();
+            FindObjectOfType<APRController>().GrabLeft.UnGrab();
+            FindObjectOfType<APRController>().GrabRight.UnGrab();
         }
     }
 }

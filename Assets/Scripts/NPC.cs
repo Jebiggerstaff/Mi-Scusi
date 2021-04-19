@@ -72,6 +72,7 @@ public class NPC : MonoBehaviour {
                 ItalyTaskManager.TaskCompleted("HearAboutMafia");
             if(Name == "Talking Macaroni?")
             {
+                FindObjectOfType<OfficeTaskManager>().CosmeticUnlocker.UnlockOutfit("Noodle");
                 if (PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "").Contains("Macaroni") == false)
                 {
                     PlayerPrefs.SetString(PentagonTaskManager.CompletedExtras, PlayerPrefs.GetString(PentagonTaskManager.CompletedExtras, "") + "Macaroni");

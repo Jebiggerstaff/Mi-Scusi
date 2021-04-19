@@ -168,7 +168,6 @@ public class ItalyTaskManager : MonoBehaviour
             case "EatSpaghetti":
                 if (TaskFinished[6] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Noodle");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
