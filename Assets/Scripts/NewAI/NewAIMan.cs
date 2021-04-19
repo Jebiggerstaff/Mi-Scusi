@@ -54,7 +54,7 @@ public class NewAIMan : MonoBehaviour
     float quipDistance = 10f;
     Vector3 quipTarget;
 
-    float baseSpeed;
+    protected float baseSpeed;
     float baseAcceleration;
     [HideInInspector]
     public bool offByDistance = false;
@@ -121,7 +121,7 @@ public class NewAIMan : MonoBehaviour
 
 
 
-        if(!offByDistance)
+        if(!offByDistance && Time.timeScale >= 1)
         {
 
             bool onGround = groundCheck();

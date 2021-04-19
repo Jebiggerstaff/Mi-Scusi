@@ -19,7 +19,7 @@ public class CrowdAI : NewAIMan
     // Update is called once per frame
     public override void Update()
     {
-        if(!offByDistance)
+        if(!offByDistance && Time.timeScale > 0)
         {
 
             base.getnewDest();

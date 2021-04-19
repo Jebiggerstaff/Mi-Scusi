@@ -21,7 +21,7 @@ public class SitDownAI : NewAIMan
     public override void Update()
     {
 
-        if(!offByDistance)
+        if(!offByDistance && Time.timeScale >= 1)
         {
             base.Update();
 

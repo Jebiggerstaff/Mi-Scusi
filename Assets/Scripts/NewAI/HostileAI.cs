@@ -21,8 +21,20 @@ public class HostileAI : NewAIMan
         if (player == null)
             player = FindObjectOfType<APRController>().Root.transform;
 
-        if(!offByDistance)
+        if(!offByDistance && Time.timeScale >= 1)
         {
+
+            if(LeftHand.punching || RightHand.punching)
+            {
+                agent.speed = 0.25f;
+                if (agent.velocity.magnitude > 0.25f)
+                    agent.velocity = agent.velocity.normalized * 0.25f;
+            }
+            else if(!quipped)
+            {
+                agent.speed = baseSpeed;
+            }
+
             agent.acceleration = agent.speed * 4 / 3;
 
             if (isAggrod)

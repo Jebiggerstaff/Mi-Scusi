@@ -172,47 +172,58 @@ public class APRController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-        if (canPunch)
-        {
-            PlayerPunch();          
-        }
 
-        leftPunchTimer += .1f;
-        rightPunchTimer += .1f;
 
-        PlayerReach();
+            if (canPunch)
+            {
+                PlayerPunch();
+            }
+
+            leftPunchTimer += .1f;
+            rightPunchTimer += .1f;
+
+            PlayerReach();
+
+            if (useStepPrediction)
+            {
+                StepPrediction();
+            }
+
+            if (!useStepPrediction)
+            {
+                ResetWalkCycle();
+            }
+
+            Reset();
+
+            tryQuip();
+
+
+        }
         
-        if(useStepPrediction)
-        {
-            StepPrediction();
-        }
-        
-        if(!useStepPrediction)
-        {
-            ResetWalkCycle();
-        }
-
-        Reset();
-
-        tryQuip();
     }
   
     //---Fixed Updates---//
     void FixedUpdate()
     {
-        Walking();
 
-      //  if (!inAir)
-        //{
+        if(Time.timeScale > 0.1f)
+        {
+
+            Walking();
+
+            //  if (!inAir)
+            //{
             PlayerMovement();
 
-        //}
+            //}
 
-        PlayerRotation();
-        ResetPlayerPose();
-            
-        PlayerGetUpJumping();
+            PlayerRotation();
+            ResetPlayerPose();
+
+            PlayerGetUpJumping();
+        }
+
 
     }
 
