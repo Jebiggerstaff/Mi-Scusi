@@ -246,6 +246,7 @@ public class DesertTaskManager : MonoBehaviour
                     GroundGuard4.SetActive(true);
                     StageGuard4.SetActive(false);
 
+                    CosmeticUnlocker.UnlockOutfit("Sunglasses");
 
                     Destroy(fireworkStandGuy.gameObject);
                 }

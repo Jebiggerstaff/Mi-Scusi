@@ -219,7 +219,7 @@ public class RussiaTaskManager : MonoBehaviour
                 if (TaskFinished[3] == false)
                 {
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
-
+                    CosmeticUnlocker.UnlockOutfit("Horse Head");
                     TaskUpdatedText.SetActive(false);
                     TaskCompleteText.SetActive(true);
                     Tasks[3].SetActive(true);
