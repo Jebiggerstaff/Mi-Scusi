@@ -145,8 +145,11 @@ public class Firework : MonoBehaviour
 
             RandomAudioMaker.makeAudio(explodingtheshop, 0.5f, transform.position);
 
-
-            FindObjectOfType<DesertTaskManager>().FireworkExploded();
+            if (FindObjectOfType<DesertTaskManager>() != null)
+            {
+                FindObjectOfType<DesertTaskManager>().FireworkExploded();
+            }
+           
 
         }
 
