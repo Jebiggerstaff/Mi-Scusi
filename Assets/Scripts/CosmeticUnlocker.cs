@@ -136,6 +136,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Noodle") Hat(17);
         if (name == "Poofy Hair") Hat(18);
         if (name == "Rain Hood") Hat(19);
+        if (name == "TV") Hat(20);
         #endregion
 
         #region Coats

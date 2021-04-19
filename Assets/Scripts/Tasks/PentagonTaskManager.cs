@@ -246,6 +246,7 @@ public class PentagonTaskManager : MonoBehaviour
                     TaskFinished[4] = true;
                     StartCoroutine(confettistuff());
 
+                    CosmeticUnlocker.UnlockOutfit("Lizard Head");
                 }
                 break;
             case "Macaroni":

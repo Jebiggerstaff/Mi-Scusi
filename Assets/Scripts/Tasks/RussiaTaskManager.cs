@@ -199,6 +199,8 @@ public class RussiaTaskManager : MonoBehaviour
 
                     StartCoroutine(explosionsSounds());
 
+                    CosmeticUnlocker.UnlockOutfit("Robot");
+
                     NextLevel.SetActive(true);
                 }
                 break;

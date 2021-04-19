@@ -197,6 +197,8 @@ public class DesertTaskManager : MonoBehaviour
                     TaskFinished[3] = true;
                     StartCoroutine(confettistuff());
 
+                    CosmeticUnlocker.UnlockOutfit("TV");
+
                     Destroy(music);
 
                     guardsRemoved++;
