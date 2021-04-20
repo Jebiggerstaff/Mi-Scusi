@@ -32,7 +32,8 @@ public class HostileAI : NewAIMan
             }
             else if(!quipped)
             {
-                agent.speed = baseSpeed;
+                if(agent.speed != baseSpeed)
+                    agent.speed = baseSpeed;
             }
 
             agent.acceleration = agent.speed * 4 / 3;
@@ -66,7 +67,7 @@ public class HostileAI : NewAIMan
             else
             {
 
-                minimumStopDistance = 3;
+                minimumStopDistance = 0;
             }
             currentPunchCD -= Time.deltaTime;
 
