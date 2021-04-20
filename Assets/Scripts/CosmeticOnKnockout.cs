@@ -21,10 +21,14 @@ public class CosmeticOnKnockout : MonoBehaviour
             CosmeticUnlocker = FindObjectOfType<OverlayScene>().menu.GetComponent<CosmeticUnlocker>();
         if(ai.stunCount > 0)
         {
-            CosmeticUnlocker.UnlockOutfit(cosmeticName);
+            unlock();
         }
     }
 
+    public void unlock()
+    {
+        CosmeticUnlocker.UnlockOutfit(cosmeticName);
+    }
     
 }
 

@@ -33,5 +33,15 @@ public class AlexAI : MonoBehaviour
             lastLoc = playerRoot.transform.position;
         }
 
+        
+
+    }
+
+    void OnDestroy()
+    {
+        foreach(var u in GetComponents<CosmeticOnKnockout>())
+        {
+            u.unlock();
+        }
     }
 }
