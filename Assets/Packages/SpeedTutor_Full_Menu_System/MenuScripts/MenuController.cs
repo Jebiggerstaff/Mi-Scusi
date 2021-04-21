@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Audio;
 
 namespace SpeedTutorMainMenuSystem
 {
@@ -74,7 +75,16 @@ namespace SpeedTutorMainMenuSystem
         #endregion
 
 
-
+        [Header("Audio Controls")]
+        public AudioMixer ScusiAudio;
+        public AudioMixerGroup Master;
+        public AudioMixerGroup SoundEffects;
+        public AudioMixerGroup Music;
+        public AudioMixerGroup Ambience;
+        public Slider MasterSlide;
+        public Slider EffectSlide;
+        public Slider MusicSlide;
+        public Slider AmbienceSlide;
 
 
 
@@ -140,6 +150,8 @@ namespace SpeedTutorMainMenuSystem
         {
             controls = new MiScusiActions();
             controls.Enable();
+
+            SetAllVolumes();
         }
 
 
@@ -299,7 +311,7 @@ namespace SpeedTutorMainMenuSystem
 
 
 
-
+            
 
         }
 
@@ -701,7 +713,7 @@ namespace SpeedTutorMainMenuSystem
                 
                 ResumeGameBtn.SetActive(false);
 
-                newGameBtn.GetComponent<Text>().text = "Play";
+                newGameBtn.GetComponent<Text>().text = "Play Game";
                 EventSystem.current.SetSelectedGameObject(newGameBtn);
             }
         }
@@ -745,5 +757,62 @@ namespace SpeedTutorMainMenuSystem
         }
 
         #endregion
+
+
+
+
+        float VolumePercentToDecibal(float percent)
+        {
+            if (percent == 0)
+            {
+                return -80f;
+            }
+            else
+            {
+                return Mathf.Log10(percent) * 20f;
+            }
+        }
+
+        public void SetMasterVolume(float value)
+        {
+            ScusiAudio.SetFloat("MasterVolume", VolumePercentToDecibal(value));
+            PlayerPrefs.SetFloat("MasterVolume", value);
+            PlayerPrefs.Save();
+        }
+        public void SetAmbienceVolume(float value)
+        {
+            ScusiAudio.SetFloat("AmbienceVolume", VolumePercentToDecibal(value));
+            PlayerPrefs.SetFloat("AmbienceVolume", value);
+            PlayerPrefs.Save();
+        }
+        public void SetSoundEffectsVolume(float value)
+        {
+            ScusiAudio.SetFloat("SoundEffectsVolume", VolumePercentToDecibal(value));
+            PlayerPrefs.SetFloat("SoundEffectsVolume", value);
+            PlayerPrefs.Save();
+        }
+        public void SetMusicVolume(float value)
+        {
+            ScusiAudio.SetFloat("MusicVolume", VolumePercentToDecibal(value));
+            PlayerPrefs.SetFloat("MusicVolume", value);
+            PlayerPrefs.Save();
+        }
+
+        void SetAllVolumes()
+        {
+            SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
+            MasterSlide.value = PlayerPrefs.GetFloat("MasterVolume", 1);
+            SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
+            MusicSlide.value = PlayerPrefs.GetFloat("MusicVolume", 1);
+            SetSoundEffectsVolume(PlayerPrefs.GetFloat("SoundEffectsVolume", 1));
+            EffectSlide.value = PlayerPrefs.GetFloat("SoundEffectsVolume", 1);
+            SetAmbienceVolume(PlayerPrefs.GetFloat("AmbienceVolume", 1));
+            AmbienceSlide.value = PlayerPrefs.GetFloat("AmbienceVolume", 1);
+        }
     }
+
+
+
+
+    
 }

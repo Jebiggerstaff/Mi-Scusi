@@ -16,6 +16,7 @@ public class MoveToSelected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = EventSystem.current.currentSelectedGameObject.transform.position + offset;
+        if(EventSystem.current.currentSelectedGameObject != null)
+            transform.position = EventSystem.current.currentSelectedGameObject.transform.position + offset;
     }
 }
