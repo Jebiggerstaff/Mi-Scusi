@@ -65,7 +65,7 @@ public class DesertTaskManager : MonoBehaviour
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
-        this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
+        this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1.1f;
         Player = GameObject.Find("FinalPlayer");
         //Debug.Log("Found Player: " + Player);
 
@@ -107,11 +107,11 @@ public class DesertTaskManager : MonoBehaviour
         MainTask = "";
         if(TaskFinished[0] == false)
         {
-            MainTask = "Remove the guards protecting the Burning Man (" + guardsRemoved.ToString() + "/4)";
+            MainTask = "<b>Remove the guards protecting the Burning Man (" + guardsRemoved.ToString() + "/4)</b>";
         }
         else
         {
-            MainTask = "Burn down the Burning Man";
+            MainTask = "<b>Burn down the Burning Man</b>";
         }
         AlienTask = "Discover the mystery in the cliffs\n";
         if (FoundAliens)
