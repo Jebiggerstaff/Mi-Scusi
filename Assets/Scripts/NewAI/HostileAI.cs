@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class HostileAI : NewAIMan
 {
+    float originalStopDistance;
 
     public override void Start()
     {
         base.Start();
 
         player = FindObjectOfType<APRController>().Root.transform;
+        originalStopDistance = minimumStopDistance;
 
     }
 
@@ -66,8 +68,16 @@ public class HostileAI : NewAIMan
             }
             else
             {
+                if(SceneManager.GetActiveScene().name == "Pentagon")
+                {
+                    minimumStopDistance = 5;
+                }
+                else
+                {
 
-                minimumStopDistance = 0;
+                    minimumStopDistance = originalStopDistance;
+
+                }
             }
             currentPunchCD -= Time.deltaTime;
 
