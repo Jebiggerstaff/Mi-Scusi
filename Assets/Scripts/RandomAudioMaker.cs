@@ -44,6 +44,9 @@ public class RandomAudioMaker : MonoBehaviour
 
             go.GetComponent<AudioSource>().Play();
 
+
+            go.GetComponent<AudioSource>().outputAudioMixerGroup = FindObjectOfType<StartSceneManager>().AudioRoute.FindMatchingGroups("SoundEffects")[0];
+
             Destroy(go, clip.length * 1.5f);
         }
     }

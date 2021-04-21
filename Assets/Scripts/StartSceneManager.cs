@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class StartSceneManager : MonoBehaviour
 
     public Animator sceneFader;
 
+    public AudioMixer AudioRoute;
 
     public GameObject dataPrefab;
     [HideInInspector]
