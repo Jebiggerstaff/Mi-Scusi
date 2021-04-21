@@ -87,8 +87,8 @@ public class NewYorkTaskManager : MonoBehaviour
             menuOpen = false;
         }
 
-        taskText.text = "Cut in line for a hot dog\n" +
-            "Help man at TechHQ move\n" +
+        taskText.text = "<b>Get lucky 777's</b>\n"+
+            "<b>Help man at TechHQ move</b>\n" +
             "Remove the political competition\n" +
             "Pick up the trash bags in the park (" + TrashPickedUp.ToString() + "/" + ParkTrash.Length.ToString() + ")\n" +
             "Deface Street Slick Sam's 6 Tags (" + SSStagsRemoved.ToString() + "/6)\n" +
@@ -98,7 +98,8 @@ public class NewYorkTaskManager : MonoBehaviour
             "Return the 3 missing Blue Bikes (" + BikesReturned.ToString() + "/3)\n" +
             "Deface the Tri-Gon headquarters\n" +
             "Bring food to the construction worker\n" +
-            "Get lucky 777's";
+            "Cut in line for a hot dog"
+            ;
     }
 
     public void TaskCompleted(string Task)

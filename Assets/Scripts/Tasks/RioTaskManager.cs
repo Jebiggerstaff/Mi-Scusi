@@ -87,19 +87,19 @@ public class RioTaskManager : MonoBehaviour
         MainTask = "";
         if (TaskFinished[0] == false)
         {
-            MainTask = "Break into the locker room.";
+            MainTask = "<b>Break into the locker room.</b>";
         }
         else if(TaskFinished[1] == false)
         {
-            MainTask = "Put on a player's outfit.";
+            MainTask = "<b>Put on a player's outfit.</b>";
         }
         else if(TaskFinished[2] == false)
         {
-            MainTask = "Score a goal in the big game";
+            MainTask = "<b>Score a goal in the big game</b>";
         }
         else
         {
-            MainTask = "Escape with the trophy!";
+            MainTask = "<b>Escape with the trophy!</b>";
         }
 
 

@@ -83,11 +83,11 @@ public class RussiaTaskManager : MonoBehaviour
         MainTask = "";
         if(TaskFinished[0] == false)
         {
-            MainTask = "Break into the factory";
+            MainTask = "<b>Break into the factory</b>";
         }
         else
         {
-            MainTask = "Destroy the factory";
+            MainTask = "<b>Destroy the factory</b>";
         }
 
         taskList.text = MainTask + "\n" +

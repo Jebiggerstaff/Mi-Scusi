@@ -23,7 +23,7 @@ public class CruiseShipTaskManager : MonoBehaviour
     public CosmeticUnlocker CosmeticUnlocker;
     private bool menuOpen;
     private bool[] TaskFinished = new bool[11];
-    private string CurrentMainTask = "Take Chef's Clothes\n";
+    private string CurrentMainTask = "<b>Take Chef's Clothes</b>\n";
     [HideInInspector] public int MenThrownInWater = 0;
     [HideInInspector] public int ChinaBroken = 0;
     [HideInInspector] public int BrigandsHit = 0;
@@ -85,7 +85,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(true);
                     TaskCompleteText.SetActive(false);
                     TaskFinished[0] = true;
-                    CurrentMainTask = CurrentMainTask = "Hijack the ship\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Hijack the ship</b>\n";
                     StartCoroutine(confettistuff());
                 }
                 break;

@@ -78,11 +78,11 @@ public class MoonTaskManager : MonoBehaviour
         MainTask = "";
         if (TaskFinished[0] == false)
         {
-            MainTask = "Tear out power cells. (" + PowerCellsRemoved.ToString() +  "/6)";
+            MainTask = "<b>Tear out power cells. (" + PowerCellsRemoved.ToString() + "/6)</b>";
         }
         else
         {
-            MainTask = "Push the poorly labled button.";
+            MainTask = "<b>Push the poorly labled button.</b>";
         }
 
 

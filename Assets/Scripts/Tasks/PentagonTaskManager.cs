@@ -152,11 +152,11 @@ public class PentagonTaskManager : MonoBehaviour
         MainTask = "";
         if (TaskFinished[0] == false)
         {
-            MainTask = "Open the door to the launch bay.";
+            MainTask = "<b>Open the door to the launch bay.</b>";
         }
         else
         {
-            MainTask = "Launch the rocket with a mighty punch!";
+            MainTask = "<b>Launch the rocket with a mighty punch!</b>";
         }
 
         taskList.text = MainTask + "\n" +
