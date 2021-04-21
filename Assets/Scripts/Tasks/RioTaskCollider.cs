@@ -67,6 +67,10 @@ public class RioTaskCollider : MonoBehaviour
             //UNLOCK COSTUMES
         }
 
+        if(name == "WaterQuad" && other.gameObject.GetComponent<NewAIMan>() != null)
+        {
+            other.gameObject.GetComponent<NewAIMan>().stun(30f);
+        }
 
         if (name == "Shop2" && other.gameObject.name == "Scooter")
         {

@@ -143,7 +143,8 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Jackson's Head") Hat(24);
         if (name == "James's Head") Hat(25);
         if (name == "Charlie's Head") Hat(26);
-        if (name == "Isaac's Head") Hat(28);
+        if (name == "Isaac's Head") Hat(27);
+        if (name == "Zach's Head") Hat(28);
         #endregion
 
         #region Coats
@@ -174,6 +175,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Jason's Shirt") Shirt(7);
         if (name == "Charlie's Shirt") Shirt(8);
         if (name == "Jackson's Shirt") Shirt(9);
+        if (name == "Zach's Shirt") Shirt(10);
         #endregion
 
         #region Pants
@@ -188,6 +190,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Shane's Pants") Pant(8);
         if (name == "Jason's Pants") Pant(9);
         if (name == "Alex's Pants") Pant(10);
+        if (name == "Zach's Pants") Pant(11);
         #endregion
 
         #region Backpacks
