@@ -106,11 +106,11 @@ public class OfficeTaskManager : MonoBehaviour
 
         if(TasksCompleted[0] == false && TasksCompleted[1] == false && TasksCompleted[2] == false)
         {
-            MainTask = "Help your coworkers";
+            MainTask = "<b>Help your coworkers</b>";
         }
         else
         {
-            MainTask = "Take the Boss's stache";
+            MainTask = "<b>Take the Boss's stache</b>";
         }
 
         if(coffeePartsCollected < 3)

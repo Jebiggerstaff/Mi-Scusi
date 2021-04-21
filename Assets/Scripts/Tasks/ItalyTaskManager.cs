@@ -36,7 +36,7 @@ public class ItalyTaskManager : MonoBehaviour
 
     private bool[] TaskFinished = new bool[11];
     private bool menuOpen;
-    private string CurrentMainTask = "Beat up men in suits\n";
+    private string CurrentMainTask = "<b>Beat up men in suits</b>\n";
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
@@ -83,7 +83,7 @@ public class ItalyTaskManager : MonoBehaviour
 
         if (TaskFinished[2] == true)
         {
-            CurrentMainTask = "Collect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5)\n";
+            CurrentMainTask = "<b>Collect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5)</b>\n";
         }
 
         taskList.text = CurrentMainTask +
@@ -109,7 +109,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
-                    CurrentMainTask = CurrentMainTask = "Infiltrate Mafia HQ\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Infiltrate Mafia HQ</b>\n";
                     StartCoroutine(confettistuff());
                 }
                 break;
@@ -121,7 +121,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
-                    CurrentMainTask = CurrentMainTask = "Speak to the lone Mafia Member\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Speak to the lone Mafia Member</b>\n";
 
                     CosmeticUnlocker.UnlockOutfit("Fedora");
                     CosmeticUnlocker.UnlockOutfit("Mafia Coat");
