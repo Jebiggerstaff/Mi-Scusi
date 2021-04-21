@@ -529,7 +529,7 @@ public class NewAIMan : MonoBehaviour
             if(anim != null)
             {
                 anim.SetTrigger("Hit");
-                anim.SetInteger("RandomHit", Random.Range(0, 4));
+                anim.SetInteger("RandomHit", Random.Range(0, 5));
                 SetRagdollWeight(1);
                 StartCoroutine(SetRagdollWaitAfterTime(0, 1));
             }
@@ -700,6 +700,12 @@ public class NewAIMan : MonoBehaviour
                 }
 
             }
+
+            
+        }
+        else if (gameObject.name == "HatesOldPeople" && collision.gameObject.layer == LayerMask.NameToLayer("Player_1"))
+        {
+            anim.SetBool("Kicking", false);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("GiantMeatball"))
         {

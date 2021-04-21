@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HostileAI : NewAIMan
 {
     float originalStopDistance;
+    float kickSpeed;
 
     public override void Start()
     {
@@ -13,6 +14,13 @@ public class HostileAI : NewAIMan
 
         player = FindObjectOfType<APRController>().Root.transform;
         originalStopDistance = minimumStopDistance;
+
+        if(gameObject.name == "HatesOldPeople")
+        {
+            anim.SetBool("Kicking", true);
+            kickSpeed =
+             Random.Range(1f, 2f);
+        }
 
     }
 
@@ -85,6 +93,12 @@ public class HostileAI : NewAIMan
             if (RightHand.punching || LeftHand.punching)
                 anim.speed = 1;
 
+            if(anim.GetBool("Kicking"))
+            {
+
+                anim.speed = kickSpeed;
+            }
+
         }
 
     }
@@ -92,9 +106,13 @@ public class HostileAI : NewAIMan
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1") && shouldAggro())
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player_1") && shouldAggro())
         {
             AggroToPlayer();
+            if (gameObject.name == "HatesOldPeople")
+            {
+                anim.SetBool("Kicking", false);
+            }
         }
 
     }
