@@ -32,6 +32,9 @@ public class SoundOnCollision : MonoBehaviour
         aipunchableByPlayer = AIPunchedByPlayer != null;
         aiPunchingPlayer = AIPunchesPlayer != null;
         knockOutable = KnockedOut != null;
+
+        if (audioSource != null)
+            audioSource.outputAudioMixerGroup = FindObjectOfType<StartSceneManager>().AudioRoute.FindMatchingGroups("SoundEffects")[0];
     }
 
 
