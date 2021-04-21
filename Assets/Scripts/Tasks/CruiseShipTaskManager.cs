@@ -34,7 +34,7 @@ public class CruiseShipTaskManager : MonoBehaviour
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
-        this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = .2f;
+        this.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1.2f;
         Player = GameObject.Find("FinalPlayer");
         //Debug.Log("Found Player: " + Player);
     }
@@ -58,6 +58,11 @@ public class CruiseShipTaskManager : MonoBehaviour
             menuOpen = true;
         }
         else if (controls.UI.TaskMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
         {
             TaskList.SetActive(false);
             menuOpen = false;

@@ -86,6 +86,11 @@ public class NewYorkTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
         taskText.text = "<b>Get lucky 777's</b>\n"+
             "<b>Help man at TechHQ move</b>\n" +

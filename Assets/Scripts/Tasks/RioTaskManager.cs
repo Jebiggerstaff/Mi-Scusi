@@ -83,6 +83,11 @@ public class RioTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
         MainTask = "";
         if (TaskFinished[0] == false)

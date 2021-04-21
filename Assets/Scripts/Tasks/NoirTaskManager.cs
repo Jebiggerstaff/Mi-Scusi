@@ -59,8 +59,13 @@ public class NoirTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
-        if(TasksCompleted[1] && TasksCompleted[0] && TasksCompleted[1])
+        if (TasksCompleted[1] && TasksCompleted[0] && TasksCompleted[1])
         {
             NextLevel.SetActive(true);
         }

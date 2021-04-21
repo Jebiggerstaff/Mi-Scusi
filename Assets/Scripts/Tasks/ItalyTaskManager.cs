@@ -80,6 +80,11 @@ public class ItalyTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
         if (TaskFinished[2] == true)
         {

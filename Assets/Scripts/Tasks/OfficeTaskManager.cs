@@ -98,6 +98,11 @@ public class OfficeTaskManager : MonoBehaviour
             TaskList.SetActive(false);
             menuOpen = false;
         }
+        else if (controls.UI.PauseMenu.triggered && menuOpen == true)
+        {
+            TaskList.SetActive(false);
+            menuOpen = false;
+        }
 
         //TaskList Stuff
 
