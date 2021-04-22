@@ -143,7 +143,8 @@ namespace SpeedTutorMainMenuSystem
             originalGameTime = Time.timeScale;
             Time.timeScale = 0.0001f;
             GoBackToMainMenu();
-            //ControllerCheck();
+
+
         }
         private MiScusiActions controls;
         private void Awake()
@@ -592,6 +593,7 @@ namespace SpeedTutorMainMenuSystem
         }
         public void resumeGame()
         {
+            FindObjectOfType<StartSceneManager>().TurnOnPlayerCamera();
             needResumeButton = false;
             Time.timeScale = 1;
             gameObject.SetActive(false);

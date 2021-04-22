@@ -18,24 +18,16 @@ public class camera : MonoBehaviour
 
     private void Update()
     {
-        if(Player == null)
+        if(Time.timeScale > 0)
         {
-            Player = FindObjectOfType<APRController>().Root.transform;
-        }
-        YeetThatCamera();
-        /*
-        if (Physics.Linecast(transform.position, Player.position,out hit))
-        {
-            if (hit.transform.tag == "Buildings")
+            if (Player == null)
             {
-                Camera.main.transform.position += Camera.main.transform.forward * 1f; ;
+                Player = FindObjectOfType<APRController>().Root.transform;
             }
-            else
-            {
-                
-            }
+            YeetThatCamera();
         }
-        */
+        
+        
     }
 
     void LateUpdate()

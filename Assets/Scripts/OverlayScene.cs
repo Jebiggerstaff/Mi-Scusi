@@ -39,6 +39,7 @@ public class OverlayScene : MonoBehaviour
 
                 //player.SetActive(false);
                 menu.SetActive(true);
+                FindObjectOfType<StartSceneManager>().TurnOffPlayerCamera();
                 menu.GetComponent<SpeedTutorMainMenuSystem.MenuController>().needResumeButton = true;
                 menu.GetComponent<SpeedTutorMainMenuSystem.MenuController>().onEnable();
 
