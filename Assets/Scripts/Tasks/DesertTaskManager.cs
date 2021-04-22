@@ -12,6 +12,9 @@ public class DesertTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks;
+    public Text MainText;
+    public Text SubText;
+    public Text AlienText;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -29,7 +32,6 @@ public class DesertTaskManager : MonoBehaviour
     public GameObject GroundGuard3;
     public GameObject GroundGuard4;
     public List<GameObject> BurningManFire;
-    public Text taskList;
     public NPC sailor;
     public NPC DJ;
     public GameObject fireworkStandGuy;
@@ -123,16 +125,13 @@ public class DesertTaskManager : MonoBehaviour
             AlienTask = "Find the 3 alien parts (" + AlienParts.ToString() + "/3)\n";
 
 
-        taskList.text = MainTask + "\n" +
-        "Make a mess in the gift shop\n" +
-        "Pause the music...forever\n" +
-        "Send the submarine off to sea (" + GasCollected.ToString() + "/3)\n" +
-        "\"Raise the roof\" at the fireworks stand\n" +
-        "Win the foot race\n" +
-        AlienTask;
+        
 
+        MainText.text = MainTask;
+        SubText.text = "Send the submarine off to sea (" + GasCollected.ToString() + "/3)";
+        AlienText.text = AlienTask;
 
-        if(guardsRemoved >= 4)
+        if (guardsRemoved >= 4)
         {
             TaskCompleted("GuardsRemoved");
         }

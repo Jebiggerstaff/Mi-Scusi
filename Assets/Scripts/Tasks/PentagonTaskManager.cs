@@ -47,7 +47,14 @@ public class PentagonTaskManager : MonoBehaviour
     string SaveAliens = "Complete other tasks in the game to unlock this!";
     string SaveMacaroni = "Complete other tasks in the game to unlock this!";
     string BurnBurningMan = "Complete other tasks in the game to unlock this!";
-
+    [Space]
+    public Text MainText;
+    public Text PrincessText;
+    public Text MafiaText;
+    public Text AlienText;
+    public Text MacaroniText;
+    public Text BurningText;
+    public Text SSSText;
 
     public static string CompletedExtras = "CompletedExtras";
 
@@ -176,7 +183,13 @@ public class PentagonTaskManager : MonoBehaviour
             SlaySSS + "\n" + 
             BurnBurningMan;
 
-        
+        MainText.text = MainTask;
+        AlienText.text = SaveAliens;
+        PrincessText.text = SlayPrincess;
+        MafiaText.text = SlayMafia;
+        MacaroniText.text = SaveMacaroni;
+        SSSText.text = SlaySSS;
+        BurningText.text = BurnBurningMan;
 
 
     }

@@ -9,6 +9,8 @@ public class RioTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks;
+    public Text MainTaskText;
+    public Text ShoppingText;
 
     [Header("Gameobjects")]
     public GameObject Player;
@@ -16,7 +18,6 @@ public class RioTaskManager : MonoBehaviour
     public GameObject TaskUpdatedText;
     public GameObject TaskList;
     public GameObject NextLevel;
-    public Text taskList;
     [Space]
     public GameObject Scooter;
     public GameObject Sword;
@@ -107,14 +108,10 @@ public class RioTaskManager : MonoBehaviour
             MainTask = "<b>Escape with the trophy!</b>";
         }
 
+        
 
-
-        taskList.text = MainTask + "\n" +
-            "Find the hidden booty of Rio\n" +
-            "Help your friendly neighborhood crime lord\n" + 
-            "Get the ball rolling\n" +
-            "Help everyone go shopping (" + peopleHelped.ToString() + "/7)";
-
+        MainTaskText.text = MainTask;
+        ShoppingText.text = "Help everyone go shopping (" + peopleHelped.ToString() + "/7)";
 
         if (!TaskFinished[1])
         {
