@@ -51,6 +51,11 @@ public class NewYorkTaskManager : MonoBehaviour
     [HideInInspector] public int SignsMoved = 0;
     [HideInInspector] public bool AteAtCafe=false;
 
+    public Text SSSTagText;
+    public Text TrashText;
+    public Text BikeText;
+    public Text WindowText;
+
     [Header("Audio Clips")]
     public AudioClip genericCompletionClip;
     public void Start()
@@ -92,19 +97,14 @@ public class NewYorkTaskManager : MonoBehaviour
             menuOpen = false;
         }
 
-        taskText.text = "<b>Get lucky 777's</b>\n"+
-            "<b>Help man at TechHQ move</b>\n" +
-            "Remove the political competition\n" +
-            "Pick up the trash bags in the park (" + TrashPickedUp.ToString() + "/" + ParkTrash.Length.ToString() + ")\n" +
-            "Deface Street Slick Sam's 6 Tags (" + SSStagsRemoved.ToString() + "/6)\n" +
-            "Shatter 15 windows (" + WindowsBroken.ToString() + "/15)\n" +
-            "Eat at the South West cafe\n" +
-            "Cross the first street\n" +
-            "Return the 3 missing Blue Bikes (" + BikesReturned.ToString() + "/3)\n" +
-            "Deface the Tri-Gon headquarters\n" +
-            "Bring food to the construction worker\n" +
-            "Cut in line for a hot dog"
-            ;
+        TrashText.text =
+            "Pick up the trash bags in the park (" + TrashPickedUp.ToString() + "/" + ParkTrash.Length.ToString() + ")";
+        SSSTagText.text =
+            "Deface Street Slick Sam's 6 Tags (" + SSStagsRemoved.ToString() + "/6)";
+        WindowText.text =
+            "Shatter 15 windows (" + WindowsBroken.ToString() + "/15)";
+        BikeText.text =
+            "Return the 3 missing Blue Bikes (" + BikesReturned.ToString() + "/3)";
     }
 
     public void TaskCompleted(string Task)

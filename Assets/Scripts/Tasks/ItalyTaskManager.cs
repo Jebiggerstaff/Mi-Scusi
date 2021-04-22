@@ -25,7 +25,9 @@ public class ItalyTaskManager : MonoBehaviour
     public ItalyTaskCollider fountainCollider;
     public GameObject mafiaman;
 
-    public Text taskList;
+    public Text MainTaskText;
+    public Text CoinText;
+    public Text MeatballText;
 
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -88,16 +90,13 @@ public class ItalyTaskManager : MonoBehaviour
 
         if (TaskFinished[2] == true)
         {
-            CurrentMainTask = "<b>Collect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5)</b>\n";
+            CurrentMainTask = "<b>Collect 5 Mafia documents (" + DocumentsCollected.ToString() + "/5)</b>";
         }
 
-        taskList.text = CurrentMainTask +
-            "Give upset girl a flower\n" +
-            "Eat spaghetti\n" +
-            "Steal from the shops\n" +
-            "Get money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)\n" +
-            "Knock out angry customer\n" +
-            "Help Chef Miti make meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
+        MainTaskText.text = CurrentMainTask;
+        CoinText.text = "Get money from the fountain (" + (fountainCollider.CoinsInFountain / 2 + 3).ToString() + "/3)";
+
+        MeatballText.text = "Help Chef Miti make meatball (" + MiniMeatball.numMeatballsCollected.ToString() + "/3)";
     }
 
 
@@ -114,7 +113,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
-                    CurrentMainTask = CurrentMainTask = "<b>Infiltrate Mafia HQ</b>\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Infiltrate Mafia HQ</b>";
                     StartCoroutine(confettistuff());
                 }
                 break;
@@ -126,7 +125,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskCompleteText.SetActive(false);
                     //Tasks[1].SetActive(true);
                     TaskFinished[1] = true;
-                    CurrentMainTask = CurrentMainTask = "<b>Speak to the lone Mafia Member</b>\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Speak to the lone Mafia Member</b>";
 
                     CosmeticUnlocker.UnlockOutfit("Fedora");
                     CosmeticUnlocker.UnlockOutfit("Mafia Coat");
