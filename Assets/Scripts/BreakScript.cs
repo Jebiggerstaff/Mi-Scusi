@@ -53,6 +53,7 @@ public class BreakScript : MonoBehaviour
 
                     
                 }
+                sound.outputAudioMixerGroup = FindObjectOfType<StartSceneManager>().AudioRoute.FindMatchingGroups("SoundEffects")[0];
                 poof.Play();
                 sound.Play();
                 Unbroken.SetActive(false);

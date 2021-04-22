@@ -16,6 +16,8 @@ public class StartSceneManager : MonoBehaviour
     public AudioMixer AudioRoute;
 
     public GameObject dataPrefab;
+
+    public GameObject PlayerCamera;
     [HideInInspector]
     public string TransitionScene = "SceneTransitions";
     // Start is called before the first frame update
@@ -28,6 +30,17 @@ public class StartSceneManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void TurnOnPlayerCamera()
+    {
+        if (PlayerCamera != null)
+            PlayerCamera.SetActive(true);
+    }
+    public void TurnOffPlayerCamera()
+    {
+        if (PlayerCamera != null)
+            PlayerCamera.SetActive(false);
     }
 
     void doStuff()

@@ -16,7 +16,7 @@ public class RussiaTaskManager : MonoBehaviour
     public GameObject TaskUpdatedText;
     public GameObject TaskList;
     public GameObject NextLevel;
-    public Text taskList;
+    public Text MainText;
     [Space]
     public Rigidbody Bed;
     public Rigidbody Chair;
@@ -89,14 +89,8 @@ public class RussiaTaskManager : MonoBehaviour
         {
             MainTask = "<b>Destroy the factory</b>";
         }
-
-        taskList.text = MainTask + "\n" +
-            "Slay the radioactive monster\n" + 
-            "Acquire a larger than life portrait of yourself\n" + 
-            "Help make everything just right";
-
-
-
+        
+        MainText.text = MainTask;
 
         correctSizeCount = 0;
 

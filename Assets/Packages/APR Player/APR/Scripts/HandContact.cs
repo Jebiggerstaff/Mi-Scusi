@@ -56,30 +56,34 @@ public class HandContact : MonoBehaviour
 
     void Update()
     {
-        if(APR_Player == null)
+        if(Time.timeScale > 0)
         {
-            APR_Player = GetComponentInParent<APRController>();
-        }
-
-        if (SceneManager.GetActiveScene().name == "NewYork" && NewYorkTaskManager==null)
-            NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
-        if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager == null)
-            TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
-        if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager == null)
-            ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
-
-
-        if (APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
-        {
-            if (joint != null)
+            if (APR_Player == null)
             {
-                joint.breakForce = 0;
+                APR_Player = GetComponentInParent<APRController>();
             }
-            UnGrab();
+
+            if (SceneManager.GetActiveScene().name == "NewYork" && NewYorkTaskManager == null)
+                NewYorkTaskManager = GameObject.Find("TaskUI").GetComponent<NewYorkTaskManager>();
+            if (SceneManager.GetActiveScene().name == "Tutorial" && TutorialTaskManager == null)
+                TutorialTaskManager = GameObject.Find("TaskUI").GetComponent<TutorialTaskManager>();
+            if (SceneManager.GetActiveScene().name == "Italy" && ItalyTaskManager == null)
+                ItalyTaskManager = GameObject.Find("TaskUI").GetComponent<ItalyTaskManager>();
+
+
+            if (APR_Player.isgrabbing == false || APR_Player.GrabbingWithHand(Left) == false)
+            {
+                if (joint != null)
+                {
+                    joint.breakForce = 0;
+                }
+                UnGrab();
+            }
+
+
+            punchingSizeDifference();
         }
-
-
-        punchingSizeDifference();
+        
     }
     
     public void holdPunching(float t = 0.4f)

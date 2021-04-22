@@ -109,7 +109,8 @@ public class NewAIMan : MonoBehaviour
             int test = Random.Range(0, skinColors.Length);
             while(test == 12)
                 test = Random.Range(0, skinColors.Length);
-            mats[1] = skinColors[test];
+            if(skinColors.Length > test)
+                mats[1] = skinColors[test];
             skin.materials = mats;
         }
 

@@ -49,6 +49,10 @@ public class OfficeTaskManager : MonoBehaviour
     string MainTask;
     string CoffeeTask;
 
+    [Space]
+    public Text MainText;
+    public Text CoffeeText;
+
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
 
@@ -120,19 +124,16 @@ public class OfficeTaskManager : MonoBehaviour
 
         if(coffeePartsCollected < 3)
             {
-                CoffeeTask = "Make coffee for the boss (" + coffeePartsCollected.ToString() + "/3)\n";
+                CoffeeTask = "Make coffee for the boss (" + coffeePartsCollected.ToString() + "/3)";
             }
             else
             {
-                CoffeeTask = "Take coffee to the boss\n";
+                CoffeeTask = "Take coffee to the boss";
             }
 
-        taskList.text = MainTask + "\n" +
-            "Refill the water cooler\n" + 
-            "Help your coworker get a date\n" +
-            CoffeeTask +
-            "Copy your butt";
-
+        
+        MainText.text = MainTask;
+        CoffeeText.text = CoffeeTask;
 
     }
 

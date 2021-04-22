@@ -11,19 +11,20 @@ public class CruiseShipTaskManager : MonoBehaviour
 
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
-
+    public Text MainText;
+    public Text ChinaText;
+    public Text EvacuateText;
     [Header("Gameobjects")]
     public GameObject Player;
     public GameObject TaskCompleteText;
     public GameObject TaskUpdatedText;
     public GameObject TaskList;
 
-
-    public Text taskList;
+    
     public CosmeticUnlocker CosmeticUnlocker;
     private bool menuOpen;
     private bool[] TaskFinished = new bool[11];
-    private string CurrentMainTask = "<b>Take Chef's Clothes</b>\n";
+    private string CurrentMainTask = "<b>Take Chef's Clothes</b>";
     [HideInInspector] public int MenThrownInWater = 0;
     [HideInInspector] public int ChinaBroken = 0;
     [HideInInspector] public int BrigandsHit = 0;
@@ -68,12 +69,10 @@ public class CruiseShipTaskManager : MonoBehaviour
             menuOpen = false;
         }
 
-        taskList.text = CurrentMainTask +
-            "Help Passengers \"Evacuate\" the Ship (" + (MenThrownInWater) + "/10)\n" +
-            "Save the Princess\n" +
-            "Claim insurace of the fine china (" + (ChinaBroken*7) + "$/175$)\n" +
-            "Go Down the WaterSlide\n" +
-            "Stage a mutiny\n";
+        MainText.text = CurrentMainTask;
+        EvacuateText.text = "Help Passengers \"Evacuate\" the Ship (" + (MenThrownInWater) + "/10)";
+        ChinaText.text = "Claim insurace of the fine china (" + (ChinaBroken * 7) + "$/175$)";
+        
     }
 
     public void TaskCompleted(string Task)
@@ -90,7 +89,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     TaskUpdatedText.SetActive(true);
                     TaskCompleteText.SetActive(false);
                     TaskFinished[0] = true;
-                    CurrentMainTask = CurrentMainTask = "<b>Hijack the ship</b>\n";
+                    CurrentMainTask = CurrentMainTask = "<b>Hijack the ship</b>";
                     StartCoroutine(confettistuff());
                 }
                 break;

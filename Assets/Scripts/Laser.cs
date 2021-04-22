@@ -32,29 +32,33 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grabbed = grabCount > 0;
-        if(HoldNoise != null)
+        if(Time.timeScale > 0)
         {
-
-            if (grabbed && !HoldNoise.isPlaying)
-                HoldNoise.Play();
-            else if(!grabbed && HoldNoise.isPlaying)
-                HoldNoise.Stop();
-
-        }
-        if (gameObject.tag != spawnedBeamTag)
-        {
-            if (timer >= updateFrequency)
+            grabbed = grabCount > 0;
+            if (HoldNoise != null)
             {
-                timer = 0;
-                //Debug.Log("Redrawing laser");
-                foreach (GameObject laserSplit in GameObject.FindGameObjectsWithTag(spawnedBeamTag))
-                    Destroy(laserSplit);
 
-                StartCoroutine(RedrawLaser());
+                if (grabbed && !HoldNoise.isPlaying)
+                    HoldNoise.Play();
+                else if (!grabbed && HoldNoise.isPlaying)
+                    HoldNoise.Stop();
+
             }
-            timer += Time.deltaTime;
+            if (gameObject.tag != spawnedBeamTag)
+            {
+                if (timer >= updateFrequency)
+                {
+                    timer = 0;
+                    //Debug.Log("Redrawing laser");
+                    foreach (GameObject laserSplit in GameObject.FindGameObjectsWithTag(spawnedBeamTag))
+                        Destroy(laserSplit);
+
+                    StartCoroutine(RedrawLaser());
+                }
+                timer += Time.deltaTime;
+            }
         }
+        
     }
 
     IEnumerator RedrawLaser()
