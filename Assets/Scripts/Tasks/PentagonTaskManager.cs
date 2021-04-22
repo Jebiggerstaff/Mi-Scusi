@@ -29,11 +29,15 @@ public class PentagonTaskManager : MonoBehaviour
     public GameObject[] BurningManFire;
     public GameObject LaunchParticles;
     [Space]
+    public LineRenderer line;
+    public Material completedMat;
+    [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
     [HideInInspector] public bool[] TaskAllowed;
     private bool menuOpen;
+
 
 
     string MainTask;
@@ -191,6 +195,7 @@ public class PentagonTaskManager : MonoBehaviour
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
 
+                    line.material = completedMat;
 
                     Destroy(DoorOne);
                     Destroy(DoorTwo);
