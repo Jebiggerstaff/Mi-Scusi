@@ -27,14 +27,7 @@ public class CustomizationButtonLeftSet : MonoBehaviour
         nav.selectOnLeft = null;
         if(hat.activeSelf)
         {
-            foreach(var b in hat.GetComponentsInChildren<Button>())
-            {
-                if(b.interactable)
-                {
-                    nav.selectOnLeft = b;
-                    break;
-                }
-            }
+            nav.selectOnLeft = GameObject.Find("Basic Hair").GetComponent<Button>();
         }
         if(shirt.activeSelf)
         {

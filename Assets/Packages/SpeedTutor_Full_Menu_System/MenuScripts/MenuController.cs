@@ -104,6 +104,7 @@ namespace SpeedTutorMainMenuSystem
         public GameObject customizeFirstButton;
 
         public GameObject newGameScroller;
+        public GameObject CustomizeScroller;
 
         [Space]
         public StandaloneInputModule kbEventSystem;
@@ -756,6 +757,35 @@ namespace SpeedTutorMainMenuSystem
         {
             var scrollRect = newGameScroller.GetComponent<ScrollRect>();
             scrollRect.content.localPosition = new Vector3(-selected.transform.localPosition.x + scrollRect.GetComponent<RectTransform>().rect.width/2, scrollRect.content.localPosition.y, scrollRect.content.localPosition.z);
+
+            if (controls.UI.Click.triggered)
+                selected.GetComponent<Button>().onClick.Invoke();
+        }
+        public void CenterCustomizeRect()
+        {
+
+            var scrollRect = CustomizeScroller.GetComponent<ScrollRect>();
+            var selected = EventSystem.current.currentSelectedGameObject;
+
+
+            float maxY = Mathf.NegativeInfinity;
+            float minY = Mathf.Infinity;
+
+            foreach(var go in scrollRect.content.GetComponentsInChildren<RectTransform>())
+            {
+                if (go.position.y < minY)
+                    minY = go.position.y;
+                if (go.position.y > maxY)
+                    maxY = go.position.y;
+            }
+
+            scrollRect.verticalScrollbar.value = 1f - (maxY - selected.GetComponent<RectTransform>().position.y)/ (maxY - minY);
+
+            if (controls.UI.Click.triggered)
+                selected.GetComponent<Button>().onClick.Invoke();
+
+
+
         }
 
         #endregion
