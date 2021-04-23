@@ -106,6 +106,7 @@ public class NewAIMan : MonoBehaviour
         {
             Material[] mats = new Material[2];
             mats[0] = vertexTest;
+            mats[1] = vertexTest;
             int test = Random.Range(0, skinColors.Length);
             while(test == 12)
                 test = Random.Range(0, skinColors.Length);
