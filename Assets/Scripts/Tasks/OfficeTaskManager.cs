@@ -113,7 +113,7 @@ public class OfficeTaskManager : MonoBehaviour
         CoffeeTask = "";
         MainTask = "";
 
-        if(TasksCompleted[0] == false && TasksCompleted[1] == false && TasksCompleted[2] == false)
+        if(TasksCompleted[0] == false || TasksCompleted[1] == false || TasksCompleted[2] == false)
         {
             MainTask = "<b>Help your coworkers</b>";
         }
