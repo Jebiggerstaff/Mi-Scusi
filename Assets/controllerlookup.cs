@@ -20,7 +20,6 @@ public class controllerlookup : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Gamepad.current.name);
         if (Gamepad.current == null)
         {
             spacebar.SetActive(true);
