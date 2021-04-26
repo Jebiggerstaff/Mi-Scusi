@@ -216,6 +216,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Graffiti Pack") Backpack(7);
         if (name == "Cat") Backpack(8);
         if (name == "Space Pack") Backpack(9);
+        if (name == "Wounded") Backpack(10);
         #endregion
 
         #region Accessories
@@ -227,6 +228,9 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Satchel") Accessory(4);
         if (name == "Graffiti Bag") Accessory(5);
         if (name == "Headphones") Accessory(7);
+        if (name == "Explorer Doll") Accessory(8);
+        if (name == "Horns") Accessory(9);
+        if (name == "Halo") Accessory(10);
         #endregion
 
     }
