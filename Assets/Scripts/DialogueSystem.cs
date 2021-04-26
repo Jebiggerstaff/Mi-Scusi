@@ -113,10 +113,10 @@ public class DialogueSystem: MonoBehaviour {
                     }
                     if(Names == "John Elton")
                     {
-                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Helmet");
-                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Pants");
-                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Pack");
-                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Suit");
+                        FindObjectOfType<MoonTaskManager>().CosmeticUnlocker.UnlockOutfit("Space Helmet");
+                        FindObjectOfType<MoonTaskManager>().CosmeticUnlocker.UnlockOutfit("Space Pants");
+                        FindObjectOfType<MoonTaskManager>().CosmeticUnlocker.UnlockOutfit("Space Pack");
+                        FindObjectOfType<MoonTaskManager>().CosmeticUnlocker.UnlockOutfit("Space Suit");
 
 
                     }
