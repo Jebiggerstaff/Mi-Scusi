@@ -21,6 +21,14 @@ public class MoonTaskManager : MonoBehaviour
     [HideInInspector] public int PowerCellsRemoved;
     public GameObject Door;
     [Space]
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject b3;
+    public GameObject b4;
+    public GameObject b5;
+    public GameObject b6;
+    public Material CompletedMat;
+    [Space]
 
 
     public CosmeticUnlocker CosmeticUnlocker;
@@ -144,4 +152,19 @@ public class MoonTaskManager : MonoBehaviour
         confetti.SetActive(false);
     }
 
+    public void LightButton()
+    {
+        if (PowerCellsRemoved == 1)
+            b1.GetComponent<MeshRenderer>().material = CompletedMat;
+        if (PowerCellsRemoved == 2)
+            b2.GetComponent<MeshRenderer>().material = CompletedMat;
+        if (PowerCellsRemoved == 3)
+            b3.GetComponent<MeshRenderer>().material = CompletedMat;
+        if (PowerCellsRemoved == 4)
+            b4.GetComponent<MeshRenderer>().material = CompletedMat;
+        if (PowerCellsRemoved == 5)
+            b5.GetComponent<MeshRenderer>().material = CompletedMat;
+        if (PowerCellsRemoved == 6)
+            b6.GetComponent<MeshRenderer>().material = CompletedMat;
+    }
 }

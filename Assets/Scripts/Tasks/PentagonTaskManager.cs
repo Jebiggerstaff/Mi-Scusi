@@ -29,8 +29,6 @@ public class PentagonTaskManager : MonoBehaviour
     public GameObject[] BurningManFire;
     public GameObject LaunchParticles;
     [Space]
-    public LineRenderer line;
-    public Material completedMat;
     [Space]
     public CosmeticUnlocker CosmeticUnlocker;
 
@@ -207,8 +205,7 @@ public class PentagonTaskManager : MonoBehaviour
                     //Tasks[0].SetActive(true);
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
-
-                    line.material = completedMat;
+                    
 
                     Destroy(DoorOne);
                     Destroy(DoorTwo);

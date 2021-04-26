@@ -23,6 +23,7 @@ public class MoonTaskCollider : MonoBehaviour
         if(other.gameObject.name == "PowerCell")
         {
             MoonTaskManager.PowerCellsRemoved++;
+            MoonTaskManager.LightButton();
             Destroy(this);
             Debug.Log("YESSS");
         }

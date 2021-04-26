@@ -20,6 +20,7 @@ public class Laser : MonoBehaviour
     public AudioSource HoldNoise;
     public AudioClip HitNoise;
     public GameObject MoonDoor;
+    public Material CompletedMaterial;
 
     // Use this for initialization
     void Start()
@@ -144,6 +145,8 @@ public class Laser : MonoBehaviour
                         }
                         if(hit.collider.tag == "LaserButton" && !KillsAI)
                         {
+                            mLineRenderer.material = CompletedMaterial;
+
                             if (FindObjectOfType<PentagonTaskCollider>() != null)
                                 FindObjectOfType<PentagonTaskManager>().TaskCompleted("Door");
                             else
