@@ -121,7 +121,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Crown") Hat(2);
         if (name == "Desert Hood") Hat(3);
         if (name == "Doom Helm") Hat(4);
-        if (name == "Fedora") Hat(5);
+        if (name == "Mafia Hat") Hat(5);
         if (name == "Captain's Hat") Hat(6);
         if (name == "Robot") Hat(7);
         if (name == "Rubicks Cube") Hat(8);
@@ -147,6 +147,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Zach's Head") Hat(28);
         if (name == "AJ's Head") Hat(29);
         if (name == "Riley's Head") Hat(30);
+        if (name == "Space Helmet") Hat(31);
         #endregion
 
         #region Coats
@@ -181,6 +182,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Zach's Shirt") Shirt(10);
         if (name == "AJ's Shirt") Shirt(11);
         if (name == "Riley's Shirt") Shirt(12);
+        if (name == "Space Suit") Shirt(13);
         #endregion
 
         #region Pants
@@ -198,6 +200,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Zach's Pants") Pant(11);
         if (name == "AJ's Pants") Pant(12);
         if (name == "Riley's Pants") Pant(13);
+        if (name == "Space Pants") Pant(14);
         #endregion
 
         #region Backpacks
@@ -210,6 +213,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Wings") Backpack(6);
         if (name == "Graffiti Pack") Backpack(7);
         if (name == "Cat") Backpack(8);
+        if (name == "Space Pack") Backpack(9);
         #endregion
 
         #region Accessories

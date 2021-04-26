@@ -111,7 +111,18 @@ public class DialogueSystem: MonoBehaviour {
                     {
                         FindObjectOfType<DesertRunningMan>().StartRace();
                     }
-                    
+                    if(Names == "John Elton")
+                    {
+                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Helmet");
+                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Pants");
+                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Pack");
+                        FindObjectOfType<CosmeticUnlocker>().UnlockOutfit("Space Suit");
+
+
+                    }
+
+
+
                     break;
                 }
                 yield return 0;

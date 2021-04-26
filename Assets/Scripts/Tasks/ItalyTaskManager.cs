@@ -127,7 +127,7 @@ public class ItalyTaskManager : MonoBehaviour
                     TaskFinished[1] = true;
                     CurrentMainTask = CurrentMainTask = "<b>Speak to the lone Mafia Member</b>";
 
-                    CosmeticUnlocker.UnlockOutfit("Fedora");
+                    CosmeticUnlocker.UnlockOutfit("Mafia Hat");
                     CosmeticUnlocker.UnlockOutfit("Mafia Coat");
                     CosmeticUnlocker.UnlockOutfit("Mafia Shirt");
                     CosmeticUnlocker.UnlockOutfit("Mafia Pants");
