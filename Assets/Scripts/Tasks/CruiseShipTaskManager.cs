@@ -114,6 +114,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     Tasks[1].SetActive(true);
                     TaskFinished[2] = true;
                     StartCoroutine(confettistuff());
+                    CosmeticUnlocker.UnlockOutfit("Speedo");
                 }
                 break;
             case "SavePrincess":

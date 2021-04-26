@@ -202,6 +202,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "AJ's Pants") Pant(12);
         if (name == "Riley's Pants") Pant(13);
         if (name == "Space Pants") Pant(14);
+        if (name == "Speedo") Pant(15);
         #endregion
 
         #region Backpacks
