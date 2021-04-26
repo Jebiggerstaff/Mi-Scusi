@@ -109,7 +109,7 @@ public class CosmeticUnlocker : MonoBehaviour
             PlayerPrefs.Save();
 
             GameObject.Find("FinalPlayer").GetComponent<APRController>().skinUnlockNotification();
-            StartCoroutine(GameObject.Find("FinalPlayer").GetComponent<APRController>().MildBobbySauce());
+            GameObject.Find("FinalPlayer").GetComponent<APRController>().SpicyBobbySauce();
         }
 
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));

@@ -29,6 +29,16 @@ public class KnockedOutForever : MonoBehaviour
                 ai.anim.speed = Mathf.Clamp(ai.anim.speed - Time.deltaTime, 0, 2);
                 Debug.Log(ai.anim.speed);
             }
+
+            if (GetComponent<NPC>() != null)
+                Destroy(GetComponent<NPC>());
+                
+
+            if(GetComponentsInChildren<Canvas>().Length > 0)
+            {
+                foreach (var c in GetComponentsInChildren<Canvas>())
+                    Destroy(c.gameObject);
+            }
         }
         
     }

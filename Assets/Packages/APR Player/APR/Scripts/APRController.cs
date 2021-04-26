@@ -1204,6 +1204,10 @@ public class APRController : MonoBehaviour
         StartCoroutine(MildBobbySauce());
     }
 
+    public void SpicyBobbySauce()
+    {
+        StartCoroutine(MildBobbySauce());
+    }
     public IEnumerator MildBobbySauce()
     {
 
