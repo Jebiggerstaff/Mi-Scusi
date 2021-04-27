@@ -34,6 +34,14 @@ public class CosmeticUnlocker : MonoBehaviour
     public static readonly string CosmeticSaveName = "CosmoLock";
     private static readonly string CosmeticBufferString = "&$&";
 
+    [Space]
+    public GameObject HatUnlock;
+    public GameObject ShirtUnlock;
+    public GameObject PantsUnlock;
+    public GameObject CoatUnlock;
+    public GameObject BackUnlock;
+    public GameObject AccUnlock;
+
     #endregion
 
     private void Start()
@@ -52,48 +60,48 @@ public class CosmeticUnlocker : MonoBehaviour
         {
             if(prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
         foreach (var go in Shirts)
         {
             if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
         foreach (var go in Coats)
         {
             if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
         foreach (var go in Pants)
         {
             if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
         foreach (var go in Backpacks)
         {
             if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
         foreach (var go in Accessories)
         {
             if (prefs.Contains(CosmeticBufferString + go.name + CosmeticBufferString))
             {
-                UnlockOutfit(go.name);
+                UnlockOutfit(go.name, false);
             }
         }
 
     }
 
-    public void UnlockOutfit(string name)
+    public void UnlockOutfit(string name, bool firstUnlock = true)
     {
         Debug.LogWarning("Unlock " + name);
 
@@ -110,6 +118,90 @@ public class CosmeticUnlocker : MonoBehaviour
 
             GameObject.Find("FinalPlayer").GetComponent<APRController>().skinUnlockNotification();
             GameObject.Find("FinalPlayer").GetComponent<APRController>().SpicyBobbySauce();
+
+            if(firstUnlock)
+            {
+                bool foundIt = false;
+                foreach (var go in Hats)
+                {
+                    if (go.name == name)
+                    {
+
+                        HatUnlock.SetActive(true);
+                        foundIt = true;
+                        break;
+                    }
+                }
+                if (!foundIt)
+                {
+                    foreach (var go in Shirts)
+                    {
+                        if (go.name == name)
+                        {
+
+                            ShirtUnlock.SetActive(true);
+                            foundIt = true;
+                            break;
+                        }
+                    }
+                }
+                if (!foundIt)
+                {
+                    foreach (var go in Coats)
+                    {
+                        if (go.name == name)
+                        {
+
+                            CoatUnlock.SetActive(true);
+                            foundIt = true;
+                            break;
+                        }
+                    }
+                }
+                if (!foundIt)
+                {
+                    foreach (var go in Pants)
+                    {
+                        if (go.name == name)
+                        {
+
+                            PantsUnlock.SetActive(true);
+                            foundIt = true;
+                            break;
+                        }
+                    }
+                }
+                if (!foundIt)
+                {
+                    foreach (var go in Backpacks)
+                    {
+                        if (go.name == name)
+                        {
+
+                            BackUnlock.SetActive(true);
+                            foundIt = true;
+                            break;
+                        }
+                    }
+                }
+                if(!foundIt)
+                {
+
+                    foreach (var go in Accessories)
+                    {
+                        if (go.name == name)
+                        {
+
+                            AccUnlock.SetActive(true);
+                            foundIt = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+
+
         }
 
         Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
