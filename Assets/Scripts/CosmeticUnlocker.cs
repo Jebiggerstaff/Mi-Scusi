@@ -166,6 +166,8 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Jackson's Coat") Coat(11);
         if (name == "James's Coat") Coat(12);
         if (name == "AJ's Coat") Coat(13);
+        if (name == "Bath Robe") Coat(14);
+        if (name == "Hoodie") Coat(15);
 
         #endregion
 
