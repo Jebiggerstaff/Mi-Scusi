@@ -278,7 +278,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "AJ's Shirt") Shirt(11);
         if (name == "Riley's Shirt") Shirt(12);
         if (name == "Space Suit") Shirt(13);
-        if (name == "V-Neck") Shirt(14);
+        if (name == "Office Shirt") Shirt(14);
         #endregion
 
         #region Pants
