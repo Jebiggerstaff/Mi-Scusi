@@ -107,7 +107,6 @@ public class CruiseShipTaskManager : MonoBehaviour
             case "EvacuateShip":
                 if (TaskFinished[2] == false)
                 {
-                    CosmeticUnlocker.UnlockOutfit("Tank Top");
                     RandomAudioMaker.makeAudio(genericCompeltionClip);
                     TaskCompleteText.SetActive(true);
                     TaskUpdatedText.SetActive(false);
@@ -146,6 +145,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     Tasks[3].SetActive(true);
                     TaskFinished[4] = true;
                     StartCoroutine(confettistuff());
+                    CosmeticUnlocker.UnlockOutfit("V-Neck");
                 }
                 break;
             case "Waterslide":
@@ -157,6 +157,7 @@ public class CruiseShipTaskManager : MonoBehaviour
                     Tasks[4].SetActive(true);
                     TaskFinished[5] = true;
                     StartCoroutine(confettistuff());
+                    CosmeticUnlocker.UnlockOutfit("Tank Top");
                 }
                 break;
             case "Mutiny":

@@ -167,6 +167,8 @@ public class OfficeTaskManager : MonoBehaviour
                     Tasks[1].SetActive(true);
                     PaperStack2.SetActive(true);
                     StartCoroutine(confettistuff());
+
+                    CosmeticUnlocker.UnlockOutfit("Office Shirt");
                 }
                 break;
             case "GetBossCoffee":
