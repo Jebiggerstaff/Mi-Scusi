@@ -241,6 +241,7 @@ public class CosmeticUnlocker : MonoBehaviour
         if (name == "Riley's Head") Hat(30);
         if (name == "Space Helmet") Hat(31);
         if (name == "Fedora") Hat(32);
+        if (name == "Axolotl") Hat(33);
         #endregion
 
         #region Coats
