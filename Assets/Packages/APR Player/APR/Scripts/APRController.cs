@@ -163,7 +163,8 @@ public class APRController : MonoBehaviour
         PlayerSetup();
         //this is for power punch
         SwagUnlockNotifation = GameObject.Find("SwagUnlockNotification");
-        SwagUnlockNotifation.SetActive(false);
+        if(SwagUnlockNotifation != null)
+            SwagUnlockNotifation.SetActive(false);
     }
 
     void Update()

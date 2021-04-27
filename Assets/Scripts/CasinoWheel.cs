@@ -34,14 +34,17 @@ public class CasinoWheel : MonoBehaviour
     {
         if (Count >= 3)
         {
-            unhideThisOne.SetActive(true);
-            hideThisOne.SetActive(false);
+            if(unhideThisOne != null)
+                unhideThisOne.SetActive(true);
+            if(hideThisOne != null)
+                hideThisOne.SetActive(false);
             if(FindObjectOfType<NewYorkTaskManager>() != null)
             {
                 FindObjectOfType<NewYorkTaskManager>().TaskCompleted("777");
             }
 
-            Destroy(destroyblock);
+            if(destroyblock != null)
+                Destroy(destroyblock);
         }
 
     }
