@@ -103,7 +103,6 @@ public class CosmeticUnlocker : MonoBehaviour
 
     public void UnlockOutfit(string name, bool firstUnlock = true)
     {
-        Debug.LogWarning("Unlock " + name);
 
 
         string prefs = PlayerPrefs.GetString(CosmeticSaveName, "");
@@ -203,8 +202,7 @@ public class CosmeticUnlocker : MonoBehaviour
 
 
         }
-
-        Debug.Log(PlayerPrefs.GetString(CosmeticSaveName, ""));
+        
 
         #region Hats
         

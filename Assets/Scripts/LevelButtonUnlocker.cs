@@ -15,9 +15,8 @@ public class LevelButtonUnlocker : MonoBehaviour
     {
         btn = GetComponent<Button>();
         img = GetComponent<Image>();
-        if(true)
-        //if(PlayerPrefs.GetString(MenuController.LevelUnlockedPref, "").Contains(MenuController.LevelBuffer + LevelName + MenuController.LevelBuffer))
-        //UNCOMMENT WHEN WE WANT LEVEL LOCKING
+        
+        if(PlayerPrefs.GetString(MenuController.LevelUnlockedPref, "").Contains(MenuController.LevelBuffer + LevelName + MenuController.LevelBuffer))
         {
             btn.interactable = true;
             img.color = Color.white;

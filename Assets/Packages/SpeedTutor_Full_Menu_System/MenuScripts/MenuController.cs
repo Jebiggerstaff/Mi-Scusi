@@ -111,6 +111,8 @@ namespace SpeedTutorMainMenuSystem
         public StandaloneInputModule ctrEventSystem;
 
         #region Initialisation - Button Selection & Menu Order
+        
+
         private void Start()
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -154,6 +156,12 @@ namespace SpeedTutorMainMenuSystem
             controls.Enable();
 
             SetAllVolumes();
+
+            if (PlayerPrefs.GetInt("FirstPlay", 0) == 0)
+            {
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.SetInt("FirstPlay", 1);
+            }
         }
 
 
