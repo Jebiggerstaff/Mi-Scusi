@@ -25,7 +25,7 @@ public class MoonTaskCollider : MonoBehaviour
             MoonTaskManager.PowerCellsRemoved++;
             MoonTaskManager.LightButton();
             Destroy(this);
-            Debug.Log("YESSS");
+            RandomAudioMaker.makeAudio(MoonTaskManager.PowerClip, 1.0f);
         }
     }
     private void OnTriggerEnter(Collider other)

@@ -41,6 +41,7 @@ public class MoonTaskManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
+    public AudioClip PowerClip;
 
     public void Start()
     {
@@ -125,6 +126,7 @@ public class MoonTaskManager : MonoBehaviour
                     TaskFinished[0] = true;
                     StartCoroutine(confettistuff());
                     Destroy(Door);
+
                 }
                 break;
             case "Button":
