@@ -24,7 +24,7 @@ public class NoirTaskManager : MonoBehaviour
     public GameObject MurderWeapon;
     private bool menuOpen;
 
-
+    [HideInInspector] public bool LevelCompleted;
 
     void Start()
     {
@@ -68,6 +68,7 @@ public class NoirTaskManager : MonoBehaviour
         if (TasksCompleted[1] && TasksCompleted[0] && TasksCompleted[1])
         {
             NextLevel.SetActive(true);
+            LevelCompleted = true;
         }
     }
 

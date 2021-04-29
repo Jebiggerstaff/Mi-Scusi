@@ -19,4 +19,5 @@ public class CrossSceneData : MonoBehaviour
     public int prevIndex;
     public int videoIndex;
     public string sceneName;
+    public bool LevelCompleted = false;
 }

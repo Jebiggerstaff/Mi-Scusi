@@ -108,7 +108,12 @@ public class StartSceneManager : MonoBehaviour
         var data = dataO.GetComponent<CrossSceneData>();
         data.sceneName = levelname;
         data.prevIndex = SceneManager.GetActiveScene().buildIndex;
+        data.LevelCompleted = false;
 
+        if (SceneManager.GetActiveScene().name == "Noir")
+            data.LevelCompleted = FindObjectOfType<NoirTaskManager>().LevelCompleted;
+        if (SceneManager.GetActiveScene().name == "Office")
+            data.LevelCompleted = FindObjectOfType<OfficeTaskManager>().levelCompleted;
         
         switch (levelname)
         {

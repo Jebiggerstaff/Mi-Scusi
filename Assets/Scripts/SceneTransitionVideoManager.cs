@@ -40,7 +40,7 @@ public class SceneTransitionVideoManager : MonoBehaviour
 
         if(data.videoIndex == 4)
         {
-            if(data.prevIndex == 7)
+            if(data.prevIndex == 7 && data.LevelCompleted)
             {
                 vid = videos[20];    //OFFICE TO NY INSTEAD OF ITALY TO NY
             }
@@ -58,7 +58,7 @@ public class SceneTransitionVideoManager : MonoBehaviour
         }
         if(data.videoIndex == 2)
         {
-            if (data.prevIndex == 5)
+            if (data.prevIndex == 5 && data.LevelCompleted)
             {
                 vid = videos[17];    //ITALY FROM NOIR
             }

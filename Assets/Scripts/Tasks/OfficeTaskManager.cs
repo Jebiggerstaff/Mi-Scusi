@@ -56,6 +56,9 @@ public class OfficeTaskManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
 
+
+    [HideInInspector] public bool levelCompleted = false;
+
     public void Start()
     {
         this.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -199,6 +202,7 @@ public class OfficeTaskManager : MonoBehaviour
                     NextLevel.SetActive(true);
                     CosmeticUnlocker.UnlockOutfit("Mustache");
                     StartCoroutine(confettistuff());
+                    levelCompleted = true;
                 }
                 break;
         }
