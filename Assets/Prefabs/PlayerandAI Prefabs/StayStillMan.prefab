@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4575674925354774163}
   - component: {fileID: 4575674925354774173}
   - component: {fileID: 3180170900182795309}
+  - component: {fileID: 2575879480774297563}
   m_Layer: 17
   m_Name: StayStillMan
   m_TagString: CanBeGrabbed
@@ -220,6 +221,21 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b5907706c4844a340a748b43f978ef95, type: 2}
   vertexTest: {fileID: 2100000, guid: 131ce1ac32bd26a4788e46a562ccbecf, type: 2}
   target: {x: 0, y: 0, z: 0}
+--- !u!114 &2575879480774297563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575674925354774162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67fb49398f7fd4d99af4f77310f3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrabbed: 0
+  handCount: 0
+  bonk: {fileID: 8300000, guid: 2c9fcd831d8a7cb4a8fed9cdf2f8186d, type: 3}
 --- !u!1 &4781200531341731429
 GameObject:
   m_ObjectHideFlags: 0
