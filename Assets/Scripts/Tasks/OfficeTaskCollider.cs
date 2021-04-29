@@ -20,11 +20,11 @@ public class OfficeTaskCollider : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         #region WaterCooler
-        if (other.gameObject == OfficeTaskManager.WaterCoolerJug && name == "WaterCooler")
+        if (other.gameObject == OfficeTaskManager.WaterCoolerJug && name == "Cooler")
         {
             OfficeTaskManager.TaskCompleted("RefilWater");
         }
-        if (other.gameObject.name == "WaterJug" )
+        if (other.gameObject.name == "Jug" )
         {
             FullWaterJug.SetActive(true);
             Destroy(other.gameObject);
