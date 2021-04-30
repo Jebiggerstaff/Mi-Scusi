@@ -45,8 +45,8 @@ public class OfficeTaskManager : MonoBehaviour
 
     public CosmeticUnlocker CosmeticUnlocker;
     
-    private bool menuOpen;
-    string MainTask=true;
+    private bool menuOpen=true;
+    string MainTask;
     string CoffeeTask;
 
     [Space]
