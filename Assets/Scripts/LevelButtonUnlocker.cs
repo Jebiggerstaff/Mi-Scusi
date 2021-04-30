@@ -25,7 +25,8 @@ public class LevelButtonUnlocker : MonoBehaviour
         else
         {
             btn.interactable = false;
-            img.color = Color.black;
+            img.color = Color.white;
+            img.color = new Color(img.color.r, img.color.g, img.color.b, .75f);
         }
     }
 
