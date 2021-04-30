@@ -22,7 +22,7 @@ public class NoirTaskManager : MonoBehaviour
     [Header("Murder GameObjects")]
     public GameObject[] Suspects = new GameObject[0];
     public GameObject MurderWeapon;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
     [HideInInspector] public bool LevelCompleted;
 

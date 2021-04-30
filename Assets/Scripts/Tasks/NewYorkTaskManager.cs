@@ -13,7 +13,7 @@ public class NewYorkTaskManager : MonoBehaviour
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
     bool[] CompletedTasks;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
     [Header("Gameobjects")]
     public GameObject Player;

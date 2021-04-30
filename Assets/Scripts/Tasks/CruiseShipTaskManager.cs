@@ -22,7 +22,7 @@ public class CruiseShipTaskManager : MonoBehaviour
 
     
     public CosmeticUnlocker CosmeticUnlocker;
-    private bool menuOpen;
+    private bool menuOpen=true;
     private bool[] TaskFinished = new bool[11];
     private string CurrentMainTask = "<b>Take Chef's Clothes as a disguise</b>";
     [HideInInspector] public int MenThrownInWater = 0;

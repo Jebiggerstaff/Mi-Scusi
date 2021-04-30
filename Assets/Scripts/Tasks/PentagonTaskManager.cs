@@ -34,7 +34,7 @@ public class PentagonTaskManager : MonoBehaviour
 
     [HideInInspector] public bool[] TaskFinished;
     [HideInInspector] public bool[] TaskAllowed;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
 
 

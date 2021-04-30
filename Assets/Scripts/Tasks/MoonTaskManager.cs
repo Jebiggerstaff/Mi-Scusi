@@ -34,7 +34,7 @@ public class MoonTaskManager : MonoBehaviour
     public CosmeticUnlocker CosmeticUnlocker;
 
     [HideInInspector] public bool[] TaskFinished;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
 
     string MainTask;

@@ -37,7 +37,7 @@ public class ItalyTaskManager : MonoBehaviour
     [HideInInspector] public int DocumentsCollected = 0;
 
     private bool[] TaskFinished = new bool[11];
-    private bool menuOpen;
+    private bool menuOpen=true;
     private string CurrentMainTask = "<b>Beat up men in suits</b>\n";
 
     [Header("Audio Clips")]

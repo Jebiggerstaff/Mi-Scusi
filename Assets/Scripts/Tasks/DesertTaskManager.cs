@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -53,7 +53,7 @@ public class DesertTaskManager : MonoBehaviour
     [HideInInspector] public int GasCollected = 0;
 
     [HideInInspector]public bool[] TaskFinished;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
 
     [HideInInspector] public bool FoundAliens = false;

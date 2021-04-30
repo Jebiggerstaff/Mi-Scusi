@@ -16,7 +16,7 @@ public class TutorialTaskManager : MonoBehaviour
     [Header("Tasks")]
     public GameObject[] Tasks = new GameObject[0];
     bool[] TasksCompleted;
-    private bool menuOpen;
+    private bool menuOpen=true;
 
     [HideInInspector] public bool Pickedup = false;
     [HideInInspector] public bool Punched=false;
