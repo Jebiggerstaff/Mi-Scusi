@@ -38,7 +38,7 @@ public class ItalyTaskManager : MonoBehaviour
 
     private bool[] TaskFinished = new bool[11];
     private bool menuOpen=true;
-    private string CurrentMainTask = "<b>Beat up men in suits</b>\n";
+    private string CurrentMainTask = "<b>Stop the assault on the old man</b>\n";
 
     [Header("Audio Clips")]
     public AudioClip genericCompeltionClip;
