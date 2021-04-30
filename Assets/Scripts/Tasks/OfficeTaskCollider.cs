@@ -8,6 +8,7 @@ public class OfficeTaskCollider : MonoBehaviour
     public OfficeTaskManager OfficeTaskManager;
     bool PaperSpawned = false;
     public GameObject FullWaterJug;
+    public AudioClip coffeeSound;
 
 
     // Start is called before the first frame update
@@ -49,16 +50,19 @@ public class OfficeTaskCollider : MonoBehaviour
         #region MakeCoffee
         if (other.gameObject == OfficeTaskManager.coffeeObject1 && name == "CoffeMaker")
         {
+            RandomAudioMaker.makeAudio(coffeeSound);
             OfficeTaskManager.coffeePartsCollected++;
             Destroy(other.gameObject);
         }
         if (other.gameObject == OfficeTaskManager.coffeeObject2 && name == "CoffeMaker")
         {
+            RandomAudioMaker.makeAudio(coffeeSound);
             OfficeTaskManager.coffeePartsCollected++;
             Destroy(other.gameObject);
         }
         if (other.gameObject == OfficeTaskManager.coffeeObject3 && name == "CoffeMaker")
         {
+            RandomAudioMaker.makeAudio(coffeeSound);
             OfficeTaskManager.coffeePartsCollected++;
             Destroy(other.gameObject);
         }
