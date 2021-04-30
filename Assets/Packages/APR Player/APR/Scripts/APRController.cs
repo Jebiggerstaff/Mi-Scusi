@@ -449,7 +449,8 @@ public class APRController : MonoBehaviour
         {
             inAir = false;
             HitParticle.Play();
-            ResetPose = true;
+            if(!punchingLeft&&!punchingRight)
+                ResetPose = true;
         }
     }
     
